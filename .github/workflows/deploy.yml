@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout with submodules
         uses: actions/checkout@v4
@@ -30,11 +30,6 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      
-      - name: Setup Swift
-        uses: swift-actions/setup-swift@v2
-        with:
-          swift-version: '5.9'
       
       # Build Swift documentation using Makefile
       - name: Build Swift Documentation
@@ -77,3 +72,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        
