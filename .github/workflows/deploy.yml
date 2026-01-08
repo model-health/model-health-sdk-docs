@@ -19,8 +19,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout with submodules
         uses: actions/checkout@v4
+        with:
+          submodules: recursive
       
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -28,7 +30,32 @@ jobs:
           node-version: 20
           cache: npm
       
-      - name: Install dependencies
+      - name: Setup Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: '5.9'
+      
+      # Build Swift documentation using Makefile
+      - name: Build Swift Documentation
+        run: |
+          cd sdk
+          make docs-swift-export
+      
+      # Build TypeScript documentation using Makefile
+      - name: Build TypeScript Documentation
+        run: |
+          cd sdk
+          make docs-typescript-build
+      
+      # Copy docs to Docusaurus static folder
+      - name: Copy API docs to static folder
+        run: |
+          mkdir -p static/swift static/typescript
+          cp -r sdk/sdk-docs/swift/* static/swift/
+          cp -r sdk/sdk-docs/typescript/* static/typescript/
+      
+      # Build Docusaurus site
+      - name: Install Docusaurus dependencies
         run: npm ci
       
       - name: Build Docusaurus site
@@ -49,3 +76,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        
