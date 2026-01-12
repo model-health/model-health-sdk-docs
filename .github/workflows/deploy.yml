@@ -31,7 +31,9 @@ jobs:
           node-version: 20
           cache: npm
       
-      # Build Swift documentation using Makefile
+      - name: Install Jazzy
+        run: gem install jazzy --no-document
+
       - name: Build Swift Documentation
         run: |
           cd sdk
