@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout with submodules
         uses: actions/checkout@v4
@@ -30,21 +30,7 @@ jobs:
         with:
           node-version: 20
           cache: npm
-      
-      - name: Install Jazzy
-        run: gem install jazzy --no-document
-
-      - name: Build Swift Documentation
-        run: |
-          cd sdk
-          make docs-swift-build
-      
-      # Build TypeScript documentation using Makefile
-      - name: Build TypeScript Documentation
-        run: |
-          cd sdk
-          make docs-typescript-build
-      
+            
       # Copy docs to Docusaurus static folder
       - name: Copy API docs to static folder
         run: |
