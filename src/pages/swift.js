@@ -6,8 +6,7 @@ export default function SwiftAPI() {
   const history = useHistory();
 
   useEffect(() => {
-    // Redirect to Swift DocC documentation
-    history.push('/swift/documentation/modelhealth/');
+    history.push('/swift/');
   }, [history]);
 
   return (
