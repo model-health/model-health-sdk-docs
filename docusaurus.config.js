@@ -79,7 +79,9 @@ const config = {
           },
         ],
       },
-        copyright: `Copyright © ${new Date().getFullYear()} ModelHealth.`,
+      footer: {
+        style: 'dark',
+        copyright: `Copyright © ${new Date().getFullYear()} ModelHealth. Built with Docusaurus.`,
       },
       prism: {
         theme: require('prism-react-renderer').themes.github,
