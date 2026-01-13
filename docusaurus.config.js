@@ -77,11 +77,6 @@ const config = {
             label: 'TypeScript API',
             position: 'left',
           },
-          {
-            href: 'https://github.com/model-health/model-health',
-            label: 'GitHub',
-            position: 'right',
-          },
         ],
       },
       footer: {
@@ -101,15 +96,6 @@ const config = {
               {
                 label: 'TypeScript API Reference',
                 to: '/typescript-api',
-              },
-            ],
-          },
-          {
-            title: 'More',
-            items: [
-              {
-                label: 'GitHub',
-                href: 'https://github.com/model-health/model-health',
               },
             ],
           },
