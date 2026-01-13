@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import Layout from '@theme/Layout';
-import { useColorMode } from '@docusaurus/theme-common';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 export default function SwiftAPI() {
-  const { colorMode } = useColorMode();
-
   useEffect(() => {
+    if (!ExecutionEnvironment.canUseDOM) return;
+
     const iframe = document.querySelector('iframe[title="Swift API Documentation"]');
     if (!iframe) return;
 
@@ -20,17 +20,17 @@ export default function SwiftAPI() {
         `;
         iframeDoc.head.appendChild(style);
 
-        // Sync theme
+        // Sync theme from parent
+        const colorMode = document.documentElement.getAttribute('data-theme') || 'light';
         iframeDoc.body.setAttribute('data-color-scheme', colorMode);
       } catch (e) {
-        // CORS might prevent this
         console.warn('Could not inject styles into iframe');
       }
     };
 
     iframe.addEventListener('load', injectStyles);
     return () => iframe.removeEventListener('load', injectStyles);
-  }, [colorMode]);
+  }, []);
 
   return (
     <Layout title="Swift API Reference">

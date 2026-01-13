@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import Layout from '@theme/Layout';
-import { useColorMode } from '@docusaurus/theme-common';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 export default function TypeScriptAPI() {
-  const { colorMode } = useColorMode();
-
   useEffect(() => {
+    if (!ExecutionEnvironment.canUseDOM) return;
+
     const iframe = document.querySelector('iframe[title="TypeScript API Documentation"]');
     if (!iframe) return;
 
@@ -19,12 +19,9 @@ export default function TypeScriptAPI() {
         `;
         iframeDoc.head.appendChild(style);
 
-        // Sync theme - TypeDoc uses different attributes
-        if (colorMode === 'dark') {
-          iframeDoc.documentElement.setAttribute('data-theme', 'dark');
-        } else {
-          iframeDoc.documentElement.setAttribute('data-theme', 'light');
-        }
+        // Sync theme from parent
+        const colorMode = document.documentElement.getAttribute('data-theme') || 'light';
+        iframeDoc.documentElement.setAttribute('data-theme', colorMode === 'dark' ? 'dark' : 'light');
       } catch (e) {
         console.warn('Could not inject styles into iframe');
       }
@@ -32,7 +29,7 @@ export default function TypeScriptAPI() {
 
     iframe.addEventListener('load', injectStyles);
     return () => iframe.removeEventListener('load', injectStyles);
-  }, [colorMode]);
+  }, []);
 
   return (
     <Layout title="TypeScript API Reference">
