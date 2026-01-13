@@ -1,20 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Layout from '@theme/Layout';
 
 export default function SwiftAPI() {
-  useEffect(() => {
-    const iframe = document.querySelector('iframe[title="Swift API Documentation"]');
-    if (iframe) {
-      iframe.addEventListener('load', () => {
-        try {
-          iframe.contentWindow.baseUrl = '/swift/';
-        } catch (e) {
-          console.error('Could not set baseUrl:', e);
-        }
-      });
-    }
-  }, []);
-
   return (
     <Layout title="Swift API Reference">
       <iframe
