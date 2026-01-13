@@ -79,28 +79,7 @@ const config = {
           },
         ],
       },
-      footer: {
-        style: 'dark',
-        links: [
-          {
-            title: 'Docs',
-            items: [
-              {
-                label: 'Getting Started',
-                to: '/docs/intro',
-              },
-              {
-                label: 'Swift API Reference',
-                to: '/swift-api',
-              },
-              {
-                label: 'TypeScript API Reference',
-                to: '/typescript-api',
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} ModelHealth. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} ModelHealth.`,
       },
       prism: {
         theme: require('prism-react-renderer').themes.github,
