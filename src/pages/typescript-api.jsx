@@ -9,26 +9,45 @@ export default function TypeScriptAPI() {
     const iframe = document.querySelector('iframe[title="TypeScript API Documentation"]');
     if (!iframe) return;
 
+    const syncTheme = () => {
+      try {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+        if (!iframeDoc) return;
+
+        const colorMode = document.documentElement.getAttribute('data-theme') || 'light';
+        iframeDoc.documentElement.setAttribute('data-theme', colorMode === 'dark' ? 'dark' : 'light');
+      } catch (e) {
+        console.warn('Could not sync theme to iframe');
+      }
+    };
+
     const injectStyles = () => {
       try {
         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
         const style = iframeDoc.createElement('style');
         style.textContent = `
-          /* Hide TypeDoc settings panel */
           .tsd-page-toolbar { display: none !important; }
         `;
         iframeDoc.head.appendChild(style);
 
-        // Sync theme from parent
-        const colorMode = document.documentElement.getAttribute('data-theme') || 'light';
-        iframeDoc.documentElement.setAttribute('data-theme', colorMode === 'dark' ? 'dark' : 'light');
+        syncTheme();
       } catch (e) {
         console.warn('Could not inject styles into iframe');
       }
     };
 
     iframe.addEventListener('load', injectStyles);
-    return () => iframe.removeEventListener('load', injectStyles);
+
+    const observer = new MutationObserver(syncTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme']
+    });
+
+    return () => {
+      iframe.removeEventListener('load', injectStyles);
+      observer.disconnect();
+    };
   }, []);
 
   return (

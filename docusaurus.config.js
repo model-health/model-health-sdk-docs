@@ -81,7 +81,7 @@ const config = {
       },
       footer: {
         style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} ModelHealth. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} ModelHealth.`,
       },
       prism: {
         theme: require('prism-react-renderer').themes.github,
