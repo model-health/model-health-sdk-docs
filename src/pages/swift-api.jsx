@@ -24,10 +24,23 @@ export default function SwiftAPI() {
     const injectStyles = () => {
       try {
         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+        // Hide controls
         const style = iframeDoc.createElement('style');
         style.textContent = `
           .color-scheme-toggle { display: none !important; }
           footer { display: none !important; }
+          
+          /* Match Docusaurus fonts */
+          body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+          }
+          
+          /* Adjust font sizes to be more consistent */
+          body {
+            font-size: 16px;
+            line-height: 1.6;
+          }
         `;
         iframeDoc.head.appendChild(style);
 

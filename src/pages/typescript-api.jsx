@@ -24,9 +24,25 @@ export default function TypeScriptAPI() {
     const injectStyles = () => {
       try {
         const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
         const style = iframeDoc.createElement('style');
         style.textContent = `
           .tsd-page-toolbar { display: none !important; }
+          
+          /* Match Docusaurus fonts */
+          body {
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+          }
+          
+          /* Adjust font sizes */
+          body {
+            font-size: 16px;
+            line-height: 1.6;
+          }
+          
+          .tsd-typography {
+            line-height: 1.6;
+          }
         `;
         iframeDoc.head.appendChild(style);
 
