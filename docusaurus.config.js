@@ -68,12 +68,12 @@ const config = {
             label: 'Documentation',
           },
           {
-            to: '/swift-api',
+            to: '/swift-sdk',
             label: 'Swift SDK',
             position: 'left',
           },
           {
-            to: '/typescript-api',
+            to: '/typescript-sdk',
             label: 'TypeScript SDK',
             position: 'left',
           },

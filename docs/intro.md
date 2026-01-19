@@ -25,8 +25,8 @@ Cross-platform JavaScript/TypeScript SDK with WebAssembly core. Works in both br
 
 - [Installation Guide](./getting-started/installation)
 - [Quick Start](./getting-started/quick-start)
-- [Swift SDK Reference](/swift-api)
-- [TypeScript SDK Reference](/typescript-api)
+- [Swift SDK Reference](/swift-sdk)
+- [TypeScript SDK Reference](/typescript-sdk)
 
 ## Workflow Overview
 

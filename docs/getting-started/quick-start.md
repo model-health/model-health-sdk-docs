@@ -158,5 +158,5 @@ if (activityStatus.type === "ready") {
 
 - Learn more about [Authentication](../guides/authentication)
 - Understand [Camera Calibration](../guides/camera-calibration)
-- Explore the [Swift SDK Reference](/swift-api)
-- Explore the [TypeScript SDK Reference](/typescript-api)
+- Explore the [Swift SDK Reference](/swift-sdk)
+- Explore the [TypeScript SDK Reference](/typescript-sdk)
