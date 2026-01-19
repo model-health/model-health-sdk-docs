@@ -9,10 +9,10 @@ This guide will walk you through a basic example of using the Model Health SDK.
 ## Swift Quick Start
 
 ```swift
-import Model Health
+import ModelHealth
 
 // Initialize the service
-let service = try Model HealthService()
+let service = try ModelHealthService()
 
 // Authenticate
 let loginResult = try await service.login(
@@ -67,12 +67,14 @@ if case .ready = status {
     }
     
     // Download results
-    if case .ready = analysisStatus {
-        let result = try await service.downloadAnalysisResult(
-            forActivity: activity, 
-            resultTag: "summary"
-        )
-        print("Analysis complete: \(result)")
+    if case .completed(let resultTags) = analysisStatus {
+        for tag in resultTags {
+            let result = try await service.downloadAnalysisResult(
+                forActivity: activity, 
+                resultTag: tag
+            )
+            print("Analysis complete: \(result)")
+        }
     }
 }
 ```
@@ -80,10 +82,10 @@ if case .ready = status {
 ## TypeScript Quick Start
 
 ```typescript
-import { Model HealthService } from '@modelhealth/sdk';
+import { ModelHealthService } from '@modelhealth/sdk';
 
 // Initialize the service
-const service = new Model HealthService();
+const service = new ModelHealthService();
 await service.init();
 
 // Authenticate
@@ -101,11 +103,11 @@ const session = await service.createSession();
 const checkerboardDetails = {
   rows: 4,
   columns: 5,
-  squareSize: 35,
+  square_size: 35,
   placement: "perpendicular"
 };
 
-await service.calibrateCamera(session.id, checkerboardDetails, (status) => {
+await service.calibrateCamera(session, checkerboardDetails, (status) => {
   console.log("Calibration status:", status);
 });
 
@@ -114,38 +116,40 @@ const subjects = await service.subjectList();
 
 // Capture neutral pose
 if (subjects.length > 0) {
-  await service.calibrateNeutralPose(subjects[0].id, session.id, (status) => {
+  await service.calibrateNeutralPose(subjects[0], session, (status) => {
     console.log("Neutral pose status:", status);
   });
 }
 
 // Record an activity
-const activity = await service.record("cmj-1", session.id);
-// Subject performs the movement...
-await service.stopRecording(session.id);
+const activity = await service.record("cmj-1", session);
+// Subject performs the activity...
+await service.stopRecording(session);
 
 // Check processing status
-let activityStatus = await service.getActivityStatus(activity.id);
-while (activityStatus === "processing") {
+let activityStatus = await service.getStatus(activity);
+while (activityStatus.type === "processing") {
   await new Promise(resolve => setTimeout(resolve, 2000));
-  activityStatus = await service.getActivityStatus(activity.id);
+  activityStatus = await service.getStatus(activity);
 }
 
 // Start analysis
-if (activityStatus === "ready") {
-  const task = await service.startAnalysis("counter_movement_jump", activity.id, session.id);
+if (activityStatus.type === "ready") {
+  const task = await service.startAnalysis("counter_movement_jump", activity, session);
   
   // Poll for completion
-  let analysisStatus = await service.getAnalysisStatus(task.id);
-  while (analysisStatus === "processing") {
+  let analysisStatus = await service.getAnalysisStatus(task);
+  while (analysisStatus.type === "processing") {
     await new Promise(resolve => setTimeout(resolve, 2000));
-    analysisStatus = await service.getAnalysisStatus(task.id);
+    analysisStatus = await service.getAnalysisStatus(task);
   }
   
   // Download results
-  if (analysisStatus === "ready") {
-    const result = await service.downloadAnalysisResult(activity.id, "summary");
-    console.log("Analysis complete:", result);
+  if (analysisStatus.type === "completed") {
+    for (const tag of analysisStatus.result_tags) {
+      const result = await service.downloadAnalysisResult(activity, tag);
+      console.log("Analysis complete:", result);
+    }
   }
 }
 ```

@@ -49,7 +49,7 @@ let details = CheckerboardDetails(
 const details = {
   rows: 4,
   columns: 5,
-  squareSize: 35,  // millimeters
+  square_size: 35,  // millimeters
   placement: "perpendicular"
 };
 ```
@@ -60,11 +60,17 @@ const details = {
 ```swift
 try await service.calibrateCamera(session, checkerboardDetails: details) { status in
     switch status {
-    case .detectingCheckerboard:
-        print("Looking for checkerboard...")
-    case .capturedImage(let count, let required):
-        print("Captured \(count)/\(required) images")
-    case .completed:
+    case .recording:
+        print("Recording calibration...")
+    case .uploading(let uploaded, let total):
+        print("Uploading \(uploaded)/\(total) videos")
+    case .processing(let percent):
+        if let percent = percent {
+            print("Processing: \(percent)%")
+        } else {
+            print("Processing...")
+        }
+    case .done:
         print("Calibration complete!")
     }
 }
@@ -72,13 +78,24 @@ try await service.calibrateCamera(session, checkerboardDetails: details) { statu
 
 **TypeScript:**
 ```typescript
-await service.calibrateCamera(session.id, details, (status) => {
-  if (status.type === "detecting") {
-    console.log("Looking for checkerboard...");
-  } else if (status.type === "captured") {
-    console.log(`Captured ${status.count}/${status.required} images`);
-  } else if (status.type === "completed") {
-    console.log("Calibration complete!");
+await service.calibrateCamera(session, details, (status) => {
+  switch (status.type) {
+    case "recording":
+      console.log("Recording calibration...");
+      break;
+    case "uploading":
+      console.log(`Uploading ${status.uploaded}/${status.total} videos`);
+      break;
+    case "processing":
+      if (status.percent !== undefined) {
+        console.log(`Processing: ${status.percent}%`);
+      } else {
+        console.log("Processing...");
+      }
+      break;
+    case "done":
+      console.log("Calibration complete!");
+      break;
   }
 });
 ```
@@ -93,9 +110,17 @@ let subjects = try await service.subjectList()
 if let subject = subjects.first {
     try await service.calibrateNeutralPose(for: subject, in: session) { status in
         switch status {
-        case .detectingPose:
-            print("Detecting neutral pose...")
-        case .completed:
+        case .recording:
+            print("Recording neutral pose...")
+        case .uploading(let uploaded, let total):
+            print("Uploading \(uploaded)/\(total) videos")
+        case .processing(let percent):
+            if let percent = percent {
+                print("Processing: \(percent)%")
+            } else {
+                print("Processing...")
+            }
+        case .done:
             print("Neutral pose captured!")
         }
     }
@@ -106,11 +131,24 @@ if let subject = subjects.first {
 ```typescript
 const subjects = await service.subjectList();
 if (subjects.length > 0) {
-  await service.calibrateNeutralPose(subjects[0].id, session.id, (status) => {
-    if (status === "detecting") {
-      console.log("Detecting neutral pose...");
-    } else if (status === "completed") {
-      console.log("Neutral pose captured!");
+  await service.calibrateNeutralPose(subjects[0], session, (status) => {
+    switch (status.type) {
+      case "recording":
+        console.log("Recording neutral pose...");
+        break;
+      case "uploading":
+        console.log(`Uploading ${status.uploaded}/${status.total} videos`);
+        break;
+      case "processing":
+        if (status.percent !== undefined) {
+          console.log(`Processing: ${status.percent}%`);
+        } else {
+          console.log("Processing...");
+        }
+        break;
+      case "done":
+        console.log("Neutral pose captured!");
+        break;
     }
   });
 }

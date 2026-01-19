@@ -37,7 +37,7 @@ The typical Model Health workflow follows these steps:
 3. **Camera Calibration**: Calibrate cameras using a checkerboard pattern
 4. **Neutral Pose**: Capture subject's neutral standing pose for scaling
 5. **Recording**: Record movement activities (squats, jumps, etc.)
-6. **Analysis**: Fetch processed biomechanical data
+6. **Analysis**: Process recordings and fetch biomechanical data
 
 ## Support
 

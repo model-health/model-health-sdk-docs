@@ -31,7 +31,7 @@ dependencies: [
 Then import it in your Swift files:
 
 ```swift
-import Model Health
+import ModelHealth
 ```
 
 ## TypeScript SDK
@@ -55,7 +55,7 @@ yarn add @modelhealth/sdk
 ### Import
 
 ```typescript
-import { Model HealthService } from '@modelhealth/sdk';
+import { ModelHealthService } from '@modelhealth/sdk';
 ```
 
 ## Verification
@@ -63,10 +63,10 @@ import { Model HealthService } from '@modelhealth/sdk';
 ### Swift
 
 ```swift
-import Model Health
+import ModelHealth
 
 do {
-    let service = try Model HealthService()
+    let service = try ModelHealthService()
     print("Model Health SDK initialized successfully")
 } catch {
     print("Failed to initialize: \(error)")
@@ -76,9 +76,9 @@ do {
 ### TypeScript
 
 ```typescript
-import { Model HealthService } from '@modelhealth/sdk';
+import { ModelHealthService } from '@modelhealth/sdk';
 
-const service = new Model HealthService();
+const service = new ModelHealthService();
 await service.init();
 console.log('Model Health SDK initialized successfully');
 ```

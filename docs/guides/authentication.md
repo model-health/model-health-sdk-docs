@@ -18,7 +18,7 @@ let result = try await service.login(
 )
 
 switch result {
-case .success:
+case .ok:
     print("Logged in successfully")
 case .verificationRequired:
     print("Need to verify with email code")
@@ -29,7 +29,7 @@ case .verificationRequired:
 ```typescript
 const result = await service.login("user@example.com", "your-password");
 
-if (result === "success") {
+if (result === "ok") {
   console.log("Logged in successfully");
 } else if (result === "verification_required") {
   console.log("Need to verify with email code");

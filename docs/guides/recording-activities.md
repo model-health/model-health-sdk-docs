@@ -16,7 +16,7 @@ print("Recording started: \(activity.id)")
 
 **TypeScript:**
 ```typescript
-const activity = await service.record("cmj-1", session.id);
+const activity = await service.record("cmj-1", session);
 console.log("Recording started:", activity.id);
 ```
 
@@ -40,7 +40,7 @@ print("Recording stopped")
 
 **TypeScript:**
 ```typescript
-await service.stopRecording(session.id);
+await service.stopRecording(session);
 console.log("Recording stopped");
 ```
 
@@ -53,29 +53,35 @@ After stopping, the video is uploaded and processed:
 let status = try await service.getStatus(forActivity: activity)
 
 switch status {
-case .uploading(let progress):
-    print("Uploading: \(progress)%")
+case .uploading(let uploaded, let total):
+    print("Uploading: \(uploaded)/\(total) videos")
 case .processing:
     print("Processing video...")
 case .ready:
     print("Ready for analysis!")
-case .failed(let error):
-    print("Processing failed: \(error)")
+case .failed:
+    print("Processing failed")
 }
 ```
 
 **TypeScript:**
 ```typescript
-let status = await service.getActivityStatus(activity.id);
+let status = await service.getStatus(activity);
 
-while (status === "uploading" || status === "processing") {
-  console.log("Status:", status);
+while (status.type === "uploading" || status.type === "processing") {
+  if (status.type === "uploading") {
+    console.log(`Uploading: ${status.uploaded}/${status.total} videos`);
+  } else {
+    console.log("Processing video...");
+  }
   await new Promise(resolve => setTimeout(resolve, 2000));
-  status = await service.getActivityStatus(activity.id);
+  status = await service.getStatus(activity);
 }
 
-if (status === "ready") {
+if (status.type === "ready") {
   console.log("Ready for analysis!");
+} else if (status.type === "failed") {
+  console.log("Processing failed");
 }
 ```
 
@@ -120,9 +126,9 @@ do {
 **TypeScript:**
 ```typescript
 try {
-  const activity = await service.record(name, session.id);
+  const activity = await service.record(name, session);
   // Recording in progress...
-  await service.stopRecording(session.id);
+  await service.stopRecording(session);
 } catch (error) {
   console.error("Recording failed:", error);
   // Handle error
