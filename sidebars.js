@@ -41,12 +41,12 @@ const sidebars = {
         {
           type: 'link',
           label: 'Swift SDK',
-          href: '/swift-sdk',
+          href: '/swift-api',
         },
         {
           type: 'link',
           label: 'TypeScript SDK',
-          href: '/typescript-sdk',
+          href: '/typescript-api',
         },
       ],
     },
