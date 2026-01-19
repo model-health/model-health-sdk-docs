@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Authentication
 
-ModelHealth uses email/password authentication with optional two-factor verification.
+Model Health uses email/password authentication with optional two-factor verification.
 
 ## Login Flow
 

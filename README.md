@@ -1,6 +1,6 @@
-# ModelHealth Documentation
+# Model Health Documentation
 
-This repository contains the documentation website for the ModelHealth SDK, built with [Docusaurus](https://docusaurus.io/).
+This repository contains the documentation website for the Model Health SDK, built with [Docusaurus](https://docusaurus.io/).
 
 ## Local Development
 
@@ -123,7 +123,7 @@ Edit markdown files in `docs/getting-started/` or `docs/guides/`. Changes are au
 ### API Documentation
 
 API documentation is generated from the SDK submodule:
-- **Swift**: Generated with [Jazzy](https://github.com/realm/jazzy) from `ModelHealthService.swift` and `Models.swift`
+- **Swift**: Generated with [Jazzy](https://github.com/realm/jazzy) from `Model HealthService.swift` and `Models.swift`
 - **TypeScript**: Generated with [TypeDoc](https://typedoc.org/) from `index.ts`
 
 The submodule points to a specific SDK commit. Update the submodule reference to update API docs.
@@ -162,4 +162,4 @@ Check the Actions tab for detailed logs. Common issues:
 
 ## License
 
-Same as the main ModelHealth SDK repository.
+Same as the main Model Health SDK repository.

@@ -1,6 +1,6 @@
-# ModelHealth Documentation Setup Guide
+# Model Health Documentation Setup Guide
 
-This guide will walk you through setting up Docusaurus documentation with GitHub Pages for your ModelHealth SDK.
+This guide will walk you through setting up Docusaurus documentation with GitHub Pages for your Model Health SDK.
 
 ## Overview
 
@@ -95,7 +95,7 @@ You can monitor progress in the **Actions** tab on GitHub.
 
 Once the workflow completes:
 - Visit `https://model-health.github.io/model-health/` (or your custom domain)
-- You should see the ModelHealth documentation site
+- You should see the Model Health documentation site
 
 DNS propagation for the custom domain can take up to 48 hours, but is usually much faster.
 

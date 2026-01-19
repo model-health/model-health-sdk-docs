@@ -3,7 +3,7 @@
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'ModelHealth SDK',
+  title: 'Model Health SDK',
   tagline: 'Biomechanical analysis from smartphone videos',
   favicon: 'img/favicon.ico',
 
@@ -55,10 +55,10 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'ModelHealth',
+        title: 'Model Health',
         logo: {
-          alt: 'ModelHealth Logo',
-          src: 'img/logo.svg',
+          alt: 'Model Health Logo',
+          src: 'img/logo.png',
         },
         items: [
           {
@@ -69,19 +69,19 @@ const config = {
           },
           {
             to: '/swift-api',
-            label: 'Swift API',
+            label: 'Swift SDK',
             position: 'left',
           },
           {
             to: '/typescript-api',
-            label: 'TypeScript API',
+            label: 'TypeScript SDK',
             position: 'left',
           },
         ],
       },
       footer: {
         style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} ModelHealth.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Model Health.`,
       },
       prism: {
         theme: require('prism-react-renderer').themes.github,

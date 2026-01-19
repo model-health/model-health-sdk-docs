@@ -36,17 +36,17 @@ const sidebars = {
     },
     {
       type: 'category',
-      label: 'API Reference',
+      label: 'SDK Reference',
       items: [
         {
           type: 'link',
-          label: 'Swift API',
-          href: '/swift',
+          label: 'Swift SDK',
+          href: '/swift-api',
         },
         {
           type: 'link',
-          label: 'TypeScript API',
-          href: '/typescript',
+          label: 'TypeScript SDK',
+          href: '/typescript-api',
         },
       ],
     },

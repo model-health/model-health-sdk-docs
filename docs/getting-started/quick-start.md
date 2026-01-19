@@ -4,15 +4,15 @@ sidebar_position: 2
 
 # Quick Start
 
-This guide will walk you through a basic example of using the ModelHealth SDK.
+This guide will walk you through a basic example of using the Model Health SDK.
 
 ## Swift Quick Start
 
 ```swift
-import ModelHealth
+import Model Health
 
 // Initialize the service
-let service = try ModelHealthService()
+let service = try Model HealthService()
 
 // Authenticate
 let loginResult = try await service.login(
@@ -80,10 +80,10 @@ if case .ready = status {
 ## TypeScript Quick Start
 
 ```typescript
-import { ModelHealthService } from '@modelhealth/sdk';
+import { Model HealthService } from '@modelhealth/sdk';
 
 // Initialize the service
-const service = new ModelHealthService();
+const service = new Model HealthService();
 await service.init();
 
 // Authenticate
@@ -154,5 +154,5 @@ if (activityStatus === "ready") {
 
 - Learn more about [Authentication](../guides/authentication)
 - Understand [Camera Calibration](../guides/camera-calibration)
-- Explore the [Swift API Reference](/swift)
-- Explore the [TypeScript API Reference](/typescript)
+- Explore the [Swift SDK Reference](/swift-api)
+- Explore the [TypeScript SDK Reference](/typescript-api)

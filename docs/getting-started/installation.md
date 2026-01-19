@@ -13,12 +13,12 @@ sidebar_position: 1
 
 ### Swift Package Manager
 
-Add the ModelHealth SDK to your project using Swift Package Manager:
+Add the Model Health SDK to your project using Swift Package Manager:
 
 1. In Xcode, select **File > Add Package Dependencies...**
 2. Enter the repository URL: `https://github.com/model-health/model-health`
 3. Select the version you want to use
-4. Add `ModelHealth` to your target
+4. Add `Model Health` to your target
 
 Alternatively, add it to your `Package.swift`:
 
@@ -31,7 +31,7 @@ dependencies: [
 Then import it in your Swift files:
 
 ```swift
-import ModelHealth
+import Model Health
 ```
 
 ## TypeScript SDK
@@ -55,7 +55,7 @@ yarn add @modelhealth/sdk
 ### Import
 
 ```typescript
-import { ModelHealthService } from '@modelhealth/sdk';
+import { Model HealthService } from '@modelhealth/sdk';
 ```
 
 ## Verification
@@ -63,11 +63,11 @@ import { ModelHealthService } from '@modelhealth/sdk';
 ### Swift
 
 ```swift
-import ModelHealth
+import Model Health
 
 do {
-    let service = try ModelHealthService()
-    print("ModelHealth SDK initialized successfully")
+    let service = try Model HealthService()
+    print("Model Health SDK initialized successfully")
 } catch {
     print("Failed to initialize: \(error)")
 }
@@ -76,11 +76,11 @@ do {
 ### TypeScript
 
 ```typescript
-import { ModelHealthService } from '@modelhealth/sdk';
+import { Model HealthService } from '@modelhealth/sdk';
 
-const service = new ModelHealthService();
+const service = new Model HealthService();
 await service.init();
-console.log('ModelHealth SDK initialized successfully');
+console.log('Model Health SDK initialized successfully');
 ```
 
 ## Next Steps

@@ -4,9 +4,9 @@ sidebar_position: 1
 
 # Introduction
 
-Welcome to the ModelHealth SDK documentation!
+Welcome to the Model Health SDK documentation!
 
-ModelHealth enables you to measure and analyze human movement from smartphone videos. The SDK provides a complete workflow for biomechanical analysis:
+Model Health enables you to measure and analyze human movement from smartphone videos. The SDK provides a complete workflow for biomechanical analysis:
 
 - **Authentication and session management**
 - **Multi-camera calibration**
@@ -25,12 +25,12 @@ Cross-platform JavaScript/TypeScript SDK with WebAssembly core. Works in both br
 
 - [Installation Guide](./getting-started/installation)
 - [Quick Start](./getting-started/quick-start)
-- [Swift API Reference](/swift)
-- [TypeScript API Reference](/typescript)
+- [Swift SDK Reference](/swift-api)
+- [TypeScript SDK Reference](/typescript-api)
 
 ## Workflow Overview
 
-The typical ModelHealth workflow follows these steps:
+The typical Model Health workflow follows these steps:
 
 1. **Authentication**: Login with credentials, verify with email code if needed
 2. **Session Creation**: Create a calibration session
