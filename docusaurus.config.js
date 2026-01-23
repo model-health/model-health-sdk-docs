@@ -36,10 +36,6 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/model-health/model-health/tree/main/docs/',
         },
         blog: false,
         theme: {
@@ -52,7 +48,6 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: 'Model Health',
@@ -76,6 +71,11 @@ const config = {
             to: '/typescript-api',
             label: 'TypeScript SDK',
             position: 'left',
+          },
+          {
+            to: '/register',
+            label: 'Get API Key',
+            position: 'right',
           },
         ],
       },

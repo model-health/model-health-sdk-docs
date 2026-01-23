@@ -4,6 +4,14 @@ sidebar_position: 1
 
 # Installation
 
+## Get Your API Key
+
+Before installing the SDK, you'll need an API key to authenticate your requests.
+
+[Get your API key →](/register)
+
+Once you have your API key, you can proceed with installation.
+
 ## Swift SDK
 
 ### Requirements
@@ -66,7 +74,7 @@ import { ModelHealthService } from '@modelhealth/sdk';
 import ModelHealth
 
 do {
-    let service = try ModelHealthService()
+    let service = try ModelHealthService(apiKey: "your-api-key-here")
     print("Model Health SDK initialized successfully")
 } catch {
     print("Failed to initialize: \(error)")
@@ -78,7 +86,7 @@ do {
 ```typescript
 import { ModelHealthService } from '@modelhealth/sdk';
 
-const service = new ModelHealthService();
+const service = new ModelHealthService("your-api-key-here");
 await service.init();
 console.log('Model Health SDK initialized successfully');
 ```

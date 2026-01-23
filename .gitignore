@@ -7,6 +7,9 @@ node_modules/
 # Generated files
 .docusaurus
 .cache-loader
+.env
+.env.local
+.env.*.local
 
 # Misc
 .DS_Store

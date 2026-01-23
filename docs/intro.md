@@ -23,6 +23,7 @@ Cross-platform JavaScript/TypeScript SDK with WebAssembly core. Works in both br
 
 ## Quick Links
 
+- [Get API Key](/register)
 - [Installation Guide](./getting-started/installation)
 - [Quick Start](./getting-started/quick-start)
 - [Swift SDK Reference](/swift-api)
