@@ -32,7 +32,7 @@ function HomepageFeatures() {
           <div className="col col--4">
             <h3>Swift SDK</h3>
             <p>
-              Native iOS SDK with full support for iPhone, iPad, and Apple Watch.
+              Native iOS SDK with full support for iPhone and iPad.
               Built with Swift and optimized for iOS development.
             </p>
             <Link to="/swift-api">View Swift SDK →</Link>
@@ -40,7 +40,7 @@ function HomepageFeatures() {
           <div className="col col--4">
             <h3>TypeScript SDK</h3>
             <p>
-              Cross-platform JavaScript/TypeScript SDK with WebAssembly core.
+              Cross-platform JavaScript/TypeScript SDK.
               Works in browser and Node.js environments.
             </p>
             <Link to="/typescript-api">View TypeScript SDK →</Link>

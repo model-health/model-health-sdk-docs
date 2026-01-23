@@ -29,6 +29,12 @@ const config = {
     locales: ['en'],
   },
 
+  // Custom fields to expose environment variables to client-side
+  customFields: {
+    DOCUSAURUS_API_URL: process.env.DOCUSAURUS_API_URL,
+    BUILD_ENV: process.env.BUILD_ENV,
+  },
+
   presets: [
     [
       'classic',
@@ -36,10 +42,6 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/model-health/model-health/tree/main/docs/',
         },
         blog: false,
         theme: {
@@ -76,6 +78,11 @@ const config = {
             to: '/typescript-api',
             label: 'TypeScript SDK',
             position: 'left',
+          },
+          {
+            to: '/register',
+            label: 'Get API Key',
+            position: 'right',
           },
         ],
       },

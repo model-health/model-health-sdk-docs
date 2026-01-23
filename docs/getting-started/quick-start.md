@@ -6,13 +6,19 @@ sidebar_position: 2
 
 This guide will walk you through a basic example of using the Model Health SDK.
 
+## Prerequisites
+
+Before you begin, make sure you have:
+1. [Installed the SDK](./installation)
+2. [Obtained an API key](/register)
+
 ## Swift Quick Start
 
 ```swift
 import ModelHealth
 
-// Initialize the service
-let service = try ModelHealthService()
+// Initialize the service with your API key
+let service = try ModelHealthService(apiKey: "your-api-key-here")
 
 // Authenticate
 let loginResult = try await service.login(
@@ -84,8 +90,8 @@ if case .ready = status {
 ```typescript
 import { ModelHealthService } from '@modelhealth/sdk';
 
-// Initialize the service
-const service = new ModelHealthService();
+// Initialize the service with your API key
+const service = new ModelHealthService("your-api-key-here");
 await service.init();
 
 // Authenticate
