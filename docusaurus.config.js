@@ -29,6 +29,12 @@ const config = {
     locales: ['en'],
   },
 
+  // Custom fields to expose environment variables to client-side
+  customFields: {
+    DOCUSAURUS_API_URL: process.env.DOCUSAURUS_API_URL,
+    BUILD_ENV: process.env.BUILD_ENV,
+  },
+
   presets: [
     [
       'classic',
@@ -48,6 +54,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: 'Model Health',
