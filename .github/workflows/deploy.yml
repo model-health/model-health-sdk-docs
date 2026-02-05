@@ -19,36 +19,17 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout with submodules
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          token: ${{ secrets.SUBMODULE_TOKEN }}
-      
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
             
-      # Copy docs to Docusaurus static folder
-      - name: Copy API docs to static folder
-        run: |
-          mkdir -p static/swift static/typescript
-          cp -r sdk/sdk-docs/swift/* static/swift/
-          cp -r sdk/sdk-docs/typescript/* static/typescript/
-
       - name: Debug - Check copied files
         run: |
-          echo "=== Contents of static/swift ==="
-          ls -la static/swift/ | head -20
-          echo "=== Contents of static/typescript ==="
-          ls -la static/typescript/ | head -20
           echo "=== Check if index.html exists ==="
           test -f static/swift/index.html && echo "✅ Swift index.html exists" || echo "❌ Swift index.html missing"
           test -f static/typescript/index.html && echo "✅ TS index.html exists" || echo "❌ TS index.html missing"
-          echo "=== Contents of build/swift after Docusaurus build ==="
-          ls -la build/swift/ 2>/dev/null | head -20 || echo "build/swift/ doesn't exist yet"
 
       # Build Docusaurus site
       - name: Install Docusaurus dependencies
