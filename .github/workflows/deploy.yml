@@ -2,8 +2,8 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - main
+    tags:
+      - 'v*.*.*'
   workflow_dispatch:
 
 permissions:
@@ -22,6 +22,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Get version from tag
+        id: version
+        run: |
+          VERSION=${GITHUB_REF#refs/tags/v}
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Deploying docs for version: $VERSION"
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -34,7 +41,6 @@ jobs:
           test -f static/swift/index.html && echo "✅ Swift index.html exists" || echo "❌ Swift index.html missing"
           test -f static/typescript/index.html && echo "✅ TS index.html exists" || echo "❌ TS index.html missing"
 
-      # Build Docusaurus site
       - name: Install Docusaurus dependencies
         run: npm ci
       
