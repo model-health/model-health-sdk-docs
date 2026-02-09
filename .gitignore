@@ -21,9 +21,12 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+<<<<<<< HEAD
 static/swift/
 static/typescript/
 
 # SDK Documentation
 sdk-docs/
 sdk/
+=======
+>>>>>>> develop
