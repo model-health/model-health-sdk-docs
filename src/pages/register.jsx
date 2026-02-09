@@ -43,11 +43,11 @@ export default function Register() {
       
       let endpoint;
       if (customApiUrl) {
-        endpoint = `${customApiUrl}/api/v2/register-api-key/`;
+        endpoint = `${customApiUrl}/register-api-key/`;
       } else if (buildEnv === 'dev') {
-        endpoint = 'https://dev.modelhealth.io/api/v2/register-api-key/';
+        endpoint = 'https://dev.modelhealth.io/register-api-key/';
       } else {
-        endpoint = 'https://api.modelhealth.io/api/v2/register-api-key/';
+        endpoint = 'https://api.modelhealth.io/register-api-key/';
       }
       
       console.log('📡 API Endpoint:', endpoint);
