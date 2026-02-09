@@ -1,3 +1,4 @@
+---
 sidebar_position: 1
 ---
 
@@ -50,4 +51,4 @@ A typical Model Health integration follows these steps:
 
 ## Support
 
-For questions, issues, or feature requests, visit our [GitHub repository](https://github.com/model-health/model-health).
+For questions, issues, or feature requests, please visit our [GitHub repository](https://github.com/model-health/model-health).
