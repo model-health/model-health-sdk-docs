@@ -23,7 +23,3 @@ yarn-debug.log*
 yarn-error.log*
 static/swift/
 static/typescript/
-
-# SDK Documentation
-sdk-docs/
-
