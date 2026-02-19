@@ -32,7 +32,6 @@ Cross-platform SDK powered by WebAssembly. Works in both browser and Node.js env
 
 ## Quick Links
 
-- [Get API Key](/register)  
 - [Installation Guide](./getting-started/installation)  
 - [Quick Start](./getting-started/quick-start)  
 - [Swift SDK Reference](/swift-api)  

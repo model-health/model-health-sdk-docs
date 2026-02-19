@@ -79,11 +79,11 @@ const config = {
             label: 'TypeScript SDK',
             position: 'left',
           },
-          {
-            to: '/register',
-            label: 'Get API Key',
-            position: 'right',
-          },
+          // {
+          //   to: '/register',
+          //   label: 'Get API Key',
+          //   position: 'right',
+          // },
         ],
       },
       footer: {
