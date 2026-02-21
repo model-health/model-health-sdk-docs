@@ -8,12 +8,12 @@ The Model Health SDK lets you **integrate advanced human movement analysis direc
 
 > Think of the integration as a **trio**:  
 > 1. **Your app** – where your users interact and request biomechanical analyses.  
-> 2. **Model Health SDK** – provides the tools to authenticate, control the recording workflow, and retrieve processed biomechanical data.  
+> 2. **Model Health SDK** – provides the tools (with your API key) to control the recording workflow and retrieve processed biomechanical data.  
 > 3. **Model Health Companion iOS app** – used for capturing videos needed for analysis.
 
 With this setup, you can quickly add a complete workflow similar to that of Model Health's own web app:
 
-- **Authentication and session management**  
+- **API key and session management**  
 - **Camera calibration**  
 - **Movement data collection**  
 - **Analysis and reporting**
@@ -41,7 +41,7 @@ Cross-platform SDK powered by WebAssembly. Works in both browser and Node.js env
 
 A typical Model Health integration follows these steps:
 
-1. **Authentication** – Sign in with your credentials and verify via email code if needed.  
+1. **API key** – Create the SDK client with your API key.  
 2. **Session Creation** – Start a data collection session.  
 3. **Camera Calibration** – Calibrate the cameras with a checkerboard pattern.  
 4. **Subject Calibration** – Record the subject standing in a neutral pose for calibration.  

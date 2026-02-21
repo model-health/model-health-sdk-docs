@@ -4,96 +4,66 @@ sidebar_position: 1
 
 # Authentication
 
-Model Health uses email/password authentication with optional two-factor verification.
+The Model Health SDK uses **API key authentication**. You pass your API key when creating the client, all requests are then authenticated automatically.
 
-## Login Flow
+## API Key Requirements
 
-### Basic Login
 
-**Swift:**
+- Obtain an API key from the [Model Health dashboard](https://docs.modelhealth.io) or [register](/register) page.
+
+## Swift
+
+Create the service with your API key. No separate login or verification step is needed:
+
 ```swift
-let result = try await service.login(
-    username: "user@example.com",
-    password: "your-password"
-)
+import ModelHealth
 
-switch result {
-case .ok:
-    print("Logged in successfully")
-case .verificationRequired:
-    print("Need to verify with email code")
-}
+let service = try ModelHealthService(apiKey: "your-api-key-here")
+// SDK is ready – all API calls use this key
+let sessions = try await service.sessionList()
 ```
 
-**TypeScript:**
+## TypeScript
+
+Create the client with your API key and call `init()` before making requests:
+
 ```typescript
-const result = await service.login("user@example.com", "your-password");
+import { ModelHealthService } from '@modelhealth/sdk';
 
-if (result === "ok") {
-  console.log("Logged in successfully");
-} else if (result === "verification_required") {
-  console.log("Need to verify with email code");
-}
+const service = new ModelHealthService({
+  apiKey: 'your-api-key-here',
+});
+await service.init();
+// SDK is ready – all API calls use this key
+const sessions = await service.sessionList();
 ```
-
-### Two-Factor Verification
-
-When verification is required, you'll receive an email with a 6-digit code:
-
-**Swift:**
-```swift
-try await service.verify(code: "123456", rememberDevice: true)
-```
-
-**TypeScript:**
-```typescript
-await service.verify("123456", true);
-```
-
-The `rememberDevice` parameter determines whether future logins from this device will require verification.
-
-## Session Management
-
-After successful authentication, your session token is automatically managed by the SDK. The token is:
-
-- Stored securely in the keychain (Swift) or configured storage (TypeScript)
-- Automatically refreshed when needed
-- Used for all subsequent API calls
 
 ## Error Handling
 
 **Swift:**
 ```swift
 do {
-    let result = try await service.login(username: username, password: password)
-    // Handle result...
+    let service = try ModelHealthService(apiKey: apiKey)
+    // Use service...
 } catch {
-    if let authError = error as? AuthenticationError {
-        switch authError {
-        case .invalidCredentials:
-            print("Invalid username or password")
-        case .accountLocked:
-            print("Account has been locked")
-        default:
-            print("Authentication failed: \(authError)")
-        }
-    }
+    print("Failed to initialize: \(error)")
+    // Invalid API key format or other error
 }
 ```
 
 **TypeScript:**
 ```typescript
 try {
-  const result = await service.login(username, password);
-  // Handle result...
+  const service = new ModelHealthService({ apiKey: apiKey });
+  await service.init();
+  // Use service...
 } catch (error) {
-  console.error("Authentication failed:", error);
+  console.error('Failed to initialize:', error);
+  // Invalid API key format or other error
 }
 ```
 
 ## Best Practices
 
-1. **Never hardcode credentials** - Always prompt users for credentials or use secure storage
-2. **Remember device carefully** - Only enable "remember device" on trusted devices
-3. **Handle errors gracefully** - Provide clear feedback when authentication fails
-4. **Secure storage** - In TypeScript, implement custom `TokenStorage` for production apps
+1. **Never commit API keys** – Use environment variables or secure configuration.
+2. **Rotate keys if compromised** – Generate a new key from the dashboard and update your app.

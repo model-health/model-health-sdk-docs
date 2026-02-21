@@ -162,14 +162,14 @@ Keep API docs separate and link to them from the main documentation site. This i
    ```bash
    cd model-health-docs/docs
    mkdir -p advanced
-   cat > advanced/custom-storage.md << 'EOF'
+   cat > advanced/custom-config.md << 'EOF'
    ---
    sidebar_position: 1
    ---
 
-   # Custom Token Storage
+   # Advanced Configuration
 
-   Learn how to implement custom token storage...
+   Learn how to customize SDK behavior...
    EOF
    ```
 

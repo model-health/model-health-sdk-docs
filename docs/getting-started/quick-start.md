@@ -20,17 +20,6 @@ import ModelHealth
 // Initialize the service with your API key
 let service = try ModelHealthService(apiKey: "your-api-key-here")
 
-// Authenticate
-let loginResult = try await service.login(
-    username: "user@example.com", 
-    password: "your-password"
-)
-
-// Handle verification if needed
-if case .verificationRequired = loginResult {
-    try await service.verify(code: "123456", rememberDevice: true)
-}
-
 // Create a session
 let session = try await service.createSession()
 
@@ -95,14 +84,6 @@ import { ModelHealthService } from '@modelhealth/sdk';
 const service = new ModelHealthService("your-api-key-here");
 await service.init();
 
-// Authenticate
-const loginResult = await service.login("user@example.com", "your-password");
-
-// Handle verification if needed
-if (loginResult === "verification_required") {
-  await service.verify("123456", true);
-}
-
 // Create a session
 const session = await service.createSession();
 
@@ -165,7 +146,7 @@ if (activityStatus.type === "ready") {
 
 ## Next Steps
 
-- Learn more about [Authentication](../guides/authentication)
+- Learn about [API key authentication](../guides/authentication)
 - Understand [Camera Calibration](../guides/camera-calibration)
 - Explore the [Swift SDK Reference](/swift-api)
 - Explore the [TypeScript SDK Reference](/typescript-api)
