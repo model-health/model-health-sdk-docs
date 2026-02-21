@@ -73,13 +73,14 @@ if case .ready = status {
     }
     
     // Download results
-    if case .completed(let resultTags) = analysisStatus {
-        for tag in resultTags {
-            let result = try await service.downloadAnalysisResult(
-                forActivity: activity, 
-                resultTag: tag
-            )
-            print("Analysis complete: \(result)")
+    if case .completed = analysisStatus {
+        let results = await service.analysisResultData(ofType: [.metrics, .report], for: activity)
+        for result in results {
+            switch result.resultDataType {
+            case .metrics: print("Metrics:", String(data: result.data, encoding: .utf8) ?? "")
+            case .report:  // PDF – use result.data
+            case .data:    break
+            }
         }
     }
 }
@@ -152,9 +153,11 @@ if (activityStatus.type === "ready") {
   
   // Download results
   if (analysisStatus.type === "completed") {
-    for (const tag of analysisStatus.result_tags) {
-      const result = await service.downloadAnalysisResult(activity, tag);
-      console.log("Analysis complete:", result);
+    const results = await service.downloadActivityAnalysisResultData(activity, ["metrics", "report"]);
+    const metricsEntry = results.find((r) => r.result_data_type === "metrics");
+    if (metricsEntry?.data) {
+      const metrics = JSON.parse(new TextDecoder().decode(metricsEntry.data));
+      console.log("Analysis complete:", metrics);
     }
   }
 }

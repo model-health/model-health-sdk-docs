@@ -72,8 +72,8 @@ while case .processing = analysisStatus {
 }
 
 switch analysisStatus {
-case .completed(let resultTags):
-    print("Analysis complete! Available results: \(resultTags)")
+case .completed:
+    print("Analysis complete!")
 case .failed:
     print("Analysis failed")
 default:
@@ -92,7 +92,7 @@ while (analysisStatus.type === "processing") {
 }
 
 if (analysisStatus.type === "completed") {
-  console.log("Analysis complete! Available results:", analysisStatus.result_tags);
+  console.log("Analysis complete!");
 } else if (analysisStatus.type === "failed") {
   console.log("Analysis failed");
 }
@@ -104,20 +104,12 @@ Once analysis is complete, download the results:
 
 **Swift:**
 ```swift
-if case .completed(let resultTags) = analysisStatus {
-    for tag in resultTags {
-        let result = try await service.downloadAnalysisResult(
-            forActivity: activity,
-            resultTag: tag
-        )
-        
-        // Result contains biomechanical metrics
-        if let jumpHeight = result.jumpHeight {
-            print("Jump height: \(jumpHeight) cm")
-        }
-        if let peakVelocity = result.peakVerticalVelocity {
-            print("Peak velocity: \(peakVelocity) m/s")
-        }
+if case .completed = analysisStatus {
+    let results = await service.analysisResultData(ofType: [.metrics], for: activity)
+    if let metricsEntry = results.first(where: { $0.resultDataType == .metrics }),
+       let json = try? JSONSerialization.jsonObject(with: metricsEntry.data) as? [String: Any] {
+        // json contains analysis_title, analysis_description, metrics dictionary, etc.
+        print("Metrics:", json)
     }
 }
 ```
@@ -125,19 +117,15 @@ if case .completed(let resultTags) = analysisStatus {
 **TypeScript:**
 ```typescript
 if (analysisStatus.type === "completed") {
-  for (const tag of analysisStatus.result_tags) {
-    const result = await service.downloadAnalysisResult(activity, tag);
-    
-    // Result contains biomechanical metrics
-    const jumpHeight = getJumpHeight(result);
-    const peakVelocity = getPeakVerticalVelocity(result);
-    
-    if (jumpHeight !== null) {
-      console.log("Jump height:", jumpHeight, "cm");
-    }
-    if (peakVelocity !== null) {
-      console.log("Peak velocity:", peakVelocity, "m/s");
-    }
+  const results = await service.downloadActivityAnalysisResultData(activity, ["metrics"]);
+  const metricsEntry = results.find((r) => r.result_data_type === "metrics");
+  if (metricsEntry?.data) {
+    const result = JSON.parse(new TextDecoder().decode(metricsEntry.data));
+    // result contains biomechanical metrics
+    const jumpHeight = result.metrics?.["00_jump_height_COM"]?.value?.value;
+    const peakVelocity = result.metrics?.["04_peak_vertical_COM_speed_during_takeoff"]?.value?.value;
+    if (jumpHeight != null) console.log("Jump height:", jumpHeight, "cm");
+    if (peakVelocity != null) console.log("Peak velocity:", peakVelocity, "m/s");
   }
 }
 ```
@@ -185,20 +173,13 @@ while case .processing = analysisStatus {
 }
 
 // Download results
-if case .completed(let resultTags) = analysisStatus {
-    for tag in resultTags {
-        let result = try await service.downloadAnalysisResult(forActivity: activity, resultTag: tag)
-        print("Analysis complete: \(result.analysisTitle)")
-        
-        // Access metrics
-        for (key, metric) in result.metrics {
-            print("\(metric.label):", terminator: " ")
-            switch metric.value {
-            case .single(let value):
-                print(String(format: "%.\(metric.decimalPlaces)f", value))
-            case .bilateral(let left, let right):
-                print("L: \(left), R: \(right)")
-            }
+if case .completed = analysisStatus {
+    let results = await service.analysisResultData(ofType: [.metrics], for: activity)
+    if let metricsEntry = results.first(where: { $0.resultDataType == .metrics }),
+       let json = try? JSONSerialization.jsonObject(with: metricsEntry.data) as? [String: Any],
+       let metrics = json["metrics"] as? [String: [String: Any]] {
+        for (key, metric) in metrics {
+            print("\(key):", metric)
         }
     }
 }
@@ -235,12 +216,12 @@ while (analysisStatus.type === "processing") {
 
 // Download results
 if (analysisStatus.type === "completed") {
-  for (const tag of analysisStatus.result_tags) {
-    const result = await service.downloadAnalysisResult(activity, tag);
+  const results = await service.downloadActivityAnalysisResultData(activity, ["metrics"]);
+  const metricsEntry = results.find((r) => r.result_data_type === "metrics");
+  if (metricsEntry?.data) {
+    const result = JSON.parse(new TextDecoder().decode(metricsEntry.data));
     console.log("Analysis complete:", result.analysis_title);
-    
-    // Access metrics
-    for (const [key, metric] of Object.entries(result.metrics)) {
+    for (const [key, metric] of Object.entries(result.metrics || {})) {
       console.log(`${metric.label}:`, metric.value);
     }
   }
