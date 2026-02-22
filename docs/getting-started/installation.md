@@ -32,7 +32,7 @@ Alternatively, add it to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/model-health/model-health", from: "1.0.0")
+    .package(url: "https://github.com/model-health/model-health", from: "0.1.17")
 ]
 ```
 
@@ -51,13 +51,13 @@ import ModelHealth
 ### npm
 
 ```bash
-npm install @modelhealth/sdk
+npm install @modelhealth/sdk@0.1.17
 ```
 
 ### yarn
 
 ```bash
-yarn add @modelhealth/sdk
+yarn add @modelhealth/sdk@0.1.17
 ```
 
 ### Import
