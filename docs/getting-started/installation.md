@@ -54,12 +54,6 @@ import ModelHealth
 npm install @modelhealth/modelhealth@0.1.17
 ```
 
-### yarn
-
-```bash
-yarn add @modelhealth/modelhealth@0.1.17
-```
-
 ### Import
 
 ```typescript

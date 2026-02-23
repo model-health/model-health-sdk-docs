@@ -78,7 +78,7 @@ if case .ready = status {
 ## TypeScript Quick Start
 
 ```typescript
-import { ModelHealthService } from '@modelhealth/sdk';
+import { ModelHealthService } from '@modelhealth/modelhealth';
 
 // Initialize the service with your API key
 const service = new ModelHealthService("your-api-key-here");

@@ -28,7 +28,7 @@ let sessions = try await service.sessionList()
 Create the client with your API key and call `init()` before making requests:
 
 ```typescript
-import { ModelHealthService } from '@modelhealth/sdk';
+import { ModelHealthService } from '@modelhealth/modelhealth';
 
 const service = new ModelHealthService({
   apiKey: 'your-api-key-here',
