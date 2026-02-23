@@ -24,7 +24,7 @@ Once you have your API key, you can proceed with installation.
 Add the Model Health SDK to your project using Swift Package Manager:
 
 1. In Xcode, select **File > Add Package Dependencies...**
-2. Enter the repository URL: `https://github.com/model-health/model-health`
+2. Enter the repository URL: `https://github.com/model-health/model-health-swift`
 3. Select the version you want to use
 4. Add `Model Health` to your target
 
@@ -32,7 +32,7 @@ Alternatively, add it to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/model-health/model-health", from: "1.0.0")
+    .package(url: "https://github.com/model-health/model-health-swift", from: "1.0.0")
 ]
 ```
 
