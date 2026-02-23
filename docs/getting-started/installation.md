@@ -51,19 +51,19 @@ import ModelHealth
 ### npm
 
 ```bash
-npm install @modelhealth/sdk@0.1.17
+npm install @modelhealth/modelhealth@0.1.17
 ```
 
 ### yarn
 
 ```bash
-yarn add @modelhealth/sdk@0.1.17
+yarn add @modelhealth/modelhealth@0.1.17
 ```
 
 ### Import
 
 ```typescript
-import { ModelHealthService } from '@modelhealth/sdk';
+import { ModelHealthService } from '@modelhealth/modelhealth';
 ```
 
 ## Verification
@@ -84,7 +84,7 @@ do {
 ### TypeScript
 
 ```typescript
-import { ModelHealthService } from '@modelhealth/sdk';
+import { ModelHealthService } from '@modelhealth/modelhealth';
 
 const service = new ModelHealthService("your-api-key-here");
 await service.init();
