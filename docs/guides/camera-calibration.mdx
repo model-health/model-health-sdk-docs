@@ -2,6 +2,9 @@
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Camera Calibration
 
 Camera calibration determines the position and orientation of each camera in 3D space — known as the camera extrinsics. This is what allows the SDK to reconstruct real-world 3D movement from multiple 2D video feeds. It's required once per session setup — if you're measuring multiple subjects with the same camera placement, you only need to calibrate once.
@@ -55,83 +58,92 @@ For the recommended checkerboard, this is **4 rows and 5 columns**.
 
 ### 1. Create a Session
 
-**Swift:**
-```swift
-let session = try await service.createSession()
-```
-
-**TypeScript:**
-```typescript
-const session = await service.createSession();
-```
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let session = try await service.createSession()
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const session = await service.createSession();
+  ```
+  </TabItem>
+</Tabs>
 
 ### 2. Configure the Checkerboard
 
-**Swift:**
-```swift
-let details = CheckerboardDetails(
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let details = CheckerboardDetails(
+      rows: 4,
+      columns: 5,
+      squareSize: 35,  // millimeters
+      placement: .perpendicular
+  )
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const details = {
     rows: 4,
     columns: 5,
-    squareSize: 35,  // millimeters
-    placement: .perpendicular
-)
-```
-
-**TypeScript:**
-```typescript
-const details = {
-  rows: 4,
-  columns: 5,
-  square_size: 35,  // millimeters
-  placement: "perpendicular"
-};
-```
+    square_size: 35,  // millimeters
+    placement: "perpendicular"
+  };
+  ```
+  </TabItem>
+</Tabs>
 
 ### 3. Run Calibration
 
-**Swift:**
-```swift
-try await service.calibrateCamera(session, checkerboardDetails: details) { status in
-    switch status {
-    case .recording:
-        print("Recording calibration...")
-    case .uploading(let uploaded, let total):
-        print("Uploading \(uploaded)/\(total) videos")
-    case .processing(let percent):
-        if let percent = percent {
-            print("Processing: \(percent)%")
-        } else {
-            print("Processing...")
-        }
-    case .done:
-        print("Calibration complete!")
-    }
-}
-```
-
-**TypeScript:**
-```typescript
-await service.calibrateCamera(session, details, (status) => {
-  switch (status.type) {
-    case "recording":
-      console.log("Recording calibration...");
-      break;
-    case "uploading":
-      console.log(`Uploading ${status.uploaded}/${status.total} videos`);
-      break;
-    case "processing":
-      if (status.percent !== undefined) {
-        console.log(`Processing: ${status.percent}%`);
-      } else {
-        console.log("Processing...");
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  try await service.calibrateCamera(session, checkerboardDetails: details) { status in
+      switch status {
+      case .recording:
+          print("Recording calibration...")
+      case .uploading(let uploaded, let total):
+          print("Uploading \(uploaded)/\(total) videos")
+      case .processing(let percent):
+          if let percent = percent {
+              print("Processing: \(percent)%")
+          } else {
+              print("Processing...")
+          }
+      case .done:
+          print("Calibration complete!")
       }
-      break;
-    case "done":
-      console.log("Calibration complete!");
-      break;
   }
-});
-```
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  await service.calibrateCamera(session, details, (status) => {
+    switch (status.type) {
+      case "recording":
+        console.log("Recording calibration...");
+        break;
+      case "uploading":
+        console.log(`Uploading ${status.uploaded}/${status.total} videos`);
+        break;
+      case "processing":
+        if (status.percent !== undefined) {
+          console.log(`Processing: ${status.percent}%`);
+        } else {
+          console.log("Processing...");
+        }
+        break;
+      case "done":
+        console.log("Calibration complete!");
+        break;
+    }
+  });
+  ```
+  </TabItem>
+</Tabs>
 
 ## Troubleshooting
 
