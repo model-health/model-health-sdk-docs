@@ -4,16 +4,26 @@ sidebar_position: 2
 
 # Quick Start
 
-This guide will walk you through a basic example of using the Model Health SDK.
+This guide walks you through a complete Model Health SDK integration — from initialization to retrieving biomechanical analysis results.
 
 ## Prerequisites
 
 Before you begin, make sure you have:
 1. [Installed the SDK](./installation)
-2. [Obtained an API key](/register)
+2. An API key — if you don't have one yet, [request access](mailto:support@modelhealth.io?subject=API%20Access%20Request&body=Hi%20Model%20Health%20team%2C%0A%0AI%27m%20interested%20in%20integrating%20the%20Model%20Health%20SDK.%0A%0ACompany%3A%0AUse%20case%3A%0APlatform%20(iOS%2C%20Web%2C%20other)%3A%0AExisting%20Model%20Health%20account%3A%20Yes%20%2F%20No%0AIf%20yes%2C%20account%20email%3A%0A%0AThanks)
+
+## Overview
+
+A typical flow looks like this:
+
+1. Initialize the SDK with your API key
+2. Create a session
+3. Calibrate the camera (once per session setup)
+4. Calibrate the subject's neutral pose
+5. Record a movement
+6. Run analysis and retrieve results
 
 ## Swift Quick Start
-
 ```swift
 import ModelHealth
 
@@ -24,6 +34,8 @@ let service = try ModelHealthService(apiKey: "your-api-key-here")
 let session = try await service.createSession()
 
 // Calibrate camera
+// Required once per session. You can skip this if reusing the same
+// physical setup across multiple subjects in the same session.
 let checkerboardDetails = CheckerboardDetails(
     rows: 4, 
     columns: 5, 
@@ -57,7 +69,7 @@ if case .ready = status {
     // Poll for completion
     var analysisStatus = try await service.getAnalysisStatus(for: task)
     while case .processing = analysisStatus {
-        try await Task.sleep(nanoseconds: 2_000_000_000) // 2 seconds
+        try await Task.sleep(nanoseconds: 10_000_000_000) // 10 seconds
         analysisStatus = try await service.getAnalysisStatus(for: task)
     }
     
@@ -66,9 +78,12 @@ if case .ready = status {
         let results = await service.analysisResultData(ofType: [.metrics, .report], for: activity)
         for result in results {
             switch result.resultDataType {
-            case .metrics: print("Metrics:", String(data: result.data, encoding: .utf8) ?? "")
-            case .report:  // PDF – use result.data
-            case .data:    break
+            case .metrics:
+                print("Metrics:", String(data: result.data, encoding: .utf8) ?? "")
+            case .report:
+                // PDF – use result.data
+            case .data:
+                break
             }
         }
     }
@@ -88,6 +103,8 @@ await service.init();
 const session = await service.createSession();
 
 // Calibrate camera
+// Required once per session. You can skip this if reusing the same
+// physical setup across multiple subjects in the same session.
 const checkerboardDetails = {
   rows: 4,
   columns: 5,
@@ -146,7 +163,12 @@ if (activityStatus.type === "ready") {
 
 ## Next Steps
 
-- Learn about [API key authentication](../guides/authentication)
-- Understand [Camera Calibration](../guides/camera-calibration)
-- Explore the [Swift SDK Reference](/swift-api)
-- Explore the [TypeScript SDK Reference](/typescript-api)
+- Learn more about [Camera Calibration](../guides/camera-calibration)
+- Learn more about [Subject Calibration](../guides/camera-calibration)
+- Learn more about [Activity Recording](../guides/activity-recording)
+- Learn more about [Activity Analysis](../guides/activity-analysis)
+
+**API Reference**
+
+- [Swift SDK Reference](/swift-api)
+- [TypeScript SDK Reference](/typescript-api)

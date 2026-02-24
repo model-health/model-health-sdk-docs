@@ -4,50 +4,63 @@ sidebar_position: 1
 
 # Introduction
 
-The Model Health SDK lets you **integrate advanced human movement analysis directly into your platform or application**. Using smartphone videos recorded through our **Model Health Companion iOS app**, your app can measure, analyze, and report on biomechanics without motion capture suits or specialized hardware.
+If you're building a platform in sports, performance, physical therapy, or fitness, chances are you've needed movement data — and found that getting it requires expensive hardware, specialized setups, or custom computer vision work.
 
-> Think of the integration as a **trio**:  
-> 1. **Your app** – where your users interact and request biomechanical analyses.  
-> 2. **Model Health SDK** – provides the tools (with your API key) to control the recording workflow and retrieve processed biomechanical data.  
-> 3. **Model Health Companion iOS app** – used for capturing videos needed for analysis.
+The Model Health SDK lets you add **lab-grade biomechanical analysis to your app using nothing but smartphones**. No motion capture suits. No custom ML pipeline. Just videos captured through our [**Model Health Companion iOS app**](https://apps.apple.com/cz/app/model-health/id6748835391), processed into actionable movement data your platform can consume.
 
-With this setup, you can quickly add a complete workflow similar to that of Model Health's own web app:
+> The SDK is currently available to select partners. [Request API access](mailto:support@modelhealth.io?subject=API%20Access%20Request&body=Hi%20Model%20Health%20team%2C%0A%0AI%27m%20interested%20in%20integrating%20the%20Model%20Health%20SDK.%0A%0ACompany%3A%0AUse%20case%3A%0APlatform%20(iOS%2C%20Web%2C%20other)%3A%0AExisting%20Model%20Health%20account%3A%20Yes%20%2F%20No%0AIf%20yes%2C%20account%20email%3A%0A%0AThanks) to get started.
+> The Companion iOS app is currently required for video capture. Support for additional capture methods is on the roadmap.
 
-- **API key and session management**  
-- **Camera calibration**  
-- **Movement data collection**  
+## How It Works
+
+The integration involves three parts working together:
+
+1. **Your app** – where your users interact and request biomechanical analyses.
+2. **Model Health SDK** – handles API key authentication, controls the recording workflow, and retrieves processed biomechanical data.
+3. **Model Health Companion iOS app** – used by your users to capture the video needed for analysis.
+
+A complete integration — authentication, calibration, recording, and retrieving results — typically takes **an experienced developer less than a week**. Our first pilot had things running in a couple of days.
+
+## What You Can Build
+
+The SDK gives you a full workflow out of the box:
+
+- **API key authentication and session management**
+- **Camera calibration**
+- **Movement data collection**
 - **Analysis and reporting**
 
-## Supported SDK Platforms
+This mirrors the workflow in Model Health's own web app, so the concepts map directly if you've used it.
 
-Today, we provide SDKs for the platforms most in demand, with more coming in the future:
+## Supported Platforms
 
-### Swift SDK (iOS)  
-Native Apple platform SDK built with Swift.
+### Swift SDK (iOS)
+Native SDK for iOS applications.
 
-### TypeScript SDK (Web, Node.js)  
-Cross-platform SDK powered by WebAssembly. Works in both browser and Node.js environments for flexible integration.
+### TypeScript SDK (Web, Node.js)
+Cross-platform SDK powered by WebAssembly. Works in both browser and Node.js environments.
 
-> More SDKs for additional platforms are planned—stay tuned!
-
-## Quick Links
-
-- [Installation Guide](./getting-started/installation)  
-- [Quick Start](./getting-started/quick-start)  
-- [Swift SDK Reference](/swift-api)  
-- [TypeScript SDK Reference](/typescript-api)
+> Support for additional platforms (Python, Kotlin) is in development.
 
 ## Workflow Overview
 
-A typical Model Health integration follows these steps:
+A typical integration follows these steps:
 
-1. **API key** – Create the SDK client with your API key.  
-2. **Session Creation** – Start a data collection session.  
-3. **Camera Calibration** – Calibrate the cameras with a checkerboard pattern.  
-4. **Subject Calibration** – Record the subject standing in a neutral pose for calibration.  
-5. **Movement Recording** – Measure activities like squats, jumps, or running.  
-6. **Analysis** – Fetch the recordings and processed biomechanical data via the SDK.
+1. **Session Creation** – Start a data collection session.
+2. **Camera Calibration** – Calibrate the cameras with a checkerboard pattern.
+3. **Subject Calibration** – Record the subject standing in a neutral pose.
+4. **Movement Recording** – Capture activities like squats, jumps, or running.
+5. **Analysis** – Retrieve recordings and processed biomechanical data via the SDK.
+
+## Quick Links
+
+- [Request API Access](mailto:support@modelhealth.io?subject=API%20Access%20Request&body=Hi%20Model%20Health%20team%2C%0A%0AI%27m%20interested%20in%20integrating%20the%20Model%20Health%20SDK.%0A%0ACompany%3A%0AUse%20case%3A%0APlatform%20(iOS%2C%20Web%2C%20other)%3A%0AExisting%20Model%20Health%20account%3A%20Yes%20%2F%20No%0AIf%20yes%2C%20account%20email%3A%0A%0AThanks)
+- [Installation Guide](./getting-started/installation)
+- [Quick Start](./getting-started/quick-start)
+- [Swift SDK Reference](/swift-api)
+- [TypeScript SDK Reference](/typescript-api)
 
 ## Support
 
-For questions, issues, or feature requests, please visit our [GitHub repository](https://github.com/model-health/model-health).
+For bug reports and feature requests, visit our [GitHub repository](https://github.com/model-health/model-health).  
+For everything else, reach us at support@modelhealth.io

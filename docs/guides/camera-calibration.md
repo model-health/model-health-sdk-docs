@@ -1,24 +1,59 @@
 ---
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 # Camera Calibration
 
-Camera calibration is essential for accurate biomechanical analysis. It establishes the relationship between camera pixels and real-world measurements.
+Camera calibration determines the position and orientation of each camera in 3D space — known as the camera extrinsics. This is what allows the SDK to reconstruct real-world 3D movement from multiple 2D video feeds. It's required once per session setup — if you're measuring multiple subjects with the same camera placement, you only need to calibrate once.
 
-## Requirements
+> **Note:** Camera positions must remain fixed after calibration. If you need to reposition cameras, you'll need to recalibrate.
 
-You'll need a checkerboard calibration pattern with known dimensions. Common configurations:
+## Camera Setup
 
-- 4×5 checkerboard (4 rows, 5 columns)
-- 35mm square size
-- Printed on stiff material (foam board recommended)
+Getting camera placement right before calibrating is important — once calibrated, cameras cannot be moved.
 
-## Calibration Process
+- Use a minimum of 2 cameras, positioned to capture both sides of the subject
+- Aim for 40–90° separation between cameras, symmetric around the direction the subject will be moving
+- Ensure camera fields of view overlap sufficiently throughout the subject's full range of motion
+- Keep cameras within 5m of the capture volume — closer is better
+- Position cameras to minimize occlusion of body segments; every segment should be visible by at least 2 cameras at all times
+
+For activity-specific camera placement recommendations, see the [Activity-Specific Recommendations](https://modelhealth.notion.site/Activity-specific-recommendations-de384441de4e40db905d288faac4bb8f).
+
+## What You'll Need
+
+A printed checkerboard pattern with known dimensions. [Download our recommended checkerboard (PDF)](https://cdn.prod.website-files.com/62468717bed6b421c89bbf36/6258dd3518244b061c1b02f5_Checkerboard_4x5_35mm.pdf) — it's a 4×5 pattern with 35mm squares. If you use a different checkerboard, adjust the rows, columns, and square size accordingly.
+
+**Printing instructions:**
+- Print at 100% scale with no resizing or "Fit to Page" enabled
+- The squares must be exactly 35mm wide — this is critical for accurate measurements
+- Verify the square dimensions after printing
+- Ensure there is a white border around all sides of the checkerboard
+
+**Mounting:**
+- Mount on a flat, rigid surface such as a plexiglass sheet
+- Do not cover with any reflective material — avoid lamination
+
+## Understanding Rows and Columns
+
+Rows and columns refer to the number of **black-to-black corners**, not the number of squares.
+
+![Checkerboard corner counting diagram](../../static/img/checkerboard_45.png)
+
+For the recommended checkerboard, this is **4 rows and 5 columns**.
+
+## Environment Setup
+
+- Record in a well-lit environment with even lighting
+- If recording outdoors with direct sunlight on the checkerboard, shade it before calibrating
+- Position the checkerboard at the center of your intended capture volume
+- Keep it within 2–5m from the cameras, and visible by all cameras
+- Hold the checkerboard perpendicular to the ground with its long edge parallel to the ground
+- Avoid pointing the checkerboard straight at any single camera — angle it slightly up, down, left, or right
+
+## Calibration
 
 ### 1. Create a Session
-
-First, create a calibration session:
 
 **Swift:**
 ```swift
@@ -30,9 +65,7 @@ let session = try await service.createSession()
 const session = await service.createSession();
 ```
 
-### 2. Set Up Checkerboard
-
-Define your checkerboard details:
+### 2. Configure the Checkerboard
 
 **Swift:**
 ```swift
@@ -54,7 +87,7 @@ const details = {
 };
 ```
 
-### 3. Calibrate Camera
+### 3. Run Calibration
 
 **Swift:**
 ```swift
@@ -100,76 +133,19 @@ await service.calibrateCamera(session, details, (status) => {
 });
 ```
 
-## Neutral Pose Calibration
-
-After camera calibration, capture the subject's neutral standing pose for scaling:
-
-**Swift:**
-```swift
-let subjects = try await service.subjectList()
-if let subject = subjects.first {
-    try await service.calibrateNeutralPose(for: subject, in: session) { status in
-        switch status {
-        case .recording:
-            print("Recording neutral pose...")
-        case .uploading(let uploaded, let total):
-            print("Uploading \(uploaded)/\(total) videos")
-        case .processing(let percent):
-            if let percent = percent {
-                print("Processing: \(percent)%")
-            } else {
-                print("Processing...")
-            }
-        case .done:
-            print("Neutral pose captured!")
-        }
-    }
-}
-```
-
-**TypeScript:**
-```typescript
-const subjects = await service.subjectList();
-if (subjects.length > 0) {
-  await service.calibrateNeutralPose(subjects[0], session, (status) => {
-    switch (status.type) {
-      case "recording":
-        console.log("Recording neutral pose...");
-        break;
-      case "uploading":
-        console.log(`Uploading ${status.uploaded}/${status.total} videos`);
-        break;
-      case "processing":
-        if (status.percent !== undefined) {
-          console.log(`Processing: ${status.percent}%`);
-        } else {
-          console.log("Processing...");
-        }
-        break;
-      case "done":
-        console.log("Neutral pose captured!");
-        break;
-    }
-  });
-}
-```
-
-## Tips for Successful Calibration
-
-1. **Lighting** - Ensure even, bright lighting without glare on the checkerboard
-2. **Movement** - Move the checkerboard to various positions and angles
-3. **Coverage** - Cover different areas of the camera's field of view
-4. **Stillness** - Hold the checkerboard still when capturing each image
-5. **Distance** - Vary the distance from the camera during calibration
-
 ## Troubleshooting
 
 **Checkerboard not detected:**
-- Ensure the pattern is clearly visible
-- Check lighting conditions
-- Verify the rows/columns configuration matches your physical checkerboard
+- Verify rows and columns are set to black-to-black corners, not number of squares
+- Make sure the checkerboard is fully visible by all cameras
+- Check that it isn't pointing straight at any camera — adjust the angle
+- Ensure lighting is adequate — neither too dark nor in direct sunlight
 
 **Poor calibration quality:**
-- Capture more images from different angles
-- Ensure the checkerboard is flat and not warped
-- Try different distances from the camera
+- Check the checkerboard is mounted flat and not warped
+- Verify the printed square size is exactly 35mm
+- Make sure the checkerboard is within 2–5m of the cameras
+
+## Next Steps
+
+Once camera calibration is complete, proceed to [Subject Calibration](./subject-calibration).
