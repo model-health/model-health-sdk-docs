@@ -2,6 +2,9 @@
 sidebar_position: 3
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # Activity Recording
 
 Once camera and subject calibration are complete, you're ready to record movement activities.
@@ -14,15 +17,18 @@ Once camera and subject calibration are complete, you're ready to record movemen
 
 Pass any descriptive string as the activity name — use something that helps identify the attempt later (e.g. `cmj`, `squat`, `cut`).
 
-**Swift:**
-```swift
-let activity = try await service.record(activityNamed: "cmj", in: session)
-```
-
-**TypeScript:**
-```typescript
-const activity = await service.record("cmj", session);
-```
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let activity = try await service.record(activityNamed: "cmj", in: session)
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const activity = await service.record("cmj", session);
+  ```
+  </TabItem>
+</Tabs>
 
 ### During Recording
 
@@ -33,56 +39,62 @@ const activity = await service.record("cmj", session);
 
 ### Stop Recording
 
-**Swift:**
-```swift
-try await service.stopRecording(session)
-```
-
-**TypeScript:**
-```typescript
-await service.stopRecording(session);
-```
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  try await service.stopRecording(session)
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  await service.stopRecording(session);
+  ```
+  </TabItem>
+</Tabs>
 
 ## Checking Processing Status
 
 After stopping, video is uploaded and processed automatically:
 
-**Swift:**
-```swift
-let status = try await service.getStatus(forActivity: activity)
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let status = try await service.getStatus(forActivity: activity)
 
-switch status {
-case .uploading(let uploaded, let total):
-    print("Uploading: \(uploaded)/\(total) videos")
-case .processing:
-    print("Processing video...")
-case .ready:
-    print("Ready for analysis!")
-case .failed:
-    print("Processing failed")
-}
-```
-
-**TypeScript:**
-```typescript
-let status = await service.getStatus(activity);
-
-while (status.type === "uploading" || status.type === "processing") {
-  if (status.type === "uploading") {
-    console.log(`Uploading: ${status.uploaded}/${status.total} videos`);
-  } else {
-    console.log("Processing video...");
+  switch status {
+  case .uploading(let uploaded, let total):
+      print("Uploading: \(uploaded)/\(total) videos")
+  case .processing:
+      print("Processing video...")
+  case .ready:
+      print("Ready for analysis!")
+  case .failed:
+      print("Processing failed")
   }
-  await new Promise(resolve => setTimeout(resolve, 2000));
-  status = await service.getStatus(activity);
-}
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  let status = await service.getStatus(activity);
 
-if (status.type === "ready") {
-  console.log("Ready for analysis!");
-} else if (status.type === "failed") {
-  console.log("Processing failed");
-}
-```
+  while (status.type === "uploading" || status.type === "processing") {
+    if (status.type === "uploading") {
+      console.log(`Uploading: ${status.uploaded}/${status.total} videos`);
+    } else {
+      console.log("Processing video...");
+    }
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    status = await service.getStatus(activity);
+  }
+
+  if (status.type === "ready") {
+    console.log("Ready for analysis!");
+  } else if (status.type === "failed") {
+    console.log("Processing failed");
+  }
+  ```
+  </TabItem>
+</Tabs>
 
 ## Tips
 
