@@ -69,7 +69,7 @@ export default function TypeScriptAPI() {
   return (
     <Layout title="TypeScript API Reference">
       <iframe
-        src="/typescript/"
+        src="/typescript/modules.html"
         style={{
           width: '100%',
           height: 'calc(100vh - 60px)',
