@@ -51,7 +51,7 @@ Before recording, instruct the subject to:
 
 Make sure there are no obstructions in any camera's field of view before hitting record.
 
-![Neutral pose reference](../../static/img/neutral-pose.png)
+![Neutral pose reference](../../static/img/neutral-pose.jpg)
 
 ## Recording the Neutral Pose
 
