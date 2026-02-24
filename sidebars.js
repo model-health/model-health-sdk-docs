@@ -24,7 +24,6 @@ const sidebars = {
         'getting-started/quick-start',
       ],
     },
-    'examples',
     {
       type: 'category',
       label: 'Guides',
@@ -52,6 +51,8 @@ const sidebars = {
         },
       ],
     },
+    'examples',
+    'changelog',
   ],
 };
 
