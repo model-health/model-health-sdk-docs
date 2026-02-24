@@ -31,7 +31,7 @@ Add the Model Health SDK to your project using Swift Package Manager:
 Alternatively, add it to your `Package.swift`:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/model-health/model-health-swift", from: "0.1.24")
+    .package(url: "https://github.com/model-health/model-health-swift", from: "0.1.25")
 ]
 ```
 
@@ -48,7 +48,7 @@ import ModelHealth
 
 ### npm
 ```bash
-npm install @modelhealth/modelhealth@0.1.24
+npm install @modelhealth/modelhealth@0.1.25
 ```
 
 Then import it in your TypeScript files:
