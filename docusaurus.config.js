@@ -1,6 +1,8 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
+const { sdkVersion } = require('./version.json');
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Model Health SDK',
@@ -88,7 +90,7 @@ const config = {
       },
       footer: {
         style: 'dark',
-        copyright: `Copyright © ${new Date().getFullYear()} Model Health.`,
+        copyright: `SDK v${sdkVersion} · Copyright © ${new Date().getFullYear()} Model Health.`,
       },
       prism: {
         theme: require('prism-react-renderer').themes.github,
