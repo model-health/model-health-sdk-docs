@@ -69,26 +69,31 @@ if case .ready = status {
     // Poll for completion
     var analysisStatus = try await service.getAnalysisStatus(for: task)
     while case .processing = analysisStatus {
-        try await Task.sleep(nanoseconds: 2_000_000_000) // 2 seconds
+        try await Task.sleep(nanoseconds: 10_000_000_000) // 10 seconds
         analysisStatus = try await service.getAnalysisStatus(for: task)
     }
     
     // Download results
-    if case .completed(let resultTags) = analysisStatus {
-        for tag in resultTags {
-            let result = try await service.downloadAnalysisResult(
-                forActivity: activity, 
-                resultTag: tag
-            )
-            print("Analysis complete: \(result)")
+    if case .completed = analysisStatus {
+        let results = await service.analysisResultData(ofType: [.metrics, .report], for: activity)
+        for result in results {
+            switch result.resultDataType {
+            case .metrics:
+                print("Metrics:", String(data: result.data, encoding: .utf8) ?? "")
+            case .report:
+                // PDF – use result.data
+            case .data:
+                break
+            }
         }
     }
 }
 ```
 
 ## TypeScript Quick Start
+
 ```typescript
-import { ModelHealthService } from '@modelhealth/sdk';
+import { ModelHealthService } from '@modelhealth/modelhealth';
 
 // Initialize the service with your API key
 const service = new ModelHealthService("your-api-key-here");
@@ -146,9 +151,11 @@ if (activityStatus.type === "ready") {
   
   // Download results
   if (analysisStatus.type === "completed") {
-    for (const tag of analysisStatus.result_tags) {
-      const result = await service.downloadAnalysisResult(activity, tag);
-      console.log("Analysis complete:", result);
+    const results = await service.downloadActivityAnalysisResultData(activity, ["metrics", "report"]);
+    const metricsEntry = results.find((r) => r.result_data_type === "metrics");
+    if (metricsEntry?.data) {
+      const metrics = JSON.parse(new TextDecoder().decode(metricsEntry.data));
+      console.log("Analysis complete:", metrics);
     }
   }
 }
@@ -162,5 +169,6 @@ if (activityStatus.type === "ready") {
 - Learn more about [Activity Analysis](../guides/activity-analysis)
 
 **API Reference**
+
 - [Swift SDK Reference](/swift-api)
 - [TypeScript SDK Reference](/typescript-api)
