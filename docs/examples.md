@@ -4,11 +4,10 @@ sidebar_position: 3
 
 # Examples
 
-The Model Health SDK ships with two reference example apps — one for iOS and one for the web (TypeScript). Both implement the complete SDK workflow end-to-end: session management, camera calibration, subject calibration, activity recording, and analysis retrieval.
+The Model Health SDK ships with two reference example apps — one for iOS and one for the web (TypeScript). Both implement the complete SDK workflow end-to-end: session management, camera calibration, subject calibration, activity recording and analysis retrieval.
 
 They're useful for:
-- **Getting oriented** — see how all the pieces fit together before building your own integration
-- **Debugging** — isolate issues by confirming the same workflow succeeds in the example app
+- **Getting orientated** — see how all the pieces fit together before building your own integration
 - **Reference** — copy patterns directly into your own project
 
 ## Where to Get Them
@@ -73,7 +72,7 @@ Open `ExampleConfig.swift` and replace the placeholder:
 
 ```swift
 enum ExampleConfig {
-    static let apiKey = "mh_your_api_key_here"
+    static let apiKey = "your_api_key_here"
 }
 ```
 
@@ -86,8 +85,6 @@ open examples/ios/ModelHealthDemo.xcodeproj
 ```
 
 Select your target device in Xcode's toolbar and press **Run** (⌘R).
-
-> **Physical device recommended.** Camera calibration and activity recording require a real camera. The simulator can be used to browse existing sessions and results, but won't support the full workflow.
 
 ---
 
@@ -113,7 +110,7 @@ cp .env.local.template .env.local
 Open `.env.local` and replace the placeholder:
 
 ```
-VITE_API_KEY=mh_your_api_key_here
+VITE_API_KEY=your_api_key_here
 ```
 
 ### Launch
