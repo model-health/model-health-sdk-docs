@@ -11,6 +11,8 @@ Camera calibration determines the position and orientation of each camera in 3D 
 
 > **Note:** Camera positions must remain fixed after calibration. If you need to reposition cameras, you'll need to recalibrate.
 
+> **Python note:** Camera calibration requires a connected mobile device and is not available in the Python SDK. Use the Model Health mobile app to calibrate cameras, then access the resulting sessions via Python.
+
 ## Camera Setup
 
 Getting camera placement right before calibrating is important — once calibrated, cameras cannot be moved.
@@ -69,6 +71,14 @@ For the recommended checkerboard, this is **4 rows and 5 columns**.
   const session = await service.createSession();
   ```
   </TabItem>
+  <TabItem value="python" label="Python">
+  Camera calibration is not available in the Python SDK. Use the Model Health mobile app to perform calibration, then list the resulting sessions via Python:
+
+  ```python
+  sessions = service.session_list()
+  session = sessions[0]
+  ```
+  </TabItem>
 </Tabs>
 
 ### 2. Configure the Checkerboard
@@ -93,6 +103,9 @@ For the recommended checkerboard, this is **4 rows and 5 columns**.
     placement: "perpendicular"
   };
   ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  Not applicable — camera calibration is performed via the mobile app.
   </TabItem>
 </Tabs>
 
@@ -142,6 +155,9 @@ For the recommended checkerboard, this is **4 rows and 5 columns**.
     }
   });
   ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  Not applicable — camera calibration is performed via the mobile app.
   </TabItem>
 </Tabs>
 

@@ -11,6 +11,8 @@ Once camera and subject calibration are complete, you're ready to record movemen
 
 > **Note:** Camera positions must remain fixed after calibration. If you need to reposition cameras, you'll need to [recalibrate](./camera-calibration).
 
+> **Python note:** Starting and stopping recordings requires a connected mobile device and is not available in the Python SDK. Use the Model Health mobile app to record activities, then check processing status and run analysis from Python.
+
 ## Recording
 
 ### Start Recording
@@ -26,6 +28,16 @@ Pass any descriptive string as the activity name — use something that helps id
   <TabItem value="ts" label="TypeScript">
   ```typescript
   const activity = await service.record("cmj", session);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  Recording is not available in the Python SDK — it requires a connected mobile device. Use the Model Health mobile app to record activities, then retrieve them in Python:
+
+  ```python
+  activities = service.get_activities_for_subject(
+      subject["id"], start_index=0, count=10, sort="updated_at"
+  )
+  activity = activities[0]
   ```
   </TabItem>
 </Tabs>
@@ -49,6 +61,9 @@ Pass any descriptive string as the activity name — use something that helps id
   ```typescript
   await service.stopRecording(session);
   ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  Not applicable — recording is performed via the mobile app.
   </TabItem>
 </Tabs>
 
@@ -92,6 +107,26 @@ After stopping, video is uploaded and processed automatically:
   } else if (status.type === "failed") {
     console.log("Processing failed");
   }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  import time
+
+  status = service.get_status(activity)
+
+  while status["type"] in ("uploading", "processing"):
+      if status["type"] == "uploading":
+          print(f"Uploading: {status['uploaded']}/{status['total']} videos")
+      else:
+          print("Processing video...")
+      time.sleep(10)
+      status = service.get_status(activity)
+
+  if status["type"] == "ready":
+      print("Ready for analysis!")
+  elif status["type"] == "failed":
+      print("Processing failed")
   ```
   </TabItem>
 </Tabs>

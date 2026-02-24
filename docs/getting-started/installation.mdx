@@ -60,6 +60,22 @@ Then import it in your TypeScript files:
 import { ModelHealthService } from '@modelhealth/modelhealth';
 ```
 
+## Python SDK
+
+### Requirements
+- Python 3.9+
+
+### pip
+```bash
+pip install modelhealth==${VERSION}
+```
+
+Then import it in your Python files:
+
+```python
+from modelhealth import ModelHealthService
+```
+
 ## Verification
 
 Once installed, verify the SDK is set up correctly by initializing it with your API key.
@@ -84,6 +100,14 @@ Once installed, verify the SDK is set up correctly by initializing it with your 
   const service = new ModelHealthService("your-api-key-here");
   await service.init();
   console.log('Model Health SDK initialized successfully');
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import ModelHealthService
+
+  service = ModelHealthService("your-api-key-here")
+  print("Model Health SDK initialized successfully")
   ```
   </TabItem>
 </Tabs>

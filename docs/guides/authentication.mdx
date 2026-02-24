@@ -41,6 +41,18 @@ The Model Health SDK uses **API key authentication**. You pass your API key when
   const sessions = await service.sessionList();
   ```
   </TabItem>
+  <TabItem value="python" label="Python">
+  Create the service with your API key. Store the key in an environment variable rather than hardcoding it:
+
+  ```python
+  import os
+  from modelhealth import ModelHealthService
+
+  service = ModelHealthService(os.environ["MODEL_HEALTH_API_KEY"])
+  # SDK is ready – all API calls use this key
+  sessions = service.session_list()
+  ```
+  </TabItem>
 </Tabs>
 
 ## Error Handling
@@ -67,6 +79,16 @@ The Model Health SDK uses **API key authentication**. You pass your API key when
     console.error('Failed to initialize:', error);
     // Invalid API key format or other error
   }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  try:
+      service = ModelHealthService(api_key)
+      # Use service...
+  except RuntimeError as e:
+      print(f"Failed to initialize: {e}")
+      # Invalid API key format or other error
   ```
   </TabItem>
 </Tabs>
