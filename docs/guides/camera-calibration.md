@@ -38,7 +38,7 @@ A printed checkerboard pattern with known dimensions. [Download our recommended 
 
 Rows and columns refer to the number of **black-to-black corners**, not the number of squares.
 
-![Checkerboard corner counting diagram](../../static/img/checkerboard_45.png)
+![Checkerboard corner counting diagram](../../static/img/checkerboard-45.png)
 
 For the recommended checkerboard, this is **4 rows and 5 columns**.
 
