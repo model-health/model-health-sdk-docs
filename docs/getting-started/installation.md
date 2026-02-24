@@ -24,14 +24,14 @@ Once you have your API key, you can proceed with installation.
 Add the Model Health SDK to your project using Swift Package Manager:
 
 1. In Xcode, select **File > Add Package Dependencies...**
-2. Enter the repository URL: `https://github.com/model-health/model-health`
+2. Enter the repository URL: `https://github.com/model-health/model-health-swift`
 3. Select version **0.1.17** (current beta release)
 4. Add `ModelHealth` to your target
 
 Alternatively, add it to your `Package.swift`:
 ```swift
 dependencies: [
-    .package(url: "https://github.com/model-health/model-health", from: "0.1.17")
+    .package(url: "https://github.com/model-health/model-health-swift", from: "0.1.17")
 ]
 ```
 
@@ -48,12 +48,13 @@ import ModelHealth
 
 ### npm
 ```bash
-npm install @modelhealth/sdk
+npm install @modelhealth/modelhealth@0.1.17
 ```
 
 Then import it in your TypeScript files:
+
 ```typescript
-import { ModelHealthService } from '@modelhealth/sdk';
+import { ModelHealthService } from '@modelhealth/modelhealth';
 ```
 
 ## Verification
@@ -74,7 +75,7 @@ do {
 
 ### TypeScript
 ```typescript
-import { ModelHealthService } from '@modelhealth/sdk';
+import { ModelHealthService } from '@modelhealth/modelhealth';
 
 const service = new ModelHealthService("your-api-key-here");
 await service.init();

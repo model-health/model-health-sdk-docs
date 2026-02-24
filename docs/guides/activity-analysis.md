@@ -2,18 +2,24 @@
 sidebar_position: 4
 ---
 
-# Activity Analysis
+# Analysis
 
-Once an activity has been recorded and its status is `ready`, you can run biomechanical analysis to extract movement metrics.
+Once an activity has been recorded and processed, you can run biomechanical analysis to extract meaningful metrics.
 
 ## Available Analysis Types
 
-The full list of supported analysis types is available in the SDK Reference. For a description of each analysis, see the [Automated Analysis](https://modelhealth.io/automated-analysis) page on the Model Health website.
+The SDK supports various analysis types depending on the movement:
+
+- **Counter-Movement Jump** - Vertical jump analysis
+- **Squat** - Squat depth and form analysis
+- **Sprint** - Running mechanics and speed
+- And more...
 
 ## Starting Analysis
 
 **Swift:**
 ```swift
+// Ensure activity is ready
 let status = try await service.getStatus(forActivity: activity)
 
 guard case .ready = status else {
@@ -21,15 +27,19 @@ guard case .ready = status else {
     return
 }
 
+// Start analysis
 let task = try await service.startAnalysis(
     .counterMovementJump,
     for: activity,
     in: session
 )
+
+print("Analysis task started: \(task.taskId)")
 ```
 
 **TypeScript:**
 ```typescript
+// Ensure activity is ready
 const status = await service.getStatus(activity);
 
 if (status.type !== "ready") {
@@ -37,29 +47,33 @@ if (status.type !== "ready") {
   return;
 }
 
+// Start analysis
 const task = await service.startAnalysis(
   "counter_movement_jump",
   activity,
   session
 );
+
+console.log("Analysis task started:", task.task_id);
 ```
 
-## Monitoring Progress
+## Monitoring Analysis Progress
 
-Analysis runs asynchronously — poll until complete:
+Analysis takes time to complete. Poll the status:
 
 **Swift:**
 ```swift
 var analysisStatus = try await service.getAnalysisStatus(for: task)
 
 while case .processing = analysisStatus {
+    print("Analysis in progress...")
     try await Task.sleep(nanoseconds: 2_000_000_000) // 2 seconds
     analysisStatus = try await service.getAnalysisStatus(for: task)
 }
 
 switch analysisStatus {
-case .completed(let resultTags):
-    print("Analysis complete! Available results: \(resultTags)")
+case .completed:
+    print("Analysis complete!")
 case .failed:
     print("Analysis failed")
 default:
@@ -72,12 +86,13 @@ default:
 let analysisStatus = await service.getAnalysisStatus(task);
 
 while (analysisStatus.type === "processing") {
+  console.log("Analysis in progress...");
   await new Promise(resolve => setTimeout(resolve, 2000));
   analysisStatus = await service.getAnalysisStatus(task);
 }
 
 if (analysisStatus.type === "completed") {
-  console.log("Analysis complete! Available results:", analysisStatus.result_tags);
+  console.log("Analysis complete!");
 } else if (analysisStatus.type === "failed") {
   console.log("Analysis failed");
 }
@@ -85,26 +100,16 @@ if (analysisStatus.type === "completed") {
 
 ## Downloading Results
 
+Once analysis is complete, download the results:
+
 **Swift:**
 ```swift
-if case .completed(let resultTags) = analysisStatus {
-    for tag in resultTags {
-        let result = try await service.downloadAnalysisResult(
-            forActivity: activity,
-            resultTag: tag
-        )
-        print("Analysis complete: \(result.analysisTitle)")
-
-        // Access metrics
-        for (key, metric) in result.metrics {
-            print("\(metric.label):", terminator: " ")
-            switch metric.value {
-            case .single(let value):
-                print(String(format: "%.\(metric.decimalPlaces)f", value))
-            case .bilateral(let left, let right):
-                print("L: \(left), R: \(right)")
-            }
-        }
+if case .completed = analysisStatus {
+    let results = await service.analysisResultData(ofType: [.metrics], for: activity)
+    if let metricsEntry = results.first(where: { $0.resultDataType == .metrics }),
+       let json = try? JSONSerialization.jsonObject(with: metricsEntry.data) as? [String: Any] {
+        // json contains analysis_title, analysis_description, metrics dictionary, etc.
+        print("Metrics:", json)
     }
 }
 ```
@@ -112,34 +117,36 @@ if case .completed(let resultTags) = analysisStatus {
 **TypeScript:**
 ```typescript
 if (analysisStatus.type === "completed") {
-  for (const tag of analysisStatus.result_tags) {
-    const result = await service.downloadAnalysisResult(activity, tag);
-    console.log("Analysis complete:", result.analysis_title);
-
-    for (const [key, metric] of Object.entries(result.metrics)) {
-      console.log(`${metric.label}:`, metric.value);
-    }
+  const results = await service.downloadActivityAnalysisResultData(activity, ["metrics"]);
+  const metricsEntry = results.find((r) => r.result_data_type === "metrics");
+  if (metricsEntry?.data) {
+    const result = JSON.parse(new TextDecoder().decode(metricsEntry.data));
+    // result contains biomechanical metrics
+    const jumpHeight = result.metrics?.["00_jump_height_COM"]?.value?.value;
+    const peakVelocity = result.metrics?.["04_peak_vertical_COM_speed_during_takeoff"]?.value?.value;
+    if (jumpHeight != null) console.log("Jump height:", jumpHeight, "cm");
+    if (peakVelocity != null) console.log("Peak velocity:", peakVelocity, "m/s");
   }
 }
 ```
 
-> **Note:** The result structure above — including the metrics dictionary, convenience properties, and helper functions — is provisional and may change before the 1.0 release. Refer to the [Swift SDK Reference](/swift-api) and [TypeScript SDK Reference](/typescript-api) for the latest API.
+## Result Types
 
-## Result Structure
+The analysis result contains:
 
-Each result contains:
-
-- **Analysis metadata** — title and description of the analysis
-- **Metrics** — dictionary of all measured values with labels, units, and decimal precision
+- **Analysis metadata** - Title and description of the analysis
+- **Metrics** - Dictionary of all measured values with metadata
+- **Convenience properties** (Swift) - Direct access to common metrics like `jumpHeight`, `peakVerticalVelocity`
+- **Helper functions** (TypeScript) - Functions like `getJumpHeight()`, `getPeakVerticalVelocity()`
 
 ## Complete Example
 
-A full workflow from recording to retrieving results:
+Here's a complete workflow from recording to analysis:
 
 **Swift:**
 ```swift
 // Record
-let activity = try await service.record(activityNamed: "cmj", in: session)
+let activity = try await service.record(activityNamed: "cmj-1", in: session)
 // ... subject performs jump ...
 try await service.stopRecording(session)
 
@@ -150,12 +157,12 @@ while case .processing = activityStatus {
     activityStatus = try await service.getStatus(forActivity: activity)
 }
 
+// Start analysis
 guard case .ready = activityStatus else {
     print("Activity failed processing")
     return
 }
 
-// Start analysis
 let task = try await service.startAnalysis(.counterMovementJump, for: activity, in: session)
 
 // Wait for analysis
@@ -166,18 +173,13 @@ while case .processing = analysisStatus {
 }
 
 // Download results
-if case .completed(let resultTags) = analysisStatus {
-    for tag in resultTags {
-        let result = try await service.downloadAnalysisResult(forActivity: activity, resultTag: tag)
-        print("Analysis complete: \(result.analysisTitle)")
-        for (_, metric) in result.metrics {
-            print("\(metric.label):", terminator: " ")
-            switch metric.value {
-            case .single(let value):
-                print(String(format: "%.\(metric.decimalPlaces)f", value))
-            case .bilateral(let left, let right):
-                print("L: \(left), R: \(right)")
-            }
+if case .completed = analysisStatus {
+    let results = await service.analysisResultData(ofType: [.metrics], for: activity)
+    if let metricsEntry = results.first(where: { $0.resultDataType == .metrics }),
+       let json = try? JSONSerialization.jsonObject(with: metricsEntry.data) as? [String: Any],
+       let metrics = json["metrics"] as? [String: [String: Any]] {
+        for (key, metric) in metrics {
+            print("\(key):", metric)
         }
     }
 }
@@ -186,7 +188,7 @@ if case .completed(let resultTags) = analysisStatus {
 **TypeScript:**
 ```typescript
 // Record
-const activity = await service.record("cmj", session);
+const activity = await service.record("cmj-1", session);
 // ... subject performs jump ...
 await service.stopRecording(session);
 
@@ -197,12 +199,12 @@ while (activityStatus.type === "processing" || activityStatus.type === "uploadin
   activityStatus = await service.getStatus(activity);
 }
 
+// Start analysis
 if (activityStatus.type !== "ready") {
   console.log("Activity failed processing");
   return;
 }
 
-// Start analysis
 const task = await service.startAnalysis("counter_movement_jump", activity, session);
 
 // Wait for analysis
@@ -214,17 +216,40 @@ while (analysisStatus.type === "processing") {
 
 // Download results
 if (analysisStatus.type === "completed") {
-  for (const tag of analysisStatus.result_tags) {
-    const result = await service.downloadAnalysisResult(activity, tag);
+  const results = await service.downloadActivityAnalysisResultData(activity, ["metrics"]);
+  const metricsEntry = results.find((r) => r.result_data_type === "metrics");
+  if (metricsEntry?.data) {
+    const result = JSON.parse(new TextDecoder().decode(metricsEntry.data));
     console.log("Analysis complete:", result.analysis_title);
-    for (const [key, metric] of Object.entries(result.metrics)) {
+    for (const [key, metric] of Object.entries(result.metrics || {})) {
       console.log(`${metric.label}:`, metric.value);
     }
   }
 }
 ```
 
-## Next Steps
+## Error Handling
 
-- [Swift SDK Reference](/swift-api)
-- [TypeScript SDK Reference](/typescript-api)
+Always handle potential errors during analysis:
+
+**Swift:**
+```swift
+do {
+    let task = try await service.startAnalysis(.counterMovementJump, for: activity, in: session)
+    // Monitor and download results...
+} catch {
+    print("Analysis error: \(error)")
+    // Handle error appropriately
+}
+```
+
+**TypeScript:**
+```typescript
+try {
+  const task = await service.startAnalysis("counter_movement_jump", activity, session);
+  // Monitor and download results...
+} catch (error) {
+  console.error("Analysis error:", error);
+  // Handle error appropriately
+}
+```
