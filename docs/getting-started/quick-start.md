@@ -164,7 +164,7 @@ if (activityStatus.type === "ready") {
 ## Next Steps
 
 - Learn more about [Camera Calibration](../guides/camera-calibration)
-- Learn more about [Subject Calibration](../guides/camera-calibration)
+- Learn more about [Subject Calibration](../guides/subject-calibration)
 - Learn more about [Activity Recording](../guides/activity-recording)
 - Learn more about [Activity Analysis](../guides/activity-analysis)
 
