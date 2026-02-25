@@ -50,6 +50,11 @@ const sidebars = {
           label: 'TypeScript SDK',
           href: '/typescript-api',
         },
+        {
+          type: 'link',
+          label: 'Python SDK',
+          href: '/python-api',
+        }
       ],
     },
   ],

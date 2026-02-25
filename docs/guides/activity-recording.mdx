@@ -11,7 +11,7 @@ Once camera and subject calibration are complete, you're ready to record movemen
 
 > **Note:** Camera positions must remain fixed after calibration. If you need to reposition cameras, you'll need to [recalibrate](./camera-calibration).
 
-> **Python note:** Starting and stopping recordings requires a connected mobile device and is not available in the Python SDK. Use the Model Health mobile app to record activities, then check processing status and run analysis from Python.
+> **Python note:** Starting and stopping recordings requires a connected mobile device and is not available in the Python SDK. Use the Model Health mobile app to record activities, or the SDK's other supported langauages, then check processing status and run analysis from Python.
 
 ## Recording
 
@@ -31,7 +31,7 @@ Pass any descriptive string as the activity name — use something that helps id
   ```
   </TabItem>
   <TabItem value="python" label="Python">
-  Recording is not available in the Python SDK — it requires a connected mobile device. Use the Model Health mobile app to record activities, then retrieve them in Python:
+  Recording is not available in the Python SDK. Use the Model Health web app, or the SDK's other supported langauages, to record activities, then retrieve them in Python:
 
   ```python
   activities = service.get_activities_for_subject(
