@@ -40,9 +40,9 @@ A native SwiftUI app that mirrors the complete SDK workflow. It connects to the 
 
 ### Configuration
 
-Two files are required but not committed to the repository — they contain your signing credentials and API key. Templates for both are provided.
-
 **1. Signing configuration**
+
+An Xcode config file is required by the project but not committed to the repository — it contains your signing credentials. A template is provided.
 
 Copy the template and fill in your Apple Developer details:
 
@@ -51,7 +51,7 @@ cd examples/ios
 cp LocalConfig.xcconfig.template LocalConfig.xcconfig
 ```
 
-Open `LocalConfig.xcconfig` and replace the placeholder values:
+Edit `LocalConfig.xcconfig` and replace the placeholder values:
 
 ```
 DEVELOPMENT_TEAM = YOUR_TEAM_ID
@@ -61,12 +61,6 @@ PRODUCT_BUNDLE_IDENTIFIER = com.yourcompany.ModelHealthDemo
 Your Team ID can be found in [Apple Developer](https://developer.apple.com/account) under **Membership details**.
 
 **2. API key**
-
-Copy the template and add your API key:
-
-```bash
-cp ModelHealthDemo/Source/ExampleConfig.swift.template ModelHealthDemo/Source/ExampleConfig.swift
-```
 
 Open `ExampleConfig.swift` and replace the placeholder:
 
@@ -120,13 +114,6 @@ Install dependencies and start the dev server:
 ```bash
 make install
 make dev
-```
-
-Or without Make:
-
-```bash
-npm install
-npm run dev
 ```
 
 The app opens at `http://localhost:5173`. The dev server is also accessible on your local network at your machine's IP address — useful for testing the full workflow from a mobile device running the Model Health Companion app.
