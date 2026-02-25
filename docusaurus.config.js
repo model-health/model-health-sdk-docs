@@ -81,6 +81,11 @@ const config = {
             label: 'TypeScript SDK',
             position: 'left',
           },
+          {
+            to: '/python-api',
+            label: 'Python SDK',
+            position: 'left',
+          },
           // {
           //   to: '/register',
           //   label: 'Get API Key',
