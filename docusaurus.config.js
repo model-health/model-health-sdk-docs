@@ -5,7 +5,7 @@ const { sdkVersion } = require('./version.json');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Model Health SDK',
+  title: 'Add 3D Biomechanical Analysis to Your Product',
   tagline: 'Biomechanical analysis from smartphone videos',
   favicon: 'img/favicon.ico',
 
@@ -24,7 +24,7 @@ const config = {
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
-  // metadata like html lang. For example, if your site is Chinese, you may want
+  // metadata like html lang. For example, if your site is Chinese, you may wantbui
   // to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',

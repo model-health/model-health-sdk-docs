@@ -6,7 +6,7 @@ sidebar_position: 1
 
 If you're building a platform in sports, physical therapy, performance, rehabilitation, or digitial health, chances are you've needed movement data — and found that getting it requires expensive hardware, specialized setups, or custom computer vision work.
 
-The Model Health SDK lets you add **lab-grade 3D biomechanical analysis to your app using nothing but smartphones**. No motion capture suits. No custom ML pipeline. Just videos captured through our [Model Health Companion iOS app](https://apps.apple.com/cz/app/model-health/id6748835391), processed into actionable movement data your platform can consume.
+The Model Health SDK lets you add **lab-grade 3D biomechanical analysis to your app using nothing but smartphones**. No motion capture suits. No custom ML pipeline. Just videos captured through our [Model Health Companion iOS app](https://apps.apple.com/app/model-health/id6748835391), processed into actionable movement data your platform can consume.
 
 > The SDK is currently available to select partners. [Request API access](mailto:support@modelhealth.io?subject=API%20Access%20Request&body=Hi%20Model%20Health%20team%2C%0A%0AI%27m%20interested%20in%20integrating%20the%20Model%20Health%20SDK.%0A%0ACompany%3A%0AUse%20case%3A%0APlatform%20(iOS%2C%20Web%2C%20other)%3A%0AExisting%20Model%20Health%20account%3A%20Yes%20%2F%20No%0AIf%20yes%2C%20account%20email%3A%0A%0AThanks) to get started.
 > The Companion iOS app is currently required for video capture. Support for additional capture methods is on the roadmap.
