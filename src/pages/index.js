@@ -128,15 +128,15 @@ function BuiltFor() {
   ];
 
   return (
-    <section className={styles.features + " padding-vert--l"} style={{ backgroundColor: "#f7f9fb" }}>
+    <section className={clsx(styles.features, styles.builtForSection, "padding-vert--l")}>
       <div className="container">
-        <h2 style={{ textAlign: "center", marginBottom: "2rem" }}>
+        <h2 className="text--center margin-bottom--lg">
           Built For
         </h2>
         <div className="row">
           {useCases.map((caseItem) => (
             <div className="col col--3" key={caseItem.title}>
-              <div style={{ padding: "1.5rem", backgroundColor: "#fff", borderRadius: "12px", margin: "0.5rem 0", boxShadow: "0 4px 12px rgba(0,0,0,0.05)" }}>
+              <div className={styles.builtForCard}>
                 <p><strong>{caseItem.title}</strong></p>
                 <p style={{ fontSize: "0.9rem", marginTop: "0.5rem" }}>{caseItem.description}</p>
               </div>
