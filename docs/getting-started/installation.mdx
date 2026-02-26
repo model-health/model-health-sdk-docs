@@ -4,6 +4,8 @@ sidebar_position: 1
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
+import versionData from '../../../version.json';
 
 # Installation
 
@@ -28,15 +30,13 @@ Add the Model Health SDK to your project using Swift Package Manager:
 
 1. In Xcode, select **File > Add Package Dependencies...**
 2. Enter the repository URL: `https://github.com/model-health/model-health-swift`
-3. Select version **0.1.28** (current beta release)
+3. Select version **{versionData.sdkVersion}** (current beta release)
 4. Add `ModelHealth` to your target
 
 Alternatively, add it to your `Package.swift`:
-```swift
-dependencies: [
-    .package(url: "https://github.com/model-health/model-health-swift", from: "0.1.28")
-]
-```
+<CodeBlock language="swift">{`dependencies: [
+    .package(url: "https://github.com/model-health/model-health-swift", from: "${versionData.sdkVersion}")
+]`}</CodeBlock>
 
 Then import it in your Swift files:
 ```swift
@@ -50,9 +50,7 @@ import ModelHealth
 - Modern browser with WebAssembly support
 
 ### npm
-```bash
-npm install @modelhealth/modelhealth@0.1.28
-```
+<CodeBlock language="bash">{`npm install @modelhealth/modelhealth@${versionData.sdkVersion}`}</CodeBlock>
 
 Then import it in your TypeScript files:
 
