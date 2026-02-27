@@ -83,7 +83,7 @@ function WhatYouGet() {
           {[
             {
               title: "Seamless Integration",
-              description: "Embed motion capture and biomechanical analysis directly into your platform. The SDK provides the APIs to manage sessions, record movement, and trigger analyses without building complex workflows from scratch."
+              description: "Embed motion capture and biomechanical analysis directly into your platform. The SDK provides the APIs to manage sessions, record movement, and run analyses without building complex workflows from scratch."
             },
             {
               title: "Cloud-Powered Analysis",
@@ -115,7 +115,7 @@ function BuiltFor() {
     },
     {
       title: "Existing Product Extensions",
-      description: "Add motion analysis to your portfolio. Integrate SDK outputs into dashboards, assessments, or analytics pipelines without rebuilding your stack.",
+      description: "Add motion analysis to your portfolio. Integrate SDK outputs into dashboards and analytics pipelines without rebuilding your stack.",
     },
     {
       title: "Clinics & EMR Integration",
