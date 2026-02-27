@@ -4,10 +4,12 @@ sidebar_position: 2
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import neutral_pose from '../../static/img/neutral-pose.jpg';
+
 
 # Subject Calibration
 
-Subject calibration captures a neutral standing pose for each subject. This allows the SDK to personalyze a 3D biomechanical model to the size of the subject, which is required for biomechanical analysis.
+Subject calibration captures a neutral standing pose for each subject. This allows the SDK to scale a 3D biomechanical model to the size of the subject, which is required for biomechanical analysis.
 
 > **Python note:** Neutral pose recording is not available in the Python SDK. You can create and manage subjects from Python; the neutral pose capture itself is handled by the Model Health web app, or the SDK's other supported langauages.
 
@@ -79,7 +81,7 @@ Before recording, instruct the subject to:
 
 Make sure there are no obstructions in any camera's field of view before hitting record.
 
-![Neutral pose reference](../../static/img/neutral-pose.jpg)
+<img src={neutral_pose} alt="Neutral pose example" width="400" />
 
 ## Recording the Neutral Pose
 

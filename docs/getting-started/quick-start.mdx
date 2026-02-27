@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 # Quick Start
 
-This guide walks you through a complete Model Health SDK integration — from initialization to retrieving biomechanical analysis results.
+This guide walks you through a complete Model Health SDK integration — from initialization to retrieving biomechanical data.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ A typical flow looks like this:
 1. Initialize the SDK with your API key
 2. Create a session
 3. Calibrate the camera (once per session setup)
-4. Calibrate the subject's neutral pose
+4. Calibrate the subject (biomechanical model scaling)
 5. Record a movement
 6. Run analysis and retrieve results
 
@@ -51,14 +51,20 @@ A typical flow looks like this:
       placement: .perpendicular
   )
 
-  try await service.calibrateCamera(session, checkerboardDetails: checkerboardDetails) { status in
+  try await service.calibrateCamera(
+      session,
+      checkerboardDetails: checkerboardDetails
+  ) { status in
       print("Calibration status: \(status)")
   }
 
   // Capture neutral pose (requires a subject)
   let subjects = try await service.subjectList()
   if let subject = subjects.first {
-      try await service.calibrateNeutralPose(for: subject, in: session) { status in
+      try await service.calibrateNeutralPose(
+          for: subject,
+          in: session
+      ) { status in
           print("Neutral pose status: \(status)")
       }
   }
@@ -72,7 +78,11 @@ A typical flow looks like this:
   let status = try await service.getStatus(forActivity: activity)
   if case .ready = status {
       // Start analysis
-      let task = try await service.startAnalysis(.counterMovementJump, for: activity, in: session)
+      let task = try await service.startAnalysis(
+          .counterMovementJump,
+          for: activity,
+          in: session
+      )
 
       // Poll for completion
       var analysisStatus = try await service.getAnalysisStatus(for: task)
@@ -83,7 +93,10 @@ A typical flow looks like this:
 
       // Download results
       if case .completed = analysisStatus {
-          let results = await service.analysisResultData(ofType: [.metrics, .report], for: activity)
+          let results = await service.analysisResultData(
+              ofType: [.metrics, .report],
+              for: activity
+          )
           for result in results {
               switch result.resultDataType {
               case .metrics:
@@ -120,18 +133,26 @@ A typical flow looks like this:
     placement: "perpendicular"
   };
 
-  await service.calibrateCamera(session, checkerboardDetails, (status) => {
-    console.log("Calibration status:", status);
-  });
+  await service.calibrateCamera(
+    session,
+    checkerboardDetails,
+    (status) => {
+      console.log("Calibration status:", status);
+    }
+  );
 
   // Get subjects
   const subjects = await service.subjectList();
 
   // Capture neutral pose
   if (subjects.length > 0) {
-    await service.calibrateNeutralPose(subjects[0], session, (status) => {
-      console.log("Neutral pose status:", status);
-    });
+    await service.calibrateNeutralPose(
+      subjects[0],
+      session,
+      (status) => {
+        console.log("Neutral pose status:", status);
+      }
+    );
   }
 
   // Record an activity
@@ -148,7 +169,11 @@ A typical flow looks like this:
 
   // Start analysis
   if (activityStatus.type === "ready") {
-    const task = await service.startAnalysis("counter_movement_jump", activity, session);
+    const task = await service.startAnalysis(
+      "counter_movement_jump",
+      activity,
+      session
+    );
 
     // Poll for completion
     let analysisStatus = await service.getAnalysisStatus(task);
@@ -159,7 +184,10 @@ A typical flow looks like this:
 
     // Download results
     if (analysisStatus.type === "completed") {
-      const results = await service.downloadActivityAnalysisResultData(activity, ["metrics", "report"]);
+      const results = await service.downloadActivityAnalysisResultData(
+        activity,
+        ["metrics", "report"]
+      );
       const metricsEntry = results.find((r) => r.result_data_type === "metrics");
       if (metricsEntry?.data) {
         const metrics = JSON.parse(new TextDecoder().decode(metricsEntry.data));

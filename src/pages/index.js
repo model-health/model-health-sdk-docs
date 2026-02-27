@@ -6,17 +6,23 @@ import Layout from '@theme/Layout';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
+        <h1 className="hero__title">
+          Add 3D Biomechanical Analysis to Your Product
+        </h1>
+        <p className="hero__subtitle">
+          Production-ready SDKs for applications in sports, physical therapy, performance, rehabilitation, or digital health.
+          <br />
+          Turn smartphone video into scientifically-validated biomechanical data.
+        </p>
         <div className={styles.buttons}>
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            Get Started
+            View Quickstart
           </Link>
         </div>
       </div>
@@ -24,35 +30,118 @@ function HomepageHeader() {
   );
 }
 
-function HomepageFeatures() {
+function HomepageSDKs() {
   return (
-    <section className={styles.features}>
+    <section className={styles.features + " padding-vert--l"}>
       <div className="container">
+        <h2 className="text--center margin-bottom--lg">
+          Choose Your SDK
+        </h2>
         <div className="row">
-          <div className="col col--4">
-            <h3>Swift SDK</h3>
-            <p>
-              Native iOS SDK with full support for iPhone and iPad.
-              Built with Swift and optimized for iOS development.
-            </p>
-            <Link to="/swift-api">View Swift SDK →</Link>
-          </div>
-          <div className="col col--4">
-            <h3>TypeScript SDK</h3>
-            <p>
-              Cross-platform JavaScript/TypeScript SDK.
-              Works in browser and Node.js environments.
-            </p>
-            <Link to="/typescript-api">View TypeScript SDK →</Link>
-          </div>
-          <div className="col col--4">
-            <h3>Easy Integration</h3>
-            <p>
-              Simple APIs for authentication, camera calibration, movement recording,
-              and biomechanical analysis. Get started in minutes.
-            </p>
-            <Link to="/docs/getting-started/quick-start">Quick Start →</Link>
-          </div>
+          {[
+            {
+              title: "Swift SDK",
+              description: "Native iOS SDK with full support for iPhone and iPad. Built with Swift and optimized for production deployment.",
+              link: "/swift-api",
+              linkText: "View Swift SDK →",
+            },
+            {
+              title: "TypeScript SDK",
+              description: "Cross-platform SDK for browser and Node.js environments. Compatible with both JavaScript and TypeScript projects.",
+              link: "/typescript-api",
+              linkText: "View TypeScript SDK →",
+            },
+            {
+              title: "Production-Ready Infrastructure",
+              description: "Simple APIs backed by secure cloud processing and scalable pipelines. Designed for fast integration and real-world deployment.",
+              link: "/docs/getting-started/quick-start",
+              linkText: "Quick Start →",
+            },
+          ].map((sdk) => (
+            <div className="col col--4" key={sdk.title}>
+              <div className={styles.card}>
+                <h3>{sdk.title}</h3>
+                <p>{sdk.description}</p>
+                <Link to={sdk.link}>{sdk.linkText}</Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function WhatYouGet() {
+  return (
+    <section className={styles.features + " padding-vert--l"}>
+      <div className="container">
+        <h2 className="text--center margin-bottom--lg">
+          What You Can Do with the SDK
+        </h2>
+        <div className="row">
+          {[
+            {
+              title: "Seamless Integration",
+              description: "Embed motion capture and biomechanical analysis directly into your platform. The SDK provides the APIs to manage sessions, record movement, and run analyses without building complex workflows from scratch."
+            },
+            {
+              title: "Cloud-Powered Analysis",
+              description: "Send data to our secure cloud pipelines for 3D modeling, automated metrics extraction, and structured reports — all handled behind the scenes. No specialized infrastructure required."
+            },
+            {
+              title: "Structured & Ready-to-Use Outputs",
+              description: "Receive time-series kinematics, key movement metrics, and optional reports in formats that can be easily integrated into your app, dashboards, databases, or research workflows."
+            },
+          ].map((feature) => (
+            <div className="col col--4" key={feature.title}>
+              <div className={styles.card}>
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function BuiltFor() {
+  const useCases = [
+    {
+      title: "Sports & Health Platforms",
+      description: "Build vertical products without a motion capture team. Focus on your workflows while the SDK handles validated motion analysis.",
+    },
+    {
+      title: "Existing Product Extensions",
+      description: "Add motion analysis to your portfolio. Integrate SDK outputs into dashboards and analytics pipelines without rebuilding your stack.",
+    },
+    {
+      title: "Clinics & EMR Integration",
+      description: "Automatically route motion data from the collection interface into your internal databases, EMR, or athletic management systems.",
+    },
+    {
+      title: "Research & Development",
+      description: "Access and analyze your motion capture data directly via the SDK instead of the web app, ideal for custom analyses and pipelines.",
+    },
+  ];
+
+  return (
+    <section className={clsx(styles.features, styles.builtForSection, "padding-vert--l")}>
+      <div className="container">
+        <h2 className="text--center margin-bottom--lg">
+          Built For
+        </h2>
+        <div className="row">
+          {useCases.map((caseItem) => (
+            <div className="col col--3" key={caseItem.title}>
+              <div className={styles.builtForCard}>
+                <p><strong>{caseItem.title}</strong></p>
+                <p style={{ fontSize: "0.9rem", marginTop: "0.5rem" }}>{caseItem.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -60,14 +149,16 @@ function HomepageFeatures() {
 }
 
 export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`${siteConfig.title} Documentation`}
-      description="Biomechanical analysis from smartphone videos">
+      description="Production-ready biomechanical analysis from smartphone video">
       <HomepageHeader />
       <main>
-        <HomepageFeatures />
+        <HomepageSDKs />
+        <WhatYouGet />
+        <BuiltFor />
       </main>
     </Layout>
   );

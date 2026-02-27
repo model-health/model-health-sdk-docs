@@ -27,3 +27,19 @@
 .features p {
   margin-bottom: 1rem;
 }
+
+.builtForSection {
+  background-color: var(--ifm-background-surface-color);
+}
+
+.builtForCard {
+  padding: 1.5rem;
+  background-color: var(--ifm-background-color);
+  border-radius: 12px;
+  margin: 0.5rem 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme='dark'] .builtForCard {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
