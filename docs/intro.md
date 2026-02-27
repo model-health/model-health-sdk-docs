@@ -1,6 +1,6 @@
 # Introduction
 
-If you're building a platform in sports, physical therapy, performance, rehabilitation, or digitial health, chances are you've needed movement data — and found that getting it requires expensive hardware, specialized setups, or custom computer vision work.
+If you're building a platform in sports, physical therapy, performance, rehabilitation, or digital health, chances are you've needed movement data — and found that getting it requires expensive hardware, specialized setups, or custom computer vision work.
 
 The Model Health SDK lets you add **lab-grade 3D biomechanical analysis to your app using nothing but smartphones**. No motion capture suits. No custom ML pipeline. Just videos captured through our [Model Health Companion iOS app](https://apps.apple.com/app/model-health/id6748835391), processed into actionable movement data your platform can consume.
 

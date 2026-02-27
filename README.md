@@ -123,7 +123,7 @@ Edit markdown files in `docs/getting-started/` or `docs/guides/`. Changes are au
 ### API Documentation
 
 API documentation is generated from the SDK submodule:
-- **Swift**: Generated with [Jazzy](https://github.com/realm/jazzy) from `Model HealthService.swift` and `Models.swift`
+- **Swift**: Generated with [Jazzy](https://github.com/realm/jazzy) from `ModelHealthService.swift` and `Models.swift`
 - **TypeScript**: Generated with [TypeDoc](https://typedoc.org/) from `index.ts`
 
 The submodule points to a specific SDK commit. Update the submodule reference to update API docs.
