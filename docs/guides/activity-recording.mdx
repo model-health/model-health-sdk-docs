@@ -101,44 +101,54 @@ Once the activity status is ready, you can retrieve the raw motion data, includi
 
 If a built-in analysis module is available for your activity, you can also launch an advanced analysis to generate key metrics and a detailed report (see [Activity Analysis](./activity-analysis)).
 
-TODO: add snippets for retrieving ik results, marker data, and raw videos for instance
-
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  let status = try await service.getStatus(forActivity: activity)
+  // Download kinematics (MOT format) and marker trajectories (TRC format)
+  let resultData = await service.data(
+      ofType: [.kinematics(.mot), .markers(.trc)],
+      for: activity
+  )
 
-  switch status {
-  case .uploading(let uploaded, let total):
-      print("Uploading: \(uploaded)/\(total) videos")
-  case .processing:
-      print("Processing video...")
-  case .ready:
-      print("Ready for analysis!")
-  case .failed:
-      print("Processing failed")
+  for result in resultData {
+      switch result.resultDataType {
+      case .kinematics(.mot):
+          // result.data contains the kinematics file in OpenSim MOT format
+          print("Kinematics MOT: \(result.data.count) bytes")
+      case .markers(.trc):
+          // result.data contains the marker trajectories in TRC format
+          print("Markers TRC: \(result.data.count) bytes")
+      default:
+          break
+      }
   }
+
+  // Download raw videos
+  let videos = await service.videos(for: activity, version: .raw)
+  print("Downloaded \(videos.count) video(s)")
   ```
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  let status = await service.getStatus(activity);
+  // Download kinematics (MOT format) and marker trajectories (TRC format)
+  const resultData = await service.downloadActivityResultData(
+    activity,
+    ["kinematics_mot", "markers_trc"]
+  );
 
-  while (status.type === "uploading" || status.type === "processing") {
-    if (status.type === "uploading") {
-      console.log(`Uploading: ${status.uploaded}/${status.total} videos`);
-    } else {
-      console.log("Processing video...");
+  for (const result of resultData) {
+    if (result.resultDataType === "kinematics_mot") {
+      // result.data contains the kinematics file in OpenSim MOT format
+      console.log(`Kinematics MOT: ${result.data.length} bytes`);
+    } else if (result.resultDataType === "markers_trc") {
+      // result.data contains the marker trajectories in TRC format
+      console.log(`Markers TRC: ${result.data.length} bytes`);
     }
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    status = await service.getStatus(activity);
   }
 
-  if (status.type === "ready") {
-    console.log("Ready for analysis!");
-  } else if (status.type === "failed") {
-    console.log("Processing failed");
-  }
+  // Download raw videos
+  const videos = await service.downloadActivityVideos(activity, "raw");
+  console.log(`Downloaded ${videos.length} video(s)`);
   ```
   </TabItem>
 </Tabs>
