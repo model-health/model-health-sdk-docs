@@ -7,16 +7,24 @@ import TabItem from '@theme/TabItem';
 
 # Activity Analysis
 
-Once an activity has been recorded and processed, you can run an analysis to extract meaningful metrics.
+Once an activity has been recorded and processed, you can run an analysis to extract meaningful metrics—provided a built-in analysis module is available for that activity.
 
 ## Available Analysis Types
 
-The SDK supports various analysis types depending on the movement:
+The SDK currently supports 12 analysis types:
 
-- **Counter-Movement Jump** - Vertical jump analysis
-- **Squat** - Squat depth and form analysis
-- **Sprint** - Running mechanics and speed
-- And more... see `AnalysisType` in each language for all the supported types.
+- **Overground walking**: Straight walking, no turns
+- **Treadmill walking**: Walking on a treadmill
+- **Overground running**: Straight running, no turns
+- **Treadmill running**: Running on a treadmill
+- **Counter movement jump**: Single or double leg, 1+ repetitions
+- **Drop vertical jump**: Single or double leg, 1+ repetitions
+- **Hop**: Single, double, or triple (crossover)
+- **Squat**: Single or double leg, 1+ repetitions
+- **505 test**: Agility test involving a 180° turn
+- **Cut**: Change of direction (eg, 45° and 90° cuts)
+- **Range of motion (ROM) assessment**: ROM measured throughout the trial (activity-independent)
+- **Sit-to-stand transfer**: 1+ repetitions
 
 ## Starting Analysis
 
@@ -65,7 +73,7 @@ The SDK supports various analysis types depending on the movement:
 
 ## Monitoring Analysis Progress
 
-Analysis takes time to complete. Poll the status:
+Analysis should take less than 30 seconds to complete. Poll the status:
 
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
@@ -146,10 +154,9 @@ Once analysis is complete, download the results:
 
 The analysis result contains:
 
-- **Analysis metadata** - Title and description of the analysis
-- **Metrics** - Dictionary of all measured values with metadata
-- **Convenience properties** (Swift) - Direct access to common metrics like `jumpHeight`, `peakVerticalVelocity`
-- **Helper functions** (TypeScript) - Functions like `getJumpHeight()`, `getPeakVerticalVelocity()`
+- **Metrics** - JSON with key metrics and their descriptions
+- **Report** - PDF report of the analysis
+- **Data** - Zip with CSV files containing joint angles and positions, angular velocities and speeds, and extended metrics list
 
 ## Complete Example
 

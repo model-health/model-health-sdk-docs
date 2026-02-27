@@ -43,9 +43,9 @@ model-health-docs/
 │   └── pages/                  # Custom pages (home, API references)
 ├── static/                     # Static assets
 │   ├── img/
-│   ├── swift/                  # Generated Swift docs (gitignored)
-│   ├── .../                    # Other language docs (gitignored)
-│   └── typescript/             # Generated TypeScript docs (gitignored)
+│   ├── swift/                  # Generated Swift docs
+│   ├── .../                    # Other language docs
+│   └── typescript/             # Generated TypeScript docs
 ├── docusaurus.config.js        # Docusaurus configuration
 ├── sidebars.js                 # Sidebar navigation
 └── package.json
