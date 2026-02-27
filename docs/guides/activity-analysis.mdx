@@ -16,7 +16,7 @@ The SDK supports various analysis types depending on the movement:
 - **Counter-Movement Jump** - Vertical jump analysis
 - **Squat** - Squat depth and form analysis
 - **Sprint** - Running mechanics and speed
-- And more...
+- And more... see `AnalysisType` in each language for all the supported types.
 
 ## Starting Analysis
 
@@ -74,7 +74,7 @@ Analysis takes time to complete. Poll the status:
 
   while case .processing = analysisStatus {
       print("Analysis in progress...")
-      try await Task.sleep(nanoseconds: 2_000_000_000) // 2 seconds
+      try await Task.sleep(nanoseconds: 10_000_000_000) // 10 seconds
       analysisStatus = try await service.getAnalysisStatus(for: task)
   }
 
@@ -94,7 +94,7 @@ Analysis takes time to complete. Poll the status:
 
   while (analysisStatus.type === "processing") {
     console.log("Analysis in progress...");
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 10000));
     analysisStatus = await service.getAnalysisStatus(task);
   }
 
@@ -166,7 +166,7 @@ Here's a complete workflow from recording to analysis:
   // Wait for processing
   var activityStatus = try await service.getStatus(forActivity: activity)
   while case .processing = activityStatus {
-      try await Task.sleep(nanoseconds: 2_000_000_000)
+      try await Task.sleep(nanoseconds: 10_000_000_000)
       activityStatus = try await service.getStatus(forActivity: activity)
   }
 
@@ -181,7 +181,7 @@ Here's a complete workflow from recording to analysis:
   // Wait for analysis
   var analysisStatus = try await service.getAnalysisStatus(for: task)
   while case .processing = analysisStatus {
-      try await Task.sleep(nanoseconds: 2_000_000_000)
+      try await Task.sleep(nanoseconds: 10_000_000_000)
       analysisStatus = try await service.getAnalysisStatus(for: task)
   }
 
@@ -208,7 +208,7 @@ Here's a complete workflow from recording to analysis:
   // Wait for processing
   let activityStatus = await service.getStatus(activity);
   while (activityStatus.type === "processing" || activityStatus.type === "uploading") {
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 10000));
     activityStatus = await service.getStatus(activity);
   }
 
@@ -223,7 +223,7 @@ Here's a complete workflow from recording to analysis:
   // Wait for analysis
   let analysisStatus = await service.getAnalysisStatus(task);
   while (analysisStatus.type === "processing") {
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    await new Promise(resolve => setTimeout(resolve, 10000));
     analysisStatus = await service.getAnalysisStatus(task);
   }
 

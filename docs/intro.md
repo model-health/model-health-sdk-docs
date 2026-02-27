@@ -1,7 +1,3 @@
----
-sidebar_position: 1
----
-
 # Introduction
 
 If you're building a platform in sports, physical therapy, performance, rehabilitation, or digitial health, chances are you've needed movement data — and found that getting it requires expensive hardware, specialized setups, or custom computer vision work.
@@ -20,17 +16,6 @@ The integration involves three parts working together:
 3. **Model Health Companion iOS app** – used by your users to capture the video needed for analysis.
 
 A complete integration — session management, calibration, recording, and retrieving results — typically takes **an experienced developer less than a week**. Our first pilot had things running in a couple of days.
-
-## What You Can Build
-
-The SDK gives you a full workflow out of the box:
-
-- **API key authentication and session management**
-- **Camera calibration**
-- **Movement data collection**
-- **Analysis and reporting**
-
-This mirrors the workflow in [Model Health's own web app](https://app.modelhealth.io/), so the concepts map directly if you've used it.
 
 ## Supported Platforms
 
@@ -51,6 +36,8 @@ A typical integration follows these steps:
 3. **Subject Calibration** – Record the subject standing in a neutral pose.
 4. **Movement Recording** – Capture activities like squats, jumps, or running.
 5. **Analysis** – Retrieve recordings and processed biomechanical data.
+
+This mirrors the workflow in [Model Health's own web app](https://app.modelhealth.io/), so the concepts map directly if you have used it.
 
 ## Quick Links
 
