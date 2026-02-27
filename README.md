@@ -100,9 +100,9 @@ model-health-docs/
 │   └── pages/                  # Custom pages (home, API references)
 ├── static/                     # Static assets
 │   ├── img/
-│   ├── swift/                  # Generated Swift docs (gitignored)
-│   └── typescript/             # Generated TypeScript docs (gitignored)
-├── sdk/                        # Git submodule to model-health repo
+│   ├── swift/                  # Generated Swift docs
+│   ├── .../                    # Other language docs
+│   └── typescript/             # Generated TypeScript docs
 ├── docusaurus.config.js        # Docusaurus configuration
 ├── sidebars.js                 # Sidebar navigation
 └── package.json
