@@ -7,7 +7,7 @@ import TabItem from '@theme/TabItem';
 
 # Activity Recording
 
-Once camera and subject calibration are complete, you're ready to record movement activities.
+Once camera and subject calibration are complete, you're ready to record movement activities. Once processing is done, you can retrieve raw data like joint angles, marker data, or videos.
 
 > **Note:** Camera positions must remain fixed after calibration. If you need to reposition cameras, you'll need to [recalibrate](./camera-calibration).
 
@@ -32,10 +32,9 @@ Pass any descriptive string as the activity name — use something that helps id
 
 ### During Recording
 
-- Subject performs the movement
-- Ensure the subject stays within all camera fields of view
-- Avoid moving the cameras
-- For activities where cameras may not sync automatically (e.g. treadmill gait, balance assessments), have the subject punch one hand above their shoulder and bring it back down at any point during the trial
+- The subject performs the movement
+- Ensure the subject remains within the field of view of at least two cameras
+- See [the documentation](https://modelhealth.notion.site/Activity-specific-recommendations-de384441de4e40db905d288faac4bb8f) for activity-specific recommendations
 
 ### Stop Recording
 
@@ -54,7 +53,55 @@ Pass any descriptive string as the activity name — use something that helps id
 
 ## Checking Processing Status
 
-After stopping, video is uploaded and processed automatically:
+After stopping, videos are uploaded and processed automatically. Processing may take some time (2-5 minutes), so you can check the status periodically.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let status = try await service.getStatus(forActivity: activity)
+
+  switch status {
+  case .uploading(let uploaded, let total):
+      print("Uploading: \(uploaded)/\(total) videos")
+  case .processing:
+      print("Processing video...")
+  case .ready:
+      print("Ready for analysis!")
+  case .failed:
+      print("Processing failed")
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  let status = await service.getStatus(activity);
+
+  while (status.type === "uploading" || status.type === "processing") {
+    if (status.type === "uploading") {
+      console.log(`Uploading: ${status.uploaded}/${status.total} videos`);
+    } else {
+      console.log("Processing video...");
+    }
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    status = await service.getStatus(activity);
+  }
+
+  if (status.type === "ready") {
+    console.log("Ready for analysis!");
+  } else if (status.type === "failed") {
+    console.log("Processing failed");
+  }
+  ```
+  </TabItem>
+</Tabs>
+
+## Retrieving raw data
+
+Once the activity status is ready, you can retrieve the raw motion data, including joint kinematics, marker trajectories, and videos.
+
+If a built-in analysis module is available for your activity, you can also launch an advanced analysis to generate key metrics and a detailed report (see [Activity Analysis](./activity-analysis)).
+
+TODO: add snippets for retrieving ik results, marker data, and raw videos for instance
 
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
@@ -98,24 +145,27 @@ After stopping, video is uploaded and processed automatically:
 
 ## Tips
 
-- **Clothing:** Subject should wear fitted clothing. Shoes should be a different color from both the pants and the floor — this improves pose detection significantly
-- **Background:** A plain, uncluttered background improves accuracy
-- **Multiple attempts:** Record several attempts of the same activity and name them sequentially (`cmj-1`, `cmj-2`, etc.)
-- **Duration:** Start recording just before the movement begins and stop shortly after — typically 5–30 seconds
+- **Clothing:** Wear fitted clothing with good contrast to improve accuracy
+- **Background:** Use a plain, uncluttered background for better results.
+- **Duration:** Record only what you need — typically 5-30 seconds — to ensure fast upload and processing
+
+See our [Best Practices Guide](https://modelhealth.notion.site/Best-Practices-d6c7f13064d44dd48910d19ba03e2aad) for more details.
 
 ## Troubleshooting
 
 **Trial trimmed too short or failed:**
-- Camera fields of view may not overlap enough — reposition and recalibrate so at least 2 cameras see the subject throughout the full motion
-- If the subject is only in the capture volume for less than 2 seconds, the trial may fail
+- Camera fields of view may not overlap sufficiently—reposition cameras so at least two capture the subject throughout the activity
+- If the subject is visible for less than 2 seconds, the trial may fail
 
 **Inaccurate kinematics:**
 - **Segment occlusion:** Each body segment must be visible by at least 2 cameras at all times — reposition and recalibrate if needed
-- **Camera angles too similar:** Aim for 40–90° separation between cameras
+- **Camera angles too similar:** Aim for 40-90° separation between cameras
 - **Subject too far from cameras:** Move the subject closer if possible
 - **Poor contrast:** Improve clothing and background contrast, especially at the feet
 - **Camera sync issues:** Have the subject perform a sync punch at the start of the trial
-- **Bad camera calibration:** Try recalibrating
+- **Bad camera calibration:** Recalibrate the cameras if necessary.
+
+See our [Troubleshooting](https://modelhealth.notion.site/Troubleshooting-82c870f88d124301b2147e0108fb83a4) and [Activity-Specific Recommendations](https://modelhealth.notion.site/Activity-specific-recommendations-de384441de4e40db905d288faac4bb8f) guides for more help.
 
 ## Next Steps
 
