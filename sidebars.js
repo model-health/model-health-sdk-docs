@@ -24,12 +24,10 @@ const sidebars = {
         'getting-started/quick-start',
       ],
     },
-    'examples',
     {
       type: 'category',
       label: 'Guides',
       items: [
-        'guides/authentication',
         'guides/camera-calibration',
         'guides/subject-calibration',
         'guides/activity-recording',
@@ -52,6 +50,7 @@ const sidebars = {
         },
       ],
     },
+    'examples',
   ],
 };
 

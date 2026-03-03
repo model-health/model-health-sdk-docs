@@ -1,13 +1,9 @@
----
-sidebar_position: 3
----
-
 # Examples
 
 The Model Health SDK ships with two reference example apps — one for iOS and one for the web (TypeScript). Both implement the complete SDK workflow end-to-end: session management, camera calibration, subject calibration, activity recording and analysis retrieval.
 
 They're useful for:
-- **Getting orientated** — see how all the pieces fit together before building your own integration
+- **Getting oriented** — see how all the pieces fit together before building your own integration
 - **Reference** — copy patterns directly into your own project
 
 ## Where to Get Them
