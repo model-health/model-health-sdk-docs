@@ -11,10 +11,10 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">
-          Add 3D Biomechanical Analysis to Your Product
+          Ship Biomechanical Intelligence in Days
         </h1>
         <p className="hero__subtitle">
-          Production-ready SDKs for applications in sports, physical therapy, performance, rehabilitation, or digital health.
+          Production-ready SDKs for applications requiring precision in sports, physical therapy, performance, rehabilitation, or digital health.
           <br />
           Turn smartphone video into scientifically-validated biomechanical data.
         </p>
@@ -22,7 +22,7 @@ function HomepageHeader() {
           <Link
             className="button button--secondary button--lg"
             to="/docs/intro">
-            View Quickstart
+            Start Building
           </Link>
         </div>
       </div>
@@ -35,7 +35,7 @@ function HomepageSDKs() {
     <section className={styles.features + " padding-vert--l"}>
       <div className="container">
         <h2 className="text--center margin-bottom--lg">
-          Choose Your SDK
+          Built for Your Stack
         </h2>
         <div className="row">
           {[
@@ -52,10 +52,10 @@ function HomepageSDKs() {
               linkText: "View TypeScript SDK →",
             },
             {
-              title: "Production-Ready Infrastructure",
-              description: "Simple APIs backed by secure cloud processing and scalable pipelines. Designed for fast integration and real-world deployment.",
-              link: "/docs/getting-started/quick-start",
-              linkText: "Quick Start →",
+              title: "Python SDK (Soon)",
+              description: "Automated generation and aggregation of structured biomechanical insights, without requiring researchers to develop your own post-processing code or manually interacting with our web application.",
+              link: "mailto:steve@modelhealth.io",
+              linkText: "Register your interest",
             },
           ].map((sdk) => (
             <div className="col col--4" key={sdk.title}>
@@ -77,13 +77,13 @@ function WhatYouGet() {
     <section className={styles.features + " padding-vert--l"}>
       <div className="container">
         <h2 className="text--center margin-bottom--lg">
-          What You Can Do with the SDK
+          What You Get Out of the Box
         </h2>
         <div className="row">
           {[
             {
               title: "Seamless Integration",
-              description: "Embed motion capture and biomechanical analysis directly into your platform. The SDK provides the APIs to manage sessions, record movement, and run analyses without building complex workflows from scratch."
+              description: "Embed motion capture and biomechanical analysis directly into your platform. The SDK provides the APIs to record movement and obtain both validated 3D kinematics and summary metrics without building complex workflows from scratch."
             },
             {
               title: "Cloud-Powered Analysis",
