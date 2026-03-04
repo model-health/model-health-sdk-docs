@@ -11,10 +11,10 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">
-          Ship Biomechanical Intelligence in Days
+          Ship 3D Biomechanical Intelligence in Days
         </h1>
         <p className="hero__subtitle">
-          Production-ready SDKs for applications requiring precision in sports, physical therapy, performance, rehabilitation, or digital health.
+          Production-ready SDKs for sports, physical therapy, performance, rehabilitation, and digital health.
           <br />
           Turn smartphone video into scientifically-validated biomechanical data.
         </p>
@@ -53,7 +53,7 @@ function HomepageSDKs() {
             },
             {
               title: "Python SDK (Soon)",
-              description: "Automated generation and aggregation of structured biomechanical insights, without requiring researchers to develop your own post-processing code or manually interacting with our web application.",
+              description: "Designed for R&D and scientific workflows. Access raw and processed 3D biomechanical data programmatically and build your own analysis pipelines.",
               link: "mailto:steve@modelhealth.io",
               linkText: "Register your interest",
             },
@@ -83,7 +83,7 @@ function WhatYouGet() {
           {[
             {
               title: "Seamless Integration",
-              description: "Embed motion capture and biomechanical analysis directly into your platform. The SDK provides the APIs to record movement and obtain both validated 3D kinematics and summary metrics without building complex workflows from scratch."
+              description: "Embed motion capture and biomechanical analysis directly into your platform. APIs to record movement, run analyses, and access validated insights without building complex workflows from scratch."
             },
             {
               title: "Cloud-Powered Analysis",
