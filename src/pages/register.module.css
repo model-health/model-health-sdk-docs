@@ -53,7 +53,7 @@
 .formGroup input:focus {
   outline: none;
   border-color: var(--ifm-color-primary);
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  box-shadow: 0 0 0 3px rgba(1, 52, 45, 0.12);
 }
 
 .formGroup input:disabled {
@@ -137,15 +137,15 @@
 }
 
 .alertSuccess {
-  background: rgba(61, 176, 117, 0.1);
-  color: #2d8659;
-  border: 2px solid #3DB075;
+  background: rgba(246, 255, 230, 0.6);
+  color: #157a57;
+  border: 2px solid #157a57;
 }
 
 [data-theme='dark'] .alertSuccess {
-  background: rgba(61, 176, 117, 0.1);
-  color: #51cf66;
-  border: 2px solid #3DB075;
+  background: rgba(165, 255, 1, 0.08);
+  color: #F6FFE6;
+  border: 2px solid #A5FF01;
 }
 
 .successContainer {
@@ -209,17 +209,17 @@
 
 .warning {
   padding: 0.75rem;
-  background: rgba(61, 176, 117, 0.1);
-  border: 2px solid #3DB075;
-  color: #2d8659;
+  background: rgba(246, 255, 230, 0.6);
+  border: 2px solid #01342D;
+  color: #01342D;
   font-size: 0.9rem;
   font-weight: 500;
 }
 
 [data-theme='dark'] .warning {
-  background: rgba(61, 176, 117, 0.1);
-  border: 2px solid #3DB075;
-  color: #51cf66;
+  background: rgba(165, 255, 1, 0.08);
+  border: 2px solid #A5FF01;
+  color: #F6FFE6;
 }
 
 .nextSteps {
@@ -249,6 +249,16 @@
 
 .nextSteps a:hover {
   text-decoration: underline;
+}
+
+/* Dark mode: flashy green background needs dark text for contrast */
+[data-theme='dark'] .submitButton,
+[data-theme='dark'] .copyButton {
+  color: #01342D; /* dark green text on flashy green buttons */
+}
+
+[data-theme='dark'] .secondaryButton:hover {
+  color: #01342D; /* dark green text on flashy green buttons */
 }
 
 @media (max-width: 768px) {

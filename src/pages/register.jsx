@@ -197,7 +197,7 @@ export default function Register() {
                   placeholder="e.g., Production, Development"
                   disabled={status.type === 'loading'}
                 />
-                <small>Give your API key a memorable name to help you organise multiple keys.</small>
+                <small>Give your API key a memorable name to help you organize multiple keys.</small>
               </div>
 
               {status.type === 'error' && (

@@ -56,6 +56,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: false,
+      },
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
@@ -94,7 +99,7 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
+        style: 'light',
         copyright: `SDK v${sdkVersion} · Copyright © ${new Date().getFullYear()} Model Health.`,
       },
       prism: {
