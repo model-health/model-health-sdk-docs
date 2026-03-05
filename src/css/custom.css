@@ -36,14 +36,9 @@
 }
 
 /* Footer — same green as navbar and hero in both modes */
-.footer,
-.footer--dark,
-.footer__bottom,
-[data-theme='dark'] .footer,
-[data-theme='dark'] .footer--dark,
-[data-theme='dark'] .footer__bottom {
-  --ifm-footer-background-color: #02352E;
-  background: #02352E !important;
+.footer {
+  background-color: #02352E !important;
+  color: #F4F3F0 !important;
 }
 
 [data-theme='dark'] {
