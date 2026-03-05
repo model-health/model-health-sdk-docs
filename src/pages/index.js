@@ -35,7 +35,7 @@ function HomepageSDKs() {
     <section className={styles.features + " padding-vert--l"}>
       <div className="container">
         <h2 className="text--center margin-bottom--lg">
-          Built for Your Stack
+          Choose Your SDK
         </h2>
         <div className="row">
           {[
@@ -53,7 +53,7 @@ function HomepageSDKs() {
             },
             {
               title: "Python SDK (Soon)",
-              description: "Designed for R&D and scientific workflows. Access raw and processed 3D biomechanical data programmatically and build your own analysis pipelines.",
+              description: "Designed for R&D workflows. Access raw and processed 3D biomechanical data programmatically and build your own pipelines.",
               link: "mailto:steve@modelhealth.io",
               linkText: "Register your interest",
             },
@@ -83,7 +83,7 @@ function WhatYouGet() {
           {[
             {
               title: "Seamless Integration",
-              description: "Embed motion capture and biomechanical analysis directly into your platform. APIs to record movement, run analyses, and access validated insights without building complex workflows from scratch."
+              description: "Drop motion capture and biomechanical analysis into your platform. Simple APIs to record movement, run analyses, and fetch results. No complex workflows to build from scratch."
             },
             {
               title: "Cloud-Powered Analysis",

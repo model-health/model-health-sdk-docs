@@ -1,21 +1,61 @@
 :root {
-  --ifm-color-primary: #3db075;
-  --ifm-color-primary-dark: #36a069;
-  --ifm-color-primary-darker: #339763;
-  --ifm-color-primary-darkest: #2a7d52;
-  --ifm-color-primary-light: #51b982;
-  --ifm-color-primary-lighter: #5ec089;
-  --ifm-color-primary-lightest: #7aca9e;
+  /* Brand palette */
+  --brand-grey: #F4F3F0;
+  --brand-flashy-green: #A5FF01;
+  --brand-dark-green: #01342D;
+  --brand-light-green: #F6FFE6;
+
+  /* Primary color scale — mid forest green for light mode (clear contrast on white) */
+  --ifm-color-primary: #157a57;
+  --ifm-color-primary-dark: #136c4b;
+  --ifm-color-primary-darker: #116445;
+  --ifm-color-primary-darkest: #0e543c;
+  --ifm-color-primary-light: #178864;
+  --ifm-color-primary-lighter: #199170;
+  --ifm-color-primary-lightest: #1ea480;
+
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+
+  /* Navbar */
+  --ifm-navbar-background-color: #02352E;
+  --ifm-navbar-link-color: #F4F3F0;
+  --ifm-navbar-link-hover-color: #A5FF01;
+  --ifm-navbar-link-active-color: #A5FF01;
+
+  /* Footer */
+  --ifm-footer-background-color: #02352E;
+  --ifm-footer-color: #F4F3F0;
+  --ifm-footer-link-color: #F4F3F0;
+  --ifm-footer-link-hover-color: #A5FF01;
 }
+
+/* Color mode toggle icon — white to match navbar */
+.navbar .clean-btn {
+  color: #F4F3F0;
+}
+
+/* Footer — same green as navbar and hero in both modes */
+.footer {
+  background-color: #02352E !important;
+  color: #F4F3F0 !important;
+}
+
 [data-theme='dark'] {
-  --ifm-color-primary: #51b982;
-  --ifm-color-primary-dark: #3db075;
-  --ifm-color-primary-darker: #36a069;
-  --ifm-color-primary-darkest: #2a7d52;
-  --ifm-color-primary-light: #5ec089;
-  --ifm-color-primary-lighter: #6bc592;
-  --ifm-color-primary-lightest: #7aca9e;
+  /* Primary color scale — Flashy Green for dark mode accents */
+  --ifm-color-primary: #A5FF01;
+  --ifm-color-primary-dark: #90d901;
+  --ifm-color-primary-darker: #84c701;
+  --ifm-color-primary-darkest: #5e8e01;
+  --ifm-color-primary-light: #b3ff2e;
+  --ifm-color-primary-lighter: #bdff4c;
+  --ifm-color-primary-lightest: #d0ff88;
+
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+
+  /* Navbar */
+  --ifm-navbar-background-color: #02352E;
+  --ifm-navbar-link-color: #F4F3F0;
+  --ifm-navbar-link-hover-color: #A5FF01;
+  --ifm-navbar-link-active-color: #A5FF01;
 }
