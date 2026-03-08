@@ -36,6 +36,15 @@ const sidebars = {
     },
     {
       type: 'category',
+      label: 'Examples',
+      items: [
+        'examples/ios',
+        'examples/typescript',
+        'examples/python',
+      ],
+    },
+    {
+      type: 'category',
       label: 'SDK Reference',
       items: [
         {
@@ -55,7 +64,6 @@ const sidebars = {
         }
       ],
     },
-    'examples',
   ],
 };
 
