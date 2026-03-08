@@ -48,26 +48,6 @@ Each subject needs a profile before calibration. Height and weight are required 
   const subject = subjects[0];
   ```
   </TabItem>
-  <TabItem value="python" label="Python">
-  ```python
-  # Create a new subject
-  subject = service.create_subject({
-      "name": "Anonymous",         # optional
-      "birth_year": 1990,          # optional
-      "height": 175.0,             # centimeters, required
-      "weight": 70.0,              # kilograms, required
-      "sex_at_birth": "no_response",
-      "gender": "no_response",
-      "characteristics": "",
-      "subject_tags": [],
-      "terms": True,
-  })
-
-  # Or select an existing subject (eg, first one of the list)
-  subjects = service.subject_list()
-  subject = subjects[0]
-  ```
-  </TabItem>
 </Tabs>
 
 ## Neutral Pose Instructions
@@ -129,9 +109,6 @@ Make sure there are no obstructions in any camera's field of view before hitting
     }
   });
   ```
-  </TabItem>
-  <TabItem value="python" label="Python">
-  Neutral pose recording is not available in the Python SDK. Use the Model Health web app, or the SDK's other supported langauages, to capture the neutral pose.
   </TabItem>
 </Tabs>
 

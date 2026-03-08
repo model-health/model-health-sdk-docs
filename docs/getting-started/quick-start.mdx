@@ -201,7 +201,7 @@ A typical flow looks like this:
   ```python
   import json
   import time
-  from modelhealth import ModelHealthService
+  from modelhealth import ModelHealthService, ActivityStatus, ActivityStatusUploading, AnalysisStatus
 
   # Initialize the service with your API key
   service = ModelHealthService("your-api-key-here")
@@ -215,35 +215,35 @@ A typical flow looks like this:
   subject = subjects[0]
 
   # List activities for this subject
-  activities = service.get_activities_for_subject(
-      subject["id"], start_index=0, count=10, sort="updated_at"
+  activities = service.activities_for_subject(
+      str(subject.id), start_index=0, count=10
   )
   activity = activities[0]  # use the most recent activity
 
   # Check processing status
-  status = service.get_status(activity)
-  while status["type"] in ("uploading", "processing"):
+  status = service.activity_status(activity)
+  while isinstance(status, ActivityStatusUploading) or status == ActivityStatus.processing:
       time.sleep(10)
-      status = service.get_status(activity)
+      status = service.activity_status(activity)
 
-  if status["type"] == "ready":
+  if status == ActivityStatus.ready:
       # Start analysis
       task = service.start_analysis("counter_movement_jump", activity, session)
 
       # Poll for completion
-      analysis_status = service.get_analysis_status(task)
-      while analysis_status["type"] == "processing":
+      analysis_status = service.analysis_status(task)
+      while analysis_status == AnalysisStatus.processing:
           time.sleep(10)
-          analysis_status = service.get_analysis_status(task)
+          analysis_status = service.analysis_status(task)
 
       # Download results
-      if analysis_status["type"] == "completed":
-          results = service.download_trial_analysis_result_data(
+      if analysis_status == AnalysisStatus.completed:
+          results = service.analysis_data_for_activity(
               activity, ["metrics", "report"]
           )
-          for result in results:
-              if result["result_data_type"] == "metrics":
-                  metrics = json.loads(result["data"])
+          for r in results:
+              if r.type == "metrics":
+                  metrics = json.loads(r.data)
                   print("Analysis complete:", metrics["analysis_title"])
   ```
   </TabItem>

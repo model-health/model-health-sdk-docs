@@ -71,10 +71,12 @@ The SDK currently supports 12 analysis types:
   </TabItem>
   <TabItem value="python" label="Python">
   ```python
-  # Ensure activity is ready
-  status = service.get_status(activity)
+  from modelhealth import ActivityStatus
 
-  if status["type"] != "ready":
+  # Ensure activity is ready
+  status = service.activity_status(activity)
+
+  if status != ActivityStatus.ready:
       print("Activity not ready for analysis")
   else:
       # Start analysis
@@ -83,7 +85,7 @@ The SDK currently supports 12 analysis types:
           activity,
           session
       )
-      print("Analysis task started:", task["task_id"])
+      print("Analysis task started:", task.task_id)
   ```
   </TabItem>
 </Tabs>
@@ -133,17 +135,18 @@ Analysis should take less than 30 seconds to complete. Poll the status:
   <TabItem value="python" label="Python">
   ```python
   import time
+  from modelhealth import AnalysisStatus
 
-  analysis_status = service.get_analysis_status(task)
+  status = service.analysis_status(task)
 
-  while analysis_status["type"] == "processing":
+  while status == AnalysisStatus.processing:
       print("Analysis in progress...")
       time.sleep(10)
-      analysis_status = service.get_analysis_status(task)
+      status = service.analysis_status(task)
 
-  if analysis_status["type"] == "completed":
+  if status == AnalysisStatus.completed:
       print("Analysis complete!")
-  elif analysis_status["type"] == "failed":
+  elif status == AnalysisStatus.failed:
       print("Analysis failed")
   ```
   </TabItem>
@@ -186,11 +189,11 @@ Once analysis is complete, download the results:
   ```python
   import json
 
-  if analysis_status["type"] == "completed":
-      results = service.download_trial_analysis_result_data(activity, ["metrics"])
-      for result in results:
-          if result["result_data_type"] == "metrics":
-              data = json.loads(result["data"])
+  if status == AnalysisStatus.completed:
+      results = service.analysis_data_for_activity(activity, ["metrics"])
+      for r in results:
+          if r.type == "metrics":
+              data = json.loads(r.data)
               # data contains analysis_title, analysis_description, metrics, etc.
               jump_height = data["metrics"].get("00_jump_height_COM", {}).get("value", {}).get("value")
               peak_velocity = data["metrics"].get("04_peak_vertical_COM_speed_during_takeoff", {}).get("value", {}).get("value")
@@ -304,7 +307,7 @@ Here's a complete workflow from recording to analysis:
   ```python
   import json
   import time
-  from modelhealth import ModelHealthService
+  from modelhealth import ModelHealthService, ActivityStatus, ActivityStatusUploading, AnalysisStatus
 
   service = ModelHealthService("your-api-key-here")
 
@@ -312,35 +315,35 @@ Here's a complete workflow from recording to analysis:
   sessions = service.session_list()
   session = sessions[0]
   subjects = service.subject_list()
-  activities = service.get_activities_for_subject(
-      subjects[0]["id"], start_index=0, count=10, sort="updated_at"
+  activities = service.activities_for_subject(
+      str(subjects[0].id), start_index=0, count=10
   )
   activity = activities[0]
 
   # Wait for processing
-  activity_status = service.get_status(activity)
-  while activity_status["type"] in ("uploading", "processing"):
+  activity_status = service.activity_status(activity)
+  while isinstance(activity_status, ActivityStatusUploading) or activity_status == ActivityStatus.processing:
       time.sleep(10)
-      activity_status = service.get_status(activity)
+      activity_status = service.activity_status(activity)
 
-  if activity_status["type"] != "ready":
+  if activity_status != ActivityStatus.ready:
       print("Activity failed processing")
   else:
       # Start analysis
       task = service.start_analysis("counter_movement_jump", activity, session)
 
       # Wait for analysis
-      analysis_status = service.get_analysis_status(task)
-      while analysis_status["type"] == "processing":
+      analysis_status = service.analysis_status(task)
+      while analysis_status == AnalysisStatus.processing:
           time.sleep(10)
-          analysis_status = service.get_analysis_status(task)
+          analysis_status = service.analysis_status(task)
 
       # Download results
-      if analysis_status["type"] == "completed":
-          results = service.download_trial_analysis_result_data(activity, ["metrics"])
-          for result in results:
-              if result["result_data_type"] == "metrics":
-                  data = json.loads(result["data"])
+      if analysis_status == AnalysisStatus.completed:
+          results = service.analysis_data_for_activity(activity, ["metrics"])
+          for r in results:
+              if r.type == "metrics":
+                  data = json.loads(r.data)
                   print("Analysis complete:", data["analysis_title"])
                   for key, metric in data["metrics"].items():
                       print(f"  {metric['label']}:", metric["value"])
@@ -377,10 +380,12 @@ Always handle potential errors during analysis:
   </TabItem>
   <TabItem value="python" label="Python">
   ```python
+  from modelhealth import ModelHealthError
+
   try:
       task = service.start_analysis("counter_movement_jump", activity, session)
       # Monitor and download results...
-  except RuntimeError as e:
+  except ModelHealthError as e:
       print(f"Analysis error: {e}")
       # Handle error appropriately
   ```

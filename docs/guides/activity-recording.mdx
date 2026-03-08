@@ -30,16 +30,6 @@ Pass any descriptive string as the activity name — use something that helps id
   const activity = await service.record("cmj", session);
   ```
   </TabItem>
-  <TabItem value="python" label="Python">
-  Recording is not available in the Python SDK. Use the Model Health web app, or the SDK's other supported langauages, to record activities, then retrieve them in Python:
-
-  ```python
-  activities = service.get_activities_for_subject(
-      subject["id"], start_index=0, count=10, sort="updated_at"
-  )
-  activity = activities[0]
-  ```
-  </TabItem>
 </Tabs>
 
 ### During Recording
@@ -60,9 +50,6 @@ Pass any descriptive string as the activity name — use something that helps id
   ```typescript
   await service.stopRecording(session);
   ```
-  </TabItem>
-  <TabItem value="python" label="Python">
-  Not applicable — recording is performed via the mobile app.
   </TabItem>
 </Tabs>
 
@@ -111,20 +98,21 @@ After stopping, videos are uploaded and processed automatically. Processing may 
   <TabItem value="python" label="Python">
   ```python
   import time
+  from modelhealth import ActivityStatus, ActivityStatusUploading
 
-  status = service.get_status(activity)
+  status = service.activity_status(activity)
 
-  while status["type"] in ("uploading", "processing"):
-      if status["type"] == "uploading":
-          print(f"Uploading: {status['uploaded']}/{status['total']} videos")
+  while isinstance(status, ActivityStatusUploading) or status == ActivityStatus.processing:
+      if isinstance(status, ActivityStatusUploading):
+          print(f"Uploading: {status.uploaded}/{status.total} videos")
       else:
           print("Processing video...")
       time.sleep(10)
-      status = service.get_status(activity)
+      status = service.activity_status(activity)
 
-  if status["type"] == "ready":
+  if status == ActivityStatus.ready:
       print("Ready for analysis!")
-  elif status["type"] == "failed":
+  elif status == ActivityStatus.failed:
       print("Processing failed")
   ```
   </TabItem>
@@ -184,6 +172,26 @@ If a built-in analysis module is available for your activity, you can also launc
   // Download raw videos
   const videos = await service.downloadActivityVideos(activity, "raw");
   console.log(`Downloaded ${videos.length} video(s)`);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  # Download kinematics (MOT format) and marker trajectories (TRC format)
+  results = service.motion_data_for_activity(
+      activity, ["kinematics_mot", "markers_trc"]
+  )
+
+  for r in results:
+      if r.type == "kinematics_mot":
+          # r.data contains the kinematics file in OpenSim MOT format
+          print(f"Kinematics MOT: {len(r.data)} bytes")
+      elif r.type == "markers_trc":
+          # r.data contains the marker trajectories in TRC format
+          print(f"Markers TRC: {len(r.data)} bytes")
+
+  # Download raw videos
+  videos = service.videos_for_activity(activity, "raw")
+  print(f"Downloaded {len(videos)} video(s)")
   ```
   </TabItem>
 </Tabs>
