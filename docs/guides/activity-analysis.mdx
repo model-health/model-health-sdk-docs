@@ -32,7 +32,7 @@ The SDK currently supports 12 analysis types:
   <TabItem value="swift" label="Swift">
   ```swift
   // Ensure activity is ready
-  let status = try await service.getStatus(forActivity: activity)
+  let status = try await service.activityStatus(for: activity)
 
   guard case .ready = status else {
       print("Activity not ready for analysis")
@@ -46,13 +46,13 @@ The SDK currently supports 12 analysis types:
       in: session
   )
 
-  print("Analysis task started: \(task.taskId)")
+  print("Analysis task started: \(task.id)")
   ```
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
   // Ensure activity is ready
-  const status = await service.getStatus(activity);
+  const status = await service.activityStatus(activity);
 
   if (status.type !== "ready") {
     console.log("Activity not ready for analysis");
@@ -66,7 +66,7 @@ The SDK currently supports 12 analysis types:
     session
   );
 
-  console.log("Analysis task started:", task.task_id);
+  console.log("Analysis task started:", task.taskId);
   ```
   </TabItem>
   <TabItem value="python" label="Python">
@@ -97,12 +97,12 @@ Analysis should take less than 30 seconds to complete. Poll the status:
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  var analysisStatus = try await service.getAnalysisStatus(for: task)
+  var analysisStatus = try await service.analysisStatus(for: task)
 
   while case .processing = analysisStatus {
       print("Analysis in progress...")
       try await Task.sleep(nanoseconds: 10_000_000_000) // 10 seconds
-      analysisStatus = try await service.getAnalysisStatus(for: task)
+      analysisStatus = try await service.analysisStatus(for: task)
   }
 
   switch analysisStatus {
@@ -117,12 +117,12 @@ Analysis should take less than 30 seconds to complete. Poll the status:
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  let analysisStatus = await service.getAnalysisStatus(task);
+  let analysisStatus = await service.analysisStatus(task);
 
   while (analysisStatus.type === "processing") {
     console.log("Analysis in progress...");
     await new Promise(resolve => setTimeout(resolve, 10000));
-    analysisStatus = await service.getAnalysisStatus(task);
+    analysisStatus = await service.analysisStatus(task);
   }
 
   if (analysisStatus.type === "completed") {
@@ -160,8 +160,8 @@ Once analysis is complete, download the results:
   <TabItem value="swift" label="Swift">
   ```swift
   if case .completed = analysisStatus {
-      let results = await service.analysisResultData(ofType: [.metrics], for: activity)
-      if let metricsEntry = results.first(where: { $0.resultDataType == .metrics }),
+      let results = await service.analysisData(ofType: [.metrics], for: activity)
+      if let metricsEntry = results.first(where: { $0.type == .metrics }),
          let json = try? JSONSerialization.jsonObject(with: metricsEntry.data) as? [String: Any] {
           // json contains analysis_title, analysis_description, metrics dictionary, etc.
           print("Metrics:", json)
@@ -172,8 +172,8 @@ Once analysis is complete, download the results:
   <TabItem value="ts" label="TypeScript">
   ```typescript
   if (analysisStatus.type === "completed") {
-    const results = await service.downloadActivityAnalysisResultData(activity, ["metrics"]);
-    const metricsEntry = results.find((r) => r.result_data_type === "metrics");
+    const results = await service.analysisDataForActivity(activity, ["metrics"]);
+    const metricsEntry = results.find((r) => r.type === "metrics");
     if (metricsEntry?.data) {
       const result = JSON.parse(new TextDecoder().decode(metricsEntry.data));
       // result contains biomechanical metrics
@@ -221,15 +221,15 @@ Here's a complete workflow from recording to analysis:
   <TabItem value="swift" label="Swift">
   ```swift
   // Record
-  let activity = try await service.record(activityNamed: "cmj-1", in: session)
+  let activity = try await service.startRecording(activityNamed: "cmj", in: session)
   // ... subject performs jump ...
   try await service.stopRecording(session)
 
   // Wait for processing
-  var activityStatus = try await service.getStatus(forActivity: activity)
+  var activityStatus = try await service.activityStatus(for: activity)
   while case .processing = activityStatus {
       try await Task.sleep(nanoseconds: 10_000_000_000)
-      activityStatus = try await service.getStatus(forActivity: activity)
+      activityStatus = try await service.activityStatus(for: activity)
   }
 
   // Start analysis
@@ -241,16 +241,16 @@ Here's a complete workflow from recording to analysis:
   let task = try await service.startAnalysis(.counterMovementJump, for: activity, in: session)
 
   // Wait for analysis
-  var analysisStatus = try await service.getAnalysisStatus(for: task)
+  var analysisStatus = try await service.analysisStatus(for: task)
   while case .processing = analysisStatus {
       try await Task.sleep(nanoseconds: 10_000_000_000)
-      analysisStatus = try await service.getAnalysisStatus(for: task)
+      analysisStatus = try await service.analysisStatus(for: task)
   }
 
   // Download results
   if case .completed = analysisStatus {
-      let results = await service.analysisResultData(ofType: [.metrics], for: activity)
-      if let metricsEntry = results.first(where: { $0.resultDataType == .metrics }),
+      let results = await service.analysisData(ofType: [.metrics], for: activity)
+      if let metricsEntry = results.first(where: { $0.type == .metrics }),
          let json = try? JSONSerialization.jsonObject(with: metricsEntry.data) as? [String: Any],
          let metrics = json["metrics"] as? [String: [String: Any]] {
           for (key, metric) in metrics {
@@ -263,15 +263,15 @@ Here's a complete workflow from recording to analysis:
   <TabItem value="ts" label="TypeScript">
   ```typescript
   // Record
-  const activity = await service.record("cmj-1", session);
+  const activity = await service.startRecording("cmj", session);
   // ... subject performs jump ...
   await service.stopRecording(session);
 
   // Wait for processing
-  let activityStatus = await service.getStatus(activity);
+  let activityStatus = await service.activityStatus(activity);
   while (activityStatus.type === "processing" || activityStatus.type === "uploading") {
     await new Promise(resolve => setTimeout(resolve, 10000));
-    activityStatus = await service.getStatus(activity);
+    activityStatus = await service.activityStatus(activity);
   }
 
   // Start analysis
@@ -283,16 +283,16 @@ Here's a complete workflow from recording to analysis:
   const task = await service.startAnalysis("counter_movement_jump", activity, session);
 
   // Wait for analysis
-  let analysisStatus = await service.getAnalysisStatus(task);
+  let analysisStatus = await service.analysisStatus(task);
   while (analysisStatus.type === "processing") {
     await new Promise(resolve => setTimeout(resolve, 10000));
-    analysisStatus = await service.getAnalysisStatus(task);
+    analysisStatus = await service.analysisStatus(task);
   }
 
   // Download results
   if (analysisStatus.type === "completed") {
-    const results = await service.downloadActivityAnalysisResultData(activity, ["metrics"]);
-    const metricsEntry = results.find((r) => r.result_data_type === "metrics");
+    const results = await service.analysisDataForActivity(activity, ["metrics"]);
+    const metricsEntry = results.find((r) => r.type === "metrics");
     if (metricsEntry?.data) {
       const result = JSON.parse(new TextDecoder().decode(metricsEntry.data));
       console.log("Analysis complete:", result.analysis_title);

@@ -22,12 +22,12 @@ Pass any descriptive string as the activity name — use something that helps id
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  let activity = try await service.record(activityNamed: "cmj", in: session)
+  let activity = try await service.startRecording(activityNamed: "cmj", in: session)
   ```
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  const activity = await service.record("cmj", session);
+  const activity = await service.startRecording("cmj", session);
   ```
   </TabItem>
 </Tabs>
@@ -60,7 +60,7 @@ After stopping, videos are uploaded and processed automatically. Processing may 
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  let status = try await service.getStatus(forActivity: activity)
+  let status = try await service.activityStatus(for: activity)
 
   switch status {
   case .uploading(let uploaded, let total):
@@ -76,7 +76,7 @@ After stopping, videos are uploaded and processed automatically. Processing may 
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  let status = await service.getStatus(activity);
+  let status = await service.activityStatus(activity);
 
   while (status.type === "uploading" || status.type === "processing") {
     if (status.type === "uploading") {
@@ -85,7 +85,7 @@ After stopping, videos are uploaded and processed automatically. Processing may 
       console.log("Processing video...");
     }
     await new Promise(resolve => setTimeout(resolve, 2000));
-    status = await service.getStatus(activity);
+    status = await service.activityStatus(activity);
   }
 
   if (status.type === "ready") {
@@ -128,13 +128,13 @@ If a built-in analysis module is available for your activity, you can also launc
   <TabItem value="swift" label="Swift">
   ```swift
   // Download kinematics (MOT format) and marker trajectories (TRC format)
-  let resultData = await service.data(
+  let resultData = await service.motionData(
       ofType: [.kinematics(.mot), .markers(.trc)],
       for: activity
   )
 
   for result in resultData {
-      switch result.resultDataType {
+      switch result.type {
       case .kinematics(.mot):
           // result.data contains the kinematics file in OpenSim MOT format
           print("Kinematics MOT: \(result.data.count) bytes")
@@ -154,23 +154,23 @@ If a built-in analysis module is available for your activity, you can also launc
   <TabItem value="ts" label="TypeScript">
   ```typescript
   // Download kinematics (MOT format) and marker trajectories (TRC format)
-  const resultData = await service.downloadActivityResultData(
+  const resultData = await service.motionDataForActivity(
     activity,
     ["kinematics_mot", "markers_trc"]
   );
 
   for (const result of resultData) {
-    if (result.resultDataType === "kinematics_mot") {
+    if (result.type === "kinematics_mot") {
       // result.data contains the kinematics file in OpenSim MOT format
       console.log(`Kinematics MOT: ${result.data.length} bytes`);
-    } else if (result.resultDataType === "markers_trc") {
+    } else if (result.type === "markers_trc") {
       // result.data contains the marker trajectories in TRC format
       console.log(`Markers TRC: ${result.data.length} bytes`);
     }
   }
 
   // Download raw videos
-  const videos = await service.downloadActivityVideos(activity, "raw");
+  const videos = await service.videosForActivity(activity, "raw");
   console.log(`Downloaded ${videos.length} video(s)`);
   ```
   </TabItem>

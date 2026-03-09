@@ -91,7 +91,7 @@ Once installed, verify the SDK is set up correctly by initializing it with your 
   ```typescript
   import { ModelHealthService } from '@modelhealth/modelhealth';
 
-  const service = new ModelHealthService("your-api-key-here");
+  const service = new ModelHealthService({ apiKey: "your-api-key-here" });
   await service.init();
   console.log('Model Health SDK initialized successfully');
   ```
