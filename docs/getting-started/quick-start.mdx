@@ -59,8 +59,8 @@ A typical flow looks like this:
   // Capture neutral pose (requires a subject)
   let subjects = try await service.subjectList()
   if let subject = subjects.first {
-      try await service.calibrateNeutralPose(
-          for: subject,
+      try await service.calibrateSubject(
+          subject,
           in: session
       ) { status in
           print("Neutral pose status: \(status)")
@@ -68,12 +68,12 @@ A typical flow looks like this:
   }
 
   // Record an activity
-  let activity = try await service.record(activityNamed: "cmj-1", in: session)
+  let activity = try await service.startRecording(activityNamed: "cmj", in: session)
   // Subject performs the movement...
   try await service.stopRecording(session)
 
   // Check processing status
-  let status = try await service.getStatus(forActivity: activity)
+  let status = try await service.activityStatus(for: activity)
   if case .ready = status {
       // Start analysis
       let task = try await service.startAnalysis(
@@ -83,20 +83,20 @@ A typical flow looks like this:
       )
 
       // Poll for completion
-      var analysisStatus = try await service.getAnalysisStatus(for: task)
+      var analysisStatus = try await service.analysisStatus(for: task)
       while case .processing = analysisStatus {
           try await Task.sleep(nanoseconds: 10_000_000_000) // 10 seconds
-          analysisStatus = try await service.getAnalysisStatus(for: task)
+          analysisStatus = try await service.analysisStatus(for: task)
       }
 
       // Download results
       if case .completed = analysisStatus {
-          let results = await service.analysisResultData(
+          let results = await service.analysisData(
               ofType: [.metrics, .report],
               for: activity
           )
           for result in results {
-              switch result.resultDataType {
+              switch result.type {
               case .metrics:
                   print("Metrics:", String(data: result.data, encoding: .utf8) ?? "")
               case .report:
@@ -115,7 +115,7 @@ A typical flow looks like this:
   import { ModelHealthService } from '@modelhealth/modelhealth';
 
   // Initialize the service with your API key
-  const service = new ModelHealthService("your-api-key-here");
+  const service = new ModelHealthService({ apiKey: "your-api-key-here" });
   await service.init();
 
   // Create a session
@@ -127,7 +127,7 @@ A typical flow looks like this:
   const checkerboardDetails = {
     rows: 4,
     columns: 5,
-    square_size: 35,
+    squareSize: 35,
     placement: "perpendicular"
   };
 
@@ -144,7 +144,7 @@ A typical flow looks like this:
 
   // Capture neutral pose
   if (subjects.length > 0) {
-    await service.calibrateNeutralPose(
+    await service.calibrateSubject(
       subjects[0],
       session,
       (status) => {
@@ -154,15 +154,15 @@ A typical flow looks like this:
   }
 
   // Record an activity
-  const activity = await service.record("cmj-1", session);
+  const activity = await service.startRecording("cmj", session);
   // Subject performs the activity...
   await service.stopRecording(session);
 
   // Check processing status
-  let activityStatus = await service.getStatus(activity);
+  let activityStatus = await service.activityStatus(activity);
   while (activityStatus.type === "processing") {
     await new Promise(resolve => setTimeout(resolve, 2000));
-    activityStatus = await service.getStatus(activity);
+    activityStatus = await service.activityStatus(activity);
   }
 
   // Start analysis
@@ -174,19 +174,19 @@ A typical flow looks like this:
     );
 
     // Poll for completion
-    let analysisStatus = await service.getAnalysisStatus(task);
+    let analysisStatus = await service.analysisStatus(task);
     while (analysisStatus.type === "processing") {
       await new Promise(resolve => setTimeout(resolve, 2000));
-      analysisStatus = await service.getAnalysisStatus(task);
+      analysisStatus = await service.analysisStatus(task);
     }
 
     // Download results
     if (analysisStatus.type === "completed") {
-      const results = await service.downloadActivityAnalysisResultData(
+      const results = await service.analysisDataForActivity(
         activity,
         ["metrics", "report"]
       );
-      const metricsEntry = results.find((r) => r.result_data_type === "metrics");
+      const metricsEntry = results.find((r) => r.type === "metrics");
       if (metricsEntry?.data) {
         const metrics = JSON.parse(new TextDecoder().decode(metricsEntry.data));
         console.log("Analysis complete:", metrics);

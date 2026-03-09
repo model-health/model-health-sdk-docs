@@ -19,12 +19,12 @@ Each subject needs a profile before calibration. Height and weight are required 
   <TabItem value="swift" label="Swift">
   ```swift
   // Create a new subject
-  let subject = try await service.createSubject(
+  let params = SubjectParameters(
       name: "Anonymous",       // optional
-      birthYear: nil,          // optional
-      height: 175,             // centimeters, required
-      weight: 70               // kilograms, required
+      weight: 70,              // kilograms, required
+      height: 175              // centimeters, required
   )
+  let subject = try await service.createSubject(parameters: params)
 
   // Or select an existing subject (eg, first one of the list)
   let subjects = try await service.subjectList()
@@ -66,7 +66,7 @@ Make sure there are no obstructions in any camera's field of view before hitting
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  try await service.calibrateNeutralPose(for: subject, in: session) { status in
+  try await service.calibrateSubject(subject, in: session) { status in
       switch status {
       case .recording:
           print("Recording neutral pose...")
@@ -86,7 +86,7 @@ Make sure there are no obstructions in any camera's field of view before hitting
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  await service.calibrateNeutralPose(subject, session, (status) => {
+  await service.calibrateSubject(subject, session, (status) => {
     switch (status.type) {
       case "recording":
         console.log("Recording neutral pose...");
