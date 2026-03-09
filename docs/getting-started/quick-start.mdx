@@ -216,7 +216,7 @@ A typical flow looks like this:
 
   # List activities for this subject
   activities = service.activities_for_subject(
-      str(subject.id), start_index=0, count=10
+      subject, start_index=0, count=10
   )
   activity = activities[0]  # use the most recent activity
 

@@ -316,7 +316,7 @@ Here's a complete workflow from recording to analysis:
   session = sessions[0]
   subjects = service.subject_list()
   activities = service.activities_for_subject(
-      str(subjects[0].id), start_index=0, count=10
+      subjects[0], start_index=0, count=10
   )
   activity = activities[0]
 
