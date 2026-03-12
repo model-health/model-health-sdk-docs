@@ -52,10 +52,10 @@ function HomepageSDKs() {
               linkText: "View TypeScript SDK →",
             },
             {
-              title: "Python SDK (Soon)",
+              title: "Python SDK",
               description: "Designed for R&D workflows. Access raw and processed 3D biomechanical data programmatically and build your own pipelines.",
-              link: "mailto:steve@modelhealth.io",
-              linkText: "Register your interest",
+              link: "/python-api",
+              linkText: "View Python SDK →",
             },
           ].map((sdk) => (
             <div className="col col--4" key={sdk.title}>
