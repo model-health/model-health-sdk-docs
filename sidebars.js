@@ -32,6 +32,7 @@ const sidebars = {
         'guides/subject-calibration',
         'guides/activity-recording',
         'guides/activity-analysis',
+        'guides/archive-retrieval',
       ],
     },
     {
