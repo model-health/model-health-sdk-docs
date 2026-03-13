@@ -26,6 +26,8 @@ A typical flow looks like this:
 5. Record a movement
 6. Run analysis and retrieve results
 
+> **Python note:** Camera calibration, neutral pose calibration, and recording require a connected mobile device and are handled by the Model Health web app, or the SDK's other supported langauages. The Python SDK is intended for post-capture workflows: listing sessions and subjects, running analysis on existing activities, and downloading results.
+
 ## Quick Start
 
 <Tabs groupId="language">
@@ -193,6 +195,56 @@ A typical flow looks like this:
       }
     }
   }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  import json
+  import time
+  from modelhealth import ModelHealthService, ActivityStatus, ActivityStatusUploading, AnalysisStatus
+
+  # Initialize the service with your API key
+  service = ModelHealthService("your-api-key-here")
+
+  # List sessions recorded via the Model Health mobile app
+  sessions = service.session_list()
+  session = sessions[0]  # use the most recent session
+
+  # List subjects
+  subjects = service.subject_list()
+  subject = subjects[0]
+
+  # List activities for this subject
+  activities = service.activities_for_subject(
+      subject, start_index=0, count=10
+  )
+  activity = activities[0]  # use the most recent activity
+
+  # Check processing status
+  status = service.activity_status(activity)
+  while isinstance(status, ActivityStatusUploading) or status == ActivityStatus.processing:
+      time.sleep(10)
+      status = service.activity_status(activity)
+
+  if status == ActivityStatus.ready:
+      # Start analysis
+      task = service.start_analysis("counter_movement_jump", activity, session)
+
+      # Poll for completion
+      analysis_status = service.analysis_status(task)
+      while analysis_status == AnalysisStatus.processing:
+          time.sleep(10)
+          analysis_status = service.analysis_status(task)
+
+      # Download results
+      if analysis_status == AnalysisStatus.completed:
+          results = service.analysis_data_for_activity(
+              activity, ["metrics", "report"]
+          )
+          for r in results:
+              if r.type == "metrics":
+                  metrics = json.loads(r.data)
+                  print("Analysis complete:", metrics["analysis_title"])
   ```
   </TabItem>
 </Tabs>

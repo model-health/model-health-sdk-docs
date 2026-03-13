@@ -11,6 +11,8 @@ Once camera and subject calibration are complete, you're ready to record movemen
 
 > **Note:** Camera positions must remain fixed after calibration. If you need to reposition cameras, you'll need to [recalibrate](./camera-calibration).
 
+> **Python note:** Starting and stopping recordings requires a connected mobile device and is not available in the Python SDK. Use the Model Health mobile app to record activities, or the SDK's other supported langauages, then check processing status and run analysis from Python.
+
 ## Recording
 
 ### Start Recording
@@ -93,6 +95,27 @@ After stopping, videos are uploaded and processed automatically. Processing may 
   }
   ```
   </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  import time
+  from modelhealth import ActivityStatus, ActivityStatusUploading
+
+  status = service.activity_status(activity)
+
+  while isinstance(status, ActivityStatusUploading) or status == ActivityStatus.processing:
+      if isinstance(status, ActivityStatusUploading):
+          print(f"Uploading: {status.uploaded}/{status.total} videos")
+      else:
+          print("Processing video...")
+      time.sleep(10)
+      status = service.activity_status(activity)
+
+  if status == ActivityStatus.ready:
+      print("Ready for analysis!")
+  elif status == ActivityStatus.failed:
+      print("Processing failed")
+  ```
+  </TabItem>
 </Tabs>
 
 ## Retrieving raw data
@@ -149,6 +172,26 @@ If a built-in analysis module is available for your activity, you can also launc
   // Download raw videos
   const videos = await service.videosForActivity(activity, "raw");
   console.log(`Downloaded ${videos.length} video(s)`);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  # Download kinematics (MOT format) and marker trajectories (TRC format)
+  results = service.motion_data_for_activity(
+      activity, ["kinematics_mot", "markers_trc"]
+  )
+
+  for r in results:
+      if r.type == "kinematics_mot":
+          # r.data contains the kinematics file in OpenSim MOT format
+          print(f"Kinematics MOT: {len(r.data)} bytes")
+      elif r.type == "markers_trc":
+          # r.data contains the marker trajectories in TRC format
+          print(f"Markers TRC: {len(r.data)} bytes")
+
+  # Download raw videos
+  videos = service.videos_for_activity(activity, "raw")
+  print(f"Downloaded {len(videos)} video(s)")
   ```
   </TabItem>
 </Tabs>

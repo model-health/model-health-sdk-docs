@@ -25,17 +25,18 @@ Native SDK for iOS applications.
 ### TypeScript SDK (Web, Node.js)
 Cross-platform SDK powered by WebAssembly. Works in both browser and Node.js environments.
 
-> Support for additional platforms (Python, Kotlin) is in development.
+### Python SDK
+Synchronous SDK for data science and post-capture workflows. Intended for running analysis on existing activities and downloading results — recording and calibration require the Model Health web app or an app using another of the supported platforms.
 
 ## Workflow Overview
 
 A typical integration follows these steps:
 
 1. **Session Creation** – Start a data collection session
-2. **Camera Calibration** – Calibrate the cameras with a checkerboard pattern
-3. **Subject Calibration** – Record the subject standing in a neutral pose
-4. **Movement Recording** – Capture activities like squats, jumps, or running
-5. **Analysis** – Retrieve recordings and processed biomechanical data
+1. **Camera Calibration** – Calibrate the cameras with a checkerboard pattern
+1. **Subject Calibration** – Record the subject standing in a neutral pose
+1. **Movement Recording** – Capture activities like squats, jumps, or running
+1. **Analysis** – Retrieve recordings and processed biomechanical data
 
 This mirrors the workflow in [Model Health's own web app](https://app.modelhealth.io/), so if you've used it, the concepts will feel familiar.
 
@@ -46,6 +47,7 @@ This mirrors the workflow in [Model Health's own web app](https://app.modelhealt
 - [Quick Start](./getting-started/quick-start)
 - [Swift SDK Reference](/swift-api)
 - [TypeScript SDK Reference](/typescript-api)
+- [Python SDK Reference](/python-api)
 
 ## Support
 
