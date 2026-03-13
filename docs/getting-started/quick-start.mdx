@@ -26,8 +26,6 @@ A typical flow looks like this:
 5. Record a movement
 6. Run analysis and retrieve results
 
-> **Python note:** Camera calibration, neutral pose calibration, and recording require a connected mobile device and are handled by the Model Health web app, or the SDK's other supported langauages. The Python SDK is intended for post-capture workflows: listing sessions and subjects, running analysis on existing activities, and downloading results.
-
 ## Quick Start
 
 <Tabs groupId="language">
@@ -201,24 +199,57 @@ A typical flow looks like this:
   ```python
   import json
   import time
-  from modelhealth import ModelHealthService, ActivityStatus, ActivityStatusUploading, AnalysisStatus
+  from modelhealth import (
+      ModelHealthService,
+      CheckerboardDetails, CheckerboardPlacement,
+      SubjectParameters,
+      CalibrationStatus, CalibrationStatusUploading, CalibrationStatusProcessing,
+      ActivityStatus, ActivityStatusUploading,
+      AnalysisStatus,
+  )
 
   # Initialize the service with your API key
   service = ModelHealthService("your-api-key-here")
 
-  # List sessions recorded via the Model Health mobile app
-  sessions = service.session_list()
-  session = sessions[0]  # use the most recent session
+  # Create a session
+  session = service.create_session()
 
-  # List subjects
-  subjects = service.subject_list()
-  subject = subjects[0]
-
-  # List activities for this subject
-  activities = service.activities_for_subject(
-      subject, start_index=0, count=10
+  # Calibrate camera
+  # Required once per session. You can skip this if reusing the same
+  # physical setup across multiple subjects in the same session.
+  checkerboard = CheckerboardDetails(
+      rows=4,
+      columns=5,
+      square_size=35,  # millimeters
+      placement=CheckerboardPlacement.perpendicular
   )
-  activity = activities[0]  # use the most recent activity
+
+  def on_calibration_status(status):
+      if isinstance(status, CalibrationStatusUploading):
+          print(f"Uploading {status.uploaded}/{status.total} videos")
+      elif isinstance(status, CalibrationStatusProcessing):
+          print(f"Processing: {status.percent}%" if status.percent is not None else "Processing...")
+      elif status == CalibrationStatus.recording:
+          print("Recording calibration...")
+      elif status == CalibrationStatus.done:
+          print("Calibration complete!")
+
+  service.calibrate_camera(session, checkerboard, on_calibration_status)
+
+  # Get or create a subject
+  subjects = service.subject_list()
+  if subjects:
+      subject = subjects[0]
+  else:
+      subject = service.create_subject(SubjectParameters(name="Anonymous", weight=70, height=175))
+
+  # Capture neutral pose
+  service.calibrate_subject(subject, session, on_calibration_status)
+
+  # Record an activity
+  activity = service.start_recording("cmj", session)
+  # Subject performs the activity...
+  service.stop_recording(session)
 
   # Check processing status
   status = service.activity_status(activity)
@@ -238,9 +269,7 @@ A typical flow looks like this:
 
       # Download results
       if analysis_status == AnalysisStatus.completed:
-          results = service.analysis_data_for_activity(
-              activity, ["metrics", "report"]
-          )
+          results = service.analysis_data_for_activity(activity, ["metrics", "report"])
           for r in results:
               if r.type == "metrics":
                   metrics = json.loads(r.data)

@@ -26,7 +26,7 @@ Native SDK for iOS applications.
 Cross-platform SDK powered by WebAssembly. Works in both browser and Node.js environments.
 
 ### Python SDK
-Synchronous SDK for data science and post-capture workflows. Intended for running analysis on existing activities and downloading results — recording and calibration require the Model Health web app or an app using another of the supported platforms.
+Native Python SDK. Supports the full capture workflow — sessions, calibration, recording, analysis, and data retrieval.
 
 ## Workflow Overview
 

@@ -37,7 +37,7 @@ Archive preparation happens asynchronously—you request it, poll until it's rea
   <TabItem value="python" label="Python">
   ```python
   archive = service.prepare_archive(session)
-  print("Archive task started:", archive.archive_id)
+  print("Archive task started:", archive.id)
   ```
 
   To include videos, pass `with_videos=True`:
