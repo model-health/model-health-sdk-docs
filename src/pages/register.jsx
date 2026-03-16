@@ -19,6 +19,8 @@ export default function Register() {
   });
   
   const [apiKey, setApiKey] = useState(null);
+  const [agreedPrivacy, setAgreedPrivacy] = useState(false);
+  const [agreedTerms, setAgreedTerms] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -200,6 +202,27 @@ export default function Register() {
                 <small>Give your API key a memorable name to help you organize multiple keys.</small>
               </div>
 
+              <div className={styles.checkboxGroup}>
+                <label className={styles.checkboxLabel}>
+                  <input
+                    type="checkbox"
+                    checked={agreedPrivacy}
+                    onChange={(e) => setAgreedPrivacy(e.target.checked)}
+                    disabled={status.type === 'loading'}
+                  />
+                  <span>I confirm that I have read the <a href="https://www.modelhealth.io/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy and Security Policy</a> of Model Health</span>
+                </label>
+                <label className={styles.checkboxLabel}>
+                  <input
+                    type="checkbox"
+                    checked={agreedTerms}
+                    onChange={(e) => setAgreedTerms(e.target.checked)}
+                    disabled={status.type === 'loading'}
+                  />
+                  <span>I confirm that I have read and agree to the <a href="https://www.modelhealth.io/terms-and-conditions" target="_blank" rel="noopener noreferrer">Terms and Conditions</a> of Model Health</span>
+                </label>
+              </div>
+
               {status.type === 'error' && (
                 <div className={styles.alert + ' ' + styles.alertError}>
                   {status.message}
@@ -209,7 +232,14 @@ export default function Register() {
               <button 
                 type="submit" 
                 className={styles.submitButton}
-                disabled={status.type === 'loading'}
+                disabled={
+                  status.type === 'loading' ||
+                  !agreedPrivacy ||
+                  !agreedTerms ||
+                  !formData.first_name ||
+                  !formData.last_name ||
+                  !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
+                }
               >
                 {status.type === 'loading' ? 'Generating...' : 'Generate API Key'}
               </button>
