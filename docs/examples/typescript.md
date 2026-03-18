@@ -1,7 +1,3 @@
----
-sidebar_position: 2
----
-
 # TypeScript Example App
 
 A Vite web app that implements the same workflow as the iOS example in the browser. It uses the `@modelhealth/modelhealth` npm package and runs a local dev server.

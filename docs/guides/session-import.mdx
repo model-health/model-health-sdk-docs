@@ -1,0 +1,141 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Session Import
+
+The import API creates a new session from existing activity data. 
+It handles the full workflow automatically: session creation, subject association, 
+video transfer, processing, and polling until every activity is ready.
+
+Progress is reported through a callback at each stage.
+
+## Importing Activities
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let session = try await service.importSession(
+      activitiesJson,
+      subject: subject
+  ) { status in
+      switch status {
+      case .creatingSession:
+          print("Creating session...")
+
+      case .createdSession(let sessionId):
+          print("Session created:", sessionId)
+
+      case .uploadingVideo(let trial, let uploaded, let total):
+          print("[\(trial)] Uploading: \(uploaded)/\(total)")
+
+      case .processing:
+          print("Processing...")
+      }
+  }
+
+  print("Import complete — session:", session.id)
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const session = await service.importSession(
+    activitiesJson,
+    subject,
+    {},
+    (status) => {
+      switch (status.type) {
+        case "creating_session":
+          console.log("Creating session...");
+          break;
+        case "created_session":
+          console.log("Session created:", status.session_id);
+          break;
+        case "uploading_video":
+          console.log(`[${status.trial}] Uploading: ${status.uploaded}/${status.total}`);
+          break;
+        case "processing":
+          console.log("Processing...");
+          break;
+      }
+    }
+  );
+
+  console.log("Import complete — session:", session.id);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import ImportStatusCreatedSession, ImportStatusUploading
+
+  def on_import_status(status):
+      if status == "creating_session":
+          print("Creating session...")
+      elif isinstance(status, ImportStatusCreatedSession):
+          print("Session created:", status.session_id)
+      elif isinstance(status, ImportStatusUploading):
+          print(f"[{status.trial}] Uploading: {status.uploaded}/{status.total}")
+      elif status == "processing":
+          print("Processing...")
+
+  session = service.import_session(
+      activities_json,
+      subject,
+      status_callback=on_import_status
+  )
+
+  print("Import complete — session:", session.id)
+  ```
+  </TabItem>
+</Tabs>
+
+## With Session Configuration
+
+Pass a `SessionConfig` to configure the session created during import. See [Session Configuration](./session-configuration) for all available settings.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let session = try await service.importSession(
+      activitiesJson,
+      subject: subject,
+      config: SessionConfig(framerate: .fps60, dataSharing: .shareNoData)
+  ) { status in
+      print(status)
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const session = await service.importSession(
+    activitiesJson,
+    subject,
+    { framerate: 60, dataSharing: "Share no data" }
+  );
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import SessionConfig, SessionFramerate, SessionDataSharing
+
+  config = SessionConfig(
+      framerate=SessionFramerate.fps_60,
+      data_sharing=SessionDataSharing.share_no_data,
+  )
+
+  session = service.import_session(activities_json, subject, session_config=config)
+  ```
+  </TabItem>
+</Tabs>
+
+## Import Status Reference
+
+The callback receives these values in order:
+
+| Status | Description |
+|--------|-------------|
+| `creatingSession` | A new session is being created on the server. |
+| `createdSession` | The session was created. Provides the new session ID. |
+| `uploadingVideo` | A video is being transferred. `trial` names the current activity; `uploaded`/`total` track progress within that activity. |
+| `processing` | All videos uploaded; the server is processing the activity. |
+
+The callback fires once per activity for `uploadingVideo` and `processing`, so you will see multiple rounds if the import contains several activities.

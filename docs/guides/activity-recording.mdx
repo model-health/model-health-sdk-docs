@@ -1,7 +1,3 @@
----
-sidebar_position: 3
----
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -34,6 +30,44 @@ Pass any descriptive string as the activity name — use something that helps id
   ```
   </TabItem>
 </Tabs>
+
+### Recording with Automatic Analysis
+
+Pass an activity type to trigger analysis automatically once the recording is processed, without a separate `startAnalysis` call.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let activity = try await service.startRecording(
+      activityNamed: "cmj",
+      in: session,
+      config: ActivityConfig(activityType: .counterMovementJump)
+  )
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  import { ActivityType } from '@modelhealth/modelhealth';
+
+  const activity = await service.startRecording(
+    "cmj",
+    session,
+    { activityType: ActivityType.CounterMovementJump }
+  );
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import ActivityConfig, ActivityType
+
+  activity = service.start_recording(
+      "cmj", session, ActivityConfig(ActivityType.counter_movement_jump)
+  )
+  ```
+  </TabItem>
+</Tabs>
+
+When an activity type is set, the activity status will transition to `.analyzing` after processing completes instead of `.ready`. See [Checking Processing Status](#checking-processing-status) below for how to handle this state.
 
 ### During Recording
 
@@ -77,6 +111,9 @@ After stopping, videos are uploaded and processed automatically. Processing may 
       print("Processing video...")
   case .ready:
       print("Ready for analysis!")
+  case .analyzing(let task):
+      // Analysis was triggered automatically — pass task to analysisStatus
+      print("Analysis in progress: \(task.id)")
   case .failed:
       print("Processing failed")
   }
@@ -98,6 +135,9 @@ After stopping, videos are uploaded and processed automatically. Processing may 
 
   if (status.type === "ready") {
     console.log("Ready for analysis!");
+  } else if (status.type === "analyzing") {
+    // Analysis was triggered automatically — pass taskId to analysisStatus
+    console.log("Analysis in progress:", status.taskId);
   } else if (status.type === "failed") {
     console.log("Processing failed");
   }
@@ -106,7 +146,7 @@ After stopping, videos are uploaded and processed automatically. Processing may 
   <TabItem value="python" label="Python">
   ```python
   import time
-  from modelhealth import ActivityStatus, ActivityStatusUploading
+  from modelhealth import ActivityStatus, ActivityStatusUploading, ActivityStatusAnalyzing
 
   status = service.activity_status(activity)
 
@@ -120,6 +160,9 @@ After stopping, videos are uploaded and processed automatically. Processing may 
 
   if status == ActivityStatus.ready:
       print("Ready for analysis!")
+  elif isinstance(status, ActivityStatusAnalyzing):
+      # Analysis was triggered automatically — pass task to analysis_status
+      print("Analysis in progress:", status.task.id)
   elif status == ActivityStatus.failed:
       print("Processing failed")
   ```
