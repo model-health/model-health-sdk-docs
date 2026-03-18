@@ -11,8 +11,6 @@ Once camera and subject calibration are complete, you're ready to record movemen
 
 > **Note:** Camera positions must remain fixed after calibration. If you need to reposition cameras, you'll need to [recalibrate](./camera-calibration).
 
-> **Python note:** Starting and stopping recordings requires a connected mobile device and is not available in the Python SDK. Use the Model Health mobile app to record activities, or the SDK's other supported langauages, then check processing status and run analysis from Python.
-
 ## Recording
 
 ### Start Recording
@@ -28,6 +26,11 @@ Pass any descriptive string as the activity name — use something that helps id
   <TabItem value="ts" label="TypeScript">
   ```typescript
   const activity = await service.startRecording("cmj", session);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  activity = service.start_recording("cmj", session)
   ```
   </TabItem>
 </Tabs>
@@ -49,6 +52,11 @@ Pass any descriptive string as the activity name — use something that helps id
   <TabItem value="ts" label="TypeScript">
   ```typescript
   await service.stopRecording(session);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  service.stop_recording(session)
   ```
   </TabItem>
 </Tabs>

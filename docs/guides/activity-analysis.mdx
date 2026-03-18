@@ -85,7 +85,7 @@ The SDK currently supports 12 analysis types:
           activity,
           session
       )
-      print("Analysis task started:", task.task_id)
+      print("Analysis task started:", task.id)
   ```
   </TabItem>
 </Tabs>
@@ -311,14 +311,9 @@ Here's a complete workflow from recording to analysis:
 
   service = ModelHealthService("your-api-key-here")
 
-  # Use an activity that was recorded via the mobile app
-  sessions = service.session_list()
-  session = sessions[0]
-  subjects = service.subject_list()
-  activities = service.activities_for_subject(
-      subjects[0], start_index=0, count=10
-  )
-  activity = activities[0]
+  # Select a session and activity
+  session = service.session_list()[0]
+  activity = service.activity_list(session)[0]
 
   # Wait for processing
   activity_status = service.activity_status(activity)
