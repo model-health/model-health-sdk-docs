@@ -75,6 +75,8 @@ const sidebars = {
         }
       ],
     },
+    'examples',
+    'changelog',
   ],
 };
 
