@@ -16,7 +16,7 @@ Before you begin, make sure you have:
 A typical flow looks like this:
 
 1. Initialize the SDK with your API key
-2. Create a session
+2. Create and configure a session
 3. Calibrate the camera (once per session setup)
 4. Calibrate the subject (biomechanical model scaling)
 5. Record a movement
@@ -36,8 +36,6 @@ A typical flow looks like this:
   let session = try await service.createSession()
 
   // Calibrate camera
-  // Required once per session. You can skip this if reusing the same
-  // physical setup across multiple subjects in the same session.
   let checkerboardDetails = CheckerboardDetails(
       rows: 4,
       columns: 5,
@@ -52,7 +50,7 @@ A typical flow looks like this:
       print("Calibration status: \(status)")
   }
 
-  // Capture neutral pose (requires a subject)
+  // Select first subject and calibrate it
   let subjects = try await service.subjectList()
   if let subject = subjects.first {
       try await service.calibrateSubject(
@@ -65,7 +63,7 @@ A typical flow looks like this:
 
   // Record an activity
   let activity = try await service.startRecording(activityNamed: "cmj", in: session)
-  // Subject performs the movement...
+  // Subject performs the activity...
   try await service.stopRecording(session)
 
   // Check processing status
@@ -118,8 +116,6 @@ A typical flow looks like this:
   const session = await service.createSession();
 
   // Calibrate camera
-  // Required once per session. You can skip this if reusing the same
-  // physical setup across multiple subjects in the same session.
   const checkerboardDetails = {
     rows: 4,
     columns: 5,
@@ -133,12 +129,10 @@ A typical flow looks like this:
     (status) => {
       console.log("Calibration status:", status);
     }
-  );
+  );  
 
-  // Get subjects
+  // Select first subject and calibrate it
   const subjects = await service.subjectList();
-
-  // Capture neutral pose
   if (subjects.length > 0) {
     await service.calibrateSubject(
       subjects[0],
@@ -211,8 +205,6 @@ A typical flow looks like this:
   session = service.create_session()
 
   # Calibrate camera
-  # Required once per session. You can skip this if reusing the same
-  # physical setup across multiple subjects in the same session.
   checkerboard = CheckerboardDetails(
       rows=4,
       columns=5,
@@ -232,14 +224,14 @@ A typical flow looks like this:
 
   service.calibrate_camera(session, checkerboard, on_calibration_status)
 
-  # Get or create a subject
+  # Select first subject if exists, otherwise create one
   subjects = service.subject_list()
   if subjects:
       subject = subjects[0]
   else:
       subject = service.create_subject(SubjectParameters(name="Anonymous", weight=70, height=175))
 
-  # Capture neutral pose
+  # Calibrate the selected subject
   service.calibrate_subject(subject, session, on_calibration_status)
 
   # Record an activity

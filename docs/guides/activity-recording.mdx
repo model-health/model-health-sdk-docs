@@ -31,9 +31,9 @@ Pass any descriptive string as the activity name — use something that helps id
   </TabItem>
 </Tabs>
 
-### Recording with Automatic Analysis
+### Record and Auto-Launch Advanced Analysis
 
-Pass an activity type to trigger analysis automatically once the recording is processed, without a separate `startAnalysis` call.
+To have advanced analysis launch automatically once processing completes, pass an activity type when starting the recording. This skips the manual `startAnalysis` call described in [Activity Analysis](./activity-analysis).
 
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
@@ -67,7 +67,7 @@ Pass an activity type to trigger analysis automatically once the recording is pr
   </TabItem>
 </Tabs>
 
-When an activity type is set, the activity status will transition to `.analyzing` after processing completes instead of `.ready`. See [Checking Processing Status](#checking-processing-status) below for how to handle this state.
+When processing completes, the activity status transitions to `.analyzing` instead of `.ready`. See [Checking Processing Status](#checking-processing-status) below for how to handle this state.
 
 ### During Recording
 
@@ -169,11 +169,11 @@ After stopping, videos are uploaded and processed automatically. Processing may 
   </TabItem>
 </Tabs>
 
-## Retrieving raw data
+## Retrieving motion data
 
-Once the activity status is ready, you can retrieve the raw motion data, including joint kinematics, marker trajectories, and videos.
+Once the activity status is ready, you can retrieve the motion data, including joint kinematics, marker trajectories, and videos.
 
-If a built-in analysis module is available for your activity, you can also launch an advanced analysis to generate key metrics and a detailed report (see [Activity Analysis](./activity-analysis)).
+If a built-in analysis module is available for your activity, you can also retrieve analysis results (e.g., metrics and reports) — either by launching analysis manually, or if you passed an activity type at recording time, analysis may already be in progress. See [Activity Analysis](./activity-analysis) for details.
 
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
@@ -273,4 +273,4 @@ See our [Troubleshooting](https://modelhealth.notion.site/Troubleshooting-82c870
 
 ## Next Steps
 
-Once the activity status is `ready`, proceed to [Activity Analysis](./activity-analysis).
+When the activity is `ready` — or already `analyzing` — proceed to [Activity Analysis](./activity-analysis).

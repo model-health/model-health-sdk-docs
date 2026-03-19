@@ -26,17 +26,17 @@ Native SDK for iOS applications.
 Cross-platform SDK powered by WebAssembly. Works in both browser and Node.js environments.
 
 ### Python SDK
-Native Python SDK. Supports the full capture workflow — sessions, calibration, recording, analysis, and data retrieval.
+Native SDK for Python applications.
 
 ## Workflow Overview
 
 A typical integration follows these steps:
 
-1. **Session Creation** – Start a data collection session
+1. **Session Configuration** – Start and configure a data collection session
 1. **Camera Calibration** – Calibrate the cameras with a checkerboard pattern
 1. **Subject Calibration** – Record the subject standing in a neutral pose
-1. **Movement Recording** – Capture activities like squats, jumps, or running
-1. **Analysis** – Retrieve recordings and processed biomechanical data
+1. **Activity Recording** – Capture activities like squats, jumps, or running
+1. **Activity Analysis** – Retrieve recordings and processed biomechanical data
 
 This mirrors the workflow in [Model Health's own web app](https://app.modelhealth.io/), so if you've used it, the concepts will feel familiar.
 

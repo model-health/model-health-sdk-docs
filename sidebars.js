@@ -40,6 +40,7 @@ const sidebars = {
     {
       type: 'category',
       label: 'Examples',
+      link: { type: 'doc', id: 'examples/index' },
       items: [
         'examples/ios',
         'examples/typescript',
