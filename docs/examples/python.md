@@ -1,4 +1,4 @@
-# Python Example Apps
+# Python Examples
 
 A collection of example scripts demonstrating the Model Health Python SDK.
 
