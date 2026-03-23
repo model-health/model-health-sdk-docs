@@ -1,7 +1,3 @@
----
-sidebar_position: 3
----
-
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
@@ -34,6 +30,44 @@ Pass any descriptive string as the activity name — use something that helps id
   ```
   </TabItem>
 </Tabs>
+
+### Record and Auto-Launch Advanced Analysis
+
+To have advanced analysis launch automatically once processing completes, pass an activity type when starting the recording. This skips the manual `startAnalysis` call described in [Activity Analysis](./activity-analysis).
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let activity = try await service.startRecording(
+      activityNamed: "cmj",
+      in: session,
+      config: ActivityConfig(activityType: .counterMovementJump)
+  )
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  import { ActivityType } from '@modelhealth/modelhealth';
+
+  const activity = await service.startRecording(
+    "cmj",
+    session,
+    { activityType: ActivityType.CounterMovementJump }
+  );
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import ActivityConfig, ActivityType
+
+  activity = service.start_recording(
+      "cmj", session, ActivityConfig(ActivityType.counter_movement_jump)
+  )
+  ```
+  </TabItem>
+</Tabs>
+
+When processing completes, the activity status transitions to `.analyzing` instead of `.ready`. See [Checking Processing Status](#checking-processing-status) below for how to handle this state.
 
 ### During Recording
 
@@ -77,6 +111,9 @@ After stopping, videos are uploaded and processed automatically. Processing may 
       print("Processing video...")
   case .ready:
       print("Ready for analysis!")
+  case .analyzing(let task):
+      // Analysis was triggered automatically — pass task to analysisStatus
+      print("Analysis in progress: \(task.id)")
   case .failed:
       print("Processing failed")
   }
@@ -98,6 +135,9 @@ After stopping, videos are uploaded and processed automatically. Processing may 
 
   if (status.type === "ready") {
     console.log("Ready for analysis!");
+  } else if (status.type === "analyzing") {
+    // Analysis was triggered automatically — pass taskId to analysisStatus
+    console.log("Analysis in progress:", status.taskId);
   } else if (status.type === "failed") {
     console.log("Processing failed");
   }
@@ -106,7 +146,7 @@ After stopping, videos are uploaded and processed automatically. Processing may 
   <TabItem value="python" label="Python">
   ```python
   import time
-  from modelhealth import ActivityStatus, ActivityStatusUploading
+  from modelhealth import ActivityStatus, ActivityStatusUploading, ActivityStatusAnalyzing
 
   status = service.activity_status(activity)
 
@@ -120,17 +160,20 @@ After stopping, videos are uploaded and processed automatically. Processing may 
 
   if status == ActivityStatus.ready:
       print("Ready for analysis!")
+  elif isinstance(status, ActivityStatusAnalyzing):
+      # Analysis was triggered automatically — pass task to analysis_status
+      print("Analysis in progress:", status.task.id)
   elif status == ActivityStatus.failed:
       print("Processing failed")
   ```
   </TabItem>
 </Tabs>
 
-## Retrieving raw data
+## Retrieving motion data
 
-Once the activity status is ready, you can retrieve the raw motion data, including joint kinematics, marker trajectories, and videos.
+Once the activity status is ready, you can retrieve the motion data, including joint kinematics, marker trajectories, and videos.
 
-If a built-in analysis module is available for your activity, you can also launch an advanced analysis to generate key metrics and a detailed report (see [Activity Analysis](./activity-analysis)).
+If a built-in analysis module is available for your activity, you can also retrieve analysis results (e.g., metrics and reports) — either by launching analysis manually, or if you passed an activity type at recording time, analysis may already be in progress. See [Activity Analysis](./activity-analysis) for details.
 
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
@@ -230,4 +273,4 @@ See our [Troubleshooting](https://modelhealth.notion.site/Troubleshooting-82c870
 
 ## Next Steps
 
-Once the activity status is `ready`, proceed to [Activity Analysis](./activity-analysis).
+When the activity is `ready` — or already `analyzing` — proceed to [Activity Analysis](./activity-analysis).
