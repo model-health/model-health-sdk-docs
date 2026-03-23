@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <title>SessionConfig</title>
+    <link href="../../../images/logo-icon.svg" rel="icon" type="image/svg">
+    <script>var pathToRoot = "../../../";</script>
+    <script>document.documentElement.classList.replace("no-js","js");</script>
+    <script>const storage = localStorage.getItem("dokka-dark-mode")
+    if (storage == null) {
+        const osDarkSchemePreferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (osDarkSchemePreferred === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    } else {
+        const savedDarkMode = JSON.parse(storage)
+        if(savedDarkMode === true) {
+            document.getElementsByTagName("html")[0].classList.add("theme-dark")
+        }
+    }
+    </script>
+<script type="text/javascript" src="https://unpkg.com/kotlin-playground@1/dist/playground.min.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/sourceset_dependencies.js" async="async"></script>
+<link href="../../../styles/style.css" rel="Stylesheet">
+<link href="../../../styles/main.css" rel="Stylesheet">
+<link href="../../../styles/prism.css" rel="Stylesheet">
+<link href="../../../styles/logo-styles.css" rel="Stylesheet">
+<link href="../../../styles/font-jb-sans-auto.css" rel="Stylesheet">
+<script type="text/javascript" src="../../../scripts/clipboard.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/navigation-loader.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/platform-content-handler.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/main.js" defer="defer"></script>
+<script type="text/javascript" src="../../../scripts/prism.js" async="async"></script>
+<script type="text/javascript" src="../../../scripts/symbol-parameters-wrapper_deferred.js" defer="defer"></script>
+</head>
+<body>
+    <div class="root">
+<nav class="navigation" id="navigation-wrapper">
+    <div class="navigation--inner">
+        <div class="navigation-title">
+            <button class="menu-toggle" id="menu-toggle" type="button">toggle menu</button>
+            <div class="library-name">
+                    <a class="library-name--link" href="../../../index.html">
+                            modelhealth
+                    </a>
+            </div>
+            <div class="library-version">
+0.4.0            </div>
+        </div>
+        <div class="filter-section" id="filter-section">
+                <button class="platform-tag platform-selector jvm-like" data-active="" data-filter=":dokkaHtml/release">androidJvm</button>
+        </div>
+    </div>
+    <div class="navigation-controls">
+        <button class="navigation-controls--btn navigation-controls--theme" id="theme-toggle-button" type="button">switch theme</button>
+        <div class="navigation-controls--btn navigation-controls--search" id="searchBar" role="button">search in API</div>
+    </div>
+</nav>
+        <div id="container">
+            <div class="sidebar" id="leftColumn">
+                <div class="sidebar--inner" id="sideMenu"></div>
+            </div>
+            <div id="main">
+<div class="main-content" data-page-type="classlike" id="content" pageIds="modelhealth::io.modelhealth/SessionConfig///PointingToDeclaration//579055962">
+  <div class="breadcrumbs"><a href="../../../index.html">modelhealth</a><span class="delimiter">/</span><a href="../index.html">io.modelhealth</a><span class="delimiter">/</span><span class="current">SessionConfig</span></div>
+  <div class="cover ">
+    <h1 class="cover"><span>Session</span><wbr></wbr><span><span>Config</span></span></h1>
+    <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">data </span><span class="token keyword">class </span><a href="index.html">SessionConfig</a><span class="token punctuation">(</span><span class="parameters "><span class="parameter "><span class="token keyword">val </span>framerate<span class="token operator">: </span><a href="../-session-framerate/index.html">SessionFramerate</a><span class="token operator"> = </span>SessionFramerate.Fps120<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>opensimModel<span class="token operator">: </span><a href="../-session-open-sim-model/index.html">SessionOpenSimModel</a><span class="token operator"> = </span>SessionOpenSimModel.LaiUhlrich2022Shoulder<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>scalingSetup<span class="token operator">: </span><a href="../-session-scaling-setup/index.html">SessionScalingSetup</a><span class="token operator"> = </span>SessionScalingSetup.UprightStandingPose<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>coreEngine<span class="token operator">: </span><a href="../-session-core-engine/index.html">SessionCoreEngine</a><span class="token operator"> = </span>SessionCoreEngine.V0_3<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>filterFrequency<span class="token operator">: </span><a href="../-filter-frequency/index.html">FilterFrequency</a><span class="token operator"> = </span>FilterFrequency.Default<span class="token punctuation">, </span></span><span class="parameter "><span class="token keyword">val </span>dataSharing<span class="token operator">: </span><a href="../-session-data-sharing/index.html">SessionDataSharing</a><span class="token operator"> = </span>SessionDataSharing.ShareProcessedDataAndIdentifiedVideos</span></span><span class="token punctuation">)</span></div><p class="paragraph">Settings applied to a session before calibration and recording.</p><p class="paragraph">All fields have sensible defaults. Use <a href="-companion/default.html">SessionConfig.default</a> or the no-argument constructor for a fully default configuration, then override only what you need:</p><div class="sample-container"><pre><code class="block lang-kotlin" theme="idea">val config = SessionConfig(framerate = SessionFramerate.Fps60, dataSharing = SessionDataSharing.ShareNoData)</code></pre><span class="top-right-position"><span class="copy-icon"></span><div class="copy-popup-wrapper popup-to-left"><span class="copy-popup-icon"></span><span>Content copied to clipboard</span></div></span></div></div></div>
+  </div>
+  <div class="tabbedcontent">
+    <div class="tabs-section" tabs-section="tabs-section"><button class="section-tab" data-active="" data-togglable="CONSTRUCTOR,TYPE,PROPERTY,FUNCTION">Members</button></div>
+    <div class="tabs-section-body">
+      <div data-togglable="CONSTRUCTOR">
+        <h2 class="">Constructors</h2>
+        <div class="table"><a data-name="749333339%2FConstructors%2F579055962" anchor-label="SessionConfig" id="749333339%2FConstructors%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
+          <div class="table-row" data-togglable="CONSTRUCTOR" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-session-config.html"><span>Session</span><wbr></wbr><span><span>Config</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="749333339%2FConstructors%2F579055962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">constructor</span><span class="token punctuation">(</span><span class="parameters "><span class="parameter ">framerate<span class="token operator">: </span><a href="../-session-framerate/index.html">SessionFramerate</a><span class="token operator"> = </span>SessionFramerate.Fps120<span class="token punctuation">, </span></span><span class="parameter ">opensimModel<span class="token operator">: </span><a href="../-session-open-sim-model/index.html">SessionOpenSimModel</a><span class="token operator"> = </span>SessionOpenSimModel.LaiUhlrich2022Shoulder<span class="token punctuation">, </span></span><span class="parameter ">scalingSetup<span class="token operator">: </span><a href="../-session-scaling-setup/index.html">SessionScalingSetup</a><span class="token operator"> = </span>SessionScalingSetup.UprightStandingPose<span class="token punctuation">, </span></span><span class="parameter ">coreEngine<span class="token operator">: </span><a href="../-session-core-engine/index.html">SessionCoreEngine</a><span class="token operator"> = </span>SessionCoreEngine.V0_3<span class="token punctuation">, </span></span><span class="parameter ">filterFrequency<span class="token operator">: </span><a href="../-filter-frequency/index.html">FilterFrequency</a><span class="token operator"> = </span>FilterFrequency.Default<span class="token punctuation">, </span></span><span class="parameter ">dataSharing<span class="token operator">: </span><a href="../-session-data-sharing/index.html">SessionDataSharing</a><span class="token operator"> = </span>SessionDataSharing.ShareProcessedDataAndIdentifiedVideos</span></span><span class="token punctuation">)</span></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="TYPE">
+        <h2 class="">Types</h2>
+        <div class="table"><a data-name="1118351085%2FClasslikes%2F579055962" anchor-label="Companion" id="1118351085%2FClasslikes%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="-companion/index.html"><span><span>Companion</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1118351085%2FClasslikes%2F579055962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">object </span><a href="-companion/index.html">Companion</a></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div data-togglable="PROPERTY">
+        <h2 class="">Properties</h2>
+        <div class="table"><a data-name="-853446829%2FProperties%2F579055962" anchor-label="coreEngine" id="-853446829%2FProperties%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="core-engine.html"><span>core</span><wbr></wbr><span><span>Engine</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="-853446829%2FProperties%2F579055962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="core-engine.html">coreEngine</a><span class="token operator">: </span><a href="../-session-core-engine/index.html">SessionCoreEngine</a></div><div class="brief "><p class="paragraph">Core processing engine version. Default: <a href="../-session-core-engine/-v0_3/index.html">SessionCoreEngine.V0_3</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="708006356%2FProperties%2F579055962" anchor-label="dataSharing" id="708006356%2FProperties%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="data-sharing.html"><span>data</span><wbr></wbr><span><span>Sharing</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="708006356%2FProperties%2F579055962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="data-sharing.html">dataSharing</a><span class="token operator">: </span><a href="../-session-data-sharing/index.html">SessionDataSharing</a></div><div class="brief "><p class="paragraph">Data-sharing preference. Default: <a href="../-session-data-sharing/-share-processed-data-and-identified-videos/index.html">SessionDataSharing.ShareProcessedDataAndIdentifiedVideos</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="829845154%2FProperties%2F579055962" anchor-label="filterFrequency" id="829845154%2FProperties%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="filter-frequency.html"><span>filter</span><wbr></wbr><span><span>Frequency</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="829845154%2FProperties%2F579055962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="filter-frequency.html">filterFrequency</a><span class="token operator">: </span><a href="../-filter-frequency/index.html">FilterFrequency</a></div><div class="brief "><p class="paragraph">Low-pass filter frequency. Default: <a href="../-filter-frequency/-default/index.html">FilterFrequency.Default</a> (server-chosen).</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1017894521%2FProperties%2F579055962" anchor-label="framerate" id="1017894521%2FProperties%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="framerate.html"><span><span>framerate</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1017894521%2FProperties%2F579055962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="framerate.html">framerate</a><span class="token operator">: </span><a href="../-session-framerate/index.html">SessionFramerate</a></div><div class="brief "><p class="paragraph">Camera frame rate. Default: <a href="../-session-framerate/-fps120/index.html">SessionFramerate.Fps120</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="1789144024%2FProperties%2F579055962" anchor-label="opensimModel" id="1789144024%2FProperties%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="opensim-model.html"><span>opensim</span><wbr></wbr><span><span>Model</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="1789144024%2FProperties%2F579055962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="opensim-model.html">opensimModel</a><span class="token operator">: </span><a href="../-session-open-sim-model/index.html">SessionOpenSimModel</a></div><div class="brief "><p class="paragraph">OpenSim musculoskeletal model. Default: <a href="../-session-open-sim-model/-lai-uhlrich2022-shoulder/index.html">SessionOpenSimModel.LaiUhlrich2022Shoulder</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+<a data-name="233714366%2FProperties%2F579055962" anchor-label="scalingSetup" id="233714366%2FProperties%2F579055962" data-filterable-set=":dokkaHtml/release"></a>
+          <div class="table-row" data-filterable-current=":dokkaHtml/release" data-filterable-set=":dokkaHtml/release">
+            <div class="main-subrow keyValue ">
+              <div class=""><span class="inline-flex">
+                  <div><a href="scaling-setup.html"><span>scaling</span><wbr></wbr><span><span>Setup</span></span></a></div>
+<span class="anchor-wrapper"><span class="anchor-icon" pointing-to="233714366%2FProperties%2F579055962"></span>
+                    <div class="copy-popup-wrapper "><span class="copy-popup-icon"></span><span>Link copied to clipboard</span></div>
+                  </span></span></div>
+              <div>
+                <div class="title">
+                  <div class="platform-hinted " data-platform-hinted="data-platform-hinted"><div class="content sourceset-dependent-content" data-active="" data-togglable=":dokkaHtml/release"><div class="symbol monospace"><span class="token keyword">val </span><a href="scaling-setup.html">scalingSetup</a><span class="token operator">: </span><a href="../-session-scaling-setup/index.html">SessionScalingSetup</a></div><div class="brief "><p class="paragraph">Pose used for subject scaling. Default: <a href="../-session-scaling-setup/-upright-standing-pose/index.html">SessionScalingSetup.UprightStandingPose</a>.</p></div></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      <div class="footer">
+        <span class="go-to-top-icon"><a href="#content" id="go-to-top-link"></a></span><span>© 2026 Copyright</span><span
+                class="pull-right"><span>Generated by </span><a
+                href="https://github.com/Kotlin/dokka"><span>dokka</span><span class="padded-icon"></span></a></span>
+      </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
