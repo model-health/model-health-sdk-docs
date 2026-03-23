@@ -1,4 +1,4 @@
-# Python Example Apps
+# Python Examples
 
 A collection of example scripts demonstrating the Model Health Python SDK.
 
@@ -57,7 +57,7 @@ python3 examples/python/archive_session.py <api_key>
 
 ### `session_data.py` — Download data from an existing session
 
-Downloads data from a session at multiple levels of granularity: full session archive, per-activity archives, OpenSim model, raw motion data, and analysis results.
+Downloads data from a session at multiple levels of granularity: full session archive, OpenSim model, raw motion data, and analysis results.
 
 ```bash
 python3 examples/python/session_data.py <api_key> <session_id>
