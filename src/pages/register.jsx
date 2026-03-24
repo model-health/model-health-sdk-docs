@@ -173,6 +173,7 @@ export default function Register() {
                   placeholder="alex@example.com"
                   disabled={status.type === 'loading'}
                 />
+                <small>If you already have a Model Health account, use the same email address to access your existing data.</small>
               </div>
 
               <div className={styles.formGroup}>
