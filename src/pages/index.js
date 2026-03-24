@@ -14,7 +14,7 @@ function HomepageHeader() {
           Ship 3D Biomechanical Intelligence in Days
         </h1>
         <p className="hero__subtitle">
-          Production-ready SDKs for sports, physical therapy, performance, rehabilitation, and digital health.
+          Production-ready SDKs for sports, physical therapy, performance, rehabilitation and digital health.
           <br />
           Turn smartphone video into scientifically-validated biomechanical data.
         </p>
@@ -83,15 +83,15 @@ function WhatYouGet() {
           {[
             {
               title: "Seamless Integration",
-              description: "Drop motion capture and biomechanical analysis into your platform. Simple APIs to record movement, run analyses, and fetch results. No complex workflows to build from scratch."
+              description: "Drop motion capture and biomechanical analysis into your platform. Simple APIs to record movement, run analyses and fetch results. No complex workflows to build from scratch."
             },
             {
               title: "Cloud-Powered Analysis",
-              description: "Send data to our secure cloud pipelines for 3D modeling, automated metrics extraction, and structured reports — all handled behind the scenes. No specialized infrastructure required."
+              description: "Send data to our secure cloud pipelines for 3D modeling, automated metrics extraction and structured reports — all handled behind the scenes. No specialized infrastructure required."
             },
             {
               title: "Structured & Ready-to-Use Outputs",
-              description: "Receive time-series kinematics, key movement metrics, and optional reports in formats that can be easily integrated into your app, dashboards, databases, or research workflows."
+              description: "Receive time-series kinematics, key movement metrics and optional reports in formats that can be easily integrated into your app, dashboards, databases, or research workflows."
             },
           ].map((feature) => (
             <div className="col col--4" key={feature.title}>

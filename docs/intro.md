@@ -11,11 +11,11 @@ The Model Health SDK removes that barrier. Add lab-grade 3D biomechanical analys
 
 The integration involves three parts working together:
 
-1. **Your app** – presents the interface, triggers recording sessions, and displays data to your users.
-2. **Model Health SDK** – manages the recording workflow, submits data for processing in our cloud, and retrieves the analysis.
+1. **Your app** – presents the interface, triggers recording sessions and displays data to your users.
+2. **Model Health SDK** – manages the recording workflow, submits data for processing in our cloud and retrieves the analysis.
 3. **Model Health Companion iOS app** – captures the video footage needed to run the analysis.
 
-It typically takes an experienced developer **less than a week** for a complete integration — session management, calibration, recording, and retrieving results. Our first pilot users were up and running in two days.
+It typically takes an experienced developer **less than a week** for a complete integration — session management, calibration, recording and retrieving results. Our first pilot users were up and running in two days.
 
 ## Supported Platforms
 

@@ -1,13 +1,22 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-# Session Import
+# Data Import
 
-The import API creates a new session from existing activity data. 
-It handles the full workflow automatically: session creation, subject association, 
-video transfer, processing, and polling until every activity is ready.
+Import an OpenCap session into Model Health for reprocessing and automated analysis.
+The import API handles the full workflow: session creation, subject association,
+video transfer and processing — reporting progress at each stage via a callback.
 
-Progress is reported through a callback at each stage.
+:::tip Full working example
+See [`examples/python`](https://github.com/model-health/model-health/tree/main/examples/python) for a complete end-to-end script (`opencap_import.py`) that covers fetching trial data from OpenCap, subject selection, session configuration, per-trial activity type assignment and polling for analysis results.
+:::
+
+## What you're importing
+
+The input to `import_session` is the raw trial JSON exported from an OpenCap session.
+This includes the calibration and neutral trials alongside any dynamic trials — all three
+are required. The SDK uploads the videos to Model Health and triggers reprocessing under
+your chosen configuration.
 
 ## Importing Activities
 
@@ -98,7 +107,7 @@ Pass a `SessionConfig` to configure the session created during import. See [Sess
   let session = try await service.importSession(
       activitiesJson,
       subject: subject,
-      config: SessionConfig(framerate: .fps60, dataSharing: .shareNoData)
+      config: SessionConfig(coreEngine: .v1_0)
   ) { status in
       print(status)
   }
@@ -109,18 +118,15 @@ Pass a `SessionConfig` to configure the session created during import. See [Sess
   const session = await service.importSession(
     activitiesJson,
     subject,
-    { framerate: 60, dataSharing: "Share no data" }
+    { coreEngine: "v1.0" }
   );
   ```
   </TabItem>
   <TabItem value="python" label="Python">
   ```python
-  from modelhealth import SessionConfig, SessionFramerate, SessionDataSharing
+  from modelhealth import SessionConfig, SessionCoreEngine
 
-  config = SessionConfig(
-      framerate=SessionFramerate.fps_60,
-      data_sharing=SessionDataSharing.share_no_data,
-  )
+  config = SessionConfig(core_engine=SessionCoreEngine.v1_0)
 
   session = service.import_session(activities_json, subject, session_config=config)
   ```
