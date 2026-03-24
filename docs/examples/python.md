@@ -15,6 +15,28 @@ Source: [`examples/python`](https://github.com/model-health/model-health/tree/ma
 pip install modelhealth docopt pandas matplotlib
 ```
 
+## Configuration
+
+API credentials can be stored in a `.env` file in this directory so you don't
+have to pass them on the command line every time.
+
+Create a file called `.env` (it is gitignored):
+
+```
+MODEL_HEALTH_API_KEY=your_model_health_api_key
+OPENCAP_TOKEN=your_opencap_token        # only needed for opencap_import.py
+```
+
+Each script reads credentials in this order:
+1. Command-line argument (if provided)
+2. `.env` file in this directory
+3. Environment variable (`MODEL_HEALTH_API_KEY` / `OPENCAP_TOKEN`)
+
+If `OPENCAP_TOKEN` is not found by any of the above, `opencap_import.py` will
+prompt you to log in with your OpenCap
+credentials and will save the token to `.env` automatically.
+
+
 ## Scripts
 
 ### `activity_recording.py` — Full capture workflow
