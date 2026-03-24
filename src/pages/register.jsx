@@ -130,6 +130,9 @@ export default function Register() {
           <p className={styles.subtitle}>
             Register to receive your API key and start using the Model Health SDK.
           </p>
+          <p className={styles.subtitle}>
+            The free trial includes <strong>1 month of access</strong> and up to <strong>10 new sessions</strong>. After the trial, <a href="mailto:support@modelhealth.io">get in touch</a> to continue.
+          </p>
 
           {!apiKey ? (
             <form onSubmit={handleSubmit} className={styles.form}>
