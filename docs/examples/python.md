@@ -2,6 +2,8 @@
 
 A collection of example scripts demonstrating the Model Health Python SDK.
 
+Source: [`examples/python`](https://github.com/model-health/model-health/tree/main/examples/python)
+
 ## Requirements
 
 - Python 3.11+
@@ -10,7 +12,7 @@ A collection of example scripts demonstrating the Model Health Python SDK.
 ## Installation
 
 ```bash
-pip install modelhealth docopt
+pip install modelhealth docopt pandas matplotlib
 ```
 
 ## Scripts
@@ -24,12 +26,9 @@ Walks through the complete capture workflow end-to-end:
 3. Calibrate cameras using a checkerboard pattern
 4. Calibrate the subject (neutral standing pose)
 5. Record a movement trial
-6. Wait for upload and processing
-
-Requires cameras connected and ready via the Model Health mobile app.
 
 ```bash
-python3 examples/python/activity_recording.py <api_key>
+python3 examples/python/activity_recording.py
 ```
 
 ### `activity_analysis.py` — Post-capture analysis workflow
@@ -37,36 +36,43 @@ python3 examples/python/activity_recording.py <api_key>
 Walks through the post-capture analysis workflow on an existing session:
 
 1. Select a session and activity
-2. Wait for processing to complete (if needed)
-3. Choose an analysis type and run it
-4. Choose which result files to save (metrics JSON, report PDF, data ZIP)
+3. Choose an analysis and run it
+4. Choose which results to download (e.g., metrics or report)
 
 ```bash
-python3 examples/python/activity_analysis.py <api_key>
+python3 examples/python/activity_analysis.py
 ```
-
-Downloaded results are written to `examples/python/downloads/`.
 
 ### `archive_session.py` — Session archive download
 
-Requests preparation of a session archive, polls until ready, and downloads the resulting ZIP file. Optionally includes raw video files.
+Requests preparation of a session archive, polls until ready, and downloads the resulting ZIP file. Optionally includes video files.
 
 ```bash
-python3 examples/python/archive_session.py <api_key>
+python3 examples/python/archive_session.py
 ```
 
-### `session_data.py` — Download data from an existing session
+### `session_data.py` — Data download
 
-Downloads data from a session at multiple levels of granularity: full session archive, OpenSim model, raw motion data, and analysis results.
+Downloads data from a session at multiple levels of granularity: raw or synced videos, OpenSim model, motion data, and analysis results.
 
 ```bash
-python3 examples/python/session_data.py <api_key> <session_id>
+python3 examples/python/session_data.py
 ```
 
-### `opencap_import.py` — Import an OpenCap session
+### `plot_kinematics.py` — Download and plot kinematics for an activity
 
-Copies all trials from an OpenCap session into a new Model Health session and processes them. Demonstrates the `importSession` API and `SessionConfig`.
+Selects a session (your own or a built-in demo session), picks an 
+activity, downloads its kinematics CSV, and plots selected joint angle
+columns against time.
 
 ```bash
-python3 examples/python/opencap_import.py <api_key> <opencap_token> <opencap_session_id>
+python3 examples/python/plot_kinematics.py
+```
+
+### `opencap_import.py` — OpenCap data import
+
+Imports an OpenCap session into Model Health for processing and analysis. Demonstrates the `importSession` API and `SessionConfig`.
+
+```bash
+python3 examples/python/opencap_import.py <opencap_session_id>
 ```
