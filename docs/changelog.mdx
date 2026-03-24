@@ -30,7 +30,7 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html) wit
 ### Fixed
 - **iOS example app:** removed self-referential `PRODUCT_BUNDLE_IDENTIFIER` assignment in `project.pbxproj` that caused Xcode to report the project as damaged
 - **TypeScript example app:** removed hardcoded API key — now reads from `VITE_API_KEY` environment variable via `.env.local`
-- **TypeScript README:** corrected method names (`trialList` → `activityList`, `downloadTrialVideos` → `downloadActivityVideos`, `downloadTrialResultData` → `downloadActivityResultData`), updated data type identifiers, removed non-existent `motToCsv` utility, and fixed Vite configuration example
+- **TypeScript README:** corrected method names (`trialList` → `activityList`, `downloadTrialVideos` → `downloadActivityVideos`, `downloadTrialResultData` → `downloadActivityResultData`), updated data type identifiers, removed non-existent `motToCsv` utility and fixed Vite configuration example
 
 ---
 
@@ -73,11 +73,11 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html) wit
 ## [0.1.15] - 2025-10-01
 
 ### Added
-- **Swift & TypeScript:** extended activity type list (gait, squat, sprint, and more)
+- **Swift & TypeScript:** extended activity type list (gait, squat, sprint and more)
 - **Swift & TypeScript:** `subjectList()` — retrieve existing subjects
 
 ### Removed
-- Login, registration, verification, and authentication token APIs removed — the SDK now uses API key authentication only
+- Login, registration, verification and authentication token APIs removed — the SDK now uses API key authentication only
 
 ---
 
@@ -99,6 +99,6 @@ This project uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html) wit
 
 ### Added
 - Initial release of the Model Health SDK
-- **Swift:** `ModelHealthService` with session management, camera calibration, subject calibration, activity recording, and biomechanical analysis
+- **Swift:** `ModelHealthService` with session management, camera calibration, subject calibration, activity recording and biomechanical analysis
 - **TypeScript/WASM:** `ModelHealthService` with equivalent API surface for web applications
 - API key authentication

@@ -45,7 +45,7 @@ python3 examples/python/activity_analysis.py
 
 ### `archive_session.py` — Session archive download
 
-Requests preparation of a session archive, polls until ready, and downloads the resulting ZIP file. Optionally includes video files.
+Requests preparation of a session archive, polls until ready and downloads the resulting ZIP file. Optionally includes video files.
 
 ```bash
 python3 examples/python/archive_session.py
@@ -53,7 +53,7 @@ python3 examples/python/archive_session.py
 
 ### `session_data.py` — Data download
 
-Downloads data from a session at multiple levels of granularity: raw or synced videos, OpenSim model, motion data, and analysis results.
+Downloads data from a session at multiple levels of granularity: raw or synced videos, OpenSim model, motion data and analysis results.
 
 ```bash
 python3 examples/python/session_data.py
@@ -62,7 +62,7 @@ python3 examples/python/session_data.py
 ### `plot_kinematics.py` — Download and plot kinematics for an activity
 
 Selects a session (your own or a built-in demo session), picks an 
-activity, downloads its kinematics CSV, and plots selected joint angle
+activity, downloads its kinematics CSV and plots selected joint angle
 columns against time.
 
 ```bash
