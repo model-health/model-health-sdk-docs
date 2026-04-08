@@ -1,6 +1,8 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import checkerboard from '../../static/img/checkerboard-45.png';
+import ThemedImage from '@theme/ThemedImage';
+import checkerboardLight from '../../static/img/checkerboard-45.light.png';
+import checkerboardDark from '../../static/img/checkerboard-45.dark.png';
 
 # Camera Calibration
 
@@ -39,7 +41,11 @@ A printed checkerboard pattern with known dimensions. [Download our recommended 
 Rows and columns refer to the number of **black-to-black corners**, not the number of squares.
 For the recommended checkerboard and the example below, this is **4 rows and 5 columns**.
 
-<img src={checkerboard} alt="Checkerboard corner counting diagram" width="400" />
+<ThemedImage
+  alt="Checkerboard corner counting diagram"
+  sources={{ light: checkerboardLight, dark: checkerboardDark }}
+  width="400"
+/>
 
 
 ## Environment Setup
