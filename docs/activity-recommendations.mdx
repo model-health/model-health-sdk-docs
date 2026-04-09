@@ -1,0 +1,111 @@
+---
+id: activity-recommendations
+title: Activity-Specific Recommendations
+sidebar_label: Activity Recommendations
+---
+
+## Squat
+
+1. **Camera setup** — avoid segment occlusions; every body segment should be visible by at least two cameras at all times.
+   - *Double-leg squats:* Two cameras at ±35° from the forward-facing direction should give an occlusion-free capture.
+   - *Single-leg squats:* If the non-contacting leg moves behind the body, add a third frontal camera. With only two cameras there is a risk of occlusion by the stance leg, which reduces reconstruction quality. If the non-contacting leg stays in front, two cameras is sufficient.
+2. **Frame rate** — 60 Hz is sufficient.
+3. **Filter frequency** — 4 Hz is commonly used for squats. Set this in [Advanced Settings](/docs/advanced-settings#filter-frequency).
+
+![Filter frequency setting](/img/docs/activity-recommendations/FIlterFrequency.png)
+
+## Treadmill Walking and Running
+
+1. **Camera setup** — avoid segment occlusions; every body segment should be visible by at least two cameras at all times.
+
+   **a. Cameras facing the front of the participant** *(recommended)*
+
+   Have the participant run while facing the cameras. Two cameras at ±30° from the forward-facing direction is a good starting point — adjust to reduce occlusions caused by guardrails. A third front-facing camera increases robustness; you can then move the others to ±45°.
+
+   ![Treadmill forward setup](/img/docs/activity-recommendations/RunningForward.png)
+
+   **b. Cameras facing the back of the participant**
+
+   If the treadmill is against a wall or has a large front display, add a third camera with a sagittal view (see image). Position it on the guardrail-free side if applicable. When recording the neutral pose, have the participant face the direction they will face during the activity. Two cameras in a forward-facing-style setup also works but with reduced accuracy for the feet.
+
+   ![Treadmill backward setup](/img/docs/activity-recommendations/RunningBackward.png)
+
+2. **Frame rate** — 120 Hz is recommended for treadmill running. Set this in [Advanced Settings](/docs/advanced-settings#frame-rate).
+
+   ![Frame rate setting](/img/docs/activity-recommendations/FrameRate.png)
+
+3. **Filter frequency** — 6–10 Hz for walking, 12–15 Hz for running. Set this in [Advanced Settings](/docs/advanced-settings#filter-frequency).
+
+   ![Filter frequency setting](/img/docs/activity-recommendations/FIlterFrequency.png)
+
+4. **Camera synchronization** — ask the participant to briefly raise one hand above their shoulder at any point during the activity.
+
+   ![Synchronization punch](/img/docs/activity-recommendations/Synchronization.png)
+
+## Sit-to-Stand
+
+1. **Camera setup** — two cameras at ±45° from the forward-facing direction should ensure an occlusion-free capture.
+2. **Frame rate** — 60 Hz is sufficient.
+3. **Filter frequency** — 4 Hz is commonly used for sit-to-stand. Set this in [Advanced Settings](/docs/advanced-settings#filter-frequency).
+
+## Drop Vertical Jump
+
+1. **Camera setup**
+   - *Double-leg DVJ:* Two cameras at ±45° should work well.
+   - *Single-leg DVJ:* Add a third frontal camera if the non-contacting leg moves behind the body. With only two cameras, the stance leg may occlude the non-contacting leg.
+2. **Frame rate** — 120 Hz recommended. Set this in [Advanced Settings](/docs/advanced-settings#frame-rate).
+3. **Filter frequency** — 30 Hz is commonly used for drop vertical jump. Set this in [Advanced Settings](/docs/advanced-settings#filter-frequency).
+
+## Countermovement Jump
+
+1. **Camera setup**
+   - *Double-leg CMJ:* Two cameras at ±45° should work well.
+   - *Single-leg CMJ:* Add a third frontal camera to keep the non-contacting leg visible.
+2. **Frame rate** — 120 Hz recommended. Set this in [Advanced Settings](/docs/advanced-settings#frame-rate).
+3. **Filter frequency** — 30 Hz is commonly used for countermovement jump. Set this in [Advanced Settings](/docs/advanced-settings#filter-frequency).
+
+## Overground Walking and Running
+
+1. **Camera setup** — mount cameras 60–120 cm (2–4 feet) high. Position the checkerboard facing forward in the middle of the capture volume, 3–4m away.
+   - *2 cameras:* Start at ±30° from the forward-facing direction. Ensure the participant enters and exits both fields of view at approximately the same point (~10m away).
+
+     ![Overground 2-camera setup](/img/docs/activity-recommendations/image.png)
+
+   - *3 cameras:* Add a front-facing camera for greater robustness; move the others to ±45°.
+2. **Frame rate** — 120 Hz recommended. Set this in [Advanced Settings](/docs/advanced-settings#frame-rate).
+3. **Filter frequency** — 6–10 Hz for walking, 12–15 Hz for running.
+
+## Hop
+
+1. **Camera setup** — position cameras far enough from the hopping area to capture the full motion. Three cameras (one frontal and two at ±45°) is strongly recommended. With only two cameras, the non-contacting leg is often occluded.
+2. **Camera calibration** — precise calibration is critical for accurate automated hop detection. The world frame must be well aligned with the floor surface, which requires placing the checkerboard **perfectly vertical**.
+3. **Frame rate** — 120 or 240 Hz recommended for good landing data. Set this in [Advanced Settings](/docs/advanced-settings#frame-rate).
+4. **Filter frequency** — 15 Hz is commonly used for hops. Set this in [Advanced Settings](/docs/advanced-settings#filter-frequency).
+
+## 5-0-5 (180-Degree Change of Direction)
+
+See the [demo session](https://app.modelhealth.io/session/63f3faaf-712d-4cef-845e-e2eb904ca5b4) for an example of an optimal setup.
+
+1. **Camera setup** — cover the entire capture volume while minimizing occlusion and distance. Use three cameras if possible. Sagittal cameras should be in **landscape mode** and cover all cones. Compare your camera views with the demo session to confirm correctness.
+
+   ![505 camera setup](/img/docs/activity-recommendations/image 1.png)
+
+2. **Camera calibration** — place the checkerboard **vertically (perpendicular to the ground)**, about 1–2m behind the change-of-direction line, centered between the two cones. Since cameras are farther from the checkerboard in this setup, a **larger checkerboard with 50mm tiles** is recommended. Update the **square size** to **50mm** in the checkerboard calibration page.
+
+   [Download 50mm checkerboard (PDF)](/img/docs/activity-recommendations/checkerboard-50mm.pdf)
+
+   ![Checkerboard placement for 505](/img/docs/activity-recommendations/image 2.png)
+
+3. **Frame rate** — minimum **120 Hz**, preferably **240 Hz**. Set this in [Advanced Settings](/docs/advanced-settings#frame-rate).
+4. **Camera synchronization** — **punch** is very important here. Ask the participant to briefly raise one hand above their shoulder at any point during the activity.
+
+   ![Synchronization punch](/img/docs/activity-recommendations/Synchronization.png)
+
+## Cut (Any Change of Direction)
+
+See the [demo session](https://app.modelhealth.io/session/63f3faaf-712d-4cef-845e-e2eb904ca5b4) for an example of an optimal setup.
+
+1. **Camera setup** — same as [5-0-5](#505-180-degree-change-of-direction) above.
+2. **Camera calibration** — same as [5-0-5](#505-180-degree-change-of-direction) above.
+3. **Frame rate** — minimum **120 Hz**, preferably **240 Hz**. Set this in [Advanced Settings](/docs/advanced-settings#frame-rate).
+4. **Camera synchronization** — punch is very important. Ask the participant to briefly raise one hand above their shoulder at any point during the activity.

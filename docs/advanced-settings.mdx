@@ -1,0 +1,64 @@
+---
+id: advanced-settings
+title: Advanced Settings
+sidebar_label: Advanced Settings
+---
+
+:::tip
+The advanced settings menu provides configuration options that let you customize how we process and analyze your data.
+:::
+
+Access advanced settings by tapping the **Advanced Settings** button on the neutral pose screen.
+
+![Advanced Settings button location](/img/docs/advanced-settings/Doc1.png)
+
+## Scaling Setup
+
+We use data from the neutral pose to scale the musculoskeletal model to the subject's anthropometry.
+
+**By default**, we assume the subject stands upright with feet pointing forward — straight back and no bending or rotation at the hips, knees, or ankles.
+
+**If the subject cannot adopt this pose**, select the **"Any pose"** scaling setup. This does not assume a specific posture but still requires all body segments to be visible by at least two cameras.
+
+We recommend using the default scaling setup unless the subject cannot stand in an upright neutral pose.
+
+## Frame Rate
+
+You can record videos at **60, 120, or 240 Hz**. The default is **120 Hz**.
+
+- Higher frame rates may improve accuracy for dynamic tasks like running, but increase processing time.
+- For most cases, **120 Hz is recommended**.
+- If processing speed is a concern, **60 Hz** reduces computation time — consider applying a filter (see below) to mitigate the increased noise.
+
+:::warning
+The frame rate applies to **all motion trials** in your session.
+:::
+
+## Musculoskeletal Model
+
+We support two models:
+
+- **Full body model** — a 33 degree-of-freedom musculoskeletal model from [Lai et al. 2017](https://pubmed.ncbi.nlm.nih.gov/28900782/) with modified hip abductor muscle paths from [Uhlrich et al. 2022](https://pubmed.ncbi.nlm.nih.gov/35798755/).
+- **Full body model with ISB shoulder** *(default)* — same as above, but with a 6 degree-of-freedom shoulder complex joint incorporating a scapulothoracic body with 3 translational degrees of freedom relative to the torso. The glenohumeral joint uses the Y-X-Y rotation sequence [recommended by the ISB](https://pubmed.ncbi.nlm.nih.gov/15844264/). Recommended for upper extremity tasks (e.g., throwing), but suitable for all tasks.
+
+## Marker Augmenter Model
+
+We use an LSTM model to predict the 3D position of 43 anatomical markers from 20 video keypoints. These markers are used as input to OpenSim for inverse kinematics.
+
+- **v0.3** *(default)* — more accurate and robust across different activities, inspired by [this paper](https://www.biorxiv.org/content/10.1101/2024.07.13.603382v1). Recommended for most use cases.
+- **v0.2** — may produce better results specifically for walking and running, as it was trained more heavily on gait data.
+
+## Filter Frequency
+
+We apply a low-pass Butterworth filter to smooth 2D video keypoints.
+
+**Default behavior:**
+- Half the frame rate (e.g., 30 Hz at 60 Hz recording), except for gait activities which default to **12 Hz**.
+
+You can enter a custom filter frequency here.
+
+:::warning
+- This filter frequency applies to **all motion trials** in your session.
+- Per the Nyquist theorem, the filter frequency must be less than half the frame rate. If you enter a higher value, we will cap it at half the frame rate.
+- Consult the literature for a suitable filter frequency for your specific task. If unsure, use the default.
+:::

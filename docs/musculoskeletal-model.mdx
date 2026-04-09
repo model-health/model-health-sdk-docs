@@ -1,0 +1,181 @@
+---
+id: musculoskeletal-model
+title: Musculoskeletal Model
+sidebar_label: Musculoskeletal Model
+---
+
+Our platform is built on [OpenSim](https://opensim.stanford.edu/), a widely used open-source software for musculoskeletal simulation that has supported thousands of researchers and professionals worldwide for over 15 years [[Delp et al. 2007](https://pubmed.ncbi.nlm.nih.gov/18018689/), [Seth et al. 2018](https://pubmed.ncbi.nlm.nih.gov/30048444/)]. We use a scientifically-validated musculoskeletal model with 36 degrees of freedom [[Rajagopal 2016](https://pubmed.ncbi.nlm.nih.gov/27392337/), [Lai et al. 2017](https://pubmed.ncbi.nlm.nih.gov/28900782/), [Uhlrich et al. 2022](https://pubmed.ncbi.nlm.nih.gov/35798755/)].
+
+Joints are constrained to move in anatomically realistic ways — for example, the hip can rotate in three directions but cannot translate, just like a ball-and-socket joint in the human body.
+
+![Musculoskeletal model overview](/img/docs/musculoskeletal-model/LaiUhlrich2022_shoulder.png)
+
+## Joint Definitions
+
+### Ground–Pelvis
+
+6 degrees of freedom — 3 translations and 3 rotations. Defines how the pelvis moves relative to the world frame (defined by the checkerboard).
+
+**Rotations**
+
+- **Pelvis tilt** — forward and backward tipping of the pelvis. Positive when the pelvis rotates backward.
+
+  ![Pelvis tilt](/img/docs/musculoskeletal-model/pelvis_list.png)
+
+- **Pelvis list** — side-to-side tilting of the pelvis. Positive when the left part of the pelvis tilts upward.
+
+  ![Pelvis list](/img/docs/musculoskeletal-model/pelvis_tilt.png)
+
+- **Pelvis rotation** — twisting of the pelvis around the vertical axis. Positive when the pelvis rotates to the left.
+
+  ![Pelvis rotation](/img/docs/musculoskeletal-model/pelvis_rotation.png)
+
+:::note Biomechanics detail
+Pelvis rotations follow ZXY (body-fixed) Euler angle convention: tilt → list → rotation.
+:::
+
+**Translations**
+
+- **Pelvis tx** — forward/backward movement. Positive = pelvis translates forward.
+
+  ![Pelvis tx](/img/docs/musculoskeletal-model/pelvis_tx.png)
+
+- **Pelvis ty** — up/down movement. Positive = pelvis translates upward.
+
+  ![Pelvis ty](/img/docs/musculoskeletal-model/pelvis_ty.png)
+
+- **Pelvis tz** — side-to-side movement. Positive = pelvis translates to the right.
+
+  ![Pelvis tz](/img/docs/musculoskeletal-model/pelvis_tz.png)
+
+---
+
+### Hip
+
+3 degrees of freedom — 3 rotations. Defines how the femur moves relative to the pelvis.
+
+- **Hip flexion-extension** — positive = flexion, negative = extension.
+
+  ![Left hip flexion](/img/docs/musculoskeletal-model/hip_flexion_l.png) ![Left hip extension](/img/docs/musculoskeletal-model/hip_extension_l.png)
+
+- **Hip adduction-abduction** — positive = adduction, negative = abduction.
+
+  ![Left hip adduction](/img/docs/musculoskeletal-model/hip_adduction_l.png) ![Left hip abduction](/img/docs/musculoskeletal-model/hip_abduction_l.png)
+
+- **Hip internal-external rotation** — positive = internal rotation, negative = external rotation.
+
+  ![Left hip internal rotation](/img/docs/musculoskeletal-model/hip_rotation_l.png) ![Left hip external rotation](/img/docs/musculoskeletal-model/hip_external_rotation_l.png)
+
+:::note Biomechanics detail
+Hip rotations follow ZXY (body-fixed) Euler angle convention: flexion → adduction → rotation.
+:::
+
+---
+
+### Knee
+
+1 degree of freedom. Defines how the tibia moves relative to the femur.
+
+- **Knee flexion-extension** — positive = flexion, 0 = full extension.
+
+  ![Left knee flexion](/img/docs/musculoskeletal-model/knee_flexion_l.png)
+
+:::note Biomechanics detail
+The knee isn't a simple hinge. While described by a single flexion-extension coordinate, it also involves small coupled rotations and translations. This means the lower leg shifts slightly inward during deep flexion.
+
+  ![Knee neutral](/img/docs/musculoskeletal-model/knee_back.png) ![Deep knee flexion](/img/docs/musculoskeletal-model/knee_flexion_back_r.png)
+:::
+
+---
+
+### Ankle
+
+1 degree of freedom. Defines how the talus moves relative to the tibia.
+
+- **Ankle dorsi-plantarflexion** — positive = dorsiflexion, negative = plantarflexion.
+
+  ![Left ankle dorsiflexion](/img/docs/musculoskeletal-model/ankle_dorsi_l.png) ![Left ankle plantarflexion](/img/docs/musculoskeletal-model/ankle_plantar_l.png)
+
+---
+
+### Subtalar
+
+1 degree of freedom. Defines how the calcaneus moves relative to the talus.
+
+- **Foot supination-pronation** — positive = supination, negative = pronation.
+
+  ![Left foot supination](/img/docs/musculoskeletal-model/subt_supination_l.png) ![Left foot pronation](/img/docs/musculoskeletal-model/subt_pronation_l.png)
+
+---
+
+### Lumbar
+
+3 degrees of freedom — 3 rotations. Defines how the torso moves relative to the pelvis (at the L5 level).
+
+- **Lumbar flexion-extension** — positive = extension, negative = flexion.
+
+  ![Lumbar extension](/img/docs/musculoskeletal-model/lumbar_extension.png) ![Lumbar flexion](/img/docs/musculoskeletal-model/lumbar_flexion.png)
+
+- **Lumbar bending** — positive = left shoulder moves upward, negative = right shoulder moves upward.
+
+  ![Lumbar bending positive](/img/docs/musculoskeletal-model/lumbar_bending_pos.png) ![Lumbar bending negative](/img/docs/musculoskeletal-model/lumbar_bending_neg.png)
+
+- **Lumbar rotation** — positive = torso rotates leftward, negative = torso rotates rightward.
+
+  ![Lumbar rotation positive](/img/docs/musculoskeletal-model/lumbar_rotation_pos.png) ![Lumbar rotation negative](/img/docs/musculoskeletal-model/lumbar_rotation_neg.png)
+
+:::note Biomechanics detail
+Lumbar rotations follow ZXY (body-fixed) Euler angle convention: flexion → bending → rotation.
+:::
+
+---
+
+### Shoulder
+
+6 degrees of freedom — 3 translations and 3 rotations. Models the full shoulder complex including the scapulothoracic segment.
+
+**Translations** (scapulothoracic segment relative to torso)
+
+- **Shoulder tx** — forward/backward. Positive = forward.
+
+  ![Shoulder tx](/img/docs/musculoskeletal-model/shoulder_tx.png)
+
+- **Shoulder ty** — up/down. Positive = upward.
+
+  ![Shoulder ty](/img/docs/musculoskeletal-model/shoulder_ty.png)
+
+- **Shoulder tz** — side-to-side. Positive = medially.
+
+  ![Shoulder tz](/img/docs/musculoskeletal-model/shoulder_tz.png)
+
+**Rotations** (glenohumeral joint — humerus relative to scapulothoracic body)
+
+- **Shoulder plane elevation** — angle of the plane in which the arm lifts. Positive = in front of torso, negative = behind torso.
+
+  ![Plane elevation 50°](/img/docs/musculoskeletal-model/shoulder_plane_elev_50.png) ![Plane elevation 0°](/img/docs/musculoskeletal-model/shoulder_plane_elev_0.png) ![Plane elevation -50°](/img/docs/musculoskeletal-model/shoulder_plane_elev_-50.png)
+
+- **Shoulder elevation** — how much the arm lifts away from the body. Positive = arm raising in any plane.
+
+  ![Elevation 0°](/img/docs/musculoskeletal-model/shoulder_elev_0.png) ![Elevation 90°](/img/docs/musculoskeletal-model/shoulder_elev_90.png) ![Elevation 150°](/img/docs/musculoskeletal-model/shoulder_elev_150.png)
+
+- **Shoulder axial rotation** — twisting of the upper arm around its own axis. Positive = internal rotation, negative = external rotation.
+
+  ![Axial rotation 50°](/img/docs/musculoskeletal-model/shoulder_axial_rot_50.png) ![Axial rotation 0°](/img/docs/musculoskeletal-model/shoulder_axial_rot_0.png) ![Axial rotation -50°](/img/docs/musculoskeletal-model/shoulder_axial_rot_-50.png)
+
+:::note Biomechanics detail
+Shoulder rotations follow YXY (body-fixed) Euler angle convention: plane elevation → elevation → axial rotation. This is recommended by the [International Society of Biomechanics](https://pubmed.ncbi.nlm.nih.gov/15844264/).
+:::
+
+---
+
+### Elbow
+
+2 degrees of freedom — 2 rotations. Defines ulna movement relative to humerus and radius movement relative to ulna.
+
+- **Elbow flexion-extension** — 0 = full extension; increases with flexion.
+
+  ![Left elbow flexion](/img/docs/musculoskeletal-model/elbow_flexion_l.png)
+
+- **Forearm pronation-supination** — 0 = full supination (palm up); increases toward pronation (palm down).
+
+  ![Forearm pronation 0°](/img/docs/musculoskeletal-model/elbow_pronation_0_l.png) ![Forearm pronation 50°](/img/docs/musculoskeletal-model/elbow_pronation_50_l.png)

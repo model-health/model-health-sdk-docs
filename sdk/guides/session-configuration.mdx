@@ -1,0 +1,138 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Session Configuration
+
+Sessions are created with sensible defaults. All fields are optional — only pass the ones you want to override. Call `configure` immediately after `createSession` and before calibration.
+
+## Applying Configuration
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let session = try await service.createSession()
+
+  try await service.configure(session: session, config: SessionConfig(
+      framerate: .fps60,
+      openSimModel: .laiUhlrich2022Shoulder,
+      scalingSetup: .uprightStandingPose,
+      coreEngine: .v1_0,
+      filterFrequency: .hz(15),
+      dataSharing: .shareNoData
+  ))
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const session = await service.createSession();
+
+  await service.configureSession(session, {
+    framerate: 60,
+    openSimModel: "LaiUhlrich2022_shoulder",
+    scalingSetup: "upright_standing_pose",
+    coreEngine: "v1.0",
+    filterFrequency: { type: "hz", value: 15 },
+    dataSharing: "Share no data"
+  });
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import (
+      SessionFramerate,
+      SessionOpenSimModel,
+      SessionScalingSetup,
+      SessionCoreEngine,
+      FilterFrequencyHz,
+      SessionDataSharing,
+  )
+
+  session = service.create_session()
+
+  service.configure_session(
+      session,
+      framerate=SessionFramerate.fps_60,
+      opensim_model=SessionOpenSimModel.lai_uhlrich_2022_shoulder,
+      scaling_setup=SessionScalingSetup.upright_standing_pose,
+      core_engine=SessionCoreEngine.v1_0,
+      filter_frequency=FilterFrequencyHz(value=15),
+      data_sharing=SessionDataSharing.share_no_data,
+  )
+  ```
+  </TabItem>
+</Tabs>
+
+## Options
+
+### Framerate
+
+Camera capture frame rate.
+
+Higher framerates capture fast movements more accurately but increase processing time proportionally. Collect only as much footage as needed and keep recordings under the suggested durations below.
+
+| Value | Swift | TypeScript | Python | Suggested max duration |
+|-------|-------|------------|--------|------------------------|
+| 60 fps | `.fps60` | `60` | `SessionFramerate.fps_60` | &lt;60s |
+| 120 fps *(default)* | `.fps120` | `120` | `SessionFramerate.fps_120` | &lt;30s |
+| 240 fps | `.fps240` | `240` | `SessionFramerate.fps_240` | &lt;15s |
+
+### OpenSim Model
+
+Musculoskeletal model used for biomechanical analysis.
+
+- **LaiUhlrich2022 shoulder** *(default)*: Full-body model with 33 degrees of freedom ([Lai et al. 2017](https://pubmed.ncbi.nlm.nih.gov/28900782/), [Uhlrich et al. 2022](https://pubmed.ncbi.nlm.nih.gov/35798755/)) plus a 6-DoF shoulder complex with a scapulothoracic body and a glenohumeral joint using the ISB-recommended Y-X-Y rotation sequence ([Wu et al. 2005](https://pubmed.ncbi.nlm.nih.gov/15844264/)).
+- **LaiUhlrich2022**: Same full-body model without the ISB shoulder complex.
+
+| Value | Swift | TypeScript | Python |
+|-------|-------|------------|--------|
+| LaiUhlrich2022 shoulder *(default)* | `.laiUhlrich2022Shoulder` | `"LaiUhlrich2022_shoulder"` | `SessionOpenSimModel.lai_uhlrich_2022_shoulder` |
+| LaiUhlrich2022 | `.laiUhlrich2022` | `"LaiUhlrich2022"` | `SessionOpenSimModel.lai_uhlrich_2022` |
+
+### Scaling Setup
+
+Pose used for subject scaling during calibration.
+
+The default **upright standing pose** assumes the subject stands straight with feet pointing forward and no bending or rotation at the hips, knees, or ankles. Use **any pose** if the subject cannot adopt this position — it makes no posture assumptions but requires all body segments to be visible by at least two cameras.
+
+| Value | Swift | TypeScript | Python |
+|-------|-------|------------|--------|
+| Upright standing pose *(default)* | `.uprightStandingPose` | `"upright_standing_pose"` | `SessionScalingSetup.upright_standing_pose` |
+| Any pose | `.anyPose` | `"any_pose"` | `SessionScalingSetup.any_pose` |
+
+### Core Engine
+
+Software version used for motion analysis.
+
+| Value | Swift | TypeScript | Python |
+|-------|-------|------------|--------|
+| v0.2 | `.v0_2` | `"v0.2"` | `SessionCoreEngine.v0_2` |
+| v0.3 | `.v0_3` | `"v0.3"` | `SessionCoreEngine.v0_3` |
+| v1.0 *(default)* | `.v1_0` | `"v1.0"` | `SessionCoreEngine.v1_0` |
+
+### Filter Frequency
+
+Cutoff frequency of the low-pass Butterworth filter applied to 2D video keypoints.
+
+By default the server chooses the frequency of **20 Hz**. If you specify a custom value it applies to **all** motion trials in the session. Per the Nyquist theorem, the value must be less than half the framerate — if it exceeds that, the server will clamp it to half the framerate automatically.
+
+| Value | Swift | TypeScript | Python |
+|-------|-------|------------|--------|
+| Server-chosen *(default)* | `.default` | `{ type: "default" }` | `FilterFrequencyDefault()` |
+| Specific Hz | `.hz(6)` | `{ type: "hz", value: 6 }` | `FilterFrequencyHz(value=6)` |
+
+### Data Sharing
+
+Session data and videos are uploaded to a secure cloud server for processing. This setting controls what Model Health can use for internal development.
+
+- **Identified videos**: original footage with faces unblurred.
+- **De-identified videos**: faces are blurred.
+- **Processed data** (e.g., joint angles): always de-identified.
+
+Please read our [Terms and Conditions](https://modelhealth.io/terms-and-conditions) and [Privacy Policy](https://modelhealth.io/privacy-policy) for details.
+
+| Value | Swift | TypeScript | Python |
+|-------|-------|------------|--------|
+| Processed data + identified videos *(default)* | `.shareProcessedDataAndIdentifiedVideos` | `"Share processed data and identified videos"` | `SessionDataSharing.share_processed_data_and_identified_videos` |
+| Processed data + de-identified videos | `.shareProcessedDataAndDeidentifiedVideos` | `"Share processed data and de-identified videos"` | `SessionDataSharing.share_processed_data_and_deidentified_videos` |
+| Processed data only | `.shareProcessedData` | `"Share processed data"` | `SessionDataSharing.share_processed_data` |
+| No data shared for development | `.shareNoData` | `"Share no data"` | `SessionDataSharing.share_no_data` |

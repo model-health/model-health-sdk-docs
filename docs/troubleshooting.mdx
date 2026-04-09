@@ -1,0 +1,48 @@
+---
+id: troubleshooting
+title: Troubleshooting
+sidebar_label: Troubleshooting
+---
+
+:::info
+This guide covers common issues you may encounter when using our motion capture system. If you continue experiencing problems after following these steps, contact our support team at [info@modelhealth.io](mailto:info@modelhealth.io).
+:::
+
+## Camera Calibration
+
+- Follow the instructions in [Best Practices](/docs/best-practices#camera-calibration).
+- Ensure all phones are paired to the session. The app will alert you after scanning the QR code. Check for any red warning on the iOS device screen indicating a lost server connection.
+
+**Common causes of a failed calibration:**
+- Checkerboard too far from cameras (must be less than 5m away).
+- Wrong column/row count — count **black-to-black corners**, not squares.
+- Too bright of an environment (e.g., direct sunlight) — shade the checkerboard.
+- Too dark of an environment — add light to the checkerboard.
+- Checkerboard not mounted on a flat surface.
+- Checkerboard not fully visible by all cameras.
+- Checkerboard at too acute of an angle to the cameras — keep cameras within ±60° from the perpendicular line.
+
+## Neutral Pose
+
+**Common causes of a failed neutral pose:**
+- Participant moving — have them stand still until the message tells them they can relax.
+- Bad camera calibration — try re-calibrating.
+- Participant not fully visible by at least 2 cameras — verify each camera's field of view.
+- Cameras not well positioned — capture both sides of the participant and limit occlusion.
+
+**Inaccurate limb lengths or bad kinematics during dynamic trials:**
+- Bad camera calibration — try re-calibrating.
+- Participant in the wrong pose — ensure they stand exactly as shown in the web app during the neutral pose step.
+
+## Dynamic Trials
+
+**Trial trimmed too short:**
+- Camera fields of view are not sufficiently overlapping. Re-position cameras so at least 2 cameras can see the participant during the desired motion. If the participant is only in the capture volume for less than 2 seconds, the trial may fail.
+
+**Inaccurate kinematics:**
+- **Videos not synchronized** — have the participant punch one hand in the air above their shoulder and bring it back down during the trial. Especially helpful for treadmill gait and static activities like balance assessments.
+- **Segment occlusion** — re-position cameras so each segment is seen by at least 2 cameras at all times.
+- **Poor contrast** — wearing shoes that differ in color from both the pants and the floor is especially helpful. A simpler background improves pose detection.
+- **Bad camera calibration** — try re-calibrating.
+- **Participant too far from cameras** — move them closer if possible.
+- **Camera angles too close together** — aim for 40–90° separation, symmetric around the direction the subject is moving.

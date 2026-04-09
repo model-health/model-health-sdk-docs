@@ -11,61 +11,51 @@ function HomepageHeader() {
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
         <h1 className="hero__title">
-          Ship 3D Biomechanical Intelligence in Days
+          Model Health Documentation
         </h1>
         <p className="hero__subtitle">
-          Production-ready SDKs for sports, physical therapy, performance, rehabilitation and digital health.
+          Everything you need to use and build with Model Health.
           <br />
-          Turn smartphone video into scientifically-validated biomechanical data.
+          Biomechanical analysis from smartphone video — for clinicians, researchers and developers.
         </p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro">
-            Start Building
-          </Link>
-        </div>
       </div>
     </header>
   );
 }
 
-function HomepageSDKs() {
+function PathCards() {
   return (
-    <section className={styles.features + " padding-vert--l"}>
+    <section className={styles.pathSection}>
       <div className="container">
-        <h2 className="text--center margin-bottom--lg">
-          Choose Your SDK
-        </h2>
-        <div className="row">
-          {[
-            {
-              title: "Swift SDK",
-              description: "Native iOS SDK with full support for iPhone and iPad. Built with Swift and optimized for production deployment.",
-              link: "/swift-api",
-              linkText: "View Swift SDK →",
-            },
-            {
-              title: "TypeScript SDK",
-              description: "Cross-platform SDK for browser and Node.js environments. Compatible with both JavaScript and TypeScript projects.",
-              link: "/typescript-api",
-              linkText: "View TypeScript SDK →",
-            },
-            {
-              title: "Python SDK",
-              description: "Designed for R&D workflows. Access raw and processed 3D biomechanical data programmatically and build your own pipelines.",
-              link: "/python-api",
-              linkText: "View Python SDK →",
-            },
-          ].map((sdk) => (
-            <div className="col col--4" key={sdk.title}>
-              <div className={styles.card}>
-                <h3>{sdk.title}</h3>
-                <p>{sdk.description}</p>
-                <Link to={sdk.link}>{sdk.linkText}</Link>
-              </div>
+        <div className={styles.pathGrid}>
+          <div className={styles.pathCard}>
+            <div className={styles.pathCardInner}>
+              <div className={styles.pathIcon}>📖</div>
+              <h2>Product Docs</h2>
+              <p>
+                Guides, best practices, and reference material for using the
+                Model Health web and mobile app. Get up and running quickly,
+                and get the most out of every session.
+              </p>
+              <Link className={clsx('button button--primary button--lg', styles.pathButton)} to="/docs/getting-started">
+                Get Started →
+              </Link>
             </div>
-          ))}
+          </div>
+          <div className={styles.pathCard}>
+            <div className={styles.pathCardInner}>
+              <div className={styles.pathIcon}>⚡</div>
+              <h2>SDK</h2>
+              <p>
+                Integrate biomechanical analysis directly into your product.
+                Production-ready SDKs for Swift, TypeScript, and Python —
+                from recording to structured data in a few API calls.
+              </p>
+              <Link className={clsx('button button--outline button--primary button--lg', styles.pathButton)} to="/sdk/intro">
+                View SDK →
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -152,11 +142,11 @@ export default function Home() {
   const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
-      title={`${siteConfig.title} Documentation`}
-      description="Production-ready biomechanical analysis from smartphone video">
+      title="Documentation"
+      description="Everything you need to use and build with Model Health">
       <HomepageHeader />
       <main>
-        <HomepageSDKs />
+        <PathCards />
         <WhatYouGet />
         <BuiltFor />
       </main>

@@ -1,0 +1,274 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Quick Start
+
+This guide walks you through a complete Model Health SDK integration — from initialization to retrieving biomechanical data.
+
+## Prerequisites
+
+Before you begin, make sure you have:
+1. [Installed the SDK](./installation)
+2. An API key — if you don't have one yet, [request access](mailto:support@modelhealth.io?subject=API%20Access%20Request&body=Hi%20Model%20Health%20team%2C%0A%0AI%27m%20interested%20in%20integrating%20the%20Model%20Health%20SDK.%0A%0ACompany%3A%0AUse%20case%3A%0APlatform%20(iOS%2C%20Web%2C%20other)%3A%0AExisting%20Model%20Health%20account%3A%20Yes%20%2F%20No%0AIf%20yes%2C%20account%20email%3A%0A%0AThanks)
+
+## Overview
+
+A typical flow looks like this:
+
+1. Initialize the SDK with your API key
+2. Create and configure a session
+3. Calibrate the camera (once per session setup)
+4. Calibrate the subject (biomechanical model scaling)
+5. Record a movement
+6. Run analysis and retrieve results
+
+## Quick Start
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  import ModelHealth
+
+  // Initialize the service with your API key
+  let service = try ModelHealthService(apiKey: "your-api-key-here")
+
+  // Create a session
+  let session = try await service.createSession()
+
+  // Calibrate camera
+  let checkerboardDetails = CheckerboardDetails(
+      rows: 4,
+      columns: 5,
+      squareSize: 35,
+      placement: .perpendicular
+  )
+
+  try await service.calibrateCamera(
+      session,
+      checkerboardDetails: checkerboardDetails
+  ) { status in
+      print("Calibration status: \(status)")
+  }
+
+  // Select first subject and calibrate it
+  let subjects = try await service.subjectList()
+  if let subject = subjects.first {
+      try await service.calibrateSubject(
+          subject,
+          in: session
+      ) { status in
+          print("Neutral pose status: \(status)")
+      }
+  }
+
+  // Record an activity
+  let activity = try await service.startRecording(activityNamed: "cmj", in: session)
+  // Subject performs the activity...
+  try await service.stopRecording(session)
+
+  // Check processing status
+  let status = try await service.activityStatus(for: activity)
+  if case .ready = status {
+      // Start analysis
+      let task = try await service.startAnalysis(
+          .counterMovementJump,
+          for: activity,
+          in: session
+      )
+
+      // Poll for completion
+      var analysisStatus = try await service.analysisStatus(for: task)
+      while case .processing = analysisStatus {
+          try await Task.sleep(nanoseconds: 10_000_000_000) // 10 seconds
+          analysisStatus = try await service.analysisStatus(for: task)
+      }
+
+      // Download results
+      if case .completed = analysisStatus {
+          let results = await service.analysisData(
+              ofType: [.metrics, .report],
+              for: activity
+          )
+          for result in results {
+              switch result.type {
+              case .metrics:
+                  print("Metrics:", String(data: result.data, encoding: .utf8) ?? "")
+              case .report:
+                  // PDF – use result.data
+                  break
+              case .data:
+                  break
+              }
+          }
+      }
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  import { ModelHealthService } from '@modelhealth/modelhealth';
+
+  // Initialize the service with your API key
+  const service = new ModelHealthService({ apiKey: "your-api-key-here" });
+  await service.init();
+
+  // Create a session
+  const session = await service.createSession();
+
+  // Calibrate camera
+  const checkerboardDetails = {
+    rows: 4,
+    columns: 5,
+    squareSize: 35,
+    placement: "perpendicular"
+  };
+
+  await service.calibrateCamera(
+    session,
+    checkerboardDetails,
+    (status) => {
+      console.log("Calibration status:", status);
+    }
+  );  
+
+  // Select first subject and calibrate it
+  const subjects = await service.subjectList();
+  if (subjects.length > 0) {
+    await service.calibrateSubject(
+      subjects[0],
+      session,
+      (status) => {
+        console.log("Neutral pose status:", status);
+      }
+    );
+  }
+
+  // Record an activity
+  const activity = await service.startRecording("cmj", session);
+  // Subject performs the activity...
+  await service.stopRecording(session);
+
+  // Check processing status
+  let activityStatus = await service.activityStatus(activity);
+  while (activityStatus.type === "processing") {
+    await new Promise(resolve => setTimeout(resolve, 2000));
+    activityStatus = await service.activityStatus(activity);
+  }
+
+  // Start analysis
+  if (activityStatus.type === "ready") {
+    const task = await service.startAnalysis(
+      "counter_movement_jump",
+      activity,
+      session
+    );
+
+    // Poll for completion
+    let analysisStatus = await service.analysisStatus(task);
+    while (analysisStatus.type === "processing") {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      analysisStatus = await service.analysisStatus(task);
+    }
+
+    // Download results
+    if (analysisStatus.type === "completed") {
+      const results = await service.analysisDataForActivity(
+        activity,
+        ["metrics", "report"]
+      );
+      const metricsEntry = results.find((r) => r.type === "metrics");
+      if (metricsEntry?.data) {
+        const metrics = JSON.parse(new TextDecoder().decode(metricsEntry.data));
+        console.log("Analysis complete:", metrics);
+      }
+    }
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  import json
+  import time
+  from modelhealth import (
+      ModelHealthService,
+      CheckerboardDetails, CheckerboardPlacement,
+      SubjectParameters,
+      CalibrationStatus, CalibrationStatusUploading, CalibrationStatusProcessing,
+      ActivityStatus, ActivityStatusUploading,
+      AnalysisStatus,
+  )
+
+  # Initialize the service with your API key
+  service = ModelHealthService("your-api-key-here")
+
+  # Create a session
+  session = service.create_session()
+
+  # Calibrate camera
+  checkerboard = CheckerboardDetails(
+      rows=4,
+      columns=5,
+      square_size=35,  # millimeters
+      placement=CheckerboardPlacement.perpendicular
+  )
+
+  def on_calibration_status(status):
+      if isinstance(status, CalibrationStatusUploading):
+          print(f"Uploading {status.uploaded}/{status.total} videos")
+      elif isinstance(status, CalibrationStatusProcessing):
+          print(f"Processing: {status.percent}%" if status.percent is not None else "Processing...")
+      elif status == CalibrationStatus.recording:
+          print("Recording calibration...")
+      elif status == CalibrationStatus.done:
+          print("Calibration complete!")
+
+  service.calibrate_camera(session, checkerboard, on_calibration_status)
+
+  # Select first subject if exists, otherwise create one
+  subjects = service.subject_list()
+  if subjects:
+      subject = subjects[0]
+  else:
+      subject = service.create_subject(SubjectParameters(name="Anonymous", weight=70, height=175))
+
+  # Calibrate the selected subject
+  service.calibrate_subject(subject, session, on_calibration_status)
+
+  # Record an activity
+  activity = service.start_recording("cmj", session)
+  # Subject performs the activity...
+  service.stop_recording(session)
+
+  # Check processing status
+  status = service.activity_status(activity)
+  while isinstance(status, ActivityStatusUploading) or status == ActivityStatus.processing:
+      time.sleep(10)
+      status = service.activity_status(activity)
+
+  if status == ActivityStatus.ready:
+      # Start analysis
+      task = service.start_analysis("counter_movement_jump", activity, session)
+
+      # Poll for completion
+      analysis_status = service.analysis_status(task)
+      while analysis_status == AnalysisStatus.processing:
+          time.sleep(10)
+          analysis_status = service.analysis_status(task)
+
+      # Download results
+      if analysis_status == AnalysisStatus.completed:
+          results = service.analysis_data_for_activity(activity, ["metrics", "report"])
+          for r in results:
+              if r.type == "metrics":
+                  metrics = json.loads(r.data)
+                  print("Analysis complete:", metrics["analysis_title"])
+  ```
+  </TabItem>
+</Tabs>
+
+## Next Steps
+
+- Learn more about [Camera Calibration](../guides/camera-calibration)
+- Learn more about [Subject Calibration](../guides/subject-calibration)
+- Learn more about [Activity Recording](../guides/activity-recording)
+- Learn more about [Activity Analysis](../guides/activity-analysis)

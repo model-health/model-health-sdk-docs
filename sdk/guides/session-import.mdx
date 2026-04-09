@@ -1,0 +1,147 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Data Import
+
+Import an OpenCap session into Model Health for reprocessing and automated analysis.
+The import API handles the full workflow: session creation, subject association,
+video transfer and processing — reporting progress at each stage via a callback.
+
+:::tip Full working example
+See [`examples/python`](https://github.com/model-health/model-health/tree/main/examples/python) for a complete end-to-end script (`opencap_import.py`) that covers fetching trial data from OpenCap, subject selection, session configuration, per-trial activity type assignment and polling for analysis results.
+:::
+
+## What you're importing
+
+The input to `import_session` is the raw trial JSON exported from an OpenCap session.
+This includes the calibration and neutral trials alongside any dynamic trials — all three
+are required. The SDK uploads the videos to Model Health and triggers reprocessing under
+your chosen configuration.
+
+## Importing Activities
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let session = try await service.importSession(
+      activitiesJson,
+      subject: subject
+  ) { status in
+      switch status {
+      case .creatingSession:
+          print("Creating session...")
+
+      case .createdSession(let sessionId):
+          print("Session created:", sessionId)
+
+      case .uploadingVideo(let trial, let uploaded, let total):
+          print("[\(trial)] Uploading: \(uploaded)/\(total)")
+
+      case .processing:
+          print("Processing...")
+      }
+  }
+
+  print("Import complete — session:", session.id)
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const session = await service.importSession(
+    activitiesJson,
+    subject,
+    {},
+    (status) => {
+      switch (status.type) {
+        case "creating_session":
+          console.log("Creating session...");
+          break;
+        case "created_session":
+          console.log("Session created:", status.session_id);
+          break;
+        case "uploading_video":
+          console.log(`[${status.trial}] Uploading: ${status.uploaded}/${status.total}`);
+          break;
+        case "processing":
+          console.log("Processing...");
+          break;
+      }
+    }
+  );
+
+  console.log("Import complete — session:", session.id);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import ImportStatusCreatedSession, ImportStatusUploading
+
+  def on_import_status(status):
+      if status == "creating_session":
+          print("Creating session...")
+      elif isinstance(status, ImportStatusCreatedSession):
+          print("Session created:", status.session_id)
+      elif isinstance(status, ImportStatusUploading):
+          print(f"[{status.trial}] Uploading: {status.uploaded}/{status.total}")
+      elif status == "processing":
+          print("Processing...")
+
+  session = service.import_session(
+      activities_json,
+      subject,
+      status_callback=on_import_status
+  )
+
+  print("Import complete — session:", session.id)
+  ```
+  </TabItem>
+</Tabs>
+
+## With Session Configuration
+
+Pass a `SessionConfig` to configure the session created during import. See [Session Configuration](./session-configuration) for all available settings.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let session = try await service.importSession(
+      activitiesJson,
+      subject: subject,
+      config: SessionConfig(coreEngine: .v1_0)
+  ) { status in
+      print(status)
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const session = await service.importSession(
+    activitiesJson,
+    subject,
+    { coreEngine: "v1.0" }
+  );
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import SessionConfig, SessionCoreEngine
+
+  config = SessionConfig(core_engine=SessionCoreEngine.v1_0)
+
+  session = service.import_session(activities_json, subject, session_config=config)
+  ```
+  </TabItem>
+</Tabs>
+
+## Import Status Reference
+
+The callback receives these values in order:
+
+| Status | Description |
+|--------|-------------|
+| `creatingSession` | A new session is being created on the server. |
+| `createdSession` | The session was created. Provides the new session ID. |
+| `uploadingVideo` | A video is being transferred. `trial` names the current activity; `uploaded`/`total` track progress within that activity. |
+| `processing` | All videos uploaded; the server is processing the activity. |
+
+The callback fires once per activity for `uploadingVideo` and `processing`, so you will see multiple rounds if the import contains several activities.

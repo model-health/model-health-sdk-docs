@@ -1,0 +1,160 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import neutral_pose from '../../static/img/neutral-pose.jpg';
+
+
+# Subject Calibration
+
+Subject calibration captures a neutral standing pose for each subject. This allows the SDK to scale a 3D biomechanical model to the size of the subject, which is required for biomechanical analysis.
+
+## Creating or Selecting a Subject
+
+Each subject needs a profile before calibration. Height and weight are required — they're used directly by the analysis algorithm. Name and birth year are optional and can be left anonymous if needed.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  // Create a new subject
+  let params = SubjectParameters(
+      name: "Anonymous",       // optional
+      weight: 70,              // kilograms, required
+      height: 175              // centimeters, required
+  )
+  let subject = try await service.createSubject(parameters: params)
+
+  // Or select an existing subject (eg, first one of the list)
+  let subjects = try await service.subjectList()
+  let subject = subjects.first
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  // Create a new subject
+  const subject = await service.createSubject({
+    name: "Anonymous",   // optional
+    birthYear: null,     // optional
+    height: 175,         // centimeters, required
+    weight: 70           // kilograms, required
+  });
+
+  // Or select an existing subject (eg, first one of the list)
+  const subjects = await service.subjectList();
+  const subject = subjects[0];
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import SubjectParameters
+
+  # Create a new subject
+  params = SubjectParameters(
+      name="Anonymous",   # optional
+      weight=70,          # kilograms, required
+      height=175          # centimeters, required
+  )
+  subject = service.create_subject(params)
+
+  # Or select an existing subject (eg, first one of the list)
+  subjects = service.subject_list()
+  subject = subjects[0]
+  ```
+  </TabItem>
+</Tabs>
+
+## Neutral Pose Instructions
+
+Before recording, instruct the subject to:
+
+- Stand upright with feet pointing forward
+- Keep a straight back with no bending or rotation at the hips, knees, or ankles
+- Stand completely still until told they can relax
+- Be fully visible by all cameras
+
+Make sure there are no obstructions in any camera's field of view before hitting record.
+
+<img src={neutral_pose} alt="Neutral pose example" width="400" />
+
+## Recording the Neutral Pose
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  try await service.calibrateSubject(subject, in: session) { status in
+      switch status {
+      case .recording:
+          print("Recording neutral pose...")
+      case .uploading(let uploaded, let total):
+          print("Uploading \(uploaded)/\(total) videos")
+      case .processing(let percent):
+          if let percent = percent {
+              print("Processing: \(percent)%")
+          } else {
+              print("Processing...")
+          }
+      case .done:
+          print("Neutral pose captured!")
+      }
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  await service.calibrateSubject(subject, session, (status) => {
+    switch (status.type) {
+      case "recording":
+        console.log("Recording neutral pose...");
+        break;
+      case "uploading":
+        console.log(`Uploading ${status.uploaded}/${status.total} videos`);
+        break;
+      case "processing":
+        if (status.percent !== undefined) {
+          console.log(`Processing: ${status.percent}%`);
+        } else {
+          console.log("Processing...");
+        }
+        break;
+      case "done":
+        console.log("Neutral pose captured!");
+        break;
+    }
+  });
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import CalibrationStatus, CalibrationStatusUploading, CalibrationStatusProcessing
+
+  def on_status(status):
+      if isinstance(status, CalibrationStatusUploading):
+          print(f"Uploading {status.uploaded}/{status.total} videos")
+      elif isinstance(status, CalibrationStatusProcessing):
+          if status.percent is not None:
+              print(f"Processing: {status.percent}%")
+          else:
+              print("Processing...")
+      elif status == CalibrationStatus.recording:
+          print("Recording neutral pose...")
+      elif status == CalibrationStatus.done:
+          print("Neutral pose captured!")
+
+  service.calibrate_subject(subject, session, on_status)
+  ```
+  </TabItem>
+</Tabs>
+
+## Troubleshooting
+
+**Neutral pose capture failed:**
+- Subject may have moved — instruct them to stand completely still until the recording is complete
+- Check that the subject is fully visible by at least 2 cameras
+- Reposition cameras to capture both sides of the subject and minimize occlusion (requires recalibration of the cameras)
+- If the issue persists, try recalibrating the cameras
+
+**Inaccurate limb lengths or bad kinematics in analysis:**
+- Subject may not have been in the correct pose — refer to the image above and repeat the neutral pose capture
+- Camera calibration may be off — try recalibrating
+
+## Next Steps
+
+Once subject calibration is complete, proceed to [Activity Recording](./activity-recording).

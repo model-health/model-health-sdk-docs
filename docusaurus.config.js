@@ -37,13 +37,27 @@ const config = {
     BUILD_ENV: process.env.BUILD_ENV,
   },
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'product',
+        path: 'docs',
+        routeBasePath: 'docs',
+        sidebarPath: require.resolve('./docs-sidebars.js'),
+      },
+    ],
+  ],
+
   presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          path: 'sdk',
+          routeBasePath: 'sdk',
+          sidebarPath: require.resolve('./sdk-sidebars.js'),
         },
         blog: false,
         theme: {
@@ -72,24 +86,16 @@ const config = {
         items: [
           {
             type: 'docSidebar',
+            sidebarId: 'productSidebar',
+            docsPluginId: 'product',
+            position: 'left',
+            label: 'Product Docs',
+          },
+          {
+            type: 'docSidebar',
             sidebarId: 'tutorialSidebar',
             position: 'left',
-            label: 'Documentation',
-          },
-          {
-            to: '/swift-api',
-            label: 'Swift SDK',
-            position: 'left',
-          },
-          {
-            to: '/typescript-api',
-            label: 'TypeScript SDK',
-            position: 'left',
-          },
-          {
-            to: '/python-api',
-            label: 'Python SDK',
-            position: 'left',
+            label: 'SDK',
           },
           // {
           //   to: '/register',
