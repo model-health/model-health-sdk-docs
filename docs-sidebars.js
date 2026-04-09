@@ -11,7 +11,6 @@ const sidebars = {
     'advanced-analysis',
     'activity-recommendations',
     'musculoskeletal-model',
-    'api-documentation',
   ],
 };
 
