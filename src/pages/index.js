@@ -14,53 +14,20 @@ function HomepageHeader() {
           Model Health Documentation
         </h1>
         <p className="hero__subtitle">
-          Everything you need to use and build with Model Health.
+          Your fastest way to lab-grade movement analysis.
           <br />
-          Biomechanical analysis from smartphone video — for clinicians, researchers and developers.
+          Biomechanical analysis from smartphone video, for medical, performance and research teams
         </p>
+        <div className={styles.buttons}>
+          <Link className="button button--lg" style={{ backgroundColor: '#A5FF01', color: '#02352E', fontWeight: 700, border: 'none' }} to="/docs/intro">
+            Get Started →
+          </Link>
+        </div>
       </div>
     </header>
   );
 }
 
-function PathCards() {
-  return (
-    <section className={styles.pathSection}>
-      <div className="container">
-        <div className={styles.pathGrid}>
-          <div className={styles.pathCard}>
-            <div className={styles.pathCardInner}>
-              <div className={styles.pathIcon}>📖</div>
-              <h2>Product Docs</h2>
-              <p>
-                Guides, best practices, and reference material for using the
-                Model Health web and mobile app. Get up and running quickly,
-                and get the most out of every session.
-              </p>
-              <Link className={clsx('button button--primary button--lg', styles.pathButton)} to="/docs/getting-started">
-                Get Started →
-              </Link>
-            </div>
-          </div>
-          <div className={styles.pathCard}>
-            <div className={styles.pathCardInner}>
-              <div className={styles.pathIcon}>⚡</div>
-              <h2>SDK</h2>
-              <p>
-                Integrate biomechanical analysis directly into your product.
-                Production-ready SDKs for Swift, TypeScript, and Python —
-                from recording to structured data in a few API calls.
-              </p>
-              <Link className={clsx('button button--outline button--primary button--lg', styles.pathButton)} to="/sdk/intro">
-                View SDK →
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function WhatYouGet() {
   return (
@@ -69,19 +36,19 @@ function WhatYouGet() {
         <h2 className="text--center margin-bottom--lg">
           What You Get Out of the Box
         </h2>
-        <div className="row">
+        <div className="row" style={{ justifyContent: 'center', textAlign: 'center' }}>
           {[
             {
-              title: "Seamless Integration",
-              description: "Drop motion capture and biomechanical analysis into your platform. Simple APIs to record movement, run analyses and fetch results. No complex workflows to build from scratch."
+              title: "Markerless motion capture, anywhere",
+              description: "Capture full-body biomechanical data in 3D using just two smartphones — no lab, no markers, no barriers."
             },
             {
-              title: "Cloud-Powered Analysis",
-              description: "Send data to our secure cloud pipelines for 3D modeling, automated metrics extraction and structured reports — all handled behind the scenes. No specialized infrastructure required."
+              title: "Automated data analysis for most frequent physical tests",
+              description: "Run standardized biomechanical assessments for 12 movement types and get objective biomechanical insights in minutes."
             },
             {
-              title: "Structured & Ready-to-Use Outputs",
-              description: "Receive time-series kinematics, key movement metrics and optional reports in formats that can be easily integrated into your app, dashboards, databases, or research workflows."
+              title: "Health & performance dashboards and reports",
+              description: "Track athletes' movement quality, asymmetries, and readiness over time with shareable reports built for clinicians and performance staffs."
             },
           ].map((feature) => (
             <div className="col col--4" key={feature.title}>
@@ -100,20 +67,16 @@ function WhatYouGet() {
 function BuiltFor() {
   const useCases = [
     {
-      title: "Sports & Health Platforms",
-      description: "Build vertical products without a motion capture team. Focus on your workflows while the SDK handles validated motion analysis.",
+      title: "Clinical & Medical staff",
+      description: "Model Health delivers validated 3D movement analysis into everyday rehab. Results in minutes, ready for routine clinical use and return-to-activity decisions.",
     },
     {
-      title: "Existing Product Extensions",
-      description: "Add motion analysis to your portfolio. Integrate SDK outputs into dashboards and analytics pipelines without rebuilding your stack.",
+      title: "Performance team",
+      description: "Assess movement quality, explosiveness, and coordination in minutes, individualizing training, supporting readiness and return-to-performance decisions, and aligning staff around objective movement data.",
     },
     {
-      title: "Clinics & EMR Integration",
-      description: "Automatically route motion data from the collection interface into your internal databases, EMR, or athletic management systems.",
-    },
-    {
-      title: "Research & Development",
-      description: "Access and analyze your motion capture data directly via the SDK instead of the web app, ideal for custom analyses and pipelines.",
+      title: "R&D teams",
+      description: "Built on the foundations of OpenCap, Model Health extends smartphone-based motion capture with automated analysis, standardized metrics, and ready-to-use assessment modules, enabling reproducible protocols at scale without the operational constraints of a traditional motion lab.",
     },
   ];
 
@@ -123,9 +86,9 @@ function BuiltFor() {
         <h2 className="text--center margin-bottom--lg">
           Built For
         </h2>
-        <div className="row">
+        <div className="row" style={{ justifyContent: 'center' }}>
           {useCases.map((caseItem) => (
-            <div className="col col--3" key={caseItem.title}>
+            <div className="col col--4" key={caseItem.title}>
               <div className={styles.builtForCard}>
                 <p><strong>{caseItem.title}</strong></p>
                 <p style={{ fontSize: "0.9rem", marginTop: "0.5rem" }}>{caseItem.description}</p>
@@ -146,7 +109,6 @@ export default function Home() {
       description="Everything you need to use and build with Model Health">
       <HomepageHeader />
       <main>
-        <PathCards />
         <WhatYouGet />
         <BuiltFor />
       </main>

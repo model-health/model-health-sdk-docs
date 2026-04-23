@@ -41,6 +41,51 @@
   color: #F4F3F0 !important;
 }
 
+/* ── Sidebar ─────────────────────────────────────────────── */
+
+/* Category label — bold, uppercase, spaced */
+.theme-doc-sidebar-item-category > .menu__list-item-collapsible > .menu__link {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ifm-color-emphasis-600);
+  padding-top: 1.25rem;
+  padding-bottom: 0.25rem;
+  background: none !important;
+}
+
+/* Hide the collapse/expand arrow — clicking the label still toggles */
+.theme-doc-sidebar-item-category > .menu__list-item-collapsible > .menu__caret {
+  display: none;
+}
+.theme-doc-sidebar-item-category > .menu__list-item-collapsible .menu__link--sublist-caret::after {
+  display: none;
+}
+
+/* Remove left border/indent on category children */
+.theme-doc-sidebar-item-category > .menu__list {
+  border-left: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+/* Page links — lighter weight, clean padding */
+.theme-doc-sidebar-item-link .menu__link {
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  border-radius: 4px;
+}
+
+/* Active page link */
+.theme-doc-sidebar-item-link .menu__link--active {
+  font-weight: 600;
+}
+
+/* ── End Sidebar ─────────────────────────────────────────── */
+
 [data-theme='dark'] {
   /* Primary color scale — Flashy Green for dark mode accents */
   --ifm-color-primary: #A5FF01;
