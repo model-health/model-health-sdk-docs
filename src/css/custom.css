@@ -1,4 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
+  --ifm-font-family-base: 'Inter', system-ui, -apple-system, sans-serif;
+  --ifm-heading-font-family: 'Inter', system-ui, -apple-system, sans-serif;
   /* Brand palette */
   --brand-grey: #F4F3F0;
   --brand-flashy-green: #A5FF01;
@@ -84,7 +88,85 @@
   font-weight: 600;
 }
 
+/* Sidebar category icons */
+.sidebar-category-icon {
+  opacity: 0.5;
+  transition: opacity 0.2s, color 0.2s, background-color 0.2s;
+  padding: 3px;
+  border-radius: 4px;
+}
+
+/* Sign in link in navbar */
+.navbar__item.navbar__link[href="https://app.modelhealth.io"] {
+  color: var(--brand-flashy-green) !important;
+  font-weight: 600;
+}
+
+.navbar__item.navbar__link[href="https://app.modelhealth.io"] svg {
+  display: none;
+}
+
+.navbar__item.navbar__link[href="https://app.modelhealth.io"]:hover {
+  color: var(--brand-flashy-green) !important;
+  opacity: 0.8;
+}
+
+/* Icon turns green with dark background when category is open */
+.menu__list-item:not(.menu__list-item--collapsed) > .menu__list-item-collapsible .sidebar-category-icon {
+  opacity: 1;
+  color: var(--brand-flashy-green);
+  background-color: var(--brand-dark-green);
+}
+
 /* ── End Sidebar ─────────────────────────────────────────── */
+
+/* ── Search ──────────────────────────────────────────────── */
+.navbar__inner {
+  position: relative;
+}
+
+.navbar__search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navbar__search-input {
+  width: 400px;
+  border-radius: 8px;
+  font-family: var(--ifm-font-family-base);
+  font-size: 0.875rem;
+  border: 1px solid rgba(0,0,0,0.12);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.navbar__search-input:focus {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 0 0 3px rgba(52, 168, 83, 0.15);
+  outline: none;
+}
+
+[data-theme='dark'] .navbar__search-input {
+  border-color: rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.07);
+  color: #F4F3F0;
+}
+
+[data-theme='dark'] .navbar__search-input:focus {
+  border-color: #A5FF01;
+  box-shadow: 0 0 0 3px rgba(165, 255, 1, 0.15);
+}
+
+/* Search results dropdown */
+.search-result-match {
+  color: var(--ifm-color-primary-dark);
+  font-weight: 600;
+}
+
+[data-theme='dark'] .search-result-match {
+  color: #A5FF01;
+}
+/* ── End Search ───────────────────────────────────────────── */
 
 [data-theme='dark'] {
   /* Primary color scale — Flashy Green for dark mode accents */

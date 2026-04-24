@@ -4,45 +4,60 @@ title: My first recording
 sidebar_label: My first recording
 ---
 
+import React from 'react';
+
+export const ZoomableImage = ({ src, alt }) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <img src={src} alt={alt} onClick={() => setOpen(true)} style={{cursor: 'zoom-in', borderRadius: '6px', maxWidth: '100%'}} />
+      {open && (
+        <div onClick={() => setOpen(false)} style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999, cursor: 'zoom-out', padding: '2rem'}}>
+          <img src={src} alt={alt} style={{maxWidth: '90vw', maxHeight: '90vh', borderRadius: '8px', boxShadow: '0 8px 40px rgba(0,0,0,0.6)'}} />
+        </div>
+      )}
+    </>
+  );
+};
+
 This guide walks you through your first complete 3D movement analysis with Model Health, from calibrating your set up to exploring your results.
 
 ## Key Concepts
 
 Before you start, familiarise yourself with the core building blocks of the app:
 
-1. **Subject** — the patient or athlete performing the activity.
-2. **Group** — a set of subjects grouped together for analysis.
-3. **Set up** — your iOS devices mounted on tripods and calibrated. Once calibrated, a set up can be reused for any activity with any subject.
-4. **Activity type** — the category of movement you are recording. We currently support 12 activity types, including a "Custom activity".
-5. **Activity** — a single recording with a subject.
-
-![Key concepts overview](/img/docs/recording-first/page5_img1.png)
+- **Subject**: the patient, athlete, or person you are collecting data with.
+- **Group**: a set of subjects grouped together for analysis.
+- **Set up**: your iOS devices mounted on tripods and calibrated. Once calibrated, a set up can be reused for any activity with any subject. A minimum of 2 iOS devices is required.
+- **Activity type**: the category of movement you are recording. We currently support 12 activity types (e.g., CMJ, Cutting manoeuvres, Hop test), including a "Custom activity" that captures 3D biomechanics of any movement.
+- **Activity**: a single recording with a subject, e.g., a single Countermovement jump.
+- **Metric**: a quantified indicator reflecting a specific characteristic of the subject's activity. Metrics are specific to each activity type.
 
 ---
 
-## Step 1 — Calibrate Your Set Up
+## Step 1. Calibrate Your Set Up
 
-Calibration tells the system exactly where your cameras are in space. You only need to do this once per physical set up — after that you can record as many activities as you want without recalibrating, as long as the devices haven't moved.
+Calibration tells the system exactly where your cameras are in space. You only need to do this once per physical set up . after that you can record as many activities as you want without recalibrating, as long as the devices haven't moved.
 
-### 1.1 — Start a session
+### 1.1. Start a session
 
 In the web app, click **Record activity**, then **Set up session**.
 
-![Record activity button](/img/docs/recording-first/page7_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page7_img1.png" alt="Record activity button" />
 
-### 1.2 — Choose your set up configuration
+### 1.2. Choose your set up configuration
 
 Select the configuration that matches the activities you plan to record. Each option shows which activity types it is recommended for.
 
-![Choose setup configuration](/img/docs/recording-first/page8_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page8_img1.png" alt="Choose setup configuration" />
 
-### 1.3 — Connect your devices
+### 1.3. Connect your devices
 
 Install the Model Health app from the App Store on each of your iOS recording devices. Open the app and scan the on-screen QR code. This links the devices to your account so recordings are automatically associated with your session.
 
-![Connect devices via QR code](/img/docs/recording-first/page9_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page9_img1.png" alt="Connect devices via QR code" />
 
-### 1.4 — Position your devices and checkerboard
+### 1.4. Position your devices and checkerboard
 
 Follow the on-screen calibration guide to position your devices and checkerboard:
 
@@ -52,47 +67,47 @@ Follow the on-screen calibration guide to position your devices and checkerboard
 
 Once everything is in position, hit **Calibrate setup**. The process takes about 30 seconds.
 
-![Position devices and calibrate](/img/docs/recording-first/page10_img1.jpeg)
+<ZoomableImage src="/img/docs/recording-first/page10_img1.jpeg" alt="Position devices and calibrate" />
 
-### 1.5 — Calibration complete
+### 1.5. Calibration complete
 
-When calibration succeeds, hit **I'm ready to record**. Your calibrated set up remains active for 12 hours — do not move the phones during this time.
+When calibration succeeds, hit **I'm ready to record**. Your calibrated set up remains active for 12 hours . do not move the phones during this time.
 
-![Calibration successful](/img/docs/recording-first/page11_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page11_img1.png" alt="Calibration successful" />
 
 ---
 
-## Step 2 — Record an Activity
+## Step 2. Record an Activity
 
 Recording an activity follows a 4-step flow: select subject → record static pose → select activity type → record activity.
 
-![Recording flow overview](/img/docs/recording-first/page12_img5.png)
+<ZoomableImage src="/img/docs/recording-first/page12_img5.png" alt="Recording flow overview" />
 
-### 2.1 — Select or create a subject
+### 2.1. Select or create a subject
 
 Choose an existing subject from the dropdown or create a new one, then hit **Continue**.
 
-![Select subject](/img/docs/recording-first/page13_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page13_img1.png" alt="Select subject" />
 
-### 2.2 — Record a static pose
+### 2.2. Record a static pose
 
-Ask the subject to stand still in a neutral position (upright, feet parallel and pointing forward, arms slightly out, full body visible to all cameras). Hit **Record pose** — it takes about 3 seconds.
+Ask the subject to stand still in a neutral position (upright, feet parallel and pointing forward, arms slightly out, full body visible to all cameras). Hit **Record pose** . it takes about 3 seconds.
 
 This step calibrates the biomechanical model to the subject's body dimensions.
 
-![Record static pose](/img/docs/recording-first/page14_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page14_img1.png" alt="Record static pose" />
 
 Once the pose is recorded, hit **Continue**.
 
-![Static pose recorded](/img/docs/recording-first/page15_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page15_img1.png" alt="Static pose recorded" />
 
-### 2.3 — Select the activity type
+### 2.3. Select the activity type
 
 Choose the activity you are about to record and hit **Confirm**.
 
-![Select activity type](/img/docs/recording-first/page16_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page16_img1.png" alt="Select activity type" />
 
-### 2.4 — Start recording
+### 2.4. Start recording
 
 Review the tips for best data quality, then hit **Start recording** when the subject is ready:
 
@@ -102,41 +117,41 @@ Review the tips for best data quality, then hit **Start recording** when the sub
 
 You can optionally add **tags** and **notes** before, during, or after the recording.
 
-![Ready to record](/img/docs/recording-first/page17_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page17_img1.png" alt="Ready to record" />
 
-![Add tags and notes](/img/docs/recording-first/page18_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page18_img1.png" alt="Add tags and notes" />
 
-### 2.5 — Stop recording
+### 2.5. Stop recording
 
 Hit **Stop recording** as soon as the activity is complete. The shorter the video, the faster the processing.
 
-![Stop recording](/img/docs/recording-first/page19_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page19_img1.png" alt="Stop recording" />
 
 Processing starts automatically in the background. You can continue recording other activities or go directly to results.
 
-![Processing started](/img/docs/recording-first/page20_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page20_img1.png" alt="Processing started" />
 
 ---
 
-## Step 3 — Explore Results
+## Step 3. Explore Results
 
-### 3.1 — View videos and 3D model
+### 3.1. View videos and 3D model
 
 From the subject page, select the activity type, then select one or more recordings to review the synchronized video, 3D model, and kinematics data.
 
-![View results — replay](/img/docs/recording-first/page22_img1.jpeg)
+<ZoomableImage src="/img/docs/recording-first/page22_img1.jpeg" alt="View results - replay" />
 
-### 3.2 — Visualize metrics
+### 3.2. Visualize metrics
 
 Switch to the **Metrics** tab to see key test metrics. Select multiple recordings to track changes over time.
 
-![View results — metrics](/img/docs/recording-first/page23_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page23_img1.png" alt="View results - metrics" />
 
-### 3.3 — Download reports
+### 3.3. Download reports
 
 Use the download button (top right) to export single-activity or comparison PDF reports.
 
-![Download PDF report](/img/docs/recording-first/page24_img1.png)
+<ZoomableImage src="/img/docs/recording-first/page24_img1.png" alt="Download PDF report" />
 
 ---
 

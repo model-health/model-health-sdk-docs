@@ -5,22 +5,22 @@ sidebar_label: Best Practices
 ---
 
 :::tip
-This page explains the principles behind the settings recommended in [Activity Recommendations](/docs/activity-recommendations). If you need per-activity camera placement and parameter values, start there — come here to understand *why* those recommendations exist.
+This page covers high level best practices to collect good quality biomechanical data from Model Health system.
+More specific advices on camera placements and calibration can be found in the "Recording Set Up Guides" section of this documentation .
 :::
 
 ## High-Level Best Practices
 
 - Ensure you are connected to a stable internet connection. Video upload may fail with a poor connection.
 - Do not move cameras once you've passed the calibration step. If you accidentally moved a camera, start a new session.
-- The checkerboard is only used for calibrating the cameras — you can remove it after successfully completing the calibration step.
-
-▶️ [Watch: Tutorial webinar](https://www.youtube.com/watch?v=7Xk8-K7A3Zk) · [Browse Q&A](https://mobilize.stanford.edu/wp-content/uploads/2022/12/OpenCap-QA-Final.pdf)
+- The checkerboard is only used for calibrating the cameras, you can remove it after successfully completing the calibration step.
 
 ## Camera Setup
 
+- Always update the Model Health app on each phone to make sure you benefit from the latest video recording features.
 - Use tripods to hold the smartphone in a fixed position during the session.
-- The rear-facing camera is used for recording — position the smartphones accordingly.
-- Position the cameras to **avoid segment occlusions** during the task.
+- The rear-facing camera is used for recording, position the smartphones accordingly.
+- Position the cameras to **avoid body segment occlusions** during the task.
   - At least two cameras need to see every body segment at all times. Two cameras is sufficient for many tasks, but tasks where segments get occluded may benefit from an additional front-facing camera (e.g., single-leg activities).
   - For a two-camera setup, cameras at 30–45° off the forward-facing line is typically best. Pure sagittal views do not work well due to limb occlusion.
 - **Avoid people in the background.** Our algorithms handle this, but it makes them slower and more error-prone.
@@ -28,18 +28,28 @@ This page explains the principles behind the settings recommended in [Activity R
 - Position the smartphone in **either landscape or portrait** orientation. If in landscape, make sure portrait orientation is **not locked** in your device settings — otherwise videos will be recorded in landscape format with a portrait orientation, leading to poor motion reconstruction.
 - **Avoid having the participant exit and re-enter the capture volume.**
 
-▶️ [Watch: Setting up your capture volume for overground gait](https://www.youtube.com/watch?v=LPHeq7bxP38&ab_channel=OpenCap)
+<div style={{display: 'flex', justifyContent: 'center', margin: '1rem 0'}}>
+<div style={{position: 'relative', width: '60%', aspectRatio: '16/9'}}>
+  <iframe
+    src="https://www.youtube.com/embed/LPHeq7bxP38"
+    title="Setting up your capture volume for overground gait"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+    allowFullScreen
+    style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', borderRadius: '8px', border: 'none'}}
+  />
+</div>
+</div>
 
 ## Camera Calibration
 
 **Environment:**
 - Record in a well-lit environment.
-- If recording outdoors with direct sun on the checkerboard, shade it before calibrating.
+- If recording outdoors with direct sun on the checkerboard, shade it before calibrating as excessive light reflection can make calibration harder.
 
 **Checkerboard dimensions:**
 - Use a checkerboard on at least A4 paper with squares of at least 35mm. We recommend printing [this board](https://cdn.prod.website-files.com/62468717bed6b421c89bbf36/6258dd3518244b061c1b02f5_Checkerboard_4x5_35mm.pdf).
-- Ensure the checkerboard has a white border around all sides.
-- Verify the dimensions of the squares after printing.
+- Ensure the checkerboard has a couple centimeter white border around all sides.
+- Verify the dimensions of the squares after printing - if they are not exactly 35mm, adjust the default in your account settings.
 - **The number of columns and rows to enter in the web app is the number of black-to-black corners**, not the number of squares.
 
 **Checkerboard position:**
@@ -48,8 +58,6 @@ This page explains the principles behind the settings recommended in [Activity R
 - Keep it within 5m of the cameras.
 - It should not point straight at one of the cameras — move it up, down, left, or right to avoid this.
 - Position it at the center of your capture volume, at least 2m from the cameras, while visible by all cameras.
-
-▶️ [Watch: How to calibrate your cameras](https://www.youtube.com/watch?v=T6TkFLEfQ0Y&feature=youtu.be)
 
 :::tip New: 360° camera setup
 You can now position cameras in a full 360° circle around the subject by calibrating them with the checkerboard **flat on the floor**. This is ideal for activities that benefit from both front and back views.
@@ -63,11 +71,3 @@ You can now position cameras in a full 360° circle around the subject by calibr
 - Colored dots next to trial names indicate processing status: **green** (success), **orange** (processing), **red** (error). Re-collect trials with a red dot when possible.
 - Download data only when all dots have turned green (or red). Click red dots for details on what went wrong.
 - To collect data on another participant without re-calibrating, press **"New session same setup"**.
-
-▶️ [Watch: Collecting overground data](https://www.youtube.com/watch?v=h4jaSZwcrm8&ab_channel=OpenCap)
-
-▶️ [Watch: Collecting treadmill data](https://www.youtube.com/watch?v=LIlykebGI4Q&feature=youtu.be)
-
----
-
-**Want to configure frame rate, filter frequency, or the musculoskeletal model?** See [Advanced Settings](/docs/advanced-settings).

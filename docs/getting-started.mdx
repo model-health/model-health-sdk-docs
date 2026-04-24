@@ -1,29 +1,51 @@
 ---
 id: Checklist
-title: Get started checklist
-sidebar_label: Checklist
+title: Before you begin
+sidebar_label: Before you begin
 
 ---
+
+import React from 'react';
+
+export const ZoomableImage = ({ src, alt, style }) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <img src={src} alt={alt} onClick={() => setOpen(true)} style={{...style, cursor: 'zoom-in'}} />
+      {open && (
+        <div onClick={() => setOpen(false)} style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999, cursor: 'zoom-out', padding: '2rem'}}>
+          <img src={src} alt={alt} style={{maxWidth: '90vw', maxHeight: '90vh', borderRadius: '8px', boxShadow: '0 8px 40px rgba(0,0,0,0.6)'}} />
+        </div>
+      )}
+    </>
+  );
+};
+
 :::info
-Everything you need before your first recording — hardware checklist, app downloads, and supported devices.
+Before you record your first movement analysis, make sure you have the right equipment on hand.
 :::
 
-## What you need to get started
+## Requirement list
 
-You'll just need the following:
+That's really all you need:
 
-- **A laptop or tablet** of any type to run the web app at [app.modelhealth.io](https://app.modelhealth.io).
-- **At least 2 iOS devices** — we support all iPhones and iPads released in 2018 or later. See the [full list of supported devices](#supported-ios-devices-for-recording) below.
-- **Tripods and phone holders** for each iOS device — we've tested these specific [tripods](https://www.amazon.com/AmazonBasics-Lightweight-Camera-Mount-Tripod/dp/B00XI87KV8/) and [phone holders](https://www.amazon.com/Vastar-Universal-Smartphone-Horizontal-Adjustable/dp/B01L3B5PBI/) with excellent results.
-- **Checkerboard** — print [this checkerboard](https://cdn.prod.website-files.com/62468717bed6b421c89bbf36/6258dd3518244b061c1b02f5_Checkerboard_4x5_35mm.pdf) on A4 paper and mount it to a flat surface. Each square must be exactly 35mm — print at actual size with no scaling.
-- **A stable internet connection** — required for both the iOS app and web application to function properly.
+- **A laptop or tablet** — any type works, just open the web app at app.modelhealth.io.
+- **At least 2 iOS devices** — any model released in 2018 or later. See the [full list of supported devices](#supported-ios-devices-for-recording) below.
+- **Tripods and phone holders** — one per device. We've tested these specific [tripods](https://www.amazon.com/AmazonBasics-Lightweight-Camera-Mount-Tripod/dp/B00XI87KV8/) and [phone holders](https://www.amazon.com/Vastar-Universal-Smartphone-Horizontal-Adjustable/dp/B01L3B5PBI/) with excellent results.
+- **Checkerboard** — print [this checkerboard](/img/docs/getting-started/Checkerboard_4x5_35mm.pdf) on A4 paper and mount it to a flat surface.
 
-<img src="/img/docs/getting-started/image.png" alt="Checkerboard setup" style={{width: '280px', marginLeft: '2rem', marginBottom: '0.5rem'}} />
-
-:::warning
+:::warning Measure your checkerboard squares
 Print at **actual size (100% scale)** with no scaling and no "Fit to Page". The default square is exactly **35mm**.
-You can also edit the square size to your printed checkerboard dimensions in the app settings — this is critical for accurate measurements.
+
+In case your printed checkerboard does not have exactly 35mm squares, **update your checkerboard dimensions in the app Settings** — this is critical for accurate measurements.
+<ZoomableImage src="/img/docs/getting-started/update-checkerboard-default.png" alt="Checkerboard setup" style={{width: '280px', marginLeft: '2rem', marginBottom: '0.5rem'}} />
+
 :::
+
+- **A stable internet connection** —  needed for both the app and web platform. Devices don't need to be on the same WiFi / mobile connection. Recording devices supported asynchronous video upload but require a minimal internet connection to communicate with the web app properly. 
+
+
+
 
 ## Mobile App
 
@@ -91,4 +113,4 @@ The web app works on laptops, tablets, and phones. We recommend using a **phone 
 
 ---
 
-**Next step:** [Web App Interface Tips](/docs/web-app-tips) — learn how to navigate the 3D model viewer and manage sessions in the web app.
+**Next step:** [My first recording](/docs/recording-first) — it walks you through your first complete 3D movement analysis with Model Health, from calibrating your set up to exploring your results..

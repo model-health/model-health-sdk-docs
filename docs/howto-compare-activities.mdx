@@ -1,0 +1,50 @@
+---
+id: howto-compare-activities
+title: Compare activities for the same subject
+sidebar_label: Compare activities
+---
+
+export const ZoomableImage = ({ src, alt, caption }) => {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <>
+      <div style={{textAlign: 'center'}}>
+        <img
+          src={src} alt={alt}
+          onClick={() => setOpen(true)}
+          style={{width: '80%', cursor: 'zoom-in', borderRadius: '6px'}}
+        />
+        {caption && <p style={{fontSize: '0.8rem', color: 'var(--ifm-color-secondary-darkest)', marginTop: '0.4rem'}}>{caption}</p>}
+      </div>
+      {open && (
+        <div onClick={() => setOpen(false)} style={{position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.85)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 9999, cursor: 'zoom-out', padding: '2rem'}}>
+          <img src={src} alt={alt} style={{maxWidth: '90vw', maxHeight: '90vh', borderRadius: '8px', boxShadow: '0 8px 40px rgba(0,0,0,0.6)'}} />
+        </div>
+      )}
+    </>
+  );
+};
+
+import React from 'react';
+
+The **Replay** view lets you overlay multiple recordings of the same activity type side by side — useful for tracking progress over time or comparing left vs. right trials.
+
+### Step 1. Open a subject and select a first activity
+
+Navigate to a subject and open any completed activity. In the **Activities** panel on the left, click a trial to load it into the 3D replay view. The skeleton and joint angle graph will update to reflect that recording.
+
+<ZoomableImage
+  src="/img/docs/howto-compare-activities/howto-compare-activities-single.png"
+  alt="Select a first activity to compare"
+  caption="Click any completed activity in the left panel to load it into the Replay view."
+/>
+
+### Step 2. Add more activities to the comparison
+
+With the first activity loaded, click additional trials in the **Activities** panel to add them to the overlay. Each activity is assigned a distinct color — the 3D skeletons and the joint angle curves are all rendered simultaneously, making differences in movement pattern immediately visible.
+
+<ZoomableImage
+  src="/img/docs/howto-compare-activities/howto-compare-activities-multiple.png"
+  alt="Multiple activities overlaid for comparison"
+  caption="Multiple trials are overlaid in the Replay view — each skeleton and curve uses a unique color for easy differentiation."
+/>

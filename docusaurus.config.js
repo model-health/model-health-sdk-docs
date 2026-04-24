@@ -47,6 +47,19 @@ const config = {
         sidebarPath: require.resolve('./docs-sidebars.js'),
       },
     ],
+    [
+      require.resolve('@easyops-cn/docusaurus-search-local'),
+      {
+        hashed: true,
+        docsRouteBasePath: ['docs', 'sdk'],
+        indexDocs: true,
+        indexPages: false,
+        searchBarPosition: 'right',
+        searchBarShortcutHint: true,
+        highlightSearchTermsOnTargetPage: true,
+        explicitSearchResultPath: true,
+      },
+    ],
   ],
 
   presets: [
@@ -85,23 +98,15 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'productSidebar',
-            docsPluginId: 'product',
+            to: '/docs/Overview',
+            label: 'Overview',
             position: 'left',
-            label: 'Product Docs',
           },
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'SDK',
+            href: 'https://app.modelhealth.io',
+            label: 'Sign in',
+            position: 'right',
           },
-          // {
-          //   to: '/register',
-          //   label: 'Get API Key',
-          //   position: 'right',
-          // },
         ],
       },
       footer: {
