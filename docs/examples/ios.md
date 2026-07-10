@@ -2,7 +2,7 @@
 
 A native SwiftUI app that mirrors the complete SDK workflow. It connects to the Model Health Companion app via the SDK to manage sessions, calibrate cameras and subjects, record activities and retrieve analysis results.
 
-Source: [`examples/ios`](https://github.com/model-health/model-health/tree/main/examples/ios)
+Source: [`examples/app/ios`](https://github.com/model-health/model-health/tree/main/examples/app/ios)
 
 ## Requirements
 
@@ -19,7 +19,7 @@ An Xcode config file is required by the project but not committed to the reposit
 Copy the template and fill in your Apple Developer details:
 
 ```bash
-cd examples/ios
+cd examples/app/ios
 cp LocalConfig.xcconfig.template LocalConfig.xcconfig
 ```
 
@@ -47,7 +47,7 @@ enum ExampleConfig {
 Open the project in Xcode and run it on a connected device or simulator:
 
 ```bash
-open examples/ios/ModelHealthDemo.xcodeproj
+open examples/app/ios/ModelHealthDemo.xcodeproj
 ```
 
 Select your target device in Xcode's toolbar and press **Run** (⌘R).

@@ -2,7 +2,7 @@
 
 A collection of example scripts demonstrating the Model Health Python SDK.
 
-Source: [`examples/python`](https://github.com/model-health/model-health/tree/main/examples/python)
+Source: [`examples/scripts/python`](https://github.com/model-health/model-health/tree/main/examples/scripts/python)
 
 ## Requirements
 
@@ -50,7 +50,7 @@ Walks through the complete capture workflow end-to-end:
 5. Record a movement trial
 
 ```bash
-python3 examples/python/activity_recording.py
+python3 examples/scripts/python/activity_recording.py
 ```
 
 ### `activity_analysis.py` — Post-capture analysis workflow
@@ -62,7 +62,7 @@ Walks through the post-capture analysis workflow on an existing session:
 4. Choose which results to download (e.g., metrics or report)
 
 ```bash
-python3 examples/python/activity_analysis.py
+python3 examples/scripts/python/activity_analysis.py
 ```
 
 ### `archive_session.py` — Session archive download
@@ -70,7 +70,7 @@ python3 examples/python/activity_analysis.py
 Requests preparation of a session archive, polls until ready and downloads the resulting ZIP file. Optionally includes video files.
 
 ```bash
-python3 examples/python/archive_session.py
+python3 examples/scripts/python/archive_session.py
 ```
 
 ### `session_data.py` — Data download
@@ -78,7 +78,7 @@ python3 examples/python/archive_session.py
 Downloads data from a session at multiple levels of granularity: raw or synced videos, OpenSim model, motion data and analysis results.
 
 ```bash
-python3 examples/python/session_data.py
+python3 examples/scripts/python/session_data.py
 ```
 
 ### `plot_kinematics.py` — Download and plot kinematics for an activity
@@ -88,7 +88,7 @@ activity, downloads its kinematics CSV and plots selected joint angle
 columns against time.
 
 ```bash
-python3 examples/python/plot_kinematics.py
+python3 examples/scripts/python/plot_kinematics.py
 ```
 
 ### `opencap_import.py` — OpenCap data import
@@ -96,5 +96,5 @@ python3 examples/python/plot_kinematics.py
 Imports an OpenCap session into Model Health for processing and analysis. Demonstrates the `importSession` API and `SessionConfig`.
 
 ```bash
-python3 examples/python/opencap_import.py <opencap_session_id>
+python3 examples/scripts/python/opencap_import.py <opencap_session_id>
 ```
