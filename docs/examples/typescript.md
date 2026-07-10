@@ -2,7 +2,7 @@
 
 A Vite web app that implements the same workflow as the iOS example in the browser. It uses the `@modelhealth/modelhealth` npm package and runs a local dev server.
 
-Source: [`examples/ts`](https://github.com/model-health/model-health/tree/main/examples/ts)
+Source: [`examples/app/ts`](https://github.com/model-health/model-health/tree/main/examples/app/ts)
 
 ## Requirements
 
@@ -15,7 +15,7 @@ Source: [`examples/ts`](https://github.com/model-health/model-health/tree/main/e
 Copy the environment template and add your API key:
 
 ```bash
-cd examples/ts
+cd examples/app/ts
 cp .env.local.template .env.local
 ```
 
