@@ -32,6 +32,7 @@ const sidebars = {
         'guides/camera-calibration',
         'guides/subject-calibration',
         'guides/activity-recording',
+        'guides/multiple-subjects',
         'guides/activity-analysis',
         'guides/archive-retrieval',
         'guides/session-import',

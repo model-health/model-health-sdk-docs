@@ -1,0 +1,106 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Recording Multiple Subjects
+
+If you're capturing several subjects in a row without moving the cameras, you don't need to repeat camera calibration for each one. Creating a new session from a previous, calibrated session carries over its camera calibration — only the new subject needs to be calibrated before you can start recording.
+
+:::tip Full working example
+See [`examples/scripts`](https://github.com/model-health/model-health/tree/main/examples/scripts) — the `activity_recording` script for each language loops through subjects this way, offering to start a new session with the same camera setup after each subject's activities are recorded.
+:::
+
+## When to Use This
+
+- Cameras must stay in the same physical position as the source session. If you need to reposition any camera, [recalibrate](./camera-calibration) instead and start from a fresh session.
+- The source session must have already completed [camera calibration](./camera-calibration) — that's what gets carried over.
+
+## Creating a New Session
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let newSession = try await service.newSession(from: previousSession)
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const newSession = await service.newSessionFromSession(previousSession);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  new_session = service.new_session_from_session(previous_session)
+  ```
+  </TabItem>
+</Tabs>
+
+This returns a brand new, independent `Session` — the previous session is untouched and remains usable.
+
+## What Carries Over
+
+| | Carried over? |
+|---|---|
+| Camera calibration | Yes |
+| Session configuration (framerate, OpenSim model, etc.) | Yes |
+| Camera connection — no QR scan needed | Yes |
+| Subject calibration | No — calibrate the new subject before recording |
+
+Since cameras are already paired and calibrated, skip straight to [Subject Calibration](./subject-calibration) for the new subject — there's no need to reconnect cameras or repeat checkerboard calibration.
+
+## Looping Over Subjects
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  repeat {
+      let subject = pickOrCreateSubject()
+      try await service.calibrateSubject(subject, in: session, statusUpdate: callback)
+
+      // record one or more activities for this subject...
+
+      guard confirm("Record another subject with the same camera setup?") else {
+          break
+      }
+      session = try await service.newSession(from: session)
+  } while true
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  for (;;) {
+    const subject = pickOrCreateSubject();
+    await service.calibrateSubject(subject, session, callback);
+
+    // record one or more activities for this subject...
+
+    if (!(await confirm("Record another subject with the same camera setup?"))) {
+      break;
+    }
+    session = await service.newSessionFromSession(session);
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  while True:
+      subject = pick_or_create_subject()
+      service.calibrate_subject(subject, session, callback)
+
+      # record one or more activities for this subject...
+
+      if not confirm("Record another subject with the same camera setup?"):
+          break
+      session = service.new_session_from_session(session)
+  ```
+  </TabItem>
+</Tabs>
+
+## Troubleshooting
+
+**Request fails or session not found:**
+- Confirm the source session has completed camera calibration — sessions that haven't been calibrated yet can't be used as the source for this call
+- Check network connectivity, as with any other session operation
+
+## Next Steps
+
+With the new session created, proceed to [Subject Calibration](./subject-calibration) for the next subject.
