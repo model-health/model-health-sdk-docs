@@ -37,6 +37,12 @@ Then import it in your Swift files:
 import ModelHealth
 ```
 
+### 3D View (optional)
+
+To embed the interactive 3D view, also add the `ModelHealthUI` product to your target — it's a
+separate product so apps that don't need it don't pay for WebKit/SwiftUI. See the
+[3D View guide](../guides/3d-view) for usage.
+
 ## TypeScript SDK
 
 ### Requirements
@@ -51,6 +57,11 @@ Then import it in your TypeScript files:
 ```typescript
 import { ModelHealthService } from '@modelhealth/modelhealth';
 ```
+
+### 3D View (optional)
+<CodeBlock language="bash">{`npm install @modelhealth/viewer-react@${versionData.sdkVersion}`}</CodeBlock>
+
+See the [3D View guide](../guides/3d-view) for usage.
 
 ## Python SDK
 
