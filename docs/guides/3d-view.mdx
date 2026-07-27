@@ -1,0 +1,127 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# 3D View
+
+Render an activity's `animation` motion data as an interactive 3D view — the same skeletal
+playback used in the Model Health web app, embeddable directly in your own app.
+
+:::info Not available in the Python SDK
+3D View is a Swift/TypeScript-only feature. The Python SDK can still fetch the underlying
+`animation` motion data, but there's no bundled viewer for it.
+:::
+
+## Installation
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  If you've already added the Model Health Swift package (see [Installation](../getting-started/installation)),
+  add the `ModelHealthUI` product alongside `ModelHealth` to your target — it's a separate
+  product so apps that don't need the 3D view don't pay for WebKit/SwiftUI.
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```bash
+  npm install @modelhealth/viewer-react
+  ```
+  </TabItem>
+</Tabs>
+
+## Loading Animation Data
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  Swift loads the data automatically when you construct `View3DController` with an activity —
+  see [Rendering the Viewer](#rendering-the-viewer) below.
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  import { fetchAnimationTransforms } from '@modelhealth/viewer-react';
+
+  const transforms = await fetchAnimationTransforms(service, activity);
+  ```
+
+  `fetchAnimationTransforms` fetches and parses the activity's `animation` motion data in one call.
+  </TabItem>
+</Tabs>
+
+## Rendering the Viewer
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  import SwiftUI
+  import ModelHealthUI
+
+  struct ActivityViewer: View {
+      @StateObject private var controller: View3DController
+
+      init(activity: Activity, service: ModelHealthService) {
+          _controller = StateObject(wrappedValue: View3DController(for: activity, using: service))
+      }
+
+      var body: some View {
+          View3D(controller: controller)
+      }
+  }
+  ```
+
+  Constructing `View3DController(for:using:)` immediately fetches and loads the activity's
+  animation data — no separate load step. Check `isLoadingTransforms` to show a loading state,
+  and call `reload()` to retry after a `lastError`.
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```tsx
+  import { useRef } from 'react';
+  import { View3D } from '@modelhealth/viewer-react';
+  import type { View3DHandle } from '@modelhealth/viewer-react';
+  import '@modelhealth/viewer-react/styles.css';
+
+  function ActivityViewer({ transforms }) {
+    const viewerRef = useRef<View3DHandle>(null);
+    return <View3D ref={viewerRef} transforms={transforms} />;
+  }
+  ```
+  </TabItem>
+</Tabs>
+
+## Playback Controls
+
+`View3D` renders no built-in playback UI on either platform — you drive playback yourself, so
+you can style controls to match your app rather than a fixed embedded toolbar.
+
+- **Swift** — `View3DController` exposes `play()`, `pause()`, `seek(to:)`, `step(_:)`,
+  `setPlaybackSpeed(_:)`, plus published `isReady`/`currentTime`/`duration`/`isPlaying` you can
+  bind directly to SwiftUI controls (sliders, buttons).
+- **TypeScript** — `View3D`'s ref exposes the same operations (`play`, `pause`, `seek`, `step`,
+  `setPlaybackSpeed`) plus `currentTime`/`duration`/`isPlaying`/`playbackSpeed` getters. The
+  package also exports a ready-made `<PlaybackControls>` component if you don't want to build
+  your own:
+
+  ```tsx
+  import { PlaybackControls } from '@modelhealth/viewer-react';
+
+  <PlaybackControls
+    currentTime={viewerRef.current?.currentTime ?? 0}
+    duration={viewerRef.current?.duration ?? 0}
+    playing={playing}
+    playbackSpeed={playbackSpeed}
+    onTimeChange={(time) => viewerRef.current?.seek(time)}
+    onPlayingChange={(next) => (next ? viewerRef.current?.play() : viewerRef.current?.pause())}
+    onPlaybackSpeedChange={setPlaybackSpeed}
+    onStep={(direction) => viewerRef.current?.step(direction)}
+  />
+  ```
+
+## Troubleshooting
+
+- **No animation data available** — the activity hasn't finished processing yet, or has no
+  `animation` motion data type. Wait for `.ready` status (see [Activity Recording](./activity-recording))
+  first. Surfaced via `lastError` (Swift) or a thrown error from `fetchAnimationTransforms` (TypeScript).
+- **Swift: viewer fails to load** — `View3DController.lastError` also surfaces WebView-level load
+  failures (e.g. a malformed bundled resource). Check it if `isReady` never becomes `true`.
+
+## Next Steps
+
+3D View picks up where [Activity Recording](./activity-recording) leaves off — once an activity is
+`.ready` or `.analysing`, its `animation` data is available to visualize, it is not necessary to wait for
+analysis to complete.

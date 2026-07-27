@@ -34,6 +34,7 @@ const sidebars = {
         'guides/activity-recording',
         'guides/multiple-subjects',
         'guides/activity-analysis',
+        'guides/3d-view',
         'guides/archive-retrieval',
         'guides/session-import',
       ],
