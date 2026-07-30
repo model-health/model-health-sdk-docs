@@ -1,7 +1,11 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import threeDViewExample from '../../static/img/3d-view.png';
 
 # 3D View
+
+<div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
+<div style={{ flex: '1 1 320px', minWidth: '280px' }}>
 
 Render an activity's `animation` motion data as an interactive 3D view — the same skeletal
 playback used in the Model Health web app, embeddable directly in your own app.
@@ -25,6 +29,10 @@ playback used in the Model Health web app, embeddable directly in your own app.
   ```
   </TabItem>
 </Tabs>
+
+</div>
+<img src={threeDViewExample} alt="3D View screen in the iOS demo app, showing playback controls and a scrubber" width="200" style={{ flexShrink: 0 }} />
+</div>
 
 ## Loading Animation Data
 
@@ -112,6 +120,67 @@ you can style controls to match your app rather than a fixed embedded toolbar.
   />
   ```
 
+## Overlays
+
+`View3D` can render an optional left/right vector overlay on top of the animation.
+This isn't backed by a dedicated SDK motion data type: you
+upload your own external data — in whatever format you have it (CSV, JSON, plain text,
+etc) — tagged with a name of your choosing. The backend syncs it to the trial's
+timeline and produces a `.sto`-formatted result tagged `<tag>-sync`. That synced `.sto`
+result is what actually gets fetched and parsed for the overlay, regardless of the format
+you originally uploaded. The full flow:
+
+1. Initialize the service.
+2. Upload your external data via `addMotionData`, tagged with a name of your choosing (e.g. `"my-data"`).
+3. Set up the viewer with that same tag — it fetches the synced `.sto` result automatically.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  // 1. Initialize the service
+  let service = try ModelHealthService(apiKey: "your-api-key-here")
+
+  // 2. Upload your external data, tagged with a name of your choosing — any format works
+  //    (CSV shown here); the backend syncs it and produces the .sto result the viewer reads
+  let myData = try Data(contentsOf: myDataFileURL)
+  let file = ExternalResultFile(tag: "my-data", fileExtension: "csv", data: myData)
+  let activity = try await service.addMotionData([file], to: activity)
+
+  // 3. Construct the controller with the same tag — it fetches the synced .sto result
+  //    (tagged "my-data-sync") automatically, alongside the animation data
+  let controller = View3DController(for: activity, using: service, externalDataTag: "my-data")
+  ```
+
+  If you don't know the tag ahead of time (e.g. it was uploaded by a different part of your
+  system), look for a `Result` on the activity whose `tag` ends in `-sync` and whose file
+  extension is `.sto`, and strip the `-sync` suffix.
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  import { fetchExternalSto, parseExternalSto } from '@modelhealth/viewer-react';
+
+  // 1. Initialize the service
+  const service = new ModelHealthService({ apiKey: "your-api-key-here" });
+  await service.init();
+
+  // 2. Upload your external data, tagged with a name of your choosing — any format works
+  //    (CSV shown here); the backend syncs it and produces the .sto result the viewer reads
+  const file = { tag: 'my-data', extension: 'csv', data: myDataBytes };
+  const updatedActivity = await service.addMotionDataToActivity(activity, [file]);
+
+  // 3. Fetch and parse the synced .sto result using the same tag
+  const sto = await fetchExternalSto(service, updatedActivity, 'my-data');
+  const overlay = sto ? parseExternalSto(sto) : null;
+  ```
+
+  Pass the result to `View3D`'s `overlay` prop:
+
+  ```tsx
+  <View3D ref={viewerRef} transforms={transforms} overlay={overlay ?? undefined} />
+  ```
+  </TabItem>
+</Tabs>
+
 ## Troubleshooting
 
 - **No animation data available** — the activity hasn't finished processing yet, or has no
@@ -119,6 +188,9 @@ you can style controls to match your app rather than a fixed embedded toolbar.
   first. Surfaced via `lastError` (Swift) or a thrown error from `fetchAnimationTransforms` (TypeScript).
 - **Swift: viewer fails to load** — `View3DController.lastError` also surfaces WebView-level load
   failures (e.g. a malformed bundled resource). Check it if `isReady` never becomes `true`.
+- **Overlay not appearing** — fetching the overlay fails silently rather than throwing if the
+  tagged file doesn't exist or hasn't been synced yet. Confirm the tag you passed matches what
+  the file was actually uploaded under, and that a `-sync` result exists for it.
 
 ## Next Steps
 
