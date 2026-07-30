@@ -36,6 +36,9 @@
                                 <a class="function" href="#ModelHealthService.get_session">get_session</a>
                         </li>
                         <li>
+                                <a class="function" href="#ModelHealthService.new_session_from_session">new_session_from_session</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#ModelHealthService.create_session">create_session</a>
                         </li>
                         <li>
@@ -116,6 +119,9 @@
                         <li>
                                 <a class="function" href="#ModelHealthService.subject_metrics">subject_metrics</a>
                         </li>
+                        <li>
+                                <a class="function" href="#ModelHealthService.set_video_upload_mode">set_video_upload_mode</a>
+                        </li>
                 </ul>
 
             </li>
@@ -153,37 +159,37 @@
                     <a class="class" href="#Session">Session</a>
                             <ul class="memberlist">
                         <li>
+                                <a class="variable" href="#Session.session_name">session_name</a>
+                        </li>
+                        <li>
                                 <a class="variable" href="#Session.name">name</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Session.created_at">created_at</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Session.activities_count">activities_count</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Session.updated_at">updated_at</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Session.public">public</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Session.qrcode">qrcode</a>
-                        </li>
-                        <li>
                                 <a class="variable" href="#Session.subject">subject</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Session.session_name">session_name</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Session.activities">activities</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Session.user">user</a>
+                                <a class="variable" href="#Session.created_at">created_at</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Session.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Session.user">user</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Session.activities_count">activities_count</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Session.qrcode">qrcode</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Session.updated_at">updated_at</a>
                         </li>
                 </ul>
 
@@ -192,34 +198,34 @@
                     <a class="class" href="#Activity">Activity</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#Activity.activity_type">activity_type</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Activity.results">results</a>
+                                <a class="variable" href="#Activity.updated_at">updated_at</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Activity.name">name</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Activity.status">status</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Activity.created_at">created_at</a>
-                        </li>
-                        <li>
                                 <a class="variable" href="#Activity.videos">videos</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Activity.id">id</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Activity.updated_at">updated_at</a>
+                                <a class="variable" href="#Activity.session">session</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Activity.tags">tags</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Activity.session">session</a>
+                                <a class="variable" href="#Activity.results">results</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Activity.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Activity.activity_type">activity_type</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Activity.created_at">created_at</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Activity.status">status</a>
                         </li>
                 </ul>
 
@@ -228,16 +234,16 @@
                     <a class="class" href="#ActivityResult">ActivityResult</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#ActivityResult.media">media</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ActivityResult.activity">activity</a>
+                                <a class="variable" href="#ActivityResult.tag">tag</a>
                         </li>
                         <li>
                                 <a class="variable" href="#ActivityResult.id">id</a>
                         </li>
                         <li>
-                                <a class="variable" href="#ActivityResult.tag">tag</a>
+                                <a class="variable" href="#ActivityResult.activity">activity</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ActivityResult.media">media</a>
                         </li>
                 </ul>
 
@@ -249,13 +255,13 @@
                                 <a class="variable" href="#Video.id">id</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Video.activity">activity</a>
+                                <a class="variable" href="#Video.video_thumb">video_thumb</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Video.video">video</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Video.video_thumb">video_thumb</a>
+                                <a class="variable" href="#Video.activity">activity</a>
                         </li>
                 </ul>
 
@@ -264,16 +270,13 @@
                     <a class="class" href="#Subject">Subject</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#Subject.birth_year">birth_year</a>
+                                <a class="variable" href="#Subject.id">id</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Subject.sex_at_birth">sex_at_birth</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Subject.gender">gender</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Subject.characteristics">characteristics</a>
+                                <a class="variable" href="#Subject.birth_year">birth_year</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Subject.name">name</a>
@@ -282,13 +285,16 @@
                                 <a class="variable" href="#Subject.weight">weight</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Subject.id">id</a>
+                                <a class="variable" href="#Subject.gender">gender</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Subject.age">age</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Subject.height">height</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Subject.age">age</a>
+                                <a class="variable" href="#Subject.characteristics">characteristics</a>
                         </li>
                 </ul>
 
@@ -297,25 +303,25 @@
                     <a class="class" href="#SubjectParameters">SubjectParameters</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#SubjectParameters.weight">weight</a>
+                                <a class="variable" href="#SubjectParameters.birth_year">birth_year</a>
                         </li>
                         <li>
                                 <a class="variable" href="#SubjectParameters.height">height</a>
                         </li>
                         <li>
-                                <a class="variable" href="#SubjectParameters.name">name</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#SubjectParameters.birth_year">birth_year</a>
-                        </li>
-                        <li>
                                 <a class="variable" href="#SubjectParameters.sex_at_birth">sex_at_birth</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SubjectParameters.weight">weight</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SubjectParameters.gender">gender</a>
                         </li>
                         <li>
                                 <a class="variable" href="#SubjectParameters.characteristics">characteristics</a>
                         </li>
                         <li>
-                                <a class="variable" href="#SubjectParameters.gender">gender</a>
+                                <a class="variable" href="#SubjectParameters.name">name</a>
                         </li>
                 </ul>
 
@@ -324,10 +330,10 @@
                     <a class="class" href="#ActivityTag">ActivityTag</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#ActivityTag.label">label</a>
+                                <a class="variable" href="#ActivityTag.value">value</a>
                         </li>
                         <li>
-                                <a class="variable" href="#ActivityTag.value">value</a>
+                                <a class="variable" href="#ActivityTag.label">label</a>
                         </li>
                 </ul>
 
@@ -433,6 +439,21 @@
                         </li>
                         <li>
                                 <a class="variable" href="#VideoVersion.synced">synced</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#VideoUploadMode">VideoUploadMode</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#VideoUploadMode.enabled">enabled</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VideoUploadMode.disabled">disabled</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#VideoUploadMode.flush">flush</a>
                         </li>
                 </ul>
 
@@ -663,16 +684,16 @@
                     <a class="class" href="#CheckerboardDetails">CheckerboardDetails</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#CheckerboardDetails.rows">rows</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#CheckerboardDetails.placement">placement</a>
-                        </li>
-                        <li>
                                 <a class="variable" href="#CheckerboardDetails.square_size">square_size</a>
                         </li>
                         <li>
+                                <a class="variable" href="#CheckerboardDetails.rows">rows</a>
+                        </li>
+                        <li>
                                 <a class="variable" href="#CheckerboardDetails.columns">columns</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#CheckerboardDetails.placement">placement</a>
                         </li>
                 </ul>
 
@@ -834,10 +855,10 @@
                     <a class="class" href="#MetricValueBilateral">MetricValueBilateral</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#MetricValueBilateral.left">left</a>
+                                <a class="variable" href="#MetricValueBilateral.right">right</a>
                         </li>
                         <li>
-                                <a class="variable" href="#MetricValueBilateral.right">right</a>
+                                <a class="variable" href="#MetricValueBilateral.left">left</a>
                         </li>
                 </ul>
 
@@ -849,10 +870,10 @@
                                 <a class="variable" href="#Metric.value">value</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Metric.description">description</a>
+                                <a class="variable" href="#Metric.name">name</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Metric.name">name</a>
+                                <a class="variable" href="#Metric.description">description</a>
                         </li>
                 </ul>
 
@@ -861,10 +882,10 @@
                     <a class="class" href="#MetricsGroup">MetricsGroup</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#MetricsGroup.metrics">metrics</a>
+                                <a class="variable" href="#MetricsGroup.description">description</a>
                         </li>
                         <li>
-                                <a class="variable" href="#MetricsGroup.description">description</a>
+                                <a class="variable" href="#MetricsGroup.metrics">metrics</a>
                         </li>
                         <li>
                                 <a class="variable" href="#MetricsGroup.name">name</a>
@@ -1126,6 +1147,54 @@ to be captured by the ModelHealth mobile app.</p>
 <pre><span></span><code><span class="n">session</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">get_session</span><span class="p">(</span><span class="s2">&quot;abc123&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">activity</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">activities</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">activity</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">activity</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre>
+  </div>
+</blockquote>
+</div>
+
+
+                            </div>
+                            <div id="ModelHealthService.new_session_from_session" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">new_session_from_session</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">session</span><span class="p">:</span> <span class="n">Session</span></span><span class="return-annotation">) -> <span class="n">Session</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModelHealthService.new_session_from_session"></a>
+    
+            <div class="docstring"><p>Creates a new session from a previous session, inheriting its calibration setup.</p>
+
+<p>Use this to move directly to calibrating a new subject without repeating
+camera connection or checkerboard calibration.</p>
+
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>session:</strong>  The previous, already-calibrated session.</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>A new <code><a href="#Session">Session</a></code> ready for a new subject.</p>
+</blockquote>
+
+<h6 id="raises">Raises:</h6>
+
+<ul>
+<li><strong>AuthenticationError:</strong>  If the API key is invalid or expired.</li>
+<li><strong>NotFoundError:</strong>  If the session does not exist.</li>
+<li><strong>NetworkError:</strong>  On connection failure or timeout.</li>
+<li><strong>ModelHealthError:</strong>  On server error or unexpected response.</li>
+</ul>
+
+<h6 id="example">Example:</h6>
+
+<blockquote>
+  <div class="pdoc-code codehilite">
+<pre><span></span><code><span class="n">new_session</span> <span class="o">=</span> <span class="n">service</span><span class="o">.</span><span class="n">new_session_from_session</span><span class="p">(</span><span class="n">previous_session</span><span class="p">)</span>
 </code></pre>
   </div>
 </blockquote>
@@ -2640,6 +2709,44 @@ date range (inclusive).</li>
 
 
                             </div>
+                            <div id="ModelHealthService.set_video_upload_mode" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">set_video_upload_mode</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">mode</span><span class="p">:</span> <span class="n"><a href="#VideoUploadMode">VideoUploadMode</a></span></span><span class="return-annotation">) -> <span class="kc">None</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModelHealthService.set_video_upload_mode"></a>
+    
+            <div class="docstring"><p>Sets the video upload mode</p>
+
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>mode:</strong>  The desired video upload mode.</li>
+</ul>
+
+<h6 id="raises">Raises:</h6>
+
+<ul>
+<li><strong>AuthenticationError:</strong>  If the API key is invalid or expired.</li>
+<li><strong>NetworkError:</strong>  On connection failure or timeout.</li>
+<li><strong>ModelHealthError:</strong>  On server error or unexpected response.</li>
+</ul>
+
+<h6 id="example">Example:</h6>
+
+<blockquote>
+  <div class="pdoc-code codehilite">
+<pre><span></span><code><span class="n">service</span><span class="o">.</span><span class="n">set_video_upload_mode</span><span class="p">(</span><span class="n"><a href="#VideoUploadMode.disabled">VideoUploadMode.disabled</a></span><span class="p">)</span>
+</code></pre>
+  </div>
+</blockquote>
+</div>
+
+
+                            </div>
                 </section>
                 <section id="ModelHealthError">
                     <div class="attr class">
@@ -2730,6 +2837,19 @@ date range (inclusive).</li>
 </div>
 
 
+                            <div id="Session.session_name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">session_name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Session.session_name"></a>
+    
+            <div class="docstring"><p>Internal session name. Prefer <code><a href="#Session.name">name</a></code> for display purposes.</p>
+</div>
+
+
+                            </div>
                             <div id="Session.name" class="classattr">
                                 <div class="attr variable">
             <span class="name">name</span>
@@ -2739,45 +2859,6 @@ date range (inclusive).</li>
     <a class="headerlink" href="#Session.name"></a>
     
             <div class="docstring"><p>Display name of the session.</p>
-</div>
-
-
-                            </div>
-                            <div id="Session.created_at" class="classattr">
-                                <div class="attr variable">
-            <span class="name">created_at</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Session.created_at"></a>
-    
-            <div class="docstring"><p>ISO-8601 timestamp of when this session was created.</p>
-</div>
-
-
-                            </div>
-                            <div id="Session.activities_count" class="classattr">
-                                <div class="attr variable">
-            <span class="name">activities_count</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Session.activities_count"></a>
-    
-            <div class="docstring"><p>Total number of activities in this session.</p>
-</div>
-
-
-                            </div>
-                            <div id="Session.updated_at" class="classattr">
-                                <div class="attr variable">
-            <span class="name">updated_at</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Session.updated_at"></a>
-    
-            <div class="docstring"><p>ISO-8601 timestamp of when this session was last updated.</p>
 </div>
 
 
@@ -2795,19 +2876,6 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="Session.qrcode" class="classattr">
-                                <div class="attr variable">
-            <span class="name">qrcode</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Session.qrcode"></a>
-    
-            <div class="docstring"><p>URL of the QR code image for pairing cameras, or <code>None</code> if not available.</p>
-</div>
-
-
-                            </div>
                             <div id="Session.subject" class="classattr">
                                 <div class="attr variable">
             <span class="name">subject</span>
@@ -2817,19 +2885,6 @@ date range (inclusive).</li>
     <a class="headerlink" href="#Session.subject"></a>
     
             <div class="docstring"><p>ID of the subject associated with this session, or <code>None</code> if not set.</p>
-</div>
-
-
-                            </div>
-                            <div id="Session.session_name" class="classattr">
-                                <div class="attr variable">
-            <span class="name">session_name</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Session.session_name"></a>
-    
-            <div class="docstring"><p>Internal session name. Prefer <code><a href="#Session.name">name</a></code> for display purposes.</p>
 </div>
 
 
@@ -2847,15 +2902,15 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="Session.user" class="classattr">
+                            <div id="Session.created_at" class="classattr">
                                 <div class="attr variable">
-            <span class="name">user</span>
+            <span class="name">created_at</span>
 
         
     </div>
-    <a class="headerlink" href="#Session.user"></a>
+    <a class="headerlink" href="#Session.created_at"></a>
     
-            <div class="docstring"><p>ID of the account that owns this session.</p>
+            <div class="docstring"><p>ISO-8601 timestamp of when this session was created.</p>
 </div>
 
 
@@ -2869,6 +2924,58 @@ date range (inclusive).</li>
     <a class="headerlink" href="#Session.id"></a>
     
             <div class="docstring"><p>Unique identifier.</p>
+</div>
+
+
+                            </div>
+                            <div id="Session.user" class="classattr">
+                                <div class="attr variable">
+            <span class="name">user</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Session.user"></a>
+    
+            <div class="docstring"><p>ID of the account that owns this session.</p>
+</div>
+
+
+                            </div>
+                            <div id="Session.activities_count" class="classattr">
+                                <div class="attr variable">
+            <span class="name">activities_count</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Session.activities_count"></a>
+    
+            <div class="docstring"><p>Total number of activities in this session.</p>
+</div>
+
+
+                            </div>
+                            <div id="Session.qrcode" class="classattr">
+                                <div class="attr variable">
+            <span class="name">qrcode</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Session.qrcode"></a>
+    
+            <div class="docstring"><p>URL of the QR code image for pairing cameras, or <code>None</code> if not available.</p>
+</div>
+
+
+                            </div>
+                            <div id="Session.updated_at" class="classattr">
+                                <div class="attr variable">
+            <span class="name">updated_at</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Session.updated_at"></a>
+    
+            <div class="docstring"><p>ISO-8601 timestamp of when this session was last updated.</p>
 </div>
 
 
@@ -2888,28 +2995,15 @@ date range (inclusive).</li>
 </div>
 
 
-                            <div id="Activity.activity_type" class="classattr">
+                            <div id="Activity.updated_at" class="classattr">
                                 <div class="attr variable">
-            <span class="name">activity_type</span>
+            <span class="name">updated_at</span>
 
         
     </div>
-    <a class="headerlink" href="#Activity.activity_type"></a>
+    <a class="headerlink" href="#Activity.updated_at"></a>
     
-            <div class="docstring"><p>Activity type string (e.g. <code>"counter_movement_jump"</code>), or <code>None</code> if unset.</p>
-</div>
-
-
-                            </div>
-                            <div id="Activity.results" class="classattr">
-                                <div class="attr variable">
-            <span class="name">results</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Activity.results"></a>
-    
-            <div class="docstring"><p>Processed result files associated with this activity.</p>
+            <div class="docstring"><p>ISO-8601 timestamp of when this activity was last updated.</p>
 </div>
 
 
@@ -2927,32 +3021,6 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="Activity.status" class="classattr">
-                                <div class="attr variable">
-            <span class="name">status</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Activity.status"></a>
-    
-            <div class="docstring"><p>Raw processing status string. Use <code><a href="#ModelHealthService.activity_status">ModelHealthService.activity_status()</a></code> for the typed value.</p>
-</div>
-
-
-                            </div>
-                            <div id="Activity.created_at" class="classattr">
-                                <div class="attr variable">
-            <span class="name">created_at</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Activity.created_at"></a>
-    
-            <div class="docstring"><p>ISO-8601 timestamp of when this activity was created.</p>
-</div>
-
-
-                            </div>
                             <div id="Activity.videos" class="classattr">
                                 <div class="attr variable">
             <span class="name">videos</span>
@@ -2966,28 +3034,15 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="Activity.id" class="classattr">
+                            <div id="Activity.session" class="classattr">
                                 <div class="attr variable">
-            <span class="name">id</span>
+            <span class="name">session</span>
 
         
     </div>
-    <a class="headerlink" href="#Activity.id"></a>
+    <a class="headerlink" href="#Activity.session"></a>
     
-            <div class="docstring"><p>Unique identifier.</p>
-</div>
-
-
-                            </div>
-                            <div id="Activity.updated_at" class="classattr">
-                                <div class="attr variable">
-            <span class="name">updated_at</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Activity.updated_at"></a>
-    
-            <div class="docstring"><p>ISO-8601 timestamp of when this activity was last updated.</p>
+            <div class="docstring"><p>ID of the parent session.</p>
 </div>
 
 
@@ -3005,15 +3060,67 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="Activity.session" class="classattr">
+                            <div id="Activity.results" class="classattr">
                                 <div class="attr variable">
-            <span class="name">session</span>
+            <span class="name">results</span>
 
         
     </div>
-    <a class="headerlink" href="#Activity.session"></a>
+    <a class="headerlink" href="#Activity.results"></a>
     
-            <div class="docstring"><p>ID of the parent session.</p>
+            <div class="docstring"><p>Processed result files associated with this activity.</p>
+</div>
+
+
+                            </div>
+                            <div id="Activity.id" class="classattr">
+                                <div class="attr variable">
+            <span class="name">id</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Activity.id"></a>
+    
+            <div class="docstring"><p>Unique identifier.</p>
+</div>
+
+
+                            </div>
+                            <div id="Activity.activity_type" class="classattr">
+                                <div class="attr variable">
+            <span class="name">activity_type</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Activity.activity_type"></a>
+    
+            <div class="docstring"><p>Activity type string (e.g. <code>"counter_movement_jump"</code>), or <code>None</code> if unset.</p>
+</div>
+
+
+                            </div>
+                            <div id="Activity.created_at" class="classattr">
+                                <div class="attr variable">
+            <span class="name">created_at</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Activity.created_at"></a>
+    
+            <div class="docstring"><p>ISO-8601 timestamp of when this activity was created.</p>
+</div>
+
+
+                            </div>
+                            <div id="Activity.status" class="classattr">
+                                <div class="attr variable">
+            <span class="name">status</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Activity.status"></a>
+    
+            <div class="docstring"><p>Raw processing status string. Use <code><a href="#ModelHealthService.activity_status">ModelHealthService.activity_status()</a></code> for the typed value.</p>
 </div>
 
 
@@ -3033,28 +3140,15 @@ date range (inclusive).</li>
 </div>
 
 
-                            <div id="ActivityResult.media" class="classattr">
+                            <div id="ActivityResult.tag" class="classattr">
                                 <div class="attr variable">
-            <span class="name">media</span>
+            <span class="name">tag</span>
 
         
     </div>
-    <a class="headerlink" href="#ActivityResult.media"></a>
+    <a class="headerlink" href="#ActivityResult.tag"></a>
     
-            <div class="docstring"><p>URL of the result file, or <code>None</code> if not yet available.</p>
-</div>
-
-
-                            </div>
-                            <div id="ActivityResult.activity" class="classattr">
-                                <div class="attr variable">
-            <span class="name">activity</span>
-
-        
-    </div>
-    <a class="headerlink" href="#ActivityResult.activity"></a>
-    
-            <div class="docstring"><p>ID of the parent activity.</p>
+            <div class="docstring"><p>Result tag identifying the content type (e.g. <code>"ik_results"</code>, <code>"marker_data"</code>).</p>
 </div>
 
 
@@ -3072,15 +3166,28 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="ActivityResult.tag" class="classattr">
+                            <div id="ActivityResult.activity" class="classattr">
                                 <div class="attr variable">
-            <span class="name">tag</span>
+            <span class="name">activity</span>
 
         
     </div>
-    <a class="headerlink" href="#ActivityResult.tag"></a>
+    <a class="headerlink" href="#ActivityResult.activity"></a>
     
-            <div class="docstring"><p>Result tag identifying the content type (e.g. <code>"ik_results"</code>, <code>"marker_data"</code>).</p>
+            <div class="docstring"><p>ID of the parent activity.</p>
+</div>
+
+
+                            </div>
+                            <div id="ActivityResult.media" class="classattr">
+                                <div class="attr variable">
+            <span class="name">media</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityResult.media"></a>
+    
+            <div class="docstring"><p>URL of the result file, or <code>None</code> if not yet available.</p>
 </div>
 
 
@@ -3113,15 +3220,15 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="Video.activity" class="classattr">
+                            <div id="Video.video_thumb" class="classattr">
                                 <div class="attr variable">
-            <span class="name">activity</span>
+            <span class="name">video_thumb</span>
 
         
     </div>
-    <a class="headerlink" href="#Video.activity"></a>
+    <a class="headerlink" href="#Video.video_thumb"></a>
     
-            <div class="docstring"><p>ID of the parent activity.</p>
+            <div class="docstring"><p>URL of the video thumbnail, or <code>None</code> if not yet available.</p>
 </div>
 
 
@@ -3139,15 +3246,15 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="Video.video_thumb" class="classattr">
+                            <div id="Video.activity" class="classattr">
                                 <div class="attr variable">
-            <span class="name">video_thumb</span>
+            <span class="name">activity</span>
 
         
     </div>
-    <a class="headerlink" href="#Video.video_thumb"></a>
+    <a class="headerlink" href="#Video.activity"></a>
     
-            <div class="docstring"><p>URL of the video thumbnail, or <code>None</code> if not yet available.</p>
+            <div class="docstring"><p>ID of the parent activity.</p>
 </div>
 
 
@@ -3167,15 +3274,15 @@ date range (inclusive).</li>
 </div>
 
 
-                            <div id="Subject.birth_year" class="classattr">
+                            <div id="Subject.id" class="classattr">
                                 <div class="attr variable">
-            <span class="name">birth_year</span>
+            <span class="name">id</span>
 
         
     </div>
-    <a class="headerlink" href="#Subject.birth_year"></a>
+    <a class="headerlink" href="#Subject.id"></a>
     
-            <div class="docstring"><p>Year of birth, or <code>None</code> if not set.</p>
+            <div class="docstring"><p>Unique identifier.</p>
 </div>
 
 
@@ -3193,28 +3300,15 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="Subject.gender" class="classattr">
+                            <div id="Subject.birth_year" class="classattr">
                                 <div class="attr variable">
-            <span class="name">gender</span>
+            <span class="name">birth_year</span>
 
         
     </div>
-    <a class="headerlink" href="#Subject.gender"></a>
+    <a class="headerlink" href="#Subject.birth_year"></a>
     
-            <div class="docstring"><p>Gender identity.</p>
-</div>
-
-
-                            </div>
-                            <div id="Subject.characteristics" class="classattr">
-                                <div class="attr variable">
-            <span class="name">characteristics</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Subject.characteristics"></a>
-    
-            <div class="docstring"><p>Freeform text describing relevant characteristics or medical conditions.</p>
+            <div class="docstring"><p>Year of birth, or <code>None</code> if not set.</p>
 </div>
 
 
@@ -3245,15 +3339,28 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="Subject.id" class="classattr">
+                            <div id="Subject.gender" class="classattr">
                                 <div class="attr variable">
-            <span class="name">id</span>
+            <span class="name">gender</span>
 
         
     </div>
-    <a class="headerlink" href="#Subject.id"></a>
+    <a class="headerlink" href="#Subject.gender"></a>
     
-            <div class="docstring"><p>Unique identifier.</p>
+            <div class="docstring"><p>Gender identity.</p>
+</div>
+
+
+                            </div>
+                            <div id="Subject.age" class="classattr">
+                                <div class="attr variable">
+            <span class="name">age</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Subject.age"></a>
+    
+            <div class="docstring"><p>Age in years, or <code>None</code> if not set.</p>
 </div>
 
 
@@ -3271,15 +3378,15 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="Subject.age" class="classattr">
+                            <div id="Subject.characteristics" class="classattr">
                                 <div class="attr variable">
-            <span class="name">age</span>
+            <span class="name">characteristics</span>
 
         
     </div>
-    <a class="headerlink" href="#Subject.age"></a>
+    <a class="headerlink" href="#Subject.characteristics"></a>
     
-            <div class="docstring"><p>Age in years, or <code>None</code> if not set.</p>
+            <div class="docstring"><p>Freeform text describing relevant characteristics or medical conditions.</p>
 </div>
 
 
@@ -3299,15 +3406,15 @@ date range (inclusive).</li>
 </div>
 
 
-                            <div id="SubjectParameters.weight" class="classattr">
+                            <div id="SubjectParameters.birth_year" class="classattr">
                                 <div class="attr variable">
-            <span class="name">weight</span>
+            <span class="name">birth_year</span>
 
         
     </div>
-    <a class="headerlink" href="#SubjectParameters.weight"></a>
+    <a class="headerlink" href="#SubjectParameters.birth_year"></a>
     
-            <div class="docstring"><p>Weight in kilograms.</p>
+            <div class="docstring"><p>Year of birth, or <code>None</code> if not provided.</p>
 </div>
 
 
@@ -3325,32 +3432,6 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="SubjectParameters.name" class="classattr">
-                                <div class="attr variable">
-            <span class="name">name</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectParameters.name"></a>
-    
-            <div class="docstring"><p>Display name.</p>
-</div>
-
-
-                            </div>
-                            <div id="SubjectParameters.birth_year" class="classattr">
-                                <div class="attr variable">
-            <span class="name">birth_year</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectParameters.birth_year"></a>
-    
-            <div class="docstring"><p>Year of birth, or <code>None</code> if not provided.</p>
-</div>
-
-
-                            </div>
                             <div id="SubjectParameters.sex_at_birth" class="classattr">
                                 <div class="attr variable">
             <span class="name">sex_at_birth</span>
@@ -3360,6 +3441,32 @@ date range (inclusive).</li>
     <a class="headerlink" href="#SubjectParameters.sex_at_birth"></a>
     
             <div class="docstring"><p>Sex assigned at birth.</p>
+</div>
+
+
+                            </div>
+                            <div id="SubjectParameters.weight" class="classattr">
+                                <div class="attr variable">
+            <span class="name">weight</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectParameters.weight"></a>
+    
+            <div class="docstring"><p>Weight in kilograms.</p>
+</div>
+
+
+                            </div>
+                            <div id="SubjectParameters.gender" class="classattr">
+                                <div class="attr variable">
+            <span class="name">gender</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectParameters.gender"></a>
+    
+            <div class="docstring"><p>Gender identity.</p>
 </div>
 
 
@@ -3377,15 +3484,15 @@ date range (inclusive).</li>
 
 
                             </div>
-                            <div id="SubjectParameters.gender" class="classattr">
+                            <div id="SubjectParameters.name" class="classattr">
                                 <div class="attr variable">
-            <span class="name">gender</span>
+            <span class="name">name</span>
 
         
     </div>
-    <a class="headerlink" href="#SubjectParameters.gender"></a>
+    <a class="headerlink" href="#SubjectParameters.name"></a>
     
-            <div class="docstring"><p>Gender identity.</p>
+            <div class="docstring"><p>Display name.</p>
 </div>
 
 
@@ -3405,19 +3512,6 @@ date range (inclusive).</li>
 </div>
 
 
-                            <div id="ActivityTag.label" class="classattr">
-                                <div class="attr variable">
-            <span class="name">label</span>
-
-        
-    </div>
-    <a class="headerlink" href="#ActivityTag.label"></a>
-    
-            <div class="docstring"><p>Human-readable display label.</p>
-</div>
-
-
-                            </div>
                             <div id="ActivityTag.value" class="classattr">
                                 <div class="attr variable">
             <span class="name">value</span>
@@ -3427,6 +3521,19 @@ date range (inclusive).</li>
     <a class="headerlink" href="#ActivityTag.value"></a>
     
             <div class="docstring"><p>Machine-readable tag identifier.</p>
+</div>
+
+
+                            </div>
+                            <div id="ActivityTag.label" class="classattr">
+                                <div class="attr variable">
+            <span class="name">label</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityTag.label"></a>
+    
+            <div class="docstring"><p>Human-readable display label.</p>
 </div>
 
 
@@ -3880,6 +3987,65 @@ Use <code><a href="#MotionDataType.tagged">tagged()</a></code> to download an ex
     <a class="headerlink" href="#VideoVersion.synced"></a>
     
             <div class="docstring"><p>Temporally-synchronised output.</p>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="VideoUploadMode">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">VideoUploadMode</span><wbr>(<span class="base">enum.StrEnum</span>):
+
+        
+    </div>
+    <a class="headerlink" href="#VideoUploadMode"></a>
+    
+            <div class="docstring"><p>Controls whether a user's devices upload recorded video.</p>
+
+<p>Pass to <code><a href="#ModelHealthService.set_video_upload_mode">ModelHealthService.set_video_upload_mode()</a></code>.</p>
+</div>
+
+
+                            <div id="VideoUploadMode.enabled" class="classattr">
+                                <div class="attr variable">
+            <span class="name">enabled</span>        =
+<span class="default_value">&lt;<a href="#VideoUploadMode.enabled">VideoUploadMode.enabled</a>: &#39;enabled&#39;&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VideoUploadMode.enabled"></a>
+    
+            <div class="docstring"><p>Devices upload recorded video normally.</p>
+</div>
+
+
+                            </div>
+                            <div id="VideoUploadMode.disabled" class="classattr">
+                                <div class="attr variable">
+            <span class="name">disabled</span>        =
+<span class="default_value">&lt;<a href="#VideoUploadMode.disabled">VideoUploadMode.disabled</a>: &#39;disabled&#39;&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VideoUploadMode.disabled"></a>
+    
+            <div class="docstring"><p>Devices stop uploading recorded video.</p>
+</div>
+
+
+                            </div>
+                            <div id="VideoUploadMode.flush" class="classattr">
+                                <div class="attr variable">
+            <span class="name">flush</span>        =
+<span class="default_value">&lt;<a href="#VideoUploadMode.flush">VideoUploadMode.flush</a>: &#39;flush&#39;&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#VideoUploadMode.flush"></a>
+    
+            <div class="docstring"><p>Re-enables uploads, and uploads any videos that were queued locally while disabled.</p>
 </div>
 
 
@@ -4874,32 +5040,6 @@ is passed instead.</p>
 </div>
 
 
-                            <div id="CheckerboardDetails.rows" class="classattr">
-                                <div class="attr variable">
-            <span class="name">rows</span>
-
-        
-    </div>
-    <a class="headerlink" href="#CheckerboardDetails.rows"></a>
-    
-            <div class="docstring"><p>Number of internal corner rows.</p>
-</div>
-
-
-                            </div>
-                            <div id="CheckerboardDetails.placement" class="classattr">
-                                <div class="attr variable">
-            <span class="name">placement</span>
-
-        
-    </div>
-    <a class="headerlink" href="#CheckerboardDetails.placement"></a>
-    
-            <div class="docstring"><p>Checkerboard orientation: <code>"perpendicular"</code> or <code>"parallel"</code>.</p>
-</div>
-
-
-                            </div>
                             <div id="CheckerboardDetails.square_size" class="classattr">
                                 <div class="attr variable">
             <span class="name">square_size</span>
@@ -4913,6 +5053,19 @@ is passed instead.</p>
 
 
                             </div>
+                            <div id="CheckerboardDetails.rows" class="classattr">
+                                <div class="attr variable">
+            <span class="name">rows</span>
+
+        
+    </div>
+    <a class="headerlink" href="#CheckerboardDetails.rows"></a>
+    
+            <div class="docstring"><p>Number of internal corner rows.</p>
+</div>
+
+
+                            </div>
                             <div id="CheckerboardDetails.columns" class="classattr">
                                 <div class="attr variable">
             <span class="name">columns</span>
@@ -4922,6 +5075,19 @@ is passed instead.</p>
     <a class="headerlink" href="#CheckerboardDetails.columns"></a>
     
             <div class="docstring"><p>Number of internal corner columns.</p>
+</div>
+
+
+                            </div>
+                            <div id="CheckerboardDetails.placement" class="classattr">
+                                <div class="attr variable">
+            <span class="name">placement</span>
+
+        
+    </div>
+    <a class="headerlink" href="#CheckerboardDetails.placement"></a>
+    
+            <div class="docstring"><p>Checkerboard orientation: <code>"perpendicular"</code> or <code>"parallel"</code>.</p>
 </div>
 
 
@@ -5558,19 +5724,6 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
 </div>
 
 
-                            <div id="MetricValueBilateral.left" class="classattr">
-                                <div class="attr variable">
-            <span class="name">left</span>
-
-        
-    </div>
-    <a class="headerlink" href="#MetricValueBilateral.left"></a>
-    
-            <div class="docstring"><p>Left-side measurement, or <code>None</code> if not yet computed.</p>
-</div>
-
-
-                            </div>
                             <div id="MetricValueBilateral.right" class="classattr">
                                 <div class="attr variable">
             <span class="name">right</span>
@@ -5580,6 +5733,19 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
     <a class="headerlink" href="#MetricValueBilateral.right"></a>
     
             <div class="docstring"><p>Right-side measurement, or <code>None</code> if not yet computed.</p>
+</div>
+
+
+                            </div>
+                            <div id="MetricValueBilateral.left" class="classattr">
+                                <div class="attr variable">
+            <span class="name">left</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MetricValueBilateral.left"></a>
+    
+            <div class="docstring"><p>Left-side measurement, or <code>None</code> if not yet computed.</p>
 </div>
 
 
@@ -5612,19 +5778,6 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
 
 
                             </div>
-                            <div id="Metric.description" class="classattr">
-                                <div class="attr variable">
-            <span class="name">description</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Metric.description"></a>
-    
-            <div class="docstring"><p>Human-readable description, or <code>None</code> if not set.</p>
-</div>
-
-
-                            </div>
                             <div id="Metric.name" class="classattr">
                                 <div class="attr variable">
             <span class="name">name</span>
@@ -5634,6 +5787,19 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
     <a class="headerlink" href="#Metric.name"></a>
     
             <div class="docstring"><p>Display name.</p>
+</div>
+
+
+                            </div>
+                            <div id="Metric.description" class="classattr">
+                                <div class="attr variable">
+            <span class="name">description</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Metric.description"></a>
+    
+            <div class="docstring"><p>Human-readable description, or <code>None</code> if not set.</p>
 </div>
 
 
@@ -5653,19 +5819,6 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
 </div>
 
 
-                            <div id="MetricsGroup.metrics" class="classattr">
-                                <div class="attr variable">
-            <span class="name">metrics</span>
-
-        
-    </div>
-    <a class="headerlink" href="#MetricsGroup.metrics"></a>
-    
-            <div class="docstring"><p>Metrics within this group.</p>
-</div>
-
-
-                            </div>
                             <div id="MetricsGroup.description" class="classattr">
                                 <div class="attr variable">
             <span class="name">description</span>
@@ -5675,6 +5828,19 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
     <a class="headerlink" href="#MetricsGroup.description"></a>
     
             <div class="docstring"><p>Human-readable description, or <code>None</code> if not set.</p>
+</div>
+
+
+                            </div>
+                            <div id="MetricsGroup.metrics" class="classattr">
+                                <div class="attr variable">
+            <span class="name">metrics</span>
+
+        
+    </div>
+    <a class="headerlink" href="#MetricsGroup.metrics"></a>
+    
+            <div class="docstring"><p>Metrics within this group.</p>
 </div>
 
 
@@ -5717,7 +5883,7 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
     </div>
     <a class="headerlink" href="#ActivityMetrics.to_json"></a>
     
-            <div class="docstring"><p>Serialise these metrics to a JSON string (snake_case keys, matching the wire format).</p>
+            <div class="docstring"><p>Serialise these metrics to a JSON string (<code>snake_case</code> keys, matching the wire format).</p>
 
 <p>Pretty-printed (indented) by default; pass <code>pretty=False</code> for compact output.</p>
 </div>
