@@ -65,12 +65,12 @@ const sidebars = {
       items: [
         {
           type: 'link',
-          label: 'Swift SDK',
+          label: 'Swift',
           href: '/swift-api',
         },
         {
           type: 'link',
-          label: 'TypeScript SDK',
+          label: 'TypeScript',
           href: '/typescript-api',
         },
         {

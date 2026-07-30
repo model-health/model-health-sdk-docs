@@ -20,10 +20,13 @@ It typically takes an experienced developer **less than a week** for a complete 
 ## Supported Platforms
 
 ### Swift SDK (iOS)
-Native SDK for iOS applications.
+Native SDK for iOS applications. A companion Swift UI SDK (`ModelHealthUI`) adds an embeddable
+interactive [3D View](./guides/3d-view) for rendering motion data.
 
 ### TypeScript SDK (Web, Node.js)
-Cross-platform SDK powered by WebAssembly. Works in both browser and Node.js environments.
+Cross-platform SDK powered by WebAssembly. Works in both browser and Node.js environments. A
+companion TypeScript UI SDK (`viewer-react`) adds an embeddable interactive
+[3D View](./guides/3d-view) for rendering motion data.
 
 ### Python SDK
 Native SDK for Python applications.
@@ -45,8 +48,8 @@ This mirrors the workflow in [Model Health's own web app](https://app.modelhealt
 - [Request API Access](mailto:support@modelhealth.io?subject=API%20Access%20Request&body=Hi%20Model%20Health%20team%2C%0A%0AI%27m%20interested%20in%20integrating%20the%20Model%20Health%20SDK.%0A%0ACompany%3A%0AUse%20case%3A%0APlatform%20(iOS%2C%20Web%2C%20other)%3A%0AExisting%20Model%20Health%20account%3A%20Yes%20%2F%20No%0AIf%20yes%2C%20account%20email%3A%0A%0AThanks)
 - [Installation Guide](./getting-started/installation)
 - [Quick Start](./getting-started/quick-start)
-- [Swift SDK Reference](/swift-api)
-- [TypeScript SDK Reference](/typescript-api)
+- [Swift Reference](/swift-api)
+- [TypeScript Reference](/typescript-api)
 - [Python SDK Reference](/python-api)
 
 ## Support
