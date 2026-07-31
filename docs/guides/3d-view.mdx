@@ -1,6 +1,7 @@
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import threeDViewExample from '../../static/img/3d-view.png';
+import threeDViewOverlayExample from '../../static/img/3d-view-overlay.png';
 
 # 3D View
 
@@ -120,19 +121,36 @@ you can style controls to match your app rather than a fixed embedded toolbar.
   />
   ```
 
-## Overlays
+## Ground Reaction Force Overlays
 
-`View3D` can render an optional left/right vector overlay on top of the animation.
-This isn't backed by a dedicated SDK motion data type: you
-upload your own external data — in whatever format you have it (CSV, JSON, plain text,
-etc) — tagged with a name of your choosing. The backend syncs it to the trial's
-timeline and produces a `.sto`-formatted result tagged `<tag>-sync`. That synced `.sto`
-result is what actually gets fetched and parsed for the overlay, regardless of the format
-you originally uploaded. The full flow:
+<div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
+<div style={{ flex: '1 1 320px', minWidth: '280px' }}>
+
+`View3D` can render ground reaction force (GRF) vector overlays on
+top of the animation. This isn't backed by a dedicated SDK motion data type: you upload
+your own externally measured GRF data — from a force plate, instrumented treadmill, or
+similar — in whatever format you have it (CSV, JSON, plain text, etc), tagged with a name
+of your choosing. The backend syncs it to the trial and produces a
+`.sto`-formatted result tagged `<tag>-sync`. That synced `.sto` result is what actually
+gets fetched and parsed for the overlay, regardless of the format you originally uploaded.
+
+:::info Synchronization has to be enabled for your data
+Syncing external GRF data to the trial requires support for your specific data format and
+capture setup in our core algorithms. It is not enabled by default. Contact us
+at [support@modelhealth.io](mailto:support@modelhealth.io) if you'd like to use overlays with your data — without
+that support the upload will succeed but no `-sync` result is produced, and the overlay
+stays empty.
+:::
+
+The full flow:
 
 1. Initialize the service.
-2. Upload your external data via `addMotionData`, tagged with a name of your choosing (e.g. `"my-data"`).
+2. Upload your GRF data via `addMotionData`, tagged with a name of your choosing (e.g. `"my-grf"`).
 3. Set up the viewer with that same tag — it fetches the synced `.sto` result automatically.
+
+</div>
+<img src={threeDViewOverlayExample} alt="3D View in the iOS demo app, showing blue and green ground reaction force vectors overlaid on the skeleton" width="200" style={{ flexShrink: 0 }} />
+</div>
 
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
@@ -140,15 +158,15 @@ you originally uploaded. The full flow:
   // 1. Initialize the service
   let service = try ModelHealthService(apiKey: "your-api-key-here")
 
-  // 2. Upload your external data, tagged with a name of your choosing — any format works
+  // 2. Upload your GRF data, tagged with a name of your choosing — any format works
   //    (CSV shown here); the backend syncs it and produces the .sto result the viewer reads
-  let myData = try Data(contentsOf: myDataFileURL)
-  let file = ExternalResultFile(tag: "my-data", fileExtension: "csv", data: myData)
-  let activity = try await service.addMotionData([file], to: activity)
+  let grfData = try Data(contentsOf: grfFileURL)
+  let file = ExternalResultFile(tag: "my-grf", fileExtension: "csv", data: grfData)
+  let updatedActivity = try await service.addMotionData([file], to: activity)
 
-  // 3. Construct the controller with the same tag — it fetches the synced .sto result
-  //    (tagged "my-data-sync") automatically, alongside the animation data
-  let controller = View3DController(for: activity, using: service, externalDataTag: "my-data")
+  // 3. Construct the controller with the updated activity and the same tag — it fetches the
+  //    synced .sto result (tagged "my-grf-sync") automatically, alongside the animation data
+  let controller = View3DController(for: updatedActivity, using: service, externalDataTag: "my-grf")
   ```
 
   If you don't know the tag ahead of time (e.g. it was uploaded by a different part of your
@@ -163,13 +181,14 @@ you originally uploaded. The full flow:
   const service = new ModelHealthService({ apiKey: "your-api-key-here" });
   await service.init();
 
-  // 2. Upload your external data, tagged with a name of your choosing — any format works
+  // 2. Upload your GRF data, tagged with a name of your choosing — any format works
   //    (CSV shown here); the backend syncs it and produces the .sto result the viewer reads
-  const file = { tag: 'my-data', extension: 'csv', data: myDataBytes };
+  const grfBytes: Uint8Array = await loadMyGrfFile();
+  const file = { tag: 'my-grf', extension: 'csv', data: grfBytes };
   const updatedActivity = await service.addMotionDataToActivity(activity, [file]);
 
   // 3. Fetch and parse the synced .sto result using the same tag
-  const sto = await fetchExternalSto(service, updatedActivity, 'my-data');
+  const sto = await fetchExternalSto(service, updatedActivity, 'my-grf');
   const overlay = sto ? parseExternalSto(sto) : null;
   ```
 
@@ -183,17 +202,19 @@ you originally uploaded. The full flow:
 
 ## Troubleshooting
 
-- **No animation data available** — the activity hasn't finished processing yet, or has no
-  `animation` motion data type. Wait for `.ready` status (see [Activity Recording](./activity-recording))
-  first. Surfaced via `lastError` (Swift) or a thrown error from `fetchAnimationTransforms` (TypeScript).
+- **No animation data available** — the activity hasn't finished processing yet. Wait for
+  `.analysing` or `.ready` status (see [Activity Recording](./activity-recording)) first.
+  Surfaced via `lastError` (Swift) or a thrown error from `fetchAnimationTransforms` (TypeScript).
 - **Swift: viewer fails to load** — `View3DController.lastError` also surfaces WebView-level load
   failures (e.g. a malformed bundled resource). Check it if `isReady` never becomes `true`.
 - **Overlay not appearing** — fetching the overlay fails silently rather than throwing if the
   tagged file doesn't exist or hasn't been synced yet. Confirm the tag you passed matches what
-  the file was actually uploaded under, and that a `-sync` result exists for it.
+  the file was actually uploaded under, and that a `-sync` result exists for it. If no `-sync`
+  result ever appears, synchronization likely isn't enabled for your GRF data — contact
+  [support@modelhealth.io](mailto:support@modelhealth.io).
 
 ## Next Steps
 
 3D View picks up where [Activity Recording](./activity-recording) leaves off — once an activity is
-`.ready` or `.analysing`, its `animation` data is available to visualize, it is not necessary to wait for
+`.analysing` or `.ready`, its `animation` data is available to visualize; there's no need to wait for
 analysis to complete.
