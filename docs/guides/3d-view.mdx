@@ -32,7 +32,7 @@ playback used in the Model Health web app, embeddable directly in your own app.
 </Tabs>
 
 </div>
-<img src={threeDViewExample} alt="3D View screen in the iOS demo app, showing playback controls and a scrubber" width="200" style={{ flexShrink: 0 }} />
+<img src={threeDViewExample} alt="3D View screen in the iOS demo app, showing a reconstruction of a subject performing an activity, with playback controls" width="200" style={{ flexShrink: 0, border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)' }} />
 </div>
 
 ## Loading Animation Data
@@ -142,15 +142,15 @@ that support the upload will succeed but no `-sync` result is produced, and the 
 stays empty.
 :::
 
+</div>
+<img src={threeDViewOverlayExample} alt="3D View in the iOS demo app, showing blue and green ground reaction force vectors overlaid on the skeleton" width="200" style={{ flexShrink: 0, border: '1px solid rgba(0, 0, 0, 0.1)', borderRadius: '8px', boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)' }} />
+</div>
+
 The full flow:
 
 1. Initialize the service.
 2. Upload your GRF data via `addMotionData`, tagged with a name of your choosing (e.g. `"my-grf"`).
 3. Set up the viewer with that same tag — it fetches the synced `.sto` result automatically.
-
-</div>
-<img src={threeDViewOverlayExample} alt="3D View in the iOS demo app, showing blue and green ground reaction force vectors overlaid on the skeleton" width="200" style={{ flexShrink: 0 }} />
-</div>
 
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
