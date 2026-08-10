@@ -46,7 +46,7 @@ playback used in the Model Health web app, embeddable directly in your own app.
   ```typescript
   import { fetchAnimationTransforms } from '@modelhealth/viewer-react';
 
-  const transforms = await fetchAnimationTransforms(service, activity);
+  const transforms = await fetchAnimationTransforms(client, activity);
   ```
 
   `fetchAnimationTransforms` fetches and parses the activity's `animation` motion data in one call.
@@ -64,8 +64,8 @@ playback used in the Model Health web app, embeddable directly in your own app.
   struct ActivityViewer: View {
       @StateObject private var controller: View3DController
 
-      init(activity: Activity, service: ModelHealthService) {
-          _controller = StateObject(wrappedValue: View3DController(for: activity, using: service))
+      init(activity: Activity, client: ModelHealthClient) {
+          _controller = StateObject(wrappedValue: View3DController(for: activity, using: client))
       }
 
       var body: some View {
@@ -148,25 +148,25 @@ stays empty.
 
 The full flow:
 
-1. Initialize the service.
+1. Initialize the client.
 2. Upload your GRF data via `addMotionData`, tagged with a name of your choosing (e.g. `"my-grf"`).
 3. Set up the viewer with that same tag — it fetches the synced `.sto` result automatically.
 
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  // 1. Initialize the service
-  let service = try ModelHealthService(apiKey: "your-api-key-here")
+  // 1. Initialize the client
+  let client = try ModelHealthClient(apiKey: "your-api-key-here")
 
   // 2. Upload your GRF data, tagged with a name of your choosing — any format works
   //    (CSV shown here); the backend syncs it and produces the .sto result the viewer reads
   let grfData = try Data(contentsOf: grfFileURL)
   let file = ExternalResultFile(tag: "my-grf", fileExtension: "csv", data: grfData)
-  let updatedActivity = try await service.addMotionData([file], to: activity)
+  let updatedActivity = try await client.addMotionData([file], to: activity)
 
   // 3. Construct the controller with the updated activity and the same tag — it fetches the
   //    synced .sto result (tagged "my-grf-sync") automatically, alongside the animation data
-  let controller = View3DController(for: updatedActivity, using: service, externalDataTag: "my-grf")
+  let controller = View3DController(for: updatedActivity, using: client, externalDataTag: "my-grf")
   ```
 
   If you don't know the tag ahead of time (e.g. it was uploaded by a different part of your
@@ -177,18 +177,18 @@ The full flow:
   ```typescript
   import { fetchExternalSto, parseExternalSto } from '@modelhealth/viewer-react';
 
-  // 1. Initialize the service
-  const service = new ModelHealthService({ apiKey: "your-api-key-here" });
-  await service.init();
+  // 1. Initialize the client
+  const client = new ModelHealthClient({ apiKey: "your-api-key-here" });
+  await client.init();
 
   // 2. Upload your GRF data, tagged with a name of your choosing — any format works
   //    (CSV shown here); the backend syncs it and produces the .sto result the viewer reads
   const grfBytes: Uint8Array = await loadMyGrfFile();
   const file = { tag: 'my-grf', extension: 'csv', data: grfBytes };
-  const updatedActivity = await service.addMotionDataToActivity(activity, [file]);
+  const updatedActivity = await client.addMotionDataToActivity(activity, [file]);
 
   // 3. Fetch and parse the synced .sto result using the same tag
-  const sto = await fetchExternalSto(service, updatedActivity, 'my-grf');
+  const sto = await fetchExternalSto(client, updatedActivity, 'my-grf');
   const overlay = sto ? parseExternalSto(sto) : null;
   ```
 

@@ -23,7 +23,7 @@ your chosen configuration.
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  let session = try await service.importSession(
+  let session = try await client.importSession(
       activitiesJson,
       subject: subject
   ) { status in
@@ -47,7 +47,7 @@ your chosen configuration.
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  const session = await service.importSession(
+  const session = await client.importSession(
     activitiesJson,
     subject,
     {},
@@ -86,7 +86,7 @@ your chosen configuration.
       elif status == "processing":
           print("Processing...")
 
-  session = service.import_session(
+  session = client.import_session(
       activities_json,
       subject,
       status_callback=on_import_status
@@ -104,7 +104,7 @@ Pass a `SessionConfig` to configure the session created during import. See [Sess
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  let session = try await service.importSession(
+  let session = try await client.importSession(
       activitiesJson,
       subject: subject,
       config: SessionConfig(coreEngine: .v1_0)
@@ -115,7 +115,7 @@ Pass a `SessionConfig` to configure the session created during import. See [Sess
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  const session = await service.importSession(
+  const session = await client.importSession(
     activitiesJson,
     subject,
     { coreEngine: "v1.0" }
@@ -128,7 +128,7 @@ Pass a `SessionConfig` to configure the session created during import. See [Sess
 
   config = SessionConfig(core_engine=SessionCoreEngine.v1_0)
 
-  session = service.import_session(activities_json, subject, session_config=config)
+  session = client.import_session(activities_json, subject, session_config=config)
   ```
   </TabItem>
 </Tabs>

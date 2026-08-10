@@ -20,17 +20,17 @@ Each subject needs a profile before calibration. Height and weight are required 
       weight: 70,              // kilograms, required
       height: 175              // centimeters, required
   )
-  let subject = try await service.createSubject(parameters: params)
+  let subject = try await client.createSubject(parameters: params)
 
   // Or select an existing subject (eg, first one of the list)
-  let subjects = try await service.subjectList()
+  let subjects = try await client.subjectList()
   let subject = subjects.first
   ```
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
   // Create a new subject
-  const subject = await service.createSubject({
+  const subject = await client.createSubject({
     name: "Anonymous",   // optional
     birthYear: null,     // optional
     height: 175,         // centimeters, required
@@ -38,7 +38,7 @@ Each subject needs a profile before calibration. Height and weight are required 
   });
 
   // Or select an existing subject (eg, first one of the list)
-  const subjects = await service.subjectList();
+  const subjects = await client.subjectList();
   const subject = subjects[0];
   ```
   </TabItem>
@@ -52,10 +52,10 @@ Each subject needs a profile before calibration. Height and weight are required 
       weight=70,          # kilograms, required
       height=175          # centimeters, required
   )
-  subject = service.create_subject(params)
+  subject = client.create_subject(params)
 
   # Or select an existing subject (eg, first one of the list)
-  subjects = service.subject_list()
+  subjects = client.subject_list()
   subject = subjects[0]
   ```
   </TabItem>
@@ -79,7 +79,7 @@ Make sure there are no obstructions in any camera's field of view before hitting
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  try await service.calibrateSubject(subject, in: session) { status in
+  try await client.calibrateSubject(subject, in: session) { status in
       switch status {
       case .recording:
           print("Recording neutral pose...")
@@ -99,7 +99,7 @@ Make sure there are no obstructions in any camera's field of view before hitting
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  await service.calibrateSubject(subject, session, (status) => {
+  await client.calibrateSubject(subject, session, (status) => {
     switch (status.type) {
       case "recording":
         console.log("Recording neutral pose...");
@@ -138,7 +138,7 @@ Make sure there are no obstructions in any camera's field of view before hitting
       elif status == CalibrationStatus.done:
           print("Neutral pose captured!")
 
-  service.calibrate_subject(subject, session, on_status)
+  client.calibrate_subject(subject, session, on_status)
   ```
   </TabItem>
 </Tabs>

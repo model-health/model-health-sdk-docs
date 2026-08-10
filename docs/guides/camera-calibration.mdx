@@ -64,17 +64,17 @@ For the recommended checkerboard and the example below, this is **4 rows and 5 c
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  let session = try await service.createSession()
+  let session = try await client.createSession()
   ```
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  const session = await service.createSession();
+  const session = await client.createSession();
   ```
   </TabItem>
   <TabItem value="python" label="Python">
   ```python
-  session = service.create_session()
+  session = client.create_session()
   ```
   </TabItem>
 </Tabs>
@@ -121,7 +121,7 @@ For the recommended checkerboard and the example below, this is **4 rows and 5 c
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  try await service.calibrateCamera(session, checkerboardDetails: details) { status in
+  try await client.calibrateCamera(session, checkerboardDetails: details) { status in
       switch status {
       case .recording:
           print("Recording calibration...")
@@ -141,7 +141,7 @@ For the recommended checkerboard and the example below, this is **4 rows and 5 c
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  await service.calibrateCamera(session, details, (status) => {
+  await client.calibrateCamera(session, details, (status) => {
     switch (status.type) {
       case "recording":
         console.log("Recording calibration...");
@@ -180,7 +180,7 @@ For the recommended checkerboard and the example below, this is **4 rows and 5 c
       elif status == CalibrationStatus.done:
           print("Calibration complete!")
 
-  service.calibrate_camera(session, details, on_status)
+  client.calibrate_camera(session, details, on_status)
   ```
   </TabItem>
 </Tabs>

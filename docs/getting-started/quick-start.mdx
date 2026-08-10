@@ -29,11 +29,11 @@ A typical flow looks like this:
   ```swift
   import ModelHealth
 
-  // Initialize the service with your API key
-  let service = try ModelHealthService(apiKey: "your-api-key-here")
+  // Initialize the client with your API key
+  let client = try ModelHealthClient(apiKey: "your-api-key-here")
 
   // Create a session
-  let session = try await service.createSession()
+  let session = try await client.createSession()
 
   // Calibrate camera
   let checkerboardDetails = CheckerboardDetails(
@@ -43,7 +43,7 @@ A typical flow looks like this:
       placement: .perpendicular
   )
 
-  try await service.calibrateCamera(
+  try await client.calibrateCamera(
       session,
       checkerboardDetails: checkerboardDetails
   ) { status in
@@ -51,9 +51,9 @@ A typical flow looks like this:
   }
 
   // Select first subject and calibrate it
-  let subjects = try await service.subjectList()
+  let subjects = try await client.subjectList()
   if let subject = subjects.first {
-      try await service.calibrateSubject(
+      try await client.calibrateSubject(
           subject,
           in: session
       ) { status in
@@ -62,30 +62,30 @@ A typical flow looks like this:
   }
 
   // Record an activity
-  let activity = try await service.startRecording(activityNamed: "cmj", in: session)
+  let activity = try await client.startRecording(activityNamed: "cmj", in: session)
   // Subject performs the activity...
-  try await service.stopRecording(session)
+  try await client.stopRecording(session)
 
   // Check processing status
-  let status = try await service.activityStatus(for: activity)
+  let status = try await client.activityStatus(for: activity)
   if case .ready = status {
       // Start analysis
-      let task = try await service.startAnalysis(
+      let task = try await client.startAnalysis(
           .counterMovementJump,
           for: activity,
           in: session
       )
 
       // Poll for completion
-      var analysisStatus = try await service.analysisStatus(for: task)
+      var analysisStatus = try await client.analysisStatus(for: task)
       while case .processing = analysisStatus {
           try await Task.sleep(nanoseconds: 10_000_000_000) // 10 seconds
-          analysisStatus = try await service.analysisStatus(for: task)
+          analysisStatus = try await client.analysisStatus(for: task)
       }
 
       // Download results
       if case .completed = analysisStatus {
-          let results = await service.analysisData(
+          let results = await client.analysisData(
               ofType: [.metrics, .report],
               for: activity
           )
@@ -106,14 +106,14 @@ A typical flow looks like this:
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  import { ModelHealthService } from '@modelhealth/modelhealth';
+  import { ModelHealthClient } from '@modelhealth/modelhealth';
 
-  // Initialize the service with your API key
-  const service = new ModelHealthService({ apiKey: "your-api-key-here" });
-  await service.init();
+  // Initialize the client with your API key
+  const client = new ModelHealthClient({ apiKey: "your-api-key-here" });
+  await client.init();
 
   // Create a session
-  const session = await service.createSession();
+  const session = await client.createSession();
 
   // Calibrate camera
   const checkerboardDetails = {
@@ -123,7 +123,7 @@ A typical flow looks like this:
     placement: "perpendicular"
   };
 
-  await service.calibrateCamera(
+  await client.calibrateCamera(
     session,
     checkerboardDetails,
     (status) => {
@@ -132,9 +132,9 @@ A typical flow looks like this:
   );  
 
   // Select first subject and calibrate it
-  const subjects = await service.subjectList();
+  const subjects = await client.subjectList();
   if (subjects.length > 0) {
-    await service.calibrateSubject(
+    await client.calibrateSubject(
       subjects[0],
       session,
       (status) => {
@@ -144,35 +144,35 @@ A typical flow looks like this:
   }
 
   // Record an activity
-  const activity = await service.startRecording("cmj", session);
+  const activity = await client.startRecording("cmj", session);
   // Subject performs the activity...
-  await service.stopRecording(session);
+  await client.stopRecording(session);
 
   // Check processing status
-  let activityStatus = await service.activityStatus(activity);
+  let activityStatus = await client.activityStatus(activity);
   while (activityStatus.type === "processing") {
     await new Promise(resolve => setTimeout(resolve, 2000));
-    activityStatus = await service.activityStatus(activity);
+    activityStatus = await client.activityStatus(activity);
   }
 
   // Start analysis
   if (activityStatus.type === "ready") {
-    const task = await service.startAnalysis(
+    const task = await client.startAnalysis(
       "counter_movement_jump",
       activity,
       session
     );
 
     // Poll for completion
-    let analysisStatus = await service.analysisStatus(task);
+    let analysisStatus = await client.analysisStatus(task);
     while (analysisStatus.type === "processing") {
       await new Promise(resolve => setTimeout(resolve, 2000));
-      analysisStatus = await service.analysisStatus(task);
+      analysisStatus = await client.analysisStatus(task);
     }
 
     // Download results
     if (analysisStatus.type === "completed") {
-      const results = await service.analysisDataForActivity(
+      const results = await client.analysisDataForActivity(
         activity,
         ["metrics", "report"]
       );
@@ -190,7 +190,7 @@ A typical flow looks like this:
   import json
   import time
   from modelhealth import (
-      ModelHealthService,
+      ModelHealthClient,
       CheckerboardDetails, CheckerboardPlacement,
       SubjectParameters,
       CalibrationStatus, CalibrationStatusUploading, CalibrationStatusProcessing,
@@ -198,11 +198,11 @@ A typical flow looks like this:
       AnalysisStatus,
   )
 
-  # Initialize the service with your API key
-  service = ModelHealthService("your-api-key-here")
+  # Initialize the client with your API key
+  client = ModelHealthClient("your-api-key-here")
 
   # Create a session
-  session = service.create_session()
+  session = client.create_session()
 
   # Calibrate camera
   checkerboard = CheckerboardDetails(
@@ -222,42 +222,42 @@ A typical flow looks like this:
       elif status == CalibrationStatus.done:
           print("Calibration complete!")
 
-  service.calibrate_camera(session, checkerboard, on_calibration_status)
+  client.calibrate_camera(session, checkerboard, on_calibration_status)
 
   # Select first subject if exists, otherwise create one
-  subjects = service.subject_list()
+  subjects = client.subject_list()
   if subjects:
       subject = subjects[0]
   else:
-      subject = service.create_subject(SubjectParameters(name="Anonymous", weight=70, height=175))
+      subject = client.create_subject(SubjectParameters(name="Anonymous", weight=70, height=175))
 
   # Calibrate the selected subject
-  service.calibrate_subject(subject, session, on_calibration_status)
+  client.calibrate_subject(subject, session, on_calibration_status)
 
   # Record an activity
-  activity = service.start_recording("cmj", session)
+  activity = client.start_recording("cmj", session)
   # Subject performs the activity...
-  service.stop_recording(session)
+  client.stop_recording(session)
 
   # Check processing status
-  status = service.activity_status(activity)
+  status = client.activity_status(activity)
   while isinstance(status, ActivityStatusUploading) or status == ActivityStatus.processing:
       time.sleep(10)
-      status = service.activity_status(activity)
+      status = client.activity_status(activity)
 
   if status == ActivityStatus.ready:
       # Start analysis
-      task = service.start_analysis("counter_movement_jump", activity, session)
+      task = client.start_analysis("counter_movement_jump", activity, session)
 
       # Poll for completion
-      analysis_status = service.analysis_status(task)
+      analysis_status = client.analysis_status(task)
       while analysis_status == AnalysisStatus.processing:
           time.sleep(10)
-          analysis_status = service.analysis_status(task)
+          analysis_status = client.analysis_status(task)
 
       # Download results
       if analysis_status == AnalysisStatus.completed:
-          results = service.analysis_data_for_activity(activity, ["metrics", "report"])
+          results = client.analysis_data_for_activity(activity, ["metrics", "report"])
           for r in results:
               if r.type == "metrics":
                   metrics = json.loads(r.data)

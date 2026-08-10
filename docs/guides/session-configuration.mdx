@@ -10,9 +10,9 @@ Sessions are created with sensible defaults. All fields are optional — only pa
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  let session = try await service.createSession()
+  let session = try await client.createSession()
 
-  try await service.configure(session: session, config: SessionConfig(
+  try await client.configure(session: session, config: SessionConfig(
       framerate: .fps60,
       openSimModel: .laiUhlrich2022Shoulder,
       scalingSetup: .uprightStandingPose,
@@ -24,9 +24,9 @@ Sessions are created with sensible defaults. All fields are optional — only pa
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  const session = await service.createSession();
+  const session = await client.createSession();
 
-  await service.configureSession(session, {
+  await client.configureSession(session, {
     framerate: 60,
     openSimModel: "LaiUhlrich2022_shoulder",
     scalingSetup: "upright_standing_pose",
@@ -47,9 +47,9 @@ Sessions are created with sensible defaults. All fields are optional — only pa
       SessionDataSharing,
   )
 
-  session = service.create_session()
+  session = client.create_session()
 
-  service.configure_session(
+  client.configure_session(
       session,
       framerate=SessionFramerate.fps_60,
       opensim_model=SessionOpenSimModel.lai_uhlrich_2022_shoulder,

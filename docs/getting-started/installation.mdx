@@ -56,7 +56,7 @@ separate product so apps that don't need it don't pay for WebKit/SwiftUI. See th
 Then import it in your TypeScript files:
 
 ```typescript
-import { ModelHealthService } from '@modelhealth/modelhealth';
+import { ModelHealthClient } from '@modelhealth/modelhealth';
 ```
 
 ### 3D View (optional)
@@ -76,7 +76,7 @@ See the [3D View guide](../guides/3d-view) for usage, or jump straight to the
 Then import it in your Python files:
 
 ```python
-from modelhealth import ModelHealthService
+from modelhealth import ModelHealthClient
 ```
 
 ## Verification
@@ -89,7 +89,7 @@ Once installed, verify the SDK is set up correctly by initializing it with your 
   import ModelHealth
 
   do {
-      let service = try ModelHealthService(apiKey: "your-api-key-here")
+      let client = try ModelHealthClient(apiKey: "your-api-key-here")
       print("Model Health SDK initialized successfully")
   } catch {
       print("Failed to initialize: \(error)")
@@ -98,18 +98,18 @@ Once installed, verify the SDK is set up correctly by initializing it with your 
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  import { ModelHealthService } from '@modelhealth/modelhealth';
+  import { ModelHealthClient } from '@modelhealth/modelhealth';
 
-  const service = new ModelHealthService({ apiKey: "your-api-key-here" });
-  await service.init();
+  const client = new ModelHealthClient({ apiKey: "your-api-key-here" });
+  await client.init();
   console.log('Model Health SDK initialized successfully');
   ```
   </TabItem>
   <TabItem value="python" label="Python">
   ```python
-  from modelhealth import ModelHealthService
+  from modelhealth import ModelHealthClient
 
-  service = ModelHealthService("your-api-key-here")
+  client = ModelHealthClient("your-api-key-here")
   print("Model Health SDK initialized successfully")
   ```
   </TabItem>

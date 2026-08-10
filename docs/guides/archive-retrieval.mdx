@@ -16,38 +16,38 @@ Including videos significantly increases preparation time, especially for sessio
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  let archive = try await service.prepareArchive(for: session)
+  let archive = try await client.prepareArchive(for: session)
   print("Archive task started:", archive.id)
   ```
 
   To include videos, pass `withVideos: true`:
 
   ```swift
-  let archive = try await service.prepareArchive(for: session, withVideos: true)
+  let archive = try await client.prepareArchive(for: session, withVideos: true)
   ```
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  const archive = await service.prepareArchive(session);
+  const archive = await client.prepareArchive(session);
   console.log("Archive task started:", archive.archiveId);
   ```
 
   To include videos, pass `true` as the second argument:
 
   ```typescript
-  const archive = await service.prepareArchive(session, true);
+  const archive = await client.prepareArchive(session, true);
   ```
   </TabItem>
   <TabItem value="python" label="Python">
   ```python
-  archive = service.prepare_archive(session)
+  archive = client.prepare_archive(session)
   print("Archive task started:", archive.id)
   ```
 
   To include videos, pass `with_videos=True`:
 
   ```python
-  archive = service.prepare_archive(session, with_videos=True)
+  archive = client.prepare_archive(session, with_videos=True)
   ```
   </TabItem>
 </Tabs>
@@ -64,7 +64,7 @@ Poll `archiveStatus` until the status is `ready`:
   while case .processing = status {
       print("Archive being prepared...")
       try await Task.sleep(nanoseconds: 20_000_000_000) // 20 seconds
-      status = try await service.archiveStatus(for: archive)
+      status = try await client.archiveStatus(for: archive)
   }
 
   switch status {
@@ -84,7 +84,7 @@ Poll `archiveStatus` until the status is `ready`:
   while (status.type === "processing") {
     console.log("Archive being prepared...");
     await new Promise(resolve => setTimeout(resolve, 20000));
-    status = await service.archiveStatus(archive);
+    status = await client.archiveStatus(archive);
   }
 
   if (status.type === "ready") {
@@ -104,7 +104,7 @@ Poll `archiveStatus` until the status is `ready`:
   while status == ArchiveStatus.processing:
       print("Archive being prepared...")
       time.sleep(20)
-      status = service.archive_status(archive)
+      status = client.archive_status(archive)
 
   if status == ArchiveStatus.ready:
       print("Archive ready to download")
@@ -122,7 +122,7 @@ Once the status is `ready`, download the ZIP data:
   <TabItem value="swift" label="Swift">
   ```swift
   if case .ready = status {
-      let zipData = try await service.archiveData(for: archive)
+      let zipData = try await client.archiveData(for: archive)
       try zipData.write(to: URL(fileURLWithPath: "session-archive.zip"))
       print("Archive saved:", zipData.count, "bytes")
   }
@@ -133,7 +133,7 @@ Once the status is `ready`, download the ZIP data:
   import { writeFileSync } from "fs";
 
   if (status.type === "ready") {
-    const zipData = await service.archiveData(archive);
+    const zipData = await client.archiveData(archive);
     writeFileSync("session-archive.zip", zipData);
     console.log("Archive saved:", zipData.byteLength, "bytes");
   }
@@ -142,7 +142,7 @@ Once the status is `ready`, download the ZIP data:
   <TabItem value="python" label="Python">
   ```python
   if status == ArchiveStatus.ready:
-      zip_data = service.archive_data(archive)
+      zip_data = client.archive_data(archive)
       with open("session-archive.zip", "wb") as f:
           f.write(zip_data)
       print(f"Archive saved: {len(zip_data)} bytes")
@@ -156,13 +156,13 @@ Once the status is `ready`, download the ZIP data:
   <TabItem value="swift" label="Swift">
   ```swift
   // Request archive (with videos)
-  let archive = try await service.prepareArchive(for: session, withVideos: true)
+  let archive = try await client.prepareArchive(for: session, withVideos: true)
 
   // Wait for preparation to complete
   var archiveStatus: ArchiveStatus = .processing
   while case .processing = archiveStatus {
       try await Task.sleep(nanoseconds: 20_000_000_000)
-      archiveStatus = try await service.archiveStatus(for: archive)
+      archiveStatus = try await client.archiveStatus(for: archive)
   }
 
   // Download
@@ -171,7 +171,7 @@ Once the status is `ready`, download the ZIP data:
       return
   }
 
-  let zipData = try await service.archiveData(for: archive)
+  let zipData = try await client.archiveData(for: archive)
   try zipData.write(to: URL(fileURLWithPath: "session-archive.zip"))
   print("Archive saved:", zipData.count, "bytes")
   ```
@@ -181,13 +181,13 @@ Once the status is `ready`, download the ZIP data:
   import { writeFileSync } from "fs";
 
   // Request archive (with videos)
-  const archive = await service.prepareArchive(session, true);
+  const archive = await client.prepareArchive(session, true);
 
   // Wait for preparation to complete
   let archiveStatus: ArchiveStatus = { type: "processing" };
   while (archiveStatus.type === "processing") {
     await new Promise(resolve => setTimeout(resolve, 20000));
-    archiveStatus = await service.archiveStatus(archive);
+    archiveStatus = await client.archiveStatus(archive);
   }
 
   // Download
@@ -196,7 +196,7 @@ Once the status is `ready`, download the ZIP data:
     return;
   }
 
-  const zipData = await service.archiveData(archive);
+  const zipData = await client.archiveData(archive);
   writeFileSync("session-archive.zip", zipData);
   console.log("Archive saved:", zipData.byteLength, "bytes");
   ```
@@ -207,19 +207,19 @@ Once the status is `ready`, download the ZIP data:
   from modelhealth import ArchiveStatus
 
   # Request archive (with videos)
-  archive = service.prepare_archive(session, with_videos=True)
+  archive = client.prepare_archive(session, with_videos=True)
 
   # Wait for preparation to complete
   archive_status = ArchiveStatus.processing
   while archive_status == ArchiveStatus.processing:
       time.sleep(20)
-      archive_status = service.archive_status(archive)
+      archive_status = client.archive_status(archive)
 
   # Download
   if archive_status != ArchiveStatus.ready:
       print("Archive preparation failed")
   else:
-      zip_data = service.archive_data(archive)
+      zip_data = client.archive_data(archive)
       with open("session-archive.zip", "wb") as f:
           f.write(zip_data)
       print(f"Archive saved: {len(zip_data)} bytes")
@@ -233,7 +233,7 @@ Once the status is `ready`, download the ZIP data:
   <TabItem value="swift" label="Swift">
   ```swift
   do {
-      let archive = try await service.prepareArchive(for: session)
+      let archive = try await client.prepareArchive(for: session)
       // Poll and download...
   } catch {
       print("Archive error: \(error)")
@@ -243,7 +243,7 @@ Once the status is `ready`, download the ZIP data:
   <TabItem value="ts" label="TypeScript">
   ```typescript
   try {
-    const archive = await service.prepareArchive(session);
+    const archive = await client.prepareArchive(session);
     // Poll and download...
   } catch (error) {
     console.error("Archive error:", error);
@@ -255,7 +255,7 @@ Once the status is `ready`, download the ZIP data:
   from modelhealth import ModelHealthError
 
   try:
-      archive = service.prepare_archive(session)
+      archive = client.prepare_archive(session)
       # Poll and download...
   except ModelHealthError as e:
       print(f"Archive error: {e}")

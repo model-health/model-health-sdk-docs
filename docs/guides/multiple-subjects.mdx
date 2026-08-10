@@ -19,17 +19,17 @@ See [`examples/scripts`](https://github.com/model-health/model-health/tree/main/
 <Tabs groupId="language">
   <TabItem value="swift" label="Swift">
   ```swift
-  let newSession = try await service.newSession(from: previousSession)
+  let newSession = try await client.newSession(from: previousSession)
   ```
   </TabItem>
   <TabItem value="ts" label="TypeScript">
   ```typescript
-  const newSession = await service.newSessionFromSession(previousSession);
+  const newSession = await client.newSessionFromSession(previousSession);
   ```
   </TabItem>
   <TabItem value="python" label="Python">
   ```python
-  new_session = service.new_session_from_session(previous_session)
+  new_session = client.new_session_from_session(previous_session)
   ```
   </TabItem>
 </Tabs>
@@ -54,14 +54,14 @@ Since cameras are already paired and calibrated, skip straight to [Subject Calib
   ```swift
   repeat {
       let subject = pickOrCreateSubject()
-      try await service.calibrateSubject(subject, in: session, statusUpdate: callback)
+      try await client.calibrateSubject(subject, in: session, statusUpdate: callback)
 
       // record one or more activities for this subject...
 
       guard confirm("Record another subject with the same camera setup?") else {
           break
       }
-      session = try await service.newSession(from: session)
+      session = try await client.newSession(from: session)
   } while true
   ```
   </TabItem>
@@ -69,14 +69,14 @@ Since cameras are already paired and calibrated, skip straight to [Subject Calib
   ```typescript
   for (;;) {
     const subject = pickOrCreateSubject();
-    await service.calibrateSubject(subject, session, callback);
+    await client.calibrateSubject(subject, session, callback);
 
     // record one or more activities for this subject...
 
     if (!(await confirm("Record another subject with the same camera setup?"))) {
       break;
     }
-    session = await service.newSessionFromSession(session);
+    session = await client.newSessionFromSession(session);
   }
   ```
   </TabItem>
@@ -84,13 +84,13 @@ Since cameras are already paired and calibrated, skip straight to [Subject Calib
   ```python
   while True:
       subject = pick_or_create_subject()
-      service.calibrate_subject(subject, session, callback)
+      client.calibrate_subject(subject, session, callback)
 
       # record one or more activities for this subject...
 
       if not confirm("Record another subject with the same camera setup?"):
           break
-      session = service.new_session_from_session(session)
+      session = client.new_session_from_session(session)
   ```
   </TabItem>
 </Tabs>
