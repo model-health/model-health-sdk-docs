@@ -12,24 +12,24 @@
 <h1>Type Alias FilterFrequency</h1></div>
 <div class="tsd-signature"><span class="tsd-kind-type-alias">FilterFrequency</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{</span> <span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;default&quot;</span> <span class="tsd-signature-symbol">}</span> <span class="tsd-signature-symbol">|</span> <span class="tsd-signature-symbol">{</span> <span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;hz&quot;</span><span class="tsd-signature-symbol">;</span> <span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">}</span></div>
 <div class="tsd-comment tsd-typography"><p>Frequency of the low-pass Butterworth filter applied to 2D video keypoints.</p>
-<p>Use <code>{ type: &quot;default&quot; }</code> to let the server choose the optimal frequency
-(20 Hz by default), or <code>{ type: &quot;hz&quot;, value: N }</code> to specify a frequency in Hz.
+<p>Use <code>{ type: &quot;default&quot; }</code> for the automatically chosen optimal frequency
+(usually 20 Hz), or <code>{ type: &quot;hz&quot;, value: N }</code> to specify a frequency in Hz.
 A custom value applies to all motion trials in the session. Per the Nyquist
-theorem the value must be less than half the session framerate; if it exceeds
-that the server clamps it automatically.</p>
+theorem the value must be less than half the session framerate; a higher
+value is clamped automatically.</p>
 </div>
 <div class="tsd-type-declaration">
 <h4>Type Declaration</h4>
 <ul>
 <li><span class="tsd-signature-symbol">{</span> <span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;default&quot;</span> <span class="tsd-signature-symbol">}</span>
-<div class="tsd-comment tsd-typography"><p>Let the server choose the optimal filter frequency. The server uses 20 Hz by default.</p>
+<div class="tsd-comment tsd-typography"><p>Use the automatically chosen optimal filter frequency. Usually 20 Hz.</p>
 </div></li>
 <li><span class="tsd-signature-symbol">{</span> <span class="tsd-kind-property">type</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;hz&quot;</span><span class="tsd-signature-symbol">;</span> <span class="tsd-kind-property">value</span><span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span> <span class="tsd-signature-symbol">}</span>
 <div class="tsd-comment tsd-typography"><p>A specific frequency in Hz.</p>
 </div></li></ul></div>
 <div class="tsd-comment tsd-typography">
 <div class="tsd-tag-example">
-<h4 class="tsd-anchor-link" id="example">Example<a href="#example" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-7">// Server-chosen frequency</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">freq</span><span class="hl-1">: </span><span class="hl-8">FilterFrequency</span><span class="hl-1"> = { </span><span class="hl-4">type:</span><span class="hl-1"> </span><span class="hl-2">&quot;default&quot;</span><span class="hl-1"> };</span><br/><br/><span class="hl-7">// Explicit 6 Hz</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">freq</span><span class="hl-1">: </span><span class="hl-8">FilterFrequency</span><span class="hl-1"> = { </span><span class="hl-4">type:</span><span class="hl-1"> </span><span class="hl-2">&quot;hz&quot;</span><span class="hl-1">, </span><span class="hl-4">value:</span><span class="hl-1"> </span><span class="hl-13">6</span><span class="hl-1"> };</span>
+<h4 class="tsd-anchor-link" id="example">Example<a href="#example" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h4><pre><code class="typescript"><span class="hl-7">// Automatically chosen frequency</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">freq</span><span class="hl-1">: </span><span class="hl-8">FilterFrequency</span><span class="hl-1"> = { </span><span class="hl-4">type:</span><span class="hl-1"> </span><span class="hl-2">&quot;default&quot;</span><span class="hl-1"> };</span><br/><br/><span class="hl-7">// Explicit 6 Hz</span><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">freq</span><span class="hl-1">: </span><span class="hl-8">FilterFrequency</span><span class="hl-1"> = { </span><span class="hl-4">type:</span><span class="hl-1"> </span><span class="hl-2">&quot;hz&quot;</span><span class="hl-1">, </span><span class="hl-4">value:</span><span class="hl-1"> </span><span class="hl-13">6</span><span class="hl-1"> };</span>
 </code><button type="button">Copy</button></pre>
 
 </div></div></div>
