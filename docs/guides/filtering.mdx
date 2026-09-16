@@ -1,0 +1,252 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Filtering Lists
+
+Activities, subjects, sessions and subject groups are all listed the same way: `list(...)` takes the filters you want and returns a sequence you iterate directly.
+
+Every sequence also carries `total`, the number of matching items, and `all()`, which collects the rest into an array.
+
+## Activities
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let activities = client.activities.list(search: "squat", onlyCompleted: true)
+
+  for try await activity in activities {
+      print(activity.name ?? activity.id, activity.status)
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const activities = client.activities.list({ search: "squat", onlyCompleted: true });
+
+  for await (const activity of activities) {
+    console.log(activity.name, activity.status);
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  activities = client.activities.list(search="squat", only_completed=True)
+
+  for activity in activities:
+      print(activity.name, activity.status)
+  ```
+  </TabItem>
+</Tabs>
+
+Calibration and neutral-pose activities are left out by default. Pass `excludeCalibration: false` to include them.
+
+| Filter | Selects |
+|---|---|
+| `subject` | Activities recorded for one subject |
+| `calibrationSession` | Activities recorded under one calibration session |
+| `activityType` | Activities of one type |
+| `excludeCalibration` | Whether to leave out calibration and neutral-pose activities (default `true`) |
+| `createdAfter` / `createdBefore` | An inclusive date range |
+| `search` | Free-text match against the activity name |
+| `tags` | Activities carrying every tag in the list |
+| `createdBy` | Activities belonging to one or more account ids |
+| `onlyCompleted` | Activities whose recording finished |
+| `excludeAnalysisError` | Leaves out activities whose analysis failed |
+
+## Subjects
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  for try await subject in client.subjects.list(activityComplete: true) {
+      print(subject.id, subject.name)
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  for await (const subject of client.subjects.list({ activityComplete: true })) {
+    console.log(subject.id, subject.name);
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  for subject in client.subjects.list(activity_complete=True):
+      print(subject.id, subject.name)
+  ```
+  </TabItem>
+</Tabs>
+
+| Filter | Selects |
+|---|---|
+| `search` | Free-text match against the subject name |
+| `createdAfter` / `createdBefore` | An inclusive date range |
+| `groups` | Subjects belonging to one of these subject groups |
+| `tags` | Subjects carrying every tag in the list |
+| `createdBy` | Subjects belonging to one or more account ids |
+| `activityType` | Subjects with an activity of this type |
+| `activityComplete` | Subjects with at least one completed activity |
+| `session` | Subjects recorded in one session |
+
+## Sessions
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let sessions = try await client.sessions.list(subject: subject).all()
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const sessions = await client.sessions.list({ subject }).all();
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  sessions = client.sessions.list(subject=subject).all()
+  ```
+  </TabItem>
+</Tabs>
+
+Narrowing by subject is the only filter a session list takes. It lists sessions on your own account.
+
+## Subject Groups
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  for try await group in client.groups.list(search: "study") {
+      print(group.name, group.subjectCount)
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  for await (const group of client.groups.list({ search: "study" })) {
+    console.log(group.name, group.subjectCount);
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  for group in client.groups.list(search="study"):
+      print(group.name, group.subject_count)
+  ```
+  </TabItem>
+</Tabs>
+
+Search is the only filter a group list takes.
+
+## Sorting
+
+Pass `orderBy` to choose the field, prefixed with `-` for descending. Swift takes a typed enum instead of a string.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  client.activities.list(orderBy: .createdAtDescending)
+  client.subjects.list(orderBy: .name)
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  client.activities.list({ orderBy: "-createdAt" });
+  client.subjects.list({ orderBy: "name" });
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  client.activities.list(order_by="-created_at")
+  client.subjects.list(order_by="name")
+  ```
+  </TabItem>
+</Tabs>
+
+| List | Sort by |
+|---|---|
+| Activities | `createdAt`, `status`, `createdBy`, `activityType` |
+| Subjects | `name`, `createdAt`, `updatedAt` |
+| Sessions | `name`, `createdAt` |
+| Subject groups | `name` |
+
+A field the list can't sort by is refused straight away, with an error naming the ones it accepts.
+
+## Counting Matches
+
+`total` is the number of items matching the filter, not the number you have read. It is available before you start iterating, and reading it does not consume any items.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let activities = client.activities.list(tags: ["baseline"])
+  print("\(try await activities.total) match")
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const activities = client.activities.list({ tags: ["baseline"] });
+  console.log(`${await activities.total} match`);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  activities = client.activities.list(tags=["baseline"])
+  print(f"{activities.total} match")
+  ```
+  </TabItem>
+</Tabs>
+
+## Collecting Everything
+
+`all()` returns every remaining match as an array, continuing from wherever iteration stopped. Use `limit` to cap how many items a sequence yields in total.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let recent = try await client.activities.list(orderBy: .createdAtDescending, limit: 20).all()
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const recent = await client.activities.list({ orderBy: "-createdAt", limit: 20 }).all();
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  recent = client.activities.list(order_by="-created_at", limit=20).all()
+  ```
+  </TabItem>
+</Tabs>
+
+## Stopping Early
+
+In TypeScript, call `close()` on a sequence you stop reading early. Reading one to the end does this for you. Swift and Python need no equivalent.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  for try await activity in client.activities.list() {
+      if activity.status == "done" { break }
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const activities = client.activities.list();
+
+  for await (const activity of activities) {
+    if (activity.status === "done") break;
+  }
+
+  activities.close();
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  for activity in client.activities.list():
+      if activity.status == "done":
+          break
+  ```
+  </TabItem>
+</Tabs>

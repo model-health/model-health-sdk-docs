@@ -37,6 +37,7 @@ const sidebars = {
         'guides/3d-view',
         'guides/archive-retrieval',
         'guides/session-import',
+        'guides/filtering',
       ],
     },
     {
