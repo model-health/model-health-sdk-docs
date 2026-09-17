@@ -121,6 +121,19 @@ you can style controls to match your app rather than a fixed embedded toolbar.
   />
   ```
 
+### Syncing to an external clock
+
+If something outside `View3D` already drives playback position — for example a video player
+you're keeping in sync — hand that clock full control instead of letting `View3D` run its own
+timer:
+
+- **Swift** — set `View3DController.setExternalClock(true)`. While enabled
+  (`isExternalClockEnabled`), `play()` is a no-op and playback never advances on its own; call
+  `seek(to:)` on every tick of your external clock instead. `seek(to:)` internally coalesces rapid
+  calls, so it's safe to call at native video frame rate (30–60Hz).
+- **TypeScript** — pass `externalClock` to `<View3D>`. While set, `play()` is a no-op and playback
+  never advances on its own; call `seek(time)` on every tick of your external clock instead.
+
 ## Ground Reaction Force Overlays
 
 <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
