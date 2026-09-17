@@ -9,6 +9,39 @@ Once camera and subject calibration are complete, you're ready to record movemen
 
 ## Recording
 
+### Check Usage (Optional)
+
+Before starting a recording, you can check whether your account is currently allowed to record — for example if you've reached your plan's activity limit for the period, or your subscription has lapsed.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let usage = try await client.usage()
+  guard usage.recordingAllowed else {
+      print("Recording blocked: \(usage.reason)")
+      return
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const usage = await client.usage();
+  if (!usage.recordingAllowed) {
+    console.log(`Recording blocked: ${usage.reason}`);
+    return;
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  usage = client.usage()
+  if not usage.recording_allowed:
+      print(f"Recording blocked: {usage.reason}")
+      return
+  ```
+  </TabItem>
+</Tabs>
+
 ### Start Recording
 
 Pass any descriptive string as the activity name — use something that helps identify the attempt later (e.g. `cmj`, `squat`, `cut`).
