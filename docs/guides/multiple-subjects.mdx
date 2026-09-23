@@ -95,6 +95,85 @@ Since cameras are already paired and calibrated, skip straight to [Subject Calib
   </TabItem>
 </Tabs>
 
+## Going Back to a Subject
+
+Subjects rarely arrive in a neat order — someone steps out, someone needs a second attempt. `switchSubject` moves to whoever is next, in any order, and takes the cameras with them. If that subject already has a session whose camera calibration and static pose are both still good, the same session comes back and their pose is not repeated.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  session = try await client.switchSubject(to: subject, in: session)
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  session = await client.switchSubject(subject, session);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  session = client.switch_subject(subject, session)
+  ```
+  </TabItem>
+</Tabs>
+
+Use the session it returns from then on: it may be one that already existed, the one you passed in, or a new one.
+
+:::warning Record nobody in the calibrated session itself
+Keep the session you calibrated the cameras in for the checkerboard alone, and give every subject — the first one included — a session of their own through `switchSubject`.
+
+A subject recorded directly in the calibration session cannot be returned to. Coming back to them starts an empty session instead, with no static pose in it, and the first recording there fails immediately.
+:::
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  var session = try await client.createSession()
+  try await client.calibrateCamera(session, checkerboardDetails: board) { _ in }
+
+  for subject in subjects {
+      session = try await client.switchSubject(to: subject, in: session)
+      try await client.calibrateSubject(subject, in: session) { _ in }
+      // record their activities...
+  }
+
+  // Back to the first subject — the session they were already in, no pose to repeat.
+  session = try await client.switchSubject(to: subjects[0], in: session)
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  let session = await client.createSession();
+  await client.calibrateCamera(session, board, () => {});
+
+  for (const subject of subjects) {
+    session = await client.switchSubject(subject, session);
+    await client.calibrateSubject(subject, session, () => {});
+    // record their activities...
+  }
+
+  // Back to the first subject — the session they were already in, no pose to repeat.
+  session = await client.switchSubject(subjects[0], session);
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  session = client.create_session()
+  client.calibrate_camera(session, board, lambda status: None)
+
+  for subject in subjects:
+      session = client.switch_subject(subject, session)
+      client.calibrate_subject(subject, session, lambda status: None)
+      # record their activities...
+
+  # Back to the first subject — the session they were already in, no pose to repeat.
+  session = client.switch_subject(subjects[0], session)
+  ```
+  </TabItem>
+</Tabs>
+
+Fetching an earlier session by its id does not do this. Reading a session tells the cameras nothing — they carry on polling the one they were last sent to, and a recording started elsewhere reaches nobody.
+
 ## Troubleshooting
 
 **Request fails or session not found:**
