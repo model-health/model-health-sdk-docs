@@ -42,13 +42,22 @@
                                 <a class="variable" href="#ModelHealthClient.groups">groups</a>
                         </li>
                         <li>
+                                <a class="variable" href="#ModelHealthClient.activity_types">activity_types</a>
+                        </li>
+                        <li>
                                 <a class="function" href="#ModelHealthClient.account_info">account_info</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#ModelHealthClient.usage">usage</a>
                         </li>
                         <li>
                                 <a class="function" href="#ModelHealthClient.session_list">session_list</a>
                         </li>
                         <li>
                                 <a class="function" href="#ModelHealthClient.get_session">get_session</a>
+                        </li>
+                        <li>
+                                <a class="function" href="#ModelHealthClient.switch_subject">switch_subject</a>
                         </li>
                         <li>
                                 <a class="function" href="#ModelHealthClient.new_session_from_session">new_session_from_session</a>
@@ -216,43 +225,43 @@
                     <a class="class" href="#SubjectGroup">SubjectGroup</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#SubjectGroup.subject_count">subject_count</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#SubjectGroup.last_activity">last_activity</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#SubjectGroup.can_edit">can_edit</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#SubjectGroup.trashed_at">trashed_at</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#SubjectGroup.total_activities">total_activities</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#SubjectGroup.name">name</a>
-                        </li>
-                        <li>
                                 <a class="variable" href="#SubjectGroup.description">description</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#SubjectGroup.created_at">created_at</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#SubjectGroup.updated_at">updated_at</a>
                         </li>
                         <li>
                                 <a class="variable" href="#SubjectGroup.created_by">created_by</a>
                         </li>
                         <li>
+                                <a class="variable" href="#SubjectGroup.subject_count">subject_count</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SubjectGroup.can_edit">can_edit</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SubjectGroup.total_activities">total_activities</a>
+                        </li>
+                        <li>
                                 <a class="variable" href="#SubjectGroup.is_owner">is_owner</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SubjectGroup.created_at">created_at</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SubjectGroup.id">id</a>
                         </li>
                         <li>
                                 <a class="variable" href="#SubjectGroup.trashed">trashed</a>
                         </li>
                         <li>
-                                <a class="variable" href="#SubjectGroup.id">id</a>
+                                <a class="variable" href="#SubjectGroup.trashed_at">trashed_at</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SubjectGroup.updated_at">updated_at</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SubjectGroup.last_activity">last_activity</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#SubjectGroup.name">name</a>
                         </li>
                 </ul>
 
@@ -291,25 +300,58 @@
                     <a class="class" href="#AccountInfo">AccountInfo</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#AccountInfo.first_name">first_name</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#AccountInfo.country">country</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#AccountInfo.email">email</a>
-                        </li>
-                        <li>
                                 <a class="variable" href="#AccountInfo.username">username</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#AccountInfo.last_name">last_name</a>
                         </li>
                         <li>
                                 <a class="variable" href="#AccountInfo.profession">profession</a>
                         </li>
                         <li>
+                                <a class="variable" href="#AccountInfo.country">country</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#AccountInfo.first_name">first_name</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#AccountInfo.last_name">last_name</a>
+                        </li>
+                        <li>
                                 <a class="variable" href="#AccountInfo.institution">institution</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#AccountInfo.email">email</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#UsageInfo">UsageInfo</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#UsageInfo.plan_name">plan_name</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageInfo.activities_max">activities_max</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageInfo.reason">reason</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageInfo.is_free_trial">is_free_trial</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageInfo.activities_used">activities_used</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageInfo.reset_period">reset_period</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageInfo.will_auto_renew">will_auto_renew</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageInfo.recording_allowed">recording_allowed</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageInfo.period_end">period_end</a>
                         </li>
                 </ul>
 
@@ -318,37 +360,37 @@
                     <a class="class" href="#Session">Session</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#Session.activities">activities</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Session.created_at">created_at</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Session.public">public</a>
+                                <a class="variable" href="#Session.session_name">session_name</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Session.qrcode">qrcode</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Session.id">id</a>
+                                <a class="variable" href="#Session.created_at">created_at</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Session.user">user</a>
+                                <a class="variable" href="#Session.activities">activities</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Session.updated_at">updated_at</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Session.session_name">session_name</a>
+                                <a class="variable" href="#Session.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Session.public">public</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Session.user">user</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Session.name">name</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Session.subject">subject</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Session.activities_count">activities_count</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Session.name">name</a>
                         </li>
                 </ul>
 
@@ -357,46 +399,46 @@
                     <a class="class" href="#Activity">Activity</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#Activity.trashed">trashed</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Activity.name">name</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Activity.notes">notes</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Activity.created_by">created_by</a>
+                                <a class="variable" href="#Activity.created_at">created_at</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Activity.tags">tags</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Activity.analysis_status">analysis_status</a>
+                                <a class="variable" href="#Activity.videos">videos</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Activity.updated_at">updated_at</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Activity.status">status</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Activity.videos">videos</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Activity.id">id</a>
+                                <a class="variable" href="#Activity.name">name</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Activity.session">session</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Activity.results">results</a>
+                                <a class="variable" href="#Activity.created_by">created_by</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Activity.created_at">created_at</a>
+                                <a class="variable" href="#Activity.analysis_status">analysis_status</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Activity.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Activity.notes">notes</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Activity.trashed">trashed</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Activity.activity_type">activity_type</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Activity.updated_at">updated_at</a>
+                                <a class="variable" href="#Activity.results">results</a>
                         </li>
                 </ul>
 
@@ -405,16 +447,16 @@
                     <a class="class" href="#ActivityResult">ActivityResult</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#ActivityResult.id">id</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#ActivityResult.tag">tag</a>
+                                <a class="variable" href="#ActivityResult.media">media</a>
                         </li>
                         <li>
                                 <a class="variable" href="#ActivityResult.activity">activity</a>
                         </li>
                         <li>
-                                <a class="variable" href="#ActivityResult.media">media</a>
+                                <a class="variable" href="#ActivityResult.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ActivityResult.tag">tag</a>
                         </li>
                 </ul>
 
@@ -423,16 +465,16 @@
                     <a class="class" href="#Video">Video</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#Video.activity">activity</a>
+                                <a class="variable" href="#Video.video">video</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Video.id">id</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Video.video_thumb">video_thumb</a>
+                                <a class="variable" href="#Video.activity">activity</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Video.video">video</a>
+                                <a class="variable" href="#Video.video_thumb">video_thumb</a>
                         </li>
                 </ul>
 
@@ -441,7 +483,34 @@
                     <a class="class" href="#Subject">Subject</a>
                             <ul class="memberlist">
                         <li>
+                                <a class="variable" href="#Subject.name">name</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Subject.last_name">last_name</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Subject.activity_count">activity_count</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Subject.tags">tags</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Subject.first_name">first_name</a>
+                        </li>
+                        <li>
                                 <a class="variable" href="#Subject.age">age</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Subject.gender">gender</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Subject.id">id</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Subject.characteristics">characteristics</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#Subject.created_at">created_at</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Subject.birth_year">birth_year</a>
@@ -450,43 +519,16 @@
                                 <a class="variable" href="#Subject.sex_at_birth">sex_at_birth</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Subject.tags">tags</a>
+                                <a class="variable" href="#Subject.height">height</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Subject.last_activity">last_activity</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Subject.gender">gender</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Subject.last_name">last_name</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Subject.id">id</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Subject.weight">weight</a>
                         </li>
                         <li>
                                 <a class="variable" href="#Subject.updated_at">updated_at</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Subject.activity_count">activity_count</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Subject.name">name</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Subject.height">height</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Subject.created_at">created_at</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Subject.first_name">first_name</a>
-                        </li>
-                        <li>
-                                <a class="variable" href="#Subject.characteristics">characteristics</a>
                         </li>
                 </ul>
 
@@ -495,7 +537,7 @@
                     <a class="class" href="#SubjectParameters">SubjectParameters</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#SubjectParameters.sex_at_birth">sex_at_birth</a>
+                                <a class="variable" href="#SubjectParameters.weight">weight</a>
                         </li>
                         <li>
                                 <a class="variable" href="#SubjectParameters.name">name</a>
@@ -504,10 +546,10 @@
                                 <a class="variable" href="#SubjectParameters.height">height</a>
                         </li>
                         <li>
-                                <a class="variable" href="#SubjectParameters.weight">weight</a>
+                                <a class="variable" href="#SubjectParameters.birth_year">birth_year</a>
                         </li>
                         <li>
-                                <a class="variable" href="#SubjectParameters.birth_year">birth_year</a>
+                                <a class="variable" href="#SubjectParameters.sex_at_birth">sex_at_birth</a>
                         </li>
                         <li>
                                 <a class="variable" href="#SubjectParameters.gender">gender</a>
@@ -522,10 +564,10 @@
                     <a class="class" href="#ActivityTag">ActivityTag</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#ActivityTag.value">value</a>
+                                <a class="variable" href="#ActivityTag.label">label</a>
                         </li>
                         <li>
-                                <a class="variable" href="#ActivityTag.label">label</a>
+                                <a class="variable" href="#ActivityTag.value">value</a>
                         </li>
                 </ul>
 
@@ -534,13 +576,31 @@
                     <a class="class" href="#ActivityTypeInfo">ActivityTypeInfo</a>
                             <ul class="memberlist">
                         <li>
+                                <a class="variable" href="#ActivityTypeInfo.is_custom">is_custom</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ActivityTypeInfo.slug">slug</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ActivityTypeInfo.display_name">display_name</a>
+                        </li>
+                        <li>
                                 <a class="variable" href="#ActivityTypeInfo.id">id</a>
                         </li>
                         <li>
                                 <a class="variable" href="#ActivityTypeInfo.name">name</a>
                         </li>
                         <li>
-                                <a class="variable" href="#ActivityTypeInfo.display_name">display_name</a>
+                                <a class="variable" href="#ActivityTypeInfo.description">description</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#ActivityTypesResource">ActivityTypesResource</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="function" href="#ActivityTypesResource.list">list</a>
                         </li>
                 </ul>
 
@@ -561,10 +621,10 @@
                     <a class="class" href="#AnalysisData">AnalysisData</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#AnalysisData.type">type</a>
+                                <a class="variable" href="#AnalysisData.data">data</a>
                         </li>
                         <li>
-                                <a class="variable" href="#AnalysisData.data">data</a>
+                                <a class="variable" href="#AnalysisData.type">type</a>
                         </li>
                 </ul>
 
@@ -603,16 +663,16 @@
                                 <a class="variable" href="#LogEvent.level">level</a>
                         </li>
                         <li>
-                                <a class="variable" href="#LogEvent.category">category</a>
-                        </li>
-                        <li>
                                 <a class="variable" href="#LogEvent.timestamp_ms">timestamp_ms</a>
                         </li>
                         <li>
-                                <a class="variable" href="#LogEvent.code">code</a>
+                                <a class="variable" href="#LogEvent.message">message</a>
                         </li>
                         <li>
-                                <a class="variable" href="#LogEvent.message">message</a>
+                                <a class="variable" href="#LogEvent.category">category</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#LogEvent.code">code</a>
                         </li>
                 </ul>
 
@@ -775,6 +835,36 @@
                         </li>
                         <li>
                                 <a class="variable" href="#Sex.no_response">no_response</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#UsageReason">UsageReason</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#UsageReason.no_active_plan">no_active_plan</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageReason.period_expired">period_expired</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageReason.limit_reached">limit_reached</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#UsageReason.payment_failed">payment_failed</a>
+                        </li>
+                </ul>
+
+            </li>
+            <li>
+                    <a class="class" href="#ResetPeriod">ResetPeriod</a>
+                            <ul class="memberlist">
+                        <li>
+                                <a class="variable" href="#ResetPeriod.monthly">monthly</a>
+                        </li>
+                        <li>
+                                <a class="variable" href="#ResetPeriod.annually">annually</a>
                         </li>
                 </ul>
 
@@ -999,10 +1089,10 @@
                                 <a class="variable" href="#CheckerboardDetails.square_size">square_size</a>
                         </li>
                         <li>
-                                <a class="variable" href="#CheckerboardDetails.placement">placement</a>
+                                <a class="variable" href="#CheckerboardDetails.columns">columns</a>
                         </li>
                         <li>
-                                <a class="variable" href="#CheckerboardDetails.columns">columns</a>
+                                <a class="variable" href="#CheckerboardDetails.placement">placement</a>
                         </li>
                 </ul>
 
@@ -1179,10 +1269,10 @@
                                 <a class="variable" href="#Metric.value">value</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Metric.description">description</a>
+                                <a class="variable" href="#Metric.name">name</a>
                         </li>
                         <li>
-                                <a class="variable" href="#Metric.name">name</a>
+                                <a class="variable" href="#Metric.description">description</a>
                         </li>
                 </ul>
 
@@ -1191,13 +1281,13 @@
                     <a class="class" href="#MetricsGroup">MetricsGroup</a>
                             <ul class="memberlist">
                         <li>
-                                <a class="variable" href="#MetricsGroup.name">name</a>
+                                <a class="variable" href="#MetricsGroup.metrics">metrics</a>
                         </li>
                         <li>
                                 <a class="variable" href="#MetricsGroup.description">description</a>
                         </li>
                         <li>
-                                <a class="variable" href="#MetricsGroup.metrics">metrics</a>
+                                <a class="variable" href="#MetricsGroup.name">name</a>
                         </li>
                 </ul>
 
@@ -1209,10 +1299,10 @@
                                 <a class="function" href="#ActivityMetrics.to_json">to_json</a>
                         </li>
                         <li>
-                                <a class="variable" href="#ActivityMetrics.activity_type_id">activity_type_id</a>
+                                <a class="variable" href="#ActivityMetrics.groups">groups</a>
                         </li>
                         <li>
-                                <a class="variable" href="#ActivityMetrics.groups">groups</a>
+                                <a class="variable" href="#ActivityMetrics.activity_type_id">activity_type_id</a>
                         </li>
                         <li>
                                 <a class="variable" href="#ActivityMetrics.activity_id">activity_id</a>
@@ -1424,6 +1514,17 @@ the build's default is used.</li>
     
 
                             </div>
+                            <div id="ModelHealthClient.activity_types" class="classattr">
+                                <div class="attr variable">
+            <span class="name">activity_types</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModelHealthClient.activity_types"></a>
+    
+    
+
+                            </div>
                             <div id="ModelHealthClient.account_info" class="classattr">
                                 <div class="attr function">
             
@@ -1459,6 +1560,55 @@ domain operation.</p>
   <div class="pdoc-code codehilite">
 <pre><span></span><code><span class="n">info</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">account_info</span><span class="p">()</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Authenticated as </span><span class="si">{</span><span class="n">info</span><span class="o">.</span><span class="n">email</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre>
+  </div>
+</blockquote>
+</div>
+
+
+                            </div>
+                            <div id="ModelHealthClient.usage" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">usage</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="n">UsageInfo</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModelHealthClient.usage"></a>
+    
+            <div class="docstring"><p>Returns the current billing/quota state for the authenticated account.</p>
+
+<p>Use this to show usage bars and plan limits, and to block recording in
+your own UI when the quota is exhausted or the subscription has lapsed.</p>
+
+<p><code>reason</code> explains why <code>recording_allowed</code> is <code>False</code>, and is only set
+in that case. Most other detail fields (<code>reason</code>, <code>activities_used</code>,
+<code>activities_max</code>, <code>period_end</code>, <code>plan_name</code>, <code>reset_period</code>) are
+<code>None</code> when there is no active plan. An <code>activities_max</code> of <code>None</code>
+while a plan is active means the plan is unlimited.</p>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>A <code><a href="#UsageInfo">UsageInfo</a></code> describing the account's current billing
+  and quota state.</p>
+</blockquote>
+
+<h6 id="raises">Raises:</h6>
+
+<ul>
+<li><strong>AuthenticationError:</strong>  If the API key is invalid or expired.</li>
+<li><strong>NetworkError:</strong>  On connection failure or timeout.</li>
+</ul>
+
+<h6 id="example">Example:</h6>
+
+<blockquote>
+  <div class="pdoc-code codehilite">
+<pre><span></span><code><span class="n">usage</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">usage</span><span class="p">()</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">usage</span><span class="o">.</span><span class="n">recording_allowed</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Recording blocked: </span><span class="si">{</span><span class="n">usage</span><span class="o">.</span><span class="n">reason</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </code></pre>
   </div>
 </blockquote>
@@ -1560,6 +1710,67 @@ to be captured by the ModelHealth mobile app.</p>
 <pre><span></span><code><span class="n">session</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">get_session</span><span class="p">(</span><span class="s2">&quot;abc123&quot;</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">activity</span> <span class="ow">in</span> <span class="n">session</span><span class="o">.</span><span class="n">activities</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">activity</span><span class="o">.</span><span class="n">name</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">activity</span><span class="o">.</span><span class="n">id</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre>
+  </div>
+</blockquote>
+</div>
+
+
+                            </div>
+                            <div id="ModelHealthClient.switch_subject" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">switch_subject</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span>, </span><span class="param"><span class="n">subject</span><span class="p">:</span> <span class="n">Subject</span>, </span><span class="param"><span class="n">session</span><span class="p">:</span> <span class="n">Session</span></span><span class="return-annotation">) -> <span class="n">Session</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#ModelHealthClient.switch_subject"></a>
+    
+            <div class="docstring"><p>Points the cameras at the session to record <code>subject</code> in.</p>
+
+<p>Use this to move between subjects in any order, including going back to
+someone recorded earlier. The session already recording that subject is
+reused when its camera calibration and static pose are both still good,
+so the pose does not have to be repeated. Otherwise a new session is
+started from <code>session</code>, exactly as
+<code><a href="#ModelHealthClient.new_session_from_session">new_session_from_session()</a></code> would.</p>
+
+<h6 id="arguments">Arguments:</h6>
+
+<ul>
+<li><strong>subject:</strong>  The subject to record next.</li>
+<li><strong>session:</strong>  The session the cameras are pointed at now.</li>
+</ul>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>The <code><a href="#Session">Session</a></code> to record in. May be one that already existed,
+  the one passed in, or a new one.</p>
+</blockquote>
+
+<h6 id="raises">Raises:</h6>
+
+<ul>
+<li><strong>AuthenticationError:</strong>  If the API key is invalid or expired.</li>
+<li><strong>NotFoundError:</strong>  If the session or subject does not exist.</li>
+<li><strong>UnsupportedOperationError:</strong>  If the API version in use cannot hand the
+cameras back to an existing session.</li>
+<li><strong>NetworkError:</strong>  On connection failure or timeout.</li>
+<li><strong>ModelHealthError:</strong>  On request failure or an unexpected response.</li>
+</ul>
+
+<h6 id="example">Example:</h6>
+
+<blockquote>
+  <div class="pdoc-code codehilite">
+<pre><span></span><code><span class="c1"># Everyone does exercise 1, then everyone does exercise 2</span>
+<span class="k">for</span> <span class="n">exercise</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;CMJ&quot;</span><span class="p">,</span> <span class="s2">&quot;Squat&quot;</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">subject</span> <span class="ow">in</span> <span class="n">subjects</span><span class="p">:</span>
+        <span class="n">session</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">switch_subject</span><span class="p">(</span><span class="n">subject</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="n">activity</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">start_recording</span><span class="p">(</span><span class="n">exercise</span><span class="p">,</span> <span class="n">session</span><span class="p">)</span>
+        <span class="n">client</span><span class="o">.</span><span class="n">stop_recording</span><span class="p">(</span><span class="n">session</span><span class="p">)</span>
 </code></pre>
   </div>
 </blockquote>
@@ -3248,9 +3459,12 @@ the build's default is used.</li>
                 <dd id="ModelHealthService.subjects" class="variable"><a href="#ModelHealthClient.subjects">subjects</a></dd>
                 <dd id="ModelHealthService.sessions" class="variable"><a href="#ModelHealthClient.sessions">sessions</a></dd>
                 <dd id="ModelHealthService.groups" class="variable"><a href="#ModelHealthClient.groups">groups</a></dd>
+                <dd id="ModelHealthService.activity_types" class="variable"><a href="#ModelHealthClient.activity_types">activity_types</a></dd>
                 <dd id="ModelHealthService.account_info" class="function"><a href="#ModelHealthClient.account_info">account_info</a></dd>
+                <dd id="ModelHealthService.usage" class="function"><a href="#ModelHealthClient.usage">usage</a></dd>
                 <dd id="ModelHealthService.session_list" class="function"><a href="#ModelHealthClient.session_list">session_list</a></dd>
                 <dd id="ModelHealthService.get_session" class="function"><a href="#ModelHealthClient.get_session">get_session</a></dd>
+                <dd id="ModelHealthService.switch_subject" class="function"><a href="#ModelHealthClient.switch_subject">switch_subject</a></dd>
                 <dd id="ModelHealthService.new_session_from_session" class="function"><a href="#ModelHealthClient.new_session_from_session">new_session_from_session</a></dd>
                 <dd id="ModelHealthService.create_session" class="function"><a href="#ModelHealthClient.create_session">create_session</a></dd>
                 <dd id="ModelHealthService.configure_session" class="function"><a href="#ModelHealthClient.configure_session">configure_session</a></dd>
@@ -3307,7 +3521,7 @@ directly.</p>
                                 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">list</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">subject</span><span class="p">:</span> <span class="n">Subject</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">calibration_session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">activity_type</span><span class="p">:</span> <span class="n"><a href="#ActivityType">ActivityType</a></span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">exclude_calibration</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">created_after</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">created_before</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">search</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">tags</span><span class="p">:</span> <span class="s2">&quot;&#39;list[str] | None&#39;&quot;</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">created_by</span><span class="p">:</span> <span class="s2">&quot;&#39;list[int] | None&#39;&quot;</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">only_completed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">exclude_analysis_error</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">order_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="n"><a href="#ActivityStream">ActivityStream</a></span>:</span></span>
+        <span class="name">list</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">subject</span><span class="p">:</span> <span class="n">Subject</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">calibration_session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">activity_type</span><span class="p">:</span> <span class="n">ActivityTypeInfo</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">exclude_calibration</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>,</span><span class="param">	<span class="n">created_after</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">created_before</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">search</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">tags</span><span class="p">:</span> <span class="s2">&quot;&#39;list[str] | None&#39;&quot;</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">created_by</span><span class="p">:</span> <span class="s2">&quot;&#39;list[int] | None&#39;&quot;</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">only_completed</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">exclude_analysis_error</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>,</span><span class="param">	<span class="n">order_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="n"><a href="#ActivityStream">ActivityStream</a></span>:</span></span>
 
         
     </div>
@@ -3445,7 +3659,7 @@ directly.</p>
                                 <div class="attr function">
             
         <span class="def">def</span>
-        <span class="name">list</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">search</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">created_after</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">created_before</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">groups</span><span class="p">:</span> <span class="s2">&quot;&#39;list[str] | None&#39;&quot;</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">tags</span><span class="p">:</span> <span class="s2">&quot;&#39;list[str] | None&#39;&quot;</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">created_by</span><span class="p">:</span> <span class="s2">&quot;&#39;list[int] | None&#39;&quot;</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">activity_type</span><span class="p">:</span> <span class="n"><a href="#ActivityType">ActivityType</a></span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">activity_complete</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">order_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="n"><a href="#SubjectStream">SubjectStream</a></span>:</span></span>
+        <span class="name">list</span><span class="signature pdoc-code multiline">(<span class="param">	<span class="bp">self</span>,</span><span class="param">	<span class="n">search</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">created_after</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">created_before</span><span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">groups</span><span class="p">:</span> <span class="s2">&quot;&#39;list[str] | None&#39;&quot;</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">tags</span><span class="p">:</span> <span class="s2">&quot;&#39;list[str] | None&#39;&quot;</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">created_by</span><span class="p">:</span> <span class="s2">&quot;&#39;list[int] | None&#39;&quot;</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">activity_type</span><span class="p">:</span> <span class="n">ActivityTypeInfo</span> <span class="o">|</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">activity_complete</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">session</span><span class="p">:</span> <span class="n">Session</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">order_by</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>,</span><span class="param">	<span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span></span><span class="return-annotation">) -> <span class="n"><a href="#SubjectStream">SubjectStream</a></span>:</span></span>
 
         
     </div>
@@ -3784,85 +3998,6 @@ subject groups matching the filter, or call <code><a href="#GroupStream.all">all
 </div>
 
 
-                            <div id="SubjectGroup.subject_count" class="classattr">
-                                <div class="attr variable">
-            <span class="name">subject_count</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectGroup.subject_count"></a>
-    
-            <div class="docstring"><p>Number of subjects in this group.</p>
-</div>
-
-
-                            </div>
-                            <div id="SubjectGroup.last_activity" class="classattr">
-                                <div class="attr variable">
-            <span class="name">last_activity</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectGroup.last_activity"></a>
-    
-            <div class="docstring"><p>Timestamp of the most recent activity across the group, or <code>None</code> if
-there are none.</p>
-</div>
-
-
-                            </div>
-                            <div id="SubjectGroup.can_edit" class="classattr">
-                                <div class="attr variable">
-            <span class="name">can_edit</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectGroup.can_edit"></a>
-    
-            <div class="docstring"><p>Whether the authenticated account can edit this group.</p>
-</div>
-
-
-                            </div>
-                            <div id="SubjectGroup.trashed_at" class="classattr">
-                                <div class="attr variable">
-            <span class="name">trashed_at</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectGroup.trashed_at"></a>
-    
-            <div class="docstring"><p>When the group was trashed, or <code>None</code> if it isn't.</p>
-</div>
-
-
-                            </div>
-                            <div id="SubjectGroup.total_activities" class="classattr">
-                                <div class="attr variable">
-            <span class="name">total_activities</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectGroup.total_activities"></a>
-    
-            <div class="docstring"><p>Total activities recorded across every subject in this group.</p>
-</div>
-
-
-                            </div>
-                            <div id="SubjectGroup.name" class="classattr">
-                                <div class="attr variable">
-            <span class="name">name</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectGroup.name"></a>
-    
-            <div class="docstring"><p>Display name.</p>
-</div>
-
-
-                            </div>
                             <div id="SubjectGroup.description" class="classattr">
                                 <div class="attr variable">
             <span class="name">description</span>
@@ -3872,32 +4007,6 @@ there are none.</p>
     <a class="headerlink" href="#SubjectGroup.description"></a>
     
             <div class="docstring"><p>Freeform description, or an empty string if none was set.</p>
-</div>
-
-
-                            </div>
-                            <div id="SubjectGroup.created_at" class="classattr">
-                                <div class="attr variable">
-            <span class="name">created_at</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectGroup.created_at"></a>
-    
-            <div class="docstring"><p>When the group was created.</p>
-</div>
-
-
-                            </div>
-                            <div id="SubjectGroup.updated_at" class="classattr">
-                                <div class="attr variable">
-            <span class="name">updated_at</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectGroup.updated_at"></a>
-    
-            <div class="docstring"><p>When the group was last modified.</p>
 </div>
 
 
@@ -3916,6 +4025,45 @@ reported.</p>
 
 
                             </div>
+                            <div id="SubjectGroup.subject_count" class="classattr">
+                                <div class="attr variable">
+            <span class="name">subject_count</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectGroup.subject_count"></a>
+    
+            <div class="docstring"><p>Number of subjects in this group.</p>
+</div>
+
+
+                            </div>
+                            <div id="SubjectGroup.can_edit" class="classattr">
+                                <div class="attr variable">
+            <span class="name">can_edit</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectGroup.can_edit"></a>
+    
+            <div class="docstring"><p>Whether the authenticated account can edit this group.</p>
+</div>
+
+
+                            </div>
+                            <div id="SubjectGroup.total_activities" class="classattr">
+                                <div class="attr variable">
+            <span class="name">total_activities</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectGroup.total_activities"></a>
+    
+            <div class="docstring"><p>Total activities recorded across every subject in this group.</p>
+</div>
+
+
+                            </div>
                             <div id="SubjectGroup.is_owner" class="classattr">
                                 <div class="attr variable">
             <span class="name">is_owner</span>
@@ -3925,6 +4073,32 @@ reported.</p>
     <a class="headerlink" href="#SubjectGroup.is_owner"></a>
     
             <div class="docstring"><p>Whether the authenticated account owns this group.</p>
+</div>
+
+
+                            </div>
+                            <div id="SubjectGroup.created_at" class="classattr">
+                                <div class="attr variable">
+            <span class="name">created_at</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectGroup.created_at"></a>
+    
+            <div class="docstring"><p>When the group was created.</p>
+</div>
+
+
+                            </div>
+                            <div id="SubjectGroup.id" class="classattr">
+                                <div class="attr variable">
+            <span class="name">id</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectGroup.id"></a>
+    
+            <div class="docstring"><p>Unique identifier.</p>
 </div>
 
 
@@ -3942,15 +4116,55 @@ reported.</p>
 
 
                             </div>
-                            <div id="SubjectGroup.id" class="classattr">
+                            <div id="SubjectGroup.trashed_at" class="classattr">
                                 <div class="attr variable">
-            <span class="name">id</span>
+            <span class="name">trashed_at</span>
 
         
     </div>
-    <a class="headerlink" href="#SubjectGroup.id"></a>
+    <a class="headerlink" href="#SubjectGroup.trashed_at"></a>
     
-            <div class="docstring"><p>Unique identifier.</p>
+            <div class="docstring"><p>When the group was trashed, or <code>None</code> if it isn't.</p>
+</div>
+
+
+                            </div>
+                            <div id="SubjectGroup.updated_at" class="classattr">
+                                <div class="attr variable">
+            <span class="name">updated_at</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectGroup.updated_at"></a>
+    
+            <div class="docstring"><p>When the group was last modified.</p>
+</div>
+
+
+                            </div>
+                            <div id="SubjectGroup.last_activity" class="classattr">
+                                <div class="attr variable">
+            <span class="name">last_activity</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectGroup.last_activity"></a>
+    
+            <div class="docstring"><p>Timestamp of the most recent activity across the group, or <code>None</code> if
+there are none.</p>
+</div>
+
+
+                            </div>
+                            <div id="SubjectGroup.name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectGroup.name"></a>
+    
+            <div class="docstring"><p>Display name.</p>
 </div>
 
 
@@ -4047,39 +4261,6 @@ reported.</p>
 </div>
 
 
-                            <div id="AccountInfo.first_name" class="classattr">
-                                <div class="attr variable">
-            <span class="name">first_name</span>
-
-        
-    </div>
-    <a class="headerlink" href="#AccountInfo.first_name"></a>
-    
-    
-
-                            </div>
-                            <div id="AccountInfo.country" class="classattr">
-                                <div class="attr variable">
-            <span class="name">country</span>
-
-        
-    </div>
-    <a class="headerlink" href="#AccountInfo.country"></a>
-    
-    
-
-                            </div>
-                            <div id="AccountInfo.email" class="classattr">
-                                <div class="attr variable">
-            <span class="name">email</span>
-
-        
-    </div>
-    <a class="headerlink" href="#AccountInfo.email"></a>
-    
-    
-
-                            </div>
                             <div id="AccountInfo.username" class="classattr">
                                 <div class="attr variable">
             <span class="name">username</span>
@@ -4087,17 +4268,6 @@ reported.</p>
         
     </div>
     <a class="headerlink" href="#AccountInfo.username"></a>
-    
-    
-
-                            </div>
-                            <div id="AccountInfo.last_name" class="classattr">
-                                <div class="attr variable">
-            <span class="name">last_name</span>
-
-        
-    </div>
-    <a class="headerlink" href="#AccountInfo.last_name"></a>
     
     
 
@@ -4113,6 +4283,39 @@ reported.</p>
     
 
                             </div>
+                            <div id="AccountInfo.country" class="classattr">
+                                <div class="attr variable">
+            <span class="name">country</span>
+
+        
+    </div>
+    <a class="headerlink" href="#AccountInfo.country"></a>
+    
+    
+
+                            </div>
+                            <div id="AccountInfo.first_name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">first_name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#AccountInfo.first_name"></a>
+    
+    
+
+                            </div>
+                            <div id="AccountInfo.last_name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">last_name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#AccountInfo.last_name"></a>
+    
+    
+
+                            </div>
                             <div id="AccountInfo.institution" class="classattr">
                                 <div class="attr variable">
             <span class="name">institution</span>
@@ -4122,6 +4325,155 @@ reported.</p>
     <a class="headerlink" href="#AccountInfo.institution"></a>
     
     
+
+                            </div>
+                            <div id="AccountInfo.email" class="classattr">
+                                <div class="attr variable">
+            <span class="name">email</span>
+
+        
+    </div>
+    <a class="headerlink" href="#AccountInfo.email"></a>
+    
+    
+
+                            </div>
+                </section>
+                <section id="UsageInfo">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">UsageInfo</span>:
+
+        
+    </div>
+    <a class="headerlink" href="#UsageInfo"></a>
+    
+            <div class="docstring"><p>Current billing/quota state for the authenticated account.</p>
+
+<p>Returned by <code><a href="#ModelHealthClient.usage">ModelHealthClient.usage()</a></code>.</p>
+</div>
+
+
+                            <div id="UsageInfo.plan_name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">plan_name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageInfo.plan_name"></a>
+    
+            <div class="docstring"><p>Name of the current plan, or <code>None</code> when there is no active plan.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageInfo.activities_max" class="classattr">
+                                <div class="attr variable">
+            <span class="name">activities_max</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageInfo.activities_max"></a>
+    
+            <div class="docstring"><p>Activity cap for the current period, or <code>None</code> when there is no active
+plan, or the plan is unlimited.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageInfo.reason" class="classattr">
+                                <div class="attr variable">
+            <span class="name">reason</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageInfo.reason"></a>
+    
+            <div class="docstring"><p>Why recording is blocked, or <code>None</code> when <code><a href="#UsageInfo.recording_allowed">recording_allowed</a></code> is <code>True</code>.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageInfo.is_free_trial" class="classattr">
+                                <div class="attr variable">
+            <span class="name">is_free_trial</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageInfo.is_free_trial"></a>
+    
+            <div class="docstring"><p>Whether the account is on a free trial, or <code>None</code> when there is no
+organization, or no plan history at all.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageInfo.activities_used" class="classattr">
+                                <div class="attr variable">
+            <span class="name">activities_used</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageInfo.activities_used"></a>
+    
+            <div class="docstring"><p>Activities consumed in the current period, or <code>None</code> when there is no
+active plan.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageInfo.reset_period" class="classattr">
+                                <div class="attr variable">
+            <span class="name">reset_period</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageInfo.reset_period"></a>
+    
+            <div class="docstring"><p>How often <code><a href="#UsageInfo.activities_used">activities_used</a></code> resets, or <code>None</code> when there is no active plan.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageInfo.will_auto_renew" class="classattr">
+                                <div class="attr variable">
+            <span class="name">will_auto_renew</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageInfo.will_auto_renew"></a>
+    
+            <div class="docstring"><p>Whether the plan will renew automatically at <code><a href="#UsageInfo.period_end">period_end</a></code>, or <code>None</code> when
+there is no active plan or no subscription to renew.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageInfo.recording_allowed" class="classattr">
+                                <div class="attr variable">
+            <span class="name">recording_allowed</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageInfo.recording_allowed"></a>
+    
+            <div class="docstring"><p>Whether recording is currently allowed.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageInfo.period_end" class="classattr">
+                                <div class="attr variable">
+            <span class="name">period_end</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageInfo.period_end"></a>
+    
+            <div class="docstring"><p>When the current billing period ends, or <code>None</code> when there is no active plan.</p>
+</div>
+
 
                             </div>
                 </section>
@@ -4139,41 +4491,15 @@ reported.</p>
 </div>
 
 
-                            <div id="Session.activities" class="classattr">
+                            <div id="Session.session_name" class="classattr">
                                 <div class="attr variable">
-            <span class="name">activities</span>
+            <span class="name">session_name</span>
 
         
     </div>
-    <a class="headerlink" href="#Session.activities"></a>
+    <a class="headerlink" href="#Session.session_name"></a>
     
-            <div class="docstring"><p>Activities associated with this session.</p>
-</div>
-
-
-                            </div>
-                            <div id="Session.created_at" class="classattr">
-                                <div class="attr variable">
-            <span class="name">created_at</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Session.created_at"></a>
-    
-            <div class="docstring"><p>When this session was created.</p>
-</div>
-
-
-                            </div>
-                            <div id="Session.public" class="classattr">
-                                <div class="attr variable">
-            <span class="name">public</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Session.public"></a>
-    
-            <div class="docstring"><p>Whether the session is publicly visible.</p>
+            <div class="docstring"><p>Internal session name. Prefer <code><a href="#Session.name">name</a></code> for display purposes.</p>
 </div>
 
 
@@ -4191,28 +4517,28 @@ reported.</p>
 
 
                             </div>
-                            <div id="Session.id" class="classattr">
+                            <div id="Session.created_at" class="classattr">
                                 <div class="attr variable">
-            <span class="name">id</span>
+            <span class="name">created_at</span>
 
         
     </div>
-    <a class="headerlink" href="#Session.id"></a>
+    <a class="headerlink" href="#Session.created_at"></a>
     
-            <div class="docstring"><p>Unique identifier.</p>
+            <div class="docstring"><p>When this session was created.</p>
 </div>
 
 
                             </div>
-                            <div id="Session.user" class="classattr">
+                            <div id="Session.activities" class="classattr">
                                 <div class="attr variable">
-            <span class="name">user</span>
+            <span class="name">activities</span>
 
         
     </div>
-    <a class="headerlink" href="#Session.user"></a>
+    <a class="headerlink" href="#Session.activities"></a>
     
-            <div class="docstring"><p>ID of the account that owns this session.</p>
+            <div class="docstring"><p>Activities associated with this session.</p>
 </div>
 
 
@@ -4230,15 +4556,54 @@ reported.</p>
 
 
                             </div>
-                            <div id="Session.session_name" class="classattr">
+                            <div id="Session.id" class="classattr">
                                 <div class="attr variable">
-            <span class="name">session_name</span>
+            <span class="name">id</span>
 
         
     </div>
-    <a class="headerlink" href="#Session.session_name"></a>
+    <a class="headerlink" href="#Session.id"></a>
     
-            <div class="docstring"><p>Internal session name. Prefer <code><a href="#Session.name">name</a></code> for display purposes.</p>
+            <div class="docstring"><p>Unique identifier.</p>
+</div>
+
+
+                            </div>
+                            <div id="Session.public" class="classattr">
+                                <div class="attr variable">
+            <span class="name">public</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Session.public"></a>
+    
+            <div class="docstring"><p>Whether the session is publicly visible.</p>
+</div>
+
+
+                            </div>
+                            <div id="Session.user" class="classattr">
+                                <div class="attr variable">
+            <span class="name">user</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Session.user"></a>
+    
+            <div class="docstring"><p>ID of the account that owns this session.</p>
+</div>
+
+
+                            </div>
+                            <div id="Session.name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Session.name"></a>
+    
+            <div class="docstring"><p>Display name of the session.</p>
 </div>
 
 
@@ -4271,19 +4636,6 @@ reported.</p>
 
 
                             </div>
-                            <div id="Session.name" class="classattr">
-                                <div class="attr variable">
-            <span class="name">name</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Session.name"></a>
-    
-            <div class="docstring"><p>Display name of the session.</p>
-</div>
-
-
-                            </div>
                 </section>
                 <section id="Activity">
                     <div class="attr class">
@@ -4299,54 +4651,15 @@ reported.</p>
 </div>
 
 
-                            <div id="Activity.trashed" class="classattr">
+                            <div id="Activity.created_at" class="classattr">
                                 <div class="attr variable">
-            <span class="name">trashed</span>
+            <span class="name">created_at</span>
 
         
     </div>
-    <a class="headerlink" href="#Activity.trashed"></a>
+    <a class="headerlink" href="#Activity.created_at"></a>
     
-            <div class="docstring"><p>Whether the activity is in the trash.</p>
-</div>
-
-
-                            </div>
-                            <div id="Activity.name" class="classattr">
-                                <div class="attr variable">
-            <span class="name">name</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Activity.name"></a>
-    
-            <div class="docstring"><p>Display name, or <code>None</code> if not set.</p>
-</div>
-
-
-                            </div>
-                            <div id="Activity.notes" class="classattr">
-                                <div class="attr variable">
-            <span class="name">notes</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Activity.notes"></a>
-    
-            <div class="docstring"><p>Free-text notes attached to the activity, or <code>None</code> if there are none.</p>
-</div>
-
-
-                            </div>
-                            <div id="Activity.created_by" class="classattr">
-                                <div class="attr variable">
-            <span class="name">created_by</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Activity.created_by"></a>
-    
-            <div class="docstring"><p>Username of the account that owns the parent session, or <code>None</code> if unknown.</p>
+            <div class="docstring"><p>When this activity was created.</p>
 </div>
 
 
@@ -4364,17 +4677,28 @@ reported.</p>
 
 
                             </div>
-                            <div id="Activity.analysis_status" class="classattr">
+                            <div id="Activity.videos" class="classattr">
                                 <div class="attr variable">
-            <span class="name">analysis_status</span>
+            <span class="name">videos</span>
 
         
     </div>
-    <a class="headerlink" href="#Activity.analysis_status"></a>
+    <a class="headerlink" href="#Activity.videos"></a>
     
-            <div class="docstring"><p>State of the analysis pipeline: one of <code>"processing"</code>, <code>"done"</code>, <code>"error"</code>,
-or <code>None</code> when this activity was not loaded through a path that reports it
-(for example, nested inside a session).</p>
+            <div class="docstring"><p>Recorded video files associated with this activity.</p>
+</div>
+
+
+                            </div>
+                            <div id="Activity.updated_at" class="classattr">
+                                <div class="attr variable">
+            <span class="name">updated_at</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Activity.updated_at"></a>
+    
+            <div class="docstring"><p>When this activity was last updated.</p>
 </div>
 
 
@@ -4392,28 +4716,15 @@ or <code>None</code> when this activity was not loaded through a path that repor
 
 
                             </div>
-                            <div id="Activity.videos" class="classattr">
+                            <div id="Activity.name" class="classattr">
                                 <div class="attr variable">
-            <span class="name">videos</span>
+            <span class="name">name</span>
 
         
     </div>
-    <a class="headerlink" href="#Activity.videos"></a>
+    <a class="headerlink" href="#Activity.name"></a>
     
-            <div class="docstring"><p>Recorded video files associated with this activity.</p>
-</div>
-
-
-                            </div>
-                            <div id="Activity.id" class="classattr">
-                                <div class="attr variable">
-            <span class="name">id</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Activity.id"></a>
-    
-            <div class="docstring"><p>Unique identifier.</p>
+            <div class="docstring"><p>Display name, or <code>None</code> if not set.</p>
 </div>
 
 
@@ -4433,28 +4744,69 @@ or <code>None</code> when this activity was not loaded through a path that repor
 
 
                             </div>
-                            <div id="Activity.results" class="classattr">
+                            <div id="Activity.created_by" class="classattr">
                                 <div class="attr variable">
-            <span class="name">results</span>
+            <span class="name">created_by</span>
 
         
     </div>
-    <a class="headerlink" href="#Activity.results"></a>
+    <a class="headerlink" href="#Activity.created_by"></a>
     
-            <div class="docstring"><p>Processed result files associated with this activity.</p>
+            <div class="docstring"><p>Username of the account that owns the parent session, or <code>None</code> if unknown.</p>
 </div>
 
 
                             </div>
-                            <div id="Activity.created_at" class="classattr">
+                            <div id="Activity.analysis_status" class="classattr">
                                 <div class="attr variable">
-            <span class="name">created_at</span>
+            <span class="name">analysis_status</span>
 
         
     </div>
-    <a class="headerlink" href="#Activity.created_at"></a>
+    <a class="headerlink" href="#Activity.analysis_status"></a>
     
-            <div class="docstring"><p>When this activity was created.</p>
+            <div class="docstring"><p>State of the analysis pipeline: one of <code>"processing"</code>, <code>"done"</code>, <code>"error"</code>,
+or <code>None</code> when this activity was not loaded through a path that reports it
+(for example, nested inside a session).</p>
+</div>
+
+
+                            </div>
+                            <div id="Activity.id" class="classattr">
+                                <div class="attr variable">
+            <span class="name">id</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Activity.id"></a>
+    
+            <div class="docstring"><p>Unique identifier.</p>
+</div>
+
+
+                            </div>
+                            <div id="Activity.notes" class="classattr">
+                                <div class="attr variable">
+            <span class="name">notes</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Activity.notes"></a>
+    
+            <div class="docstring"><p>Free-text notes attached to the activity, or <code>None</code> if there are none.</p>
+</div>
+
+
+                            </div>
+                            <div id="Activity.trashed" class="classattr">
+                                <div class="attr variable">
+            <span class="name">trashed</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Activity.trashed"></a>
+    
+            <div class="docstring"><p>Whether the activity is in the trash.</p>
 </div>
 
 
@@ -4475,15 +4827,15 @@ SDK build doesn't recognize.</p>
 
 
                             </div>
-                            <div id="Activity.updated_at" class="classattr">
+                            <div id="Activity.results" class="classattr">
                                 <div class="attr variable">
-            <span class="name">updated_at</span>
+            <span class="name">results</span>
 
         
     </div>
-    <a class="headerlink" href="#Activity.updated_at"></a>
+    <a class="headerlink" href="#Activity.results"></a>
     
-            <div class="docstring"><p>When this activity was last updated.</p>
+            <div class="docstring"><p>Processed result files associated with this activity.</p>
 </div>
 
 
@@ -4503,6 +4855,32 @@ SDK build doesn't recognize.</p>
 </div>
 
 
+                            <div id="ActivityResult.media" class="classattr">
+                                <div class="attr variable">
+            <span class="name">media</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityResult.media"></a>
+    
+            <div class="docstring"><p>URL of the result file, or <code>None</code> if not yet available.</p>
+</div>
+
+
+                            </div>
+                            <div id="ActivityResult.activity" class="classattr">
+                                <div class="attr variable">
+            <span class="name">activity</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityResult.activity"></a>
+    
+            <div class="docstring"><p>ID of the parent activity.</p>
+</div>
+
+
+                            </div>
                             <div id="ActivityResult.id" class="classattr">
                                 <div class="attr variable">
             <span class="name">id</span>
@@ -4529,32 +4907,6 @@ SDK build doesn't recognize.</p>
 
 
                             </div>
-                            <div id="ActivityResult.activity" class="classattr">
-                                <div class="attr variable">
-            <span class="name">activity</span>
-
-        
-    </div>
-    <a class="headerlink" href="#ActivityResult.activity"></a>
-    
-            <div class="docstring"><p>ID of the parent activity.</p>
-</div>
-
-
-                            </div>
-                            <div id="ActivityResult.media" class="classattr">
-                                <div class="attr variable">
-            <span class="name">media</span>
-
-        
-    </div>
-    <a class="headerlink" href="#ActivityResult.media"></a>
-    
-            <div class="docstring"><p>URL of the result file, or <code>None</code> if not yet available.</p>
-</div>
-
-
-                            </div>
                 </section>
                 <section id="Video">
                     <div class="attr class">
@@ -4570,15 +4922,15 @@ SDK build doesn't recognize.</p>
 </div>
 
 
-                            <div id="Video.activity" class="classattr">
+                            <div id="Video.video" class="classattr">
                                 <div class="attr variable">
-            <span class="name">activity</span>
+            <span class="name">video</span>
 
         
     </div>
-    <a class="headerlink" href="#Video.activity"></a>
+    <a class="headerlink" href="#Video.video"></a>
     
-            <div class="docstring"><p>ID of the parent activity.</p>
+            <div class="docstring"><p>URL of the full video, or <code>None</code> if not yet available.</p>
 </div>
 
 
@@ -4596,6 +4948,19 @@ SDK build doesn't recognize.</p>
 
 
                             </div>
+                            <div id="Video.activity" class="classattr">
+                                <div class="attr variable">
+            <span class="name">activity</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Video.activity"></a>
+    
+            <div class="docstring"><p>ID of the parent activity.</p>
+</div>
+
+
+                            </div>
                             <div id="Video.video_thumb" class="classattr">
                                 <div class="attr variable">
             <span class="name">video_thumb</span>
@@ -4605,19 +4970,6 @@ SDK build doesn't recognize.</p>
     <a class="headerlink" href="#Video.video_thumb"></a>
     
             <div class="docstring"><p>URL of the video thumbnail, or <code>None</code> if not yet available.</p>
-</div>
-
-
-                            </div>
-                            <div id="Video.video" class="classattr">
-                                <div class="attr variable">
-            <span class="name">video</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Video.video"></a>
-    
-            <div class="docstring"><p>URL of the full video, or <code>None</code> if not yet available.</p>
 </div>
 
 
@@ -4637,6 +4989,72 @@ SDK build doesn't recognize.</p>
 </div>
 
 
+                            <div id="Subject.name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Subject.name"></a>
+    
+            <div class="docstring"><p>Display name.</p>
+</div>
+
+
+                            </div>
+                            <div id="Subject.last_name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">last_name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Subject.last_name"></a>
+    
+            <div class="docstring"><p>Family name, or <code>None</code> if not reported. Not always available.</p>
+</div>
+
+
+                            </div>
+                            <div id="Subject.activity_count" class="classattr">
+                                <div class="attr variable">
+            <span class="name">activity_count</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Subject.activity_count"></a>
+    
+            <div class="docstring"><p>Number of activities recorded for this subject, excluding calibration and
+neutral trials, or <code>None</code> if not reported.</p>
+</div>
+
+
+                            </div>
+                            <div id="Subject.tags" class="classattr">
+                                <div class="attr variable">
+            <span class="name">tags</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Subject.tags"></a>
+    
+            <div class="docstring"><p>Free-form tags attached to the subject. Empty rather than missing when unset.</p>
+</div>
+
+
+                            </div>
+                            <div id="Subject.first_name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">first_name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Subject.first_name"></a>
+    
+            <div class="docstring"><p>Given name, or <code>None</code> if not reported. Not always available.</p>
+</div>
+
+
+                            </div>
                             <div id="Subject.age" class="classattr">
                                 <div class="attr variable">
             <span class="name">age</span>
@@ -4646,6 +5064,59 @@ SDK build doesn't recognize.</p>
     <a class="headerlink" href="#Subject.age"></a>
     
             <div class="docstring"><p>Age in years, or <code>None</code> if not set.</p>
+</div>
+
+
+                            </div>
+                            <div id="Subject.gender" class="classattr">
+                                <div class="attr variable">
+            <span class="name">gender</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Subject.gender"></a>
+    
+            <div class="docstring"><p>Gender identity as reported, or <code>None</code> if the subject declined to answer or
+no value is available.</p>
+</div>
+
+
+                            </div>
+                            <div id="Subject.id" class="classattr">
+                                <div class="attr variable">
+            <span class="name">id</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Subject.id"></a>
+    
+            <div class="docstring"><p>Unique identifier.</p>
+</div>
+
+
+                            </div>
+                            <div id="Subject.characteristics" class="classattr">
+                                <div class="attr variable">
+            <span class="name">characteristics</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Subject.characteristics"></a>
+    
+            <div class="docstring"><p>Freeform text describing relevant characteristics or medical conditions.</p>
+</div>
+
+
+                            </div>
+                            <div id="Subject.created_at" class="classattr">
+                                <div class="attr variable">
+            <span class="name">created_at</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Subject.created_at"></a>
+    
+            <div class="docstring"><p>When this subject record was created, or <code>None</code> if not reported.</p>
 </div>
 
 
@@ -4677,15 +5148,15 @@ answer or no value is available.</p>
 
 
                             </div>
-                            <div id="Subject.tags" class="classattr">
+                            <div id="Subject.height" class="classattr">
                                 <div class="attr variable">
-            <span class="name">tags</span>
+            <span class="name">height</span>
 
         
     </div>
-    <a class="headerlink" href="#Subject.tags"></a>
+    <a class="headerlink" href="#Subject.height"></a>
     
-            <div class="docstring"><p>Free-form tags attached to the subject. Empty rather than missing when unset.</p>
+            <div class="docstring"><p>Height in centimeters, or <code>None</code> if not set.</p>
 </div>
 
 
@@ -4700,46 +5171,6 @@ answer or no value is available.</p>
     
             <div class="docstring"><p>Timestamp of the subject's most recent activity, or <code>None</code> if they have
 none, or if not reported.</p>
-</div>
-
-
-                            </div>
-                            <div id="Subject.gender" class="classattr">
-                                <div class="attr variable">
-            <span class="name">gender</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Subject.gender"></a>
-    
-            <div class="docstring"><p>Gender identity as reported, or <code>None</code> if the subject declined to answer or
-no value is available.</p>
-</div>
-
-
-                            </div>
-                            <div id="Subject.last_name" class="classattr">
-                                <div class="attr variable">
-            <span class="name">last_name</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Subject.last_name"></a>
-    
-            <div class="docstring"><p>Family name, or <code>None</code> if not reported. Not always available.</p>
-</div>
-
-
-                            </div>
-                            <div id="Subject.id" class="classattr">
-                                <div class="attr variable">
-            <span class="name">id</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Subject.id"></a>
-    
-            <div class="docstring"><p>Unique identifier.</p>
 </div>
 
 
@@ -4770,85 +5201,6 @@ no value is available.</p>
 
 
                             </div>
-                            <div id="Subject.activity_count" class="classattr">
-                                <div class="attr variable">
-            <span class="name">activity_count</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Subject.activity_count"></a>
-    
-            <div class="docstring"><p>Number of activities recorded for this subject, excluding calibration and
-neutral trials, or <code>None</code> if not reported.</p>
-</div>
-
-
-                            </div>
-                            <div id="Subject.name" class="classattr">
-                                <div class="attr variable">
-            <span class="name">name</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Subject.name"></a>
-    
-            <div class="docstring"><p>Display name.</p>
-</div>
-
-
-                            </div>
-                            <div id="Subject.height" class="classattr">
-                                <div class="attr variable">
-            <span class="name">height</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Subject.height"></a>
-    
-            <div class="docstring"><p>Height in centimeters, or <code>None</code> if not set.</p>
-</div>
-
-
-                            </div>
-                            <div id="Subject.created_at" class="classattr">
-                                <div class="attr variable">
-            <span class="name">created_at</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Subject.created_at"></a>
-    
-            <div class="docstring"><p>When this subject record was created, or <code>None</code> if not reported.</p>
-</div>
-
-
-                            </div>
-                            <div id="Subject.first_name" class="classattr">
-                                <div class="attr variable">
-            <span class="name">first_name</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Subject.first_name"></a>
-    
-            <div class="docstring"><p>Given name, or <code>None</code> if not reported. Not always available.</p>
-</div>
-
-
-                            </div>
-                            <div id="Subject.characteristics" class="classattr">
-                                <div class="attr variable">
-            <span class="name">characteristics</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Subject.characteristics"></a>
-    
-            <div class="docstring"><p>Freeform text describing relevant characteristics or medical conditions.</p>
-</div>
-
-
-                            </div>
                 </section>
                 <section id="SubjectParameters">
                     <div class="attr class">
@@ -4864,15 +5216,15 @@ neutral trials, or <code>None</code> if not reported.</p>
 </div>
 
 
-                            <div id="SubjectParameters.sex_at_birth" class="classattr">
+                            <div id="SubjectParameters.weight" class="classattr">
                                 <div class="attr variable">
-            <span class="name">sex_at_birth</span>
+            <span class="name">weight</span>
 
         
     </div>
-    <a class="headerlink" href="#SubjectParameters.sex_at_birth"></a>
+    <a class="headerlink" href="#SubjectParameters.weight"></a>
     
-            <div class="docstring"><p>Sex assigned at birth.</p>
+            <div class="docstring"><p>Weight in kilograms.</p>
 </div>
 
 
@@ -4903,19 +5255,6 @@ neutral trials, or <code>None</code> if not reported.</p>
 
 
                             </div>
-                            <div id="SubjectParameters.weight" class="classattr">
-                                <div class="attr variable">
-            <span class="name">weight</span>
-
-        
-    </div>
-    <a class="headerlink" href="#SubjectParameters.weight"></a>
-    
-            <div class="docstring"><p>Weight in kilograms.</p>
-</div>
-
-
-                            </div>
                             <div id="SubjectParameters.birth_year" class="classattr">
                                 <div class="attr variable">
             <span class="name">birth_year</span>
@@ -4925,6 +5264,19 @@ neutral trials, or <code>None</code> if not reported.</p>
     <a class="headerlink" href="#SubjectParameters.birth_year"></a>
     
             <div class="docstring"><p>Year of birth, or <code>None</code> if not provided.</p>
+</div>
+
+
+                            </div>
+                            <div id="SubjectParameters.sex_at_birth" class="classattr">
+                                <div class="attr variable">
+            <span class="name">sex_at_birth</span>
+
+        
+    </div>
+    <a class="headerlink" href="#SubjectParameters.sex_at_birth"></a>
+    
+            <div class="docstring"><p>Sex assigned at birth.</p>
 </div>
 
 
@@ -4973,19 +5325,6 @@ neutral trials, or <code>None</code> if not reported.</p>
 </div>
 
 
-                            <div id="ActivityTag.value" class="classattr">
-                                <div class="attr variable">
-            <span class="name">value</span>
-
-        
-    </div>
-    <a class="headerlink" href="#ActivityTag.value"></a>
-    
-            <div class="docstring"><p>Machine-readable tag identifier.</p>
-</div>
-
-
-                            </div>
                             <div id="ActivityTag.label" class="classattr">
                                 <div class="attr variable">
             <span class="name">label</span>
@@ -4995,6 +5334,19 @@ neutral trials, or <code>None</code> if not reported.</p>
     <a class="headerlink" href="#ActivityTag.label"></a>
     
             <div class="docstring"><p>Human-readable display label.</p>
+</div>
+
+
+                            </div>
+                            <div id="ActivityTag.value" class="classattr">
+                                <div class="attr variable">
+            <span class="name">value</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityTag.value"></a>
+    
+            <div class="docstring"><p>Machine-readable tag identifier.</p>
 </div>
 
 
@@ -5015,6 +5367,49 @@ unchanged — including a type this SDK build doesn't otherwise recognize.</p>
 </div>
 
 
+                            <div id="ActivityTypeInfo.is_custom" class="classattr">
+                                <div class="attr variable">
+            <span class="name">is_custom</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityTypeInfo.is_custom"></a>
+    
+            <div class="docstring"><p>Whether the type belongs to the account rather than being one everybody has.
+<code>None</code> for a type reported alongside an activity.</p>
+</div>
+
+
+                            </div>
+                            <div id="ActivityTypeInfo.slug" class="classattr">
+                                <div class="attr variable">
+            <span class="name">slug</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityTypeInfo.slug"></a>
+    
+            <div class="docstring"><p>Machine-readable key, e.g. <code>"squat_exercise"</code>. What to branch on: it is
+derived from the name once and then stays put, while <code><a href="#ActivityTypeInfo.name">name</a></code> and
+<code><a href="#ActivityTypeInfo.display_name">display_name</a></code> can both be renamed. Empty when none was reported.</p>
+</div>
+
+
+                            </div>
+                            <div id="ActivityTypeInfo.display_name" class="classattr">
+                                <div class="attr variable">
+            <span class="name">display_name</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityTypeInfo.display_name"></a>
+    
+            <div class="docstring"><p>Human-readable label. Not always the same as <code><a href="#ActivityTypeInfo.name">name</a></code> — one type reads
+"Range of Motion (ROM)" and shows as "Custom Activity".</p>
+</div>
+
+
+                            </div>
                             <div id="ActivityTypeInfo.id" class="classattr">
                                 <div class="attr variable">
             <span class="name">id</span>
@@ -5036,23 +5431,93 @@ unchanged — including a type this SDK build doesn't otherwise recognize.</p>
     </div>
     <a class="headerlink" href="#ActivityTypeInfo.name"></a>
     
-            <div class="docstring"><p>Machine name, e.g. <code>"counter_movement_jump"</code>.</p>
+            <div class="docstring"><p>The name a list filters by, e.g. <code>"Squat Exercise"</code>.</p>
 </div>
 
 
                             </div>
-                            <div id="ActivityTypeInfo.display_name" class="classattr">
+                            <div id="ActivityTypeInfo.description" class="classattr">
                                 <div class="attr variable">
-            <span class="name">display_name</span>
+            <span class="name">description</span>
 
         
     </div>
-    <a class="headerlink" href="#ActivityTypeInfo.display_name"></a>
+    <a class="headerlink" href="#ActivityTypeInfo.description"></a>
     
-            <div class="docstring"><p>Human-readable label, e.g. <code>"Counter Movement Jump"</code>.</p>
+            <div class="docstring"><p>Freeform description, when the type carries one. <code>None</code> for a type reported
+alongside an activity, which carries only the three fields above.</p>
 </div>
 
 
+                            </div>
+                </section>
+                <section id="ActivityTypesResource">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">ActivityTypesResource</span><wbr>(<span class="base"><a href="#_BaseResource">_BaseResource</a></span>):
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityTypesResource"></a>
+    
+            <div class="docstring"><p>The activity types this account can use.</p>
+
+<p>Returned by <code><a href="#ModelHealthClient.activity_types">ModelHealthClient.activity_types</a></code> — do not construct directly.</p>
+</div>
+
+
+                            <div id="ActivityTypesResource.list" class="classattr">
+                                <div class="attr function">
+            
+        <span class="def">def</span>
+        <span class="name">list</span><span class="signature pdoc-code condensed">(<span class="param"><span class="bp">self</span></span><span class="return-annotation">) -> <span class="s2">&quot;&#39;list[ActivityTypeInfo]&#39;&quot;</span>:</span></span>
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityTypesResource.list"></a>
+    
+            <div class="docstring"><p>The types everybody has, plus any this account or its organisation added.</p>
+
+<p>The list is the account's own and grows, which is why a list filters by a type
+taken from here rather than by a name known in advance.</p>
+
+<h6 id="returns">Returns:</h6>
+
+<blockquote>
+  <p>Every activity type available to this account.</p>
+</blockquote>
+
+<h6 id="raises">Raises:</h6>
+
+<ul>
+<li><strong>AuthenticationError:</strong>  If the API key is invalid or expired.</li>
+<li><strong>NetworkError:</strong>  On connection failure or timeout.</li>
+</ul>
+
+<h6 id="example">Example:</h6>
+
+<blockquote>
+  <div class="pdoc-code codehilite">
+<pre><span></span><code><span class="n">types</span> <span class="o">=</span> <span class="n">client</span><span class="o">.</span><span class="n">activity_types</span><span class="o">.</span><span class="n">list</span><span class="p">()</span>
+<span class="n">squats</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">types</span> <span class="k">if</span> <span class="n">t</span><span class="o">.</span><span class="n">display_name</span> <span class="o">==</span> <span class="s2">&quot;Squat Exercise&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">activity</span> <span class="ow">in</span> <span class="n">client</span><span class="o">.</span><span class="n">activities</span><span class="o">.</span><span class="n">list</span><span class="p">(</span><span class="n">activity_type</span><span class="o">=</span><span class="n">squats</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">activity</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</code></pre>
+  </div>
+</blockquote>
+</div>
+
+
+                            </div>
+                            <div class="inherited">
+                                <h5>Inherited Members</h5>
+                                <dl>
+                                    <div><dt><a href="#_BaseResource">_BaseResource</a></dt>
+                                <dd id="ActivityTypesResource.__init__" class="function"><a href="#_BaseResource.__init__">_BaseResource</a></dd>
+
+            </div>
+                                </dl>
                             </div>
                 </section>
                 <section id="MotionData">
@@ -5114,19 +5579,6 @@ unchanged — including a type this SDK build doesn't otherwise recognize.</p>
 </div>
 
 
-                            <div id="AnalysisData.type" class="classattr">
-                                <div class="attr variable">
-            <span class="name">type</span>
-
-        
-    </div>
-    <a class="headerlink" href="#AnalysisData.type"></a>
-    
-            <div class="docstring"><p>The type of analysis result and its implicit file format.</p>
-</div>
-
-
-                            </div>
                             <div id="AnalysisData.data" class="classattr">
                                 <div class="attr variable">
             <span class="name">data</span>
@@ -5136,6 +5588,19 @@ unchanged — including a type this SDK build doesn't otherwise recognize.</p>
     <a class="headerlink" href="#AnalysisData.data"></a>
     
             <div class="docstring"><p>The raw file bytes. Parse according to the format implied by <code><a href="#AnalysisData.type">type</a></code>.</p>
+</div>
+
+
+                            </div>
+                            <div id="AnalysisData.type" class="classattr">
+                                <div class="attr variable">
+            <span class="name">type</span>
+
+        
+    </div>
+    <a class="headerlink" href="#AnalysisData.type"></a>
+    
+            <div class="docstring"><p>The type of analysis result and its implicit file format.</p>
 </div>
 
 
@@ -5269,17 +5734,6 @@ unchanged — including a type this SDK build doesn't otherwise recognize.</p>
     
 
                             </div>
-                            <div id="LogEvent.category" class="classattr">
-                                <div class="attr variable">
-            <span class="name">category</span>
-
-        
-    </div>
-    <a class="headerlink" href="#LogEvent.category"></a>
-    
-    
-
-                            </div>
                             <div id="LogEvent.timestamp_ms" class="classattr">
                                 <div class="attr variable">
             <span class="name">timestamp_ms</span>
@@ -5291,17 +5745,6 @@ unchanged — including a type this SDK build doesn't otherwise recognize.</p>
     
 
                             </div>
-                            <div id="LogEvent.code" class="classattr">
-                                <div class="attr variable">
-            <span class="name">code</span>
-
-        
-    </div>
-    <a class="headerlink" href="#LogEvent.code"></a>
-    
-    
-
-                            </div>
                             <div id="LogEvent.message" class="classattr">
                                 <div class="attr variable">
             <span class="name">message</span>
@@ -5309,6 +5752,28 @@ unchanged — including a type this SDK build doesn't otherwise recognize.</p>
         
     </div>
     <a class="headerlink" href="#LogEvent.message"></a>
+    
+    
+
+                            </div>
+                            <div id="LogEvent.category" class="classattr">
+                                <div class="attr variable">
+            <span class="name">category</span>
+
+        
+    </div>
+    <a class="headerlink" href="#LogEvent.category"></a>
+    
+    
+
+                            </div>
+                            <div id="LogEvent.code" class="classattr">
+                                <div class="attr variable">
+            <span class="name">code</span>
+
+        
+    </div>
+    <a class="headerlink" href="#LogEvent.code"></a>
     
     
 
@@ -6007,6 +6472,116 @@ get autocomplete and typo-checking.</p>
 are not currently distinguishable through this attribute.</p>
 </div>
 
+
+                            </div>
+                </section>
+                <section id="UsageReason">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">UsageReason</span><wbr>(<span class="base">enum.StrEnum</span>):
+
+        
+    </div>
+    <a class="headerlink" href="#UsageReason"></a>
+    
+            <div class="docstring"><p>Why <code><a href="#UsageInfo">UsageInfo</a></code>'s <code>recording_allowed</code> is <code>False</code>.</p>
+</div>
+
+
+                            <div id="UsageReason.no_active_plan" class="classattr">
+                                <div class="attr variable">
+            <span class="name">no_active_plan</span>        =
+<span class="default_value">&lt;<a href="#UsageReason.no_active_plan">UsageReason.no_active_plan</a>: &#39;no_active_plan&#39;&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageReason.no_active_plan"></a>
+    
+            <div class="docstring"><p>No plan is configured for this account.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageReason.period_expired" class="classattr">
+                                <div class="attr variable">
+            <span class="name">period_expired</span>        =
+<span class="default_value">&lt;<a href="#UsageReason.period_expired">UsageReason.period_expired</a>: &#39;period_expired&#39;&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageReason.period_expired"></a>
+    
+            <div class="docstring"><p>The current billing period has ended.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageReason.limit_reached" class="classattr">
+                                <div class="attr variable">
+            <span class="name">limit_reached</span>        =
+<span class="default_value">&lt;<a href="#UsageReason.limit_reached">UsageReason.limit_reached</a>: &#39;limit_reached&#39;&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageReason.limit_reached"></a>
+    
+            <div class="docstring"><p>The activity cap for the current period has been reached.</p>
+</div>
+
+
+                            </div>
+                            <div id="UsageReason.payment_failed" class="classattr">
+                                <div class="attr variable">
+            <span class="name">payment_failed</span>        =
+<span class="default_value">&lt;<a href="#UsageReason.payment_failed">UsageReason.payment_failed</a>: &#39;payment_failed&#39;&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#UsageReason.payment_failed"></a>
+    
+            <div class="docstring"><p>The most recent payment attempt failed.</p>
+</div>
+
+
+                            </div>
+                </section>
+                <section id="ResetPeriod">
+                    <div class="attr class">
+            
+    <span class="def">class</span>
+    <span class="name">ResetPeriod</span><wbr>(<span class="base">enum.StrEnum</span>):
+
+        
+    </div>
+    <a class="headerlink" href="#ResetPeriod"></a>
+    
+            <div class="docstring"><p>How often <code><a href="#UsageInfo">UsageInfo</a></code>'s <code>activities_used</code> resets.</p>
+</div>
+
+
+                            <div id="ResetPeriod.monthly" class="classattr">
+                                <div class="attr variable">
+            <span class="name">monthly</span>        =
+<span class="default_value">&lt;<a href="#ResetPeriod.monthly">ResetPeriod.monthly</a>: &#39;monthly&#39;&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ResetPeriod.monthly"></a>
+    
+    
+
+                            </div>
+                            <div id="ResetPeriod.annually" class="classattr">
+                                <div class="attr variable">
+            <span class="name">annually</span>        =
+<span class="default_value">&lt;<a href="#ResetPeriod.annually">ResetPeriod.annually</a>: &#39;annually&#39;&gt;</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ResetPeriod.annually"></a>
+    
+    
 
                             </div>
                 </section>
@@ -6990,19 +7565,6 @@ is passed instead.</p>
 
 
                             </div>
-                            <div id="CheckerboardDetails.placement" class="classattr">
-                                <div class="attr variable">
-            <span class="name">placement</span>
-
-        
-    </div>
-    <a class="headerlink" href="#CheckerboardDetails.placement"></a>
-    
-            <div class="docstring"><p>Checkerboard orientation: <code>"perpendicular"</code> or <code>"parallel"</code>.</p>
-</div>
-
-
-                            </div>
                             <div id="CheckerboardDetails.columns" class="classattr">
                                 <div class="attr variable">
             <span class="name">columns</span>
@@ -7012,6 +7574,19 @@ is passed instead.</p>
     <a class="headerlink" href="#CheckerboardDetails.columns"></a>
     
             <div class="docstring"><p>Number of internal corner columns.</p>
+</div>
+
+
+                            </div>
+                            <div id="CheckerboardDetails.placement" class="classattr">
+                                <div class="attr variable">
+            <span class="name">placement</span>
+
+        
+    </div>
+    <a class="headerlink" href="#CheckerboardDetails.placement"></a>
+    
+            <div class="docstring"><p>Checkerboard orientation: <code>"perpendicular"</code> or <code>"parallel"</code>.</p>
 </div>
 
 
@@ -7702,19 +8277,6 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
 
 
                             </div>
-                            <div id="Metric.description" class="classattr">
-                                <div class="attr variable">
-            <span class="name">description</span>
-
-        
-    </div>
-    <a class="headerlink" href="#Metric.description"></a>
-    
-            <div class="docstring"><p>Human-readable description, or <code>None</code> if not set.</p>
-</div>
-
-
-                            </div>
                             <div id="Metric.name" class="classattr">
                                 <div class="attr variable">
             <span class="name">name</span>
@@ -7724,6 +8286,19 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
     <a class="headerlink" href="#Metric.name"></a>
     
             <div class="docstring"><p>Display name.</p>
+</div>
+
+
+                            </div>
+                            <div id="Metric.description" class="classattr">
+                                <div class="attr variable">
+            <span class="name">description</span>
+
+        
+    </div>
+    <a class="headerlink" href="#Metric.description"></a>
+    
+            <div class="docstring"><p>Human-readable description, or <code>None</code> if not set.</p>
 </div>
 
 
@@ -7743,15 +8318,15 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
 </div>
 
 
-                            <div id="MetricsGroup.name" class="classattr">
+                            <div id="MetricsGroup.metrics" class="classattr">
                                 <div class="attr variable">
-            <span class="name">name</span>
+            <span class="name">metrics</span>
 
         
     </div>
-    <a class="headerlink" href="#MetricsGroup.name"></a>
+    <a class="headerlink" href="#MetricsGroup.metrics"></a>
     
-            <div class="docstring"><p>Display name.</p>
+            <div class="docstring"><p>Metrics within this group.</p>
 </div>
 
 
@@ -7769,15 +8344,15 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
 
 
                             </div>
-                            <div id="MetricsGroup.metrics" class="classattr">
+                            <div id="MetricsGroup.name" class="classattr">
                                 <div class="attr variable">
-            <span class="name">metrics</span>
+            <span class="name">name</span>
 
         
     </div>
-    <a class="headerlink" href="#MetricsGroup.metrics"></a>
+    <a class="headerlink" href="#MetricsGroup.name"></a>
     
-            <div class="docstring"><p>Metrics within this group.</p>
+            <div class="docstring"><p>Display name.</p>
 </div>
 
 
@@ -7814,19 +8389,6 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
 
 
                             </div>
-                            <div id="ActivityMetrics.activity_type_id" class="classattr">
-                                <div class="attr variable">
-            <span class="name">activity_type_id</span>
-
-        
-    </div>
-    <a class="headerlink" href="#ActivityMetrics.activity_type_id"></a>
-    
-            <div class="docstring"><p>Database ID of the activity type.</p>
-</div>
-
-
-                            </div>
                             <div id="ActivityMetrics.groups" class="classattr">
                                 <div class="attr variable">
             <span class="name">groups</span>
@@ -7836,6 +8398,19 @@ while videos are being transferred. <code><a href="#ImportStatusUploading.trial"
     <a class="headerlink" href="#ActivityMetrics.groups"></a>
     
             <div class="docstring"><p>Metric groups in display order.</p>
+</div>
+
+
+                            </div>
+                            <div id="ActivityMetrics.activity_type_id" class="classattr">
+                                <div class="attr variable">
+            <span class="name">activity_type_id</span>
+
+        
+    </div>
+    <a class="headerlink" href="#ActivityMetrics.activity_type_id"></a>
+    
+            <div class="docstring"><p>Database ID of the activity type.</p>
 </div>
 
 

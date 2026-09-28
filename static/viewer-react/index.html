@@ -48,6 +48,16 @@ yourself via the <code>ref</code>, or use the exported <code>&lt;PlaybackControl
 
 <p><code>onPlayingChange</code> and <code>onDurationChange</code> props on <code>View3D</code> itself keep an external
 play/pause toggle or scrubber range in sync with the viewer's actual state.</p>
+<h2 id="syncing-to-an-external-clock" class="tsd-anchor-link">Syncing to an external clock<a href="#syncing-to-an-external-clock" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
+<p>If something outside <code>View3D</code> already tracks playback position — a video player,
+for example — and you want the 3D view to strictly follow it instead of running
+its own clock, set <code>externalClock</code>:</p>
+<pre><code class="tsx"><span class="hl-8">&lt;</span><span class="hl-7">View3D</span><span class="hl-1"> </span><span class="hl-10">ref</span><span class="hl-1">=</span><span class="hl-5">{</span><span class="hl-4">viewerRef</span><span class="hl-5">}</span><span class="hl-1"> </span><span class="hl-10">transforms</span><span class="hl-1">=</span><span class="hl-5">{</span><span class="hl-4">transforms</span><span class="hl-5">}</span><span class="hl-1"> </span><span class="hl-10">externalClock</span><span class="hl-1"> </span><span class="hl-8">/&gt;</span>
+</code><button type="button">Copy</button></pre>
+
+<p>While <code>externalClock</code> is set, call <code>viewerRef.current?.seek(time)</code> every time your
+own clock updates — safe to call as often as once per video frame. <code>play()</code> has no
+effect while <code>externalClock</code> is set.</p>
 <h2 id="overlays" class="tsd-anchor-link">Overlays<a href="#overlays" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="assets/icons.svg#icon-anchor"></use></svg></a></h2>
 <p><strong>Markers</strong> — pass one or more augmented marker layers via the <code>markers</code> prop:</p>
 <pre><code class="typescript"><span class="hl-3">import</span><span class="hl-1"> { </span><span class="hl-4">fetchMarkerTransforms</span><span class="hl-1"> } </span><span class="hl-3">from</span><span class="hl-1"> </span><span class="hl-2">&#39;@modelhealth/viewer-react&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">const</span><span class="hl-1"> </span><span class="hl-6">markerTransforms</span><span class="hl-1"> = </span><span class="hl-3">await</span><span class="hl-1"> </span><span class="hl-0">fetchMarkerTransforms</span><span class="hl-1">(</span><span class="hl-4">service</span><span class="hl-1">, </span><span class="hl-4">activity</span><span class="hl-1">);</span>
@@ -68,7 +78,7 @@ result the backend produces for it:</p>
 <ul>
 <li><code>View3D</code> — the viewer component. Props: <code>transforms</code>, <code>markers</code>, <code>overlay</code>, <code>color</code>,
 <code>geometryBaseUrl</code>, <code>skipGeometries</code>, <code>trackedBodyKey</code>, <code>className</code>, <code>onPlayingChange</code>,
-<code>onDurationChange</code>.</li>
+<code>onDurationChange</code>, <code>externalClock</code>.</li>
 <li><code>PlaybackControls</code> — ready-made playback UI, driven entirely by props/callbacks.</li>
 <li><code>fetchAnimationTransforms(client, activity)</code> — fetches and parses <code>animation</code> motion data.</li>
 <li><code>fetchMarkerTransforms(client, activity)</code> — fetches and parses <code>markers_csv</code> motion data; returns <code>null</code> if unavailable.</li>
@@ -129,6 +139,7 @@ passed matches what the file was uploaded under, and that a <code>-sync</code> r
 <li><a href="#installation"><span>Installation</span></a></li>
 <li><a href="#quick-start"><span>Quick <wbr/>Start</span></a></li>
 <li><a href="#playback-controls"><span>Playback <wbr/>Controls</span></a></li>
+<li><a href="#syncing-to-an-external-clock"><span>Syncing to an external clock</span></a></li>
 <li><a href="#overlays"><span>Overlays</span></a></li>
 <li><a href="#api-reference"><span>API <wbr/>Reference</span></a></li>
 <li><a href="#vite-configuration"><span>Vite <wbr/>Configuration</span></a></li>
