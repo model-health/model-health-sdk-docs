@@ -44,7 +44,7 @@ Calibration and neutral-pose activities are left out by default. Pass `excludeCa
 |---|---|
 | `subject` | Activities recorded for one subject |
 | `calibrationSession` | Activities recorded under one calibration session |
-| `activityType` | Activities of one type |
+| `activityType` | Activities of one type — see [Activity Types](#activity-types) |
 | `excludeCalibration` | Whether to leave out calibration and neutral-pose activities (default `true`) |
 | `createdAfter` / `createdBefore` | An inclusive date range |
 | `search` | Free-text match against the activity name |
@@ -85,7 +85,7 @@ Calibration and neutral-pose activities are left out by default. Pass `excludeCa
 | `groups` | Subjects belonging to one of these subject groups |
 | `tags` | Subjects carrying every tag in the list |
 | `createdBy` | Subjects belonging to one or more account ids |
-| `activityType` | Subjects with an activity of this type |
+| `activityType` | Subjects with an activity of this type — see [Activity Types](#activity-types) |
 | `activityComplete` | Subjects with at least one completed activity |
 | `session` | Subjects recorded in one session |
 
@@ -137,6 +137,84 @@ Narrowing by subject is the only filter a session list takes. It lists sessions 
 </Tabs>
 
 Search is the only filter a group list takes.
+
+## Activity Types
+
+The types available are the account's own: the ones everybody has, plus any the account or its organisation added. Read them, then filter by one.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let types = try await client.activityTypes()
+  let squats = types.first { $0.displayName == "Squat Exercise" }!
+
+  for try await activity in client.activities.list(activityType: squats) {
+      print(activity.name ?? activity.id)
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const types = await client.activityTypes();
+  const squats = types.find(t => t.displayName === "Squat Exercise")!;
+
+  for await (const activity of client.activities.list({ activityType: squats })) {
+    console.log(activity.name);
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  types = client.activity_types.list()
+  squats = next(t for t in types if t.display_name == "Squat Exercise")
+
+  for activity in client.activities.list(activity_type=squats):
+      print(activity.name)
+  ```
+  </TabItem>
+</Tabs>
+
+A type carries `id`, `name`, `slug` and `displayName`, and — when read from this list — `description` and `isCustom`.
+
+Match on `slug` rather than on a name. It is derived from the name once and then stays put, so renaming a type leaves it alone, while `name` and `displayName` both follow the rename:
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let squats = try await client.activityTypes().first { $0.slug == "squat_exercise" }!
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const squats = (await client.activityTypes()).find(t => t.slug === "squat_exercise")!;
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  squats = next(t for t in client.activity_types.list() if t.slug == "squat_exercise")
+  ```
+  </TabItem>
+</Tabs>
+
+The one already on an activity works as a filter too, so you can narrow to whatever you just saw:
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  client.activities.list(activityType: activity.activityType!)
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  client.activities.list({ activityType: activity.activityType! });
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  client.activities.list(activity_type=activity.activity_type)
+  ```
+  </TabItem>
+</Tabs>
 
 ## Sorting
 

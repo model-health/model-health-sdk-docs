@@ -7,6 +7,54 @@ Once camera and subject calibration are complete, you're ready to record movemen
 
 > **Note:** Camera positions must remain fixed after calibration. If you need to reposition cameras, you'll need to [recalibrate](./camera-calibration).
 
+## Before You Record
+
+An account has a plan, and a plan has a limit. `usage` says whether recording is allowed right now, and why it isn't when it isn't — check it before you offer the button rather than letting the recording fail.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let usage = try await client.usage()
+  guard usage.recordingAllowed else {
+      print("Recording blocked: \(usage.reason.map(String.init(describing:)) ?? "no active plan")")
+      return
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const usage = await client.usage();
+  if (!usage.recordingAllowed) {
+    console.log(`Recording blocked: ${usage.reason ?? "no active plan"}`);
+    return;
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  usage = client.usage()
+  if not usage.recording_allowed:
+      print(f"Recording blocked: {usage.reason or 'no active plan'}")
+      return
+  ```
+  </TabItem>
+</Tabs>
+
+`reason` is one of `noActivePlan`, `periodExpired`, `limitReached` or `paymentFailed`, and is empty while recording is allowed.
+
+The rest describes the plan itself, for a usage bar or a renewal notice:
+
+| | |
+|---|---|
+| `activitiesUsed` / `activitiesMax` | Activities recorded and allowed this period |
+| `periodEnd` | When the current period ends |
+| `planName` | The plan's name |
+| `isFreeTrial` | Whether this is a free trial |
+| `resetPeriod` | `monthly` or `annually` |
+| `willAutoRenew` | Whether the subscription renews itself |
+
+Every one of them is empty when there's no active plan. `activitiesMax` empty **while a plan is active** means something different: no limit at all.
+
 ## Recording
 
 ### Start Recording

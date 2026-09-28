@@ -121,6 +121,42 @@ you can style controls to match your app rather than a fixed embedded toolbar.
   />
   ```
 
+## Following Another Clock
+
+To put the model beside the recorded video, let the video's playhead drive it rather than
+running two clocks side by side. While an external clock is on, playback never advances on
+its own — `play()` does nothing, and `seek` is the only thing that moves the current time.
+
+- **Swift** — `controller.setExternalClock(true)`
+- **TypeScript** — the `externalClock` prop on `<View3D>`
+
+Then hand it the video's time as often as your own clock updates. Once per video frame is
+fine, and costs no more than calling it slowly:
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  controller.setExternalClock(true)
+
+  let step = CMTime(seconds: 1.0 / 60.0, preferredTimescale: 600)
+  player.addPeriodicTimeObserver(forInterval: step, queue: .main) { time in
+      controller.seek(to: time.seconds)
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```tsx
+  <View3D ref={viewerRef} transforms={transforms} externalClock />
+
+  // every frame the browser paints
+  const tick = () => {
+    viewerRef.current?.seek(videoRef.current.currentTime);
+    requestAnimationFrame(tick);
+  };
+  ```
+  </TabItem>
+</Tabs>
+
 ## Ground Reaction Force Overlays
 
 <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap' }}>
