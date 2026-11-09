@@ -14,7 +14,7 @@
 <div class="tsd-comment tsd-typography"><p>Per-recording settings that override the session-level config.</p>
 <p>Fields left undefined fall back to the session's configured values.</p>
 </div></section>
-<div class="tsd-signature"><span class="tsd-signature-keyword">interface</span> <span class="tsd-kind-interface">RecordingConfig</span> <span class="tsd-signature-symbol">{</span><br/>    <a class="tsd-kind-property" href="#filterfrequency">filterFrequency</a><span class="tsd-signature-symbol">?:</span> <a href="../types/FilterFrequency.html" class="tsd-signature-type tsd-kind-type-alias">FilterFrequency</a><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#framerate">framerate</a><span class="tsd-signature-symbol">?:</span> <a href="../types/SessionFramerate.html" class="tsd-signature-type tsd-kind-type-alias">SessionFramerate</a><span class="tsd-signature-symbol">;</span><br/><span class="tsd-signature-symbol">}</span></div>
+<div class="tsd-signature"><span class="tsd-signature-keyword">interface</span> <span class="tsd-kind-interface">RecordingConfig</span> <span class="tsd-signature-symbol">{</span><br/>    <a class="tsd-kind-property" href="#coreengine">coreEngine</a><span class="tsd-signature-symbol">?:</span> <a href="../types/SessionCoreEngine.html" class="tsd-signature-type tsd-kind-type-alias">SessionCoreEngine</a><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#filterfrequency">filterFrequency</a><span class="tsd-signature-symbol">?:</span> <a href="../types/FilterFrequency.html" class="tsd-signature-type tsd-kind-type-alias">FilterFrequency</a><span class="tsd-signature-symbol">;</span><br/>    <a class="tsd-kind-property" href="#framerate">framerate</a><span class="tsd-signature-symbol">?:</span> <a href="../types/SessionFramerate.html" class="tsd-signature-type tsd-kind-type-alias">SessionFramerate</a><span class="tsd-signature-symbol">;</span><br/><span class="tsd-signature-symbol">}</span></div>
 <section class="tsd-panel-group tsd-index-group">
 <section class="tsd-panel tsd-index-panel">
 <details class="tsd-index-content tsd-accordion" open><summary class="tsd-accordion-summary tsd-index-summary"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
@@ -22,12 +22,18 @@
 <div class="tsd-accordion-details">
 <section class="tsd-index-section">
 <h3 class="tsd-index-heading tsd-anchor-link" id="properties">Properties<a href="#properties" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
-<div class="tsd-index-list"><a href="#filterfrequency" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>filter<wbr/>Frequency?</span></a>
+<div class="tsd-index-list"><a href="#coreengine" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>core<wbr/>Engine?</span></a>
+<a href="#filterfrequency" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>filter<wbr/>Frequency?</span></a>
 <a href="#framerate" class="tsd-index-link"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>framerate?</span></a>
 </div></section></div></details></section></section>
 <details class="tsd-panel-group tsd-member-group tsd-accordion" open><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>
 <h2 class="tsd-anchor-link" id="properties-1">Properties<a href="#properties-1" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h2></summary>
 <section>
+<section class="tsd-panel tsd-member">
+<h3 class="tsd-anchor-link" id="coreengine"><code class="tsd-tag">Optional</code><span>core<wbr/>Engine</span><a href="#coreengine" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
+<div class="tsd-signature"><span class="tsd-kind-property">coreEngine</span><span class="tsd-signature-symbol">?:</span> <a href="../types/SessionCoreEngine.html" class="tsd-signature-type tsd-kind-type-alias">SessionCoreEngine</a></div>
+<div class="tsd-comment tsd-typography"><p>Core engine version override. Undefined uses the session default.</p>
+</div></section>
 <section class="tsd-panel tsd-member">
 <h3 class="tsd-anchor-link" id="filterfrequency"><code class="tsd-tag">Optional</code><span>filter<wbr/>Frequency</span><a href="#filterfrequency" aria-label="Permalink" class="tsd-anchor-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><use href="../assets/icons.svg#icon-anchor"></use></svg></a></h3>
 <div class="tsd-signature"><span class="tsd-kind-property">filterFrequency</span><span class="tsd-signature-symbol">?:</span> <a href="../types/FilterFrequency.html" class="tsd-signature-type tsd-kind-type-alias">FilterFrequency</a></div>
@@ -54,7 +60,7 @@
 <h3>On This Page</h3></summary>
 <div class="tsd-accordion-details">
 <details open class="tsd-accordion tsd-page-navigation-section"><summary class="tsd-accordion-summary" data-key="section-Properties"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><use href="../assets/icons.svg#icon-chevronDown"></use></svg>Properties</summary>
-<div><a href="#filterfrequency"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>filter<wbr/>Frequency</span></a><a href="#framerate"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>framerate</span></a></div></details></div></details></div>
+<div><a href="#coreengine"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>core<wbr/>Engine</span></a><a href="#filterfrequency"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>filter<wbr/>Frequency</span></a><a href="#framerate"><svg class="tsd-kind-icon" viewBox="0 0 24 24" aria-label="Property"><use href="../assets/icons.svg#icon-1024"></use></svg><span>framerate</span></a></div></details></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="../modules.html">@modelhealth/modelhealth</a>
 <ul class="tsd-small-nested-navigation" id="tsd-nav-container">
