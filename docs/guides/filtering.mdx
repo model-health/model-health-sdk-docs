@@ -43,8 +43,11 @@ Calibration and neutral-pose activities are left out by default. Pass `excludeCa
 | Filter | Selects |
 |---|---|
 | `subject` | Activities recorded for one subject |
+| `subjects` | Activities recorded for any of several subjects — see [Several Subjects or Types](#several-subjects-or-types) |
 | `calibrationSession` | Activities recorded under one calibration session |
+| `session` | Activities recorded in one session |
 | `activityType` | Activities of one type — see [Activity Types](#activity-types) |
+| `activityTypes` | Activities of any of several types |
 | `excludeCalibration` | Whether to leave out calibration and neutral-pose activities (default `true`) |
 | `createdAfter` / `createdBefore` | An inclusive date range |
 | `search` | Free-text match against the activity name |
@@ -52,6 +55,50 @@ Calibration and neutral-pose activities are left out by default. Pass `excludeCa
 | `createdBy` | Activities belonging to one or more account ids |
 | `onlyCompleted` | Activities whose recording finished |
 | `excludeAnalysisError` | Leaves out activities whose analysis failed |
+
+### Several Subjects or Types
+
+To list the activities of several subjects, or of several activity types, pass them all in one call instead of listing each one separately:
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let types = try await client.activityTypes()
+  let jumps = types.filter { $0.displayName.contains("Jump") }
+
+  let activities = client.activities.list(subjects: [alice, bob], activityTypes: jumps)
+  for try await activity in activities {
+      print(activity.subjectInfo?.name ?? "—", activity.name ?? activity.id)
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const types = await client.activityTypes();
+  const jumps = types.filter(t => t.displayName.includes("Jump"));
+
+  const activities = client.activities.list({ subjects: [alice, bob], activityTypes: jumps });
+  for await (const activity of activities) {
+    console.log(activity.subjectInfo?.name ?? "—", activity.name);
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  types = client.activity_types.list()
+  jumps = [t for t in types if "Jump" in t.display_name]
+
+  activities = client.activities.list(subjects=[alice, bob], activity_types=jumps)
+  for activity in activities:
+      print(activity.subject_info.name if activity.subject_info else "—", activity.name)
+  ```
+  </TabItem>
+</Tabs>
+
+- An activity matching any of the subjects, and any of the types, is included. Together with `subject` and `activityType`, the single and the plural filters add up: an activity matching either is included.
+- TypeScript and Python also accept ids in place of subjects and activity types.
+- Each activity carries `subjectInfo` (`subject_info` in Python) — the subject's id and name — so a list that spans several subjects can say whose activity each one is without another request.
+- An empty list is rejected rather than read as "all". To match every subject or every type, leave the filter out.
 
 ## Subjects
 

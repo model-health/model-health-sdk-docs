@@ -1,6 +1,6 @@
 # TypeScript Example App
 
-A Vite web app that implements the same workflow as the iOS example in the browser. It uses the `@modelhealth/modelhealth` npm package and runs a local dev server.
+A Vite web app that implements the same workflow as the iOS example in the browser. It uses the `@modelhealth/modelhealth` npm package and runs a local dev server. Selecting an activity in the activities list opens its results, which can be fetched and downloaded in the browser.
 
 Source: [`examples/app/ts`](https://github.com/model-health/model-health/tree/main/examples/app/ts)
 
