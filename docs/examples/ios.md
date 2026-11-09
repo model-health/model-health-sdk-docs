@@ -1,6 +1,6 @@
 # iOS Example App
 
-A native SwiftUI app that mirrors the complete SDK workflow. It connects to the Model Health Companion app via the SDK to manage sessions, calibrate cameras and subjects, record activities and retrieve analysis results.
+A native SwiftUI app that mirrors the complete SDK workflow. It connects to the Model Health Companion app via the SDK to manage sessions, calibrate cameras and subjects, record activities, retrieve analysis results and download an activity's results from the activities list.
 
 Source: [`examples/app/ios`](https://github.com/model-health/model-health/tree/main/examples/app/ios)
 

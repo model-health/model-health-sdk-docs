@@ -1,0 +1,148 @@
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Moving Between Records
+
+Activities, sessions and subjects are linked: an activity is recorded in a session, and a session belongs to a subject. Starting from any of them you can reach the others directly, without looking up ids yourself.
+
+## From an Activity
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let session = try await activity.session
+  let subject = try await activity.subject // nil when the session has no subject
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const session = await activity.session();
+  const subject = await activity.subject(); // undefined when the session has no subject
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  session = activity.session()
+  subject = activity.subject()  # None when the session has no subject
+  ```
+  </TabItem>
+</Tabs>
+
+A session reaches its subject the same way: `try await session.subject` in Swift, `session.subject()` in TypeScript and Python.
+
+## From a Subject or a Session
+
+A subject lists its sessions and its activities, and a session lists its activities. These lists take the same filters as the ones in [Filtering Lists](./filtering), with the subject or session already chosen.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  for try await session in subject.sessions(limit: 5) {
+      print(session.id)
+  }
+
+  for try await activity in subject.activities(onlyCompleted: true, limit: 10) {
+      print(activity.name ?? activity.id)
+  }
+
+  for try await activity in session.activities() {
+      print(activity.name ?? activity.id)
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  for await (const session of subject.sessions({ limit: 5 })) {
+    console.log(session.id);
+  }
+
+  for await (const activity of subject.activities({ onlyCompleted: true, limit: 10 })) {
+    console.log(activity.name);
+  }
+
+  for await (const activity of session.activities()) {
+    console.log(activity.name);
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  for session in subject.sessions(limit=5):
+      print(session.id)
+
+  for activity in subject.activities(only_completed=True, limit=10):
+      print(activity.name)
+
+  for activity in session.activities():
+      print(activity.name)
+  ```
+  </TabItem>
+</Tabs>
+
+## Finding a Subject by Name
+
+`subjects.find` returns the subject with exactly this name, ignoring case, or nothing when there is none:
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  if let subject = try await client.subjects.find(name: "Jane Doe") {
+      for try await activity in subject.activities(limit: 5) {
+          print(activity.name ?? activity.id)
+      }
+  }
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const subject = await client.subjects.find("Jane Doe");
+  if (subject) {
+    for await (const activity of subject.activities({ limit: 5 })) {
+      console.log(activity.name);
+    }
+  }
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  subject = client.subjects.find("Jane Doe")
+  if subject:
+      for activity in subject.activities(limit=5):
+          print(activity.name)
+  ```
+  </TabItem>
+</Tabs>
+
+When more than one subject has the name, `find` fails with `ambiguousMatch` in Swift and `AmbiguousMatchError` in TypeScript and Python. The message lists their ids, so you can fetch the one you mean by id.
+
+## Reading Again
+
+The session or subject a record leads to is read once and then remembered, so reaching it a second time costs nothing. To pick up changes made since, call `refresh()`: it reads the record again and forgets what it had remembered.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let current = try await activity.refresh()
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const current = await activity.refresh();
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  current = activity.refresh()
+  ```
+  </TabItem>
+</Tabs>
+
+## Ids and Comparing Records
+
+When you only need an id, use `sessionId` on an activity and `subjectId` on a session (`session_id` and `subject_id` in Python). They are already there, so reading them does not reach the server.
+
+Two records of the same kind are equal when their ids are: `==` in Swift and Python, `equals(other)` in TypeScript.
+
+:::info Records you create yourself
+A record built in your own code — in a preview or a test, for example — is not connected to a client, so moving from it fails with `notAttached` in Swift, `NotAttachedError` in TypeScript and `ModelHealthError` in Python. Records returned by the SDK are always connected.
+:::

@@ -117,6 +117,42 @@ To have advanced analysis launch automatically once processing completes, pass a
 
 When processing completes, the activity status transitions to `.analyzing` instead of `.ready`. See [Checking Processing Status](#checking-processing-status) below for how to handle this state.
 
+### Per-Recording Settings
+
+A recording uses the session's settings — see [Session Configuration](./session-configuration). To use a different framerate, filter frequency or core engine for one recording only, pass a recording config. Anything you leave out keeps the session's value.
+
+<Tabs groupId="language">
+  <TabItem value="swift" label="Swift">
+  ```swift
+  let activity = try await client.startRecording(
+      activityNamed: "cmj",
+      in: session,
+      config: ActivityConfig(config: RecordingConfig(coreEngine: .v2_0))
+  )
+  ```
+  </TabItem>
+  <TabItem value="ts" label="TypeScript">
+  ```typescript
+  const activity = await client.startRecording(
+    "cmj",
+    session,
+    { config: { coreEngine: "v2.0" } }
+  );
+  ```
+  </TabItem>
+  <TabItem value="python" label="Python">
+  ```python
+  from modelhealth import ActivityConfig, RecordingConfig, SessionCoreEngine
+
+  activity = client.start_recording(
+      "cmj", session, ActivityConfig(config=RecordingConfig(core_engine=SessionCoreEngine.v2_0))
+  )
+  ```
+  </TabItem>
+</Tabs>
+
+An activity reports the settings it was recorded with in `framerate`, `filterFrequency` and `coreEngine` (`filter_frequency` and `core_engine` in Python). Each one is empty when the activity used its session's setting.
+
 ### During Recording
 
 - The subject performs the movement
