@@ -91,6 +91,14 @@ columns against time.
 python3 examples/scripts/python/plot_kinematics.py
 ```
 
+### `download_results.py` — Download an activity's results
+
+Takes the most recent activity whose processing has finished, fetches its results into memory — saying why any of them is missing — and then saves them as files: metrics (JSON), report (PDF), data (ZIP) and kinematics (CSV).
+
+```bash
+python3 examples/scripts/python/download_results.py --directory=results
+```
+
 ### `opencap_import.py` — OpenCap data import
 
 Imports an OpenCap session into Model Health for processing and analysis. Demonstrates the `importSession` API and `SessionConfig`.

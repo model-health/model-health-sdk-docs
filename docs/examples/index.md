@@ -37,6 +37,6 @@ A Vite web app that implements the same workflow in the browser using the `@mode
 
 ## Python Example Scripts
 
-A collection of CLI scripts covering individual parts of the workflow — from full capture end-to-end to post-capture analysis, archive download and importing OpenCap data for reprocessing and analysis.
+A collection of CLI scripts covering individual parts of the workflow — from full capture end-to-end to post-capture analysis, downloading results, archive download and importing OpenCap data for reprocessing and analysis.
 
 [Python Examples →](./python)
