@@ -3,7 +3,8 @@ name: Deploy to GitHub Pages
 on:
   push:
     tags:
-      - 'v*.*.*'
+      - 'v*.*.*'          # main SDK releases (model-health-internal)
+      - 'capture-v*.*.*'  # Camera SDK releases (ios repo, ModelHealthCapture/scripts/release.sh)
   workflow_dispatch:
 
 permissions:
@@ -40,6 +41,7 @@ jobs:
           echo "=== Check if index.html exists ==="
           test -f static/swift/index.html && echo "✅ Swift index.html exists" || echo "❌ Swift index.html missing"
           test -f static/typescript/index.html && echo "✅ TS index.html exists" || echo "❌ TS index.html missing"
+          test -f static/capture-swift/index.html && echo "✅ Camera SDK index.html exists" || echo "❌ Camera SDK index.html missing"
 
       - name: Install Docusaurus dependencies
         run: npm ci
