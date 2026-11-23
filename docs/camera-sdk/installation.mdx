@@ -1,0 +1,39 @@
+---
+title: Installation
+---
+
+import CodeBlock from '@theme/CodeBlock';
+import versionData from './version.json';
+
+# Installation
+
+## Requirements
+
+- iOS 15.0+, on iPhone or iPad
+- Xcode 15.0+
+- Swift 5.9+
+- A physical device for recording (the simulator has no camera)
+
+The SDK has no third-party dependencies. It ships as a binary XCFramework.
+
+## Swift Package Manager
+
+1. In Xcode, select **File > Add Package Dependencies...**
+2. Enter the repository URL: `https://github.com/model-health/model-health-capture-swift`
+3. Select version **{versionData.captureVersion}**
+4. Add `ModelHealthCapture` to your app target
+
+Or add it to your `Package.swift`:
+
+<CodeBlock language="swift">
+{`dependencies: [
+    .package(url: "https://github.com/model-health/model-health-capture-swift", from: "${versionData.captureVersion}")
+]`}
+</CodeBlock>
+
+Then add the `ModelHealthCapture` product to your target's dependencies.
+
+The SDK is built with library evolution, so its public enums are not frozen: add `@unknown default` when you
+switch over `CaptureState`, `CaptureEvent`, `CaptureError` or `UploadProgress.Phase`.
+
+Next: [Host app requirements](./host-app-requirements.md), then the [Quick start](./quick-start.md).
